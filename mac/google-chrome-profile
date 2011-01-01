@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Symlink (or move) this file to an empty directory and execute it to run 
+# Google Chrome under a new profile.
+
+CHROME=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+
+exec "$CHROME" --user-data-dir="`dirname \"$0\"`" "$@"
