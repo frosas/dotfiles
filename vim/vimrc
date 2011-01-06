@@ -1,8 +1,18 @@
-" Appearance
+" Sources: http://www.vi-improved.org/vimrc.php
+
+" UI
 syntax on
 set nowrap
 set linebreak
 set showcmd
+set wildmenu
+set wildmode=list
+set laststatus=2
+set scrolloff=2
+if has("gui_running")
+    set guifont=Menlo\ Regular:h13
+    colorscheme desert
+endif
 
 " Tabs
 set tabstop=4
@@ -21,3 +31,7 @@ set incsearch
 " Specific file types configuration
 filetype on
 filetype plugin on
+
+" Ruby
+au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
+au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
