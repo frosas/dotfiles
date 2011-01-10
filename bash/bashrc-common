@@ -1,0 +1,26 @@
+PATH=~/bin:$PATH
+
+alias ls="ls -FAGh"
+
+######################################################################
+# Prompt
+######################################################################
+
+GRIS_FOSC="\[\033[1;30m\]"
+VERMELL="\[\033[1;31m\]"
+VERD_FOSC="\[\033[0;32m\]"
+BLAU="\[\033[1;34m\]"
+RESTAURAR_COLOR="\[\033[0m\]"
+
+COLOR_NORMAL=$GRIS_FOSC
+COLOR_DIRECTORI=$BLAU
+COLOR_SIMBOL=$GRIS_FOSC
+COLOR_SERVIDOR=$BLAU
+
+if [ "`id -u`" -eq 0 ]; then
+    COLOR_USUARI=$VERMELL
+else
+    COLOR_USUARI=$VERD_FOSC
+fi
+
+PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR_DIRECTORI}\w${COLOR_SIMBOL}\$${RESTAURAR_COLOR} "
