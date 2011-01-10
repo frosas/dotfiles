@@ -5,6 +5,7 @@ syntax on
 set nowrap
 set linebreak
 set showcmd
+set ruler
 set wildmenu
 set wildmode=list
 set laststatus=2
@@ -37,3 +38,6 @@ filetype plugin on
 " Ruby
 au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
 au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
+
+" Pathogen
+call pathogen#runtime_append_all_bundles() 
