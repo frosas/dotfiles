@@ -7,7 +7,7 @@ set linebreak
 set showcmd
 set ruler
 set wildmenu
-set wildmode=list
+set wildmode=list:longest
 set laststatus=2
 set scrolloff=2
 if has("gui_running")
