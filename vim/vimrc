@@ -40,4 +40,7 @@ au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2
 au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
 
 " Pathogen
-call pathogen#runtime_append_all_bundles() 
+runtime autoload/pathogen.vim
+if exists("g:loaded_pathogen")
+    call pathogen#runtime_append_all_bundles() 
+endif
