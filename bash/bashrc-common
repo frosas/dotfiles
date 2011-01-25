@@ -1,4 +1,5 @@
 PATH=~/bin:$PATH
+export VISUAL=vim
 
 alias ls="ls -FAGh"
 
