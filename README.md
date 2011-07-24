@@ -4,9 +4,9 @@ Some scripts and configuration files
 
 ## Export
 
-  $ git clone $url ~/project/scripts
+    $ git clone $url ~/project/scripts
 
 ## In ~/.bashrc
 
-  source ~/projects/scripts/bash/bashrc-common
-  source ~/projects/scripts/bash/bashrc-mac
+    source ~/projects/scripts/bash/bashrc-common
+    source ~/projects/scripts/bash/bashrc-mac
