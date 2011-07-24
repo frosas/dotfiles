@@ -4,7 +4,7 @@ Some scripts and configuration files
 
 ## Export
 
-    $ git clone $url ~/project/scripts
+    $ git clone $url ~/projects/scripts
 
 ## In ~/.bashrc
 
