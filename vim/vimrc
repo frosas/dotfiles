@@ -43,5 +43,3 @@ if exists("g:loaded_pathogen")
     call pathogen#runtime_append_all_bundles() 
 endif
 
-" Swap files
-set dir=~/.vim/swap-files
