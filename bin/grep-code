@@ -1,3 +1,5 @@
 #!/bin/bash
 
-exec grep-dir --include=*.php --include=*.html --include=*.css --include=*.js --include=*.sql "$@"
+CMD="grep-dir"
+for E in `code-extensions`; do CMD="$CMD --include='*.$E'"; done
+eval $CMD "$@"
