@@ -6,7 +6,15 @@ Some scripts and configuration files
 
     $ git clone $url ~/projects/scripts
 
-## In ~/.bashrc
+## Bash
+
+In ~/.bashrc
 
     source ~/projects/scripts/bash/bashrc-common
     source ~/projects/scripts/bash/bashrc-mac
+
+## Vim
+
+    $ cd ~
+    $ ln -s ~/projects/scripts/vim/.vim
+    $ ln -s ~/projects/scripts/vim/.vimrc
