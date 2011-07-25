@@ -1,5 +1,5 @@
 #!/bin/bash
 
-exec find . -wholename '*.php' -or -wholename '*.html' -or -wholename '*.css' \
-    -or -wholename '*.js' -or -wholename '*.sql' -or -wholename '*.txt' \
-    -or -wholename '*.csv' | sort -f
+CMD="find . -false"
+for E in `code-extensions`; do CMD="$CMD -or -wholename '*.$E'"; done
+eval $CMD | sort -f
