@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec grep -rn "$@" .
+exec grep -rn --exclude-dir=.svn --exclude-dir=.git "$@" .
