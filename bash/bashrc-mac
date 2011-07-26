@@ -1,3 +1,4 @@
 # 
 
+alias ls="ls -FAGh"
 PATH=~/bin/mac:$PATH
