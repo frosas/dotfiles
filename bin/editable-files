@@ -1,0 +1,10 @@
+#!/bin/bash
+
+find -E . \
+    \( -name .git -or -name .svn -or -name _notes \) -prune -or \( \
+        -type f \
+        -not -regex '.*\.(jpg|png|gif|ico|ttf|swf)' \
+        -not -name .DS_Store \
+        -not -name Thumbs.db \
+        -print \
+    \)
