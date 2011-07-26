@@ -1,9 +1,14 @@
 #!/bin/bash
 
-find -E . \
+FIND_NO_BINARY_FILE_EXTENSIONS=""
+for E in jpg png gif ico ttf swf; do
+    FIND_NO_BINARY_FILE_EXTENSIONS="$FIND_NO_BINARY_FILE_EXTENSIONS -not -name *.$E"
+done
+
+find . \
     \( -name .git -or -name .svn -or -name _notes \) -prune -or \( \
         -type f \
-        -not -regex '.*\.(jpg|png|gif|ico|ttf|swf)' \
+        $FIND_NO_BINARY_FILE_EXTENSIONS \
         -not -name .DS_Store \
         -not -name Thumbs.db \
         -print \
