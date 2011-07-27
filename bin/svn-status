@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# A "svn status" that only show changes
+# A "svn status" that only shows changes
 
 LANG= svn st "$@" | grep -Ev "^(Performing|X|$)"
 
