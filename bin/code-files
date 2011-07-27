@@ -1,5 +1,0 @@
-#!/bin/bash
-
-CMD="find . -false"
-for E in `code-extensions`; do CMD="$CMD -or -wholename '*.$E'"; done
-eval $CMD | sort -f
