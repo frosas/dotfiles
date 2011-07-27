@@ -1,5 +1,0 @@
-#!/bin/bash
-
-CMD="grep-dir"
-for E in `code-extensions`; do CMD="$CMD --include='*.$E'"; done
-eval $CMD "$@"
