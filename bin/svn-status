@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# A "svn status" that only show changes
+
+LANG= svn st "$@" | grep -Ev "^(Performing|X|$)"
+
+# TODO Distinguish errors
+exit 0
