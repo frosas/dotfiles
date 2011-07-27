@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# View "svn diff" on vim (paged & colorized)
+
+svn diff "$@" | view -
