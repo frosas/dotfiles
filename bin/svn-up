@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# An "svn up" than only shows changes
+
+LANG= svn up "$@" | grep -Ev "^(At revision|Fetching external item into|External at revision|$)"
+
+# TODO Distinguish errors
+exit 0
