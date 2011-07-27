@@ -25,3 +25,4 @@ PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR
 
 PATH=~/bin:$PATH
 export VISUAL=vim
+export GREP_OPTIONS="--color=auto"
