@@ -4,5 +4,6 @@ find . \
     \( -name .git -or -name .svn -or -name _notes \) -prune -or \
     -type f \
     -not -name *.jpg -not -name *.png -not -name *.gif \
+    -not -name .DS_Store \
     "$@" \
     -print | sort -f
