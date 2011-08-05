@@ -5,4 +5,4 @@ find . \
     -type f \
     -not -name *.jpg -not -name *.png -not -name *.gif \
     "$@" \
-    -print
+    -print | sort -f
