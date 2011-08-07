@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# -z in sort is to work correctly when -print0 is used (see grep-text)
+
 find . \
     \( -name .git -or -name .svn -or -name _notes \) -prune -or \
     -type f \
@@ -7,4 +9,4 @@ find . \
     -not -name '*.swp' \
     -not -name .DS_Store \
     "$@" \
-    -print | sort -f
+    -print | sort -zf
