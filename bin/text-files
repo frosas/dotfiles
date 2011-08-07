@@ -3,7 +3,7 @@
 find . \
     \( -name .git -or -name .svn -or -name _notes \) -prune -or \
     -type f \
-    -not -iname *.jpg -not -iname *.png -not -iname *.gif \
+    -not -iname '*.jpg' -not -iname '*.png' -not -iname '*.gif' \
     -not -name .DS_Store \
     "$@" \
     -print | sort -f
