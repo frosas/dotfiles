@@ -2,4 +2,4 @@
 
 # View "svn diff" on vim (paged & colorized)
 
-svn diff "$@" | view -
+svn diff "$@" | view +'set syntax=diff' -
