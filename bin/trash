@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Stores deleted files to user trash instead of deleting it
+
+function absolute_path {
+    _PATH=$1
+    cd `dirname "$_PATH"` && pwd
+}
+
+function move_file {
+    FROM=$1; TO=$2
+    mkdir -p "$TO" && mv "$FROM" "$TO"
+}
+
+FILE=$1
+move_file "$FILE" "$HOME/.Trash/`date +%s``absolute_path $FILE`"
