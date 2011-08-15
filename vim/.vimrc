@@ -43,3 +43,4 @@ if exists("g:loaded_pathogen")
     call pathogen#runtime_append_all_bundles() 
 endif
 
+nmap <silent> <c-n> :NERDTreeToggle<CR>
