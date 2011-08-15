@@ -44,3 +44,4 @@ if exists("g:loaded_pathogen")
 endif
 
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
