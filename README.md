@@ -4,17 +4,17 @@ Some scripts and configuration files
 
 ## Export
 
-    $ git clone $url ~/projects/scripts
+    $ git clone $url ~/projects/dotfiles
 
 ## Bash
 
 In ~/.bashrc
 
-    source ~/projects/scripts/bash/bashrc-common
-    source ~/projects/scripts/bash/bashrc-mac
+    source ~/projects/dotfiles/bash/bashrc-common
+    source ~/projects/dotfiles/bash/bashrc-mac
 
 ## Vim
 
     $ cd ~
-    $ ln -s ~/projects/scripts/vim/.vim
-    $ ln -s ~/projects/scripts/vim/.vimrc
+    $ ln -s ~/projects/dotfiles/vim/.vim
+    $ ln -s ~/projects/dotfiles/vim/.vimrc
