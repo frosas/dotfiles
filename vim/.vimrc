@@ -12,7 +12,7 @@ if has("gui_running")
     set guifont=Menlo\ Regular:h13
     set lines=45
     set columns=130
-    colorscheme desert
+    colorscheme tomorrow
 endif
 
 " Tabs
