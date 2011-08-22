@@ -43,4 +43,3 @@ call pathogen#runtime_append_all_bundles()
 
 " NERDTree
 nmap <silent> <c-n> :NERDTreeToggle<CR>
-let NERDTreeShowHidden = 1
