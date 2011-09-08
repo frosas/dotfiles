@@ -1,0 +1,50 @@
+#!/usr/local/bin/node
+
+var net = require('net'),
+    child_process = require('child_process')
+
+setInterval(function() {
+    ping('8.8.8.8', function(error, time) {
+        if (sayError(error)) return
+        console.log(time + ' ms')
+        var maxAllowedLag = 85
+        if (time >= maxAllowedLag) {
+            say("lag", function(error) {
+                if (sayError(error)) return
+            })
+        }
+    })
+}, 1000)
+
+var ping = function(host, callback) {
+    var start = new Date()
+    var socket = net.createConnection(53, host)
+    // TODO Set connection timeout
+    var connected = false
+    socket.on('connect', function() {
+        connected = true
+        var time = new Date() - start
+        callback(null, time)
+        socket.end()
+    })
+    socket.on('error', function(error) {
+        // Don't care for errors once connected
+        if (! connected) callback(error)
+    })
+}
+
+var say = function(text, callback) {
+    child_process.exec('say -r 1000 -v bells ' + text, function(error) {
+        callback(error)
+    })
+}
+
+var sayError = function(error) {
+    if (error) {
+        console.error(error.message)
+        say(error.message, function(error) {
+            if (error) return console.error(error)
+        })
+        return true
+    }
+}
