@@ -30,12 +30,13 @@ set smartcase
 set incsearch
 
 " Specific file types configuration
-filetype on
-filetype plugin on
+filetype plugin indent on
 
-" Ruby
-au BufRead,BufNewFile *.rb,*.rhtml set shiftwidth=2 
-au BufRead,BufNewFile *.rb,*.rhtml set softtabstop=2 
+" Ruby, from http://oldwiki.rubyonrails.org/rails/pages/HowtoUseVimWithRails
+augroup myfiletypes 
+    autocmd!
+    autocmd FileType ruby,eruby,yaml set ai et sw=2 sts=2
+augroup END
 
 " Pathogen
 runtime pathogen/autoload/pathogen.vim
