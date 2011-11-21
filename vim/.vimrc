@@ -1,20 +1,3 @@
-" UI
-syntax on
-set nowrap
-set linebreak
-set showcmd
-set ruler
-set wildmenu
-set wildmode=list:longest
-set laststatus=2
-set scrolloff=2
-if has("gui_running")
-    set guifont=Menlo\ Regular:h13
-    set lines=45
-    set columns=130
-    colorscheme tomorrow
-endif
-
 " Tabs
 set tabstop=4
 set shiftwidth=4
@@ -44,3 +27,22 @@ call pathogen#runtime_append_all_bundles()
 
 " NERDTree
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+
+" UI
+syntax on
+set nowrap
+set linebreak
+set showcmd
+set ruler
+set wildmenu
+set wildmode=list:longest
+set laststatus=2
+set scrolloff=2
+if has("gui_running")
+    set guifont=Menlo\ Regular:h13
+    set lines=45
+    set columns=130
+    set background=dark
+    " This has to be set after loading Pathogen
+    colorscheme Tomorrow-Night
+endif
