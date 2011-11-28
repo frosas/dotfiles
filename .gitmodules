@@ -10,3 +10,6 @@
 [submodule "vim/.vim/bundle/tomorrow"]
 	path = vim/.vim/bundle/tomorrow
 	url = https://github.com/ChrisKempson/Vim-Tomorrow-Theme.git
+[submodule "vim/.vim/bundle/command-t"]
+	path = vim/.vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git

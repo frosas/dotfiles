@@ -25,9 +25,6 @@ augroup END
 runtime pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles() 
 
-" NERDTree
-nmap <silent> <c-n> :NERDTreeToggle<CR>
-
 " UI
 syntax on
 set nowrap
@@ -46,3 +43,7 @@ if has("gui_running")
     " This has to be set after loading Pathogen
     colorscheme Tomorrow-Night
 endif
+
+" Key mappings
+nmap <silent> <c-t> :CommandT<CR>
+nmap <silent> <c-n> :NERDTreeToggle<CR>
