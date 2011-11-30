@@ -25,6 +25,8 @@ augroup END
 runtime pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles() 
 
+" --------------------------------------------------------------------------------------------------
+
 " UI
 syntax on
 set nowrap
@@ -38,7 +40,7 @@ set scrolloff=2
 if has("gui_running")
     set guifont=Menlo\ Regular:h13
     set lines=45
-    set columns=130
+    set columns=135
     set background=dark
     " This has to be set after loading Pathogen
     colorscheme Tomorrow-Night
