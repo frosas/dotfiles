@@ -25,8 +25,6 @@ augroup END
 runtime pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles() 
 
-" --------------------------------------------------------------------------------------------------
-
 " UI
 syntax on
 set nowrap
