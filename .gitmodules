@@ -13,3 +13,6 @@
 [submodule "vim/.vim/bundle/command-t"]
 	path = vim/.vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
+[submodule "vim/.vim/bundle/closetag"]
+	path = vim/.vim/bundle/closetag
+	url = git://github.com/docunext/closetag.vim.git
