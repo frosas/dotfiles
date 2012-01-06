@@ -36,7 +36,7 @@ set wildmode=list:longest
 set laststatus=2
 set scrolloff=2
 if has("gui_running")
-    set guifont=Menlo\ Regular:h13
+    set guifont=DejaVu\ Sans\ Mono:h12
     set lines=45
     set columns=135
     set background=dark
@@ -47,3 +47,6 @@ endif
 " Key mappings
 nmap <silent> <c-t> :CommandT<CR>
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+
+" Prefer markdown syntax instead of modula2
+au BufRead,BufNewFile *.md set filetype=markdown
