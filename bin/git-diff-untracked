@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# TODO Make it work when filenames have spaces
+# TODO less --quit-if-one-screen doesn't work
+
+for FILE in `git ls-files --others --exclude-standard`; do
+    git diff --color $FILE /dev/null
+done | less -R
