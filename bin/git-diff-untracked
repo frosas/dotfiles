@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Like git diff but for untracked files
+#
+# Based on http://stackoverflow.com/a/4864668/337172
+#
 # TODO Make it work when filenames have spaces
 # TODO less --quit-if-one-screen doesn't work
 
