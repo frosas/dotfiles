@@ -8,5 +8,5 @@
 # TODO less --quit-if-one-screen doesn't work
 
 for FILE in `git ls-files --others --exclude-standard`; do
-    git diff --color $FILE /dev/null
+    git diff --color /dev/null $FILE
 done | less -R
