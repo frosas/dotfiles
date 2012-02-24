@@ -50,3 +50,6 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 " Prefer markdown syntax instead of modula2
 au BufRead,BufNewFile *.md set filetype=markdown
+
+" JSON syntax highlighting
+au BufRead,BufNewFile *.json set filetype=javascript
