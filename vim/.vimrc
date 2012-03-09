@@ -48,8 +48,7 @@ endif
 nmap <silent> <c-t> :CommandT<CR>
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 
-" Prefer markdown syntax instead of modula2
+" Syntax highlighting
 au BufRead,BufNewFile *.md set filetype=markdown
-
-" JSON syntax highlighting
 au BufRead,BufNewFile *.json set filetype=javascript
+au BufRead,BufNewFile *.html.twig set filetype=html
