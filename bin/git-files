@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for DIR in `find . -type d -name .git -exec dirname {} \;`; do
+    for FILE in `cd $DIR && git ls-files -cdmo --exclude-standard`; do
+        echo $DIR/$FILE
+    done
+done | sort
