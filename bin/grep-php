@@ -3,4 +3,4 @@
 text-files -name '*.php' -print0 -false | xargs -0 grep "$@"
 
 # Don't want to end with an error if grep didn't find anything in the last file
-if [$? == 1]; then exit 0; fi
+if [ $? == 1 ]; then exit 0; fi
