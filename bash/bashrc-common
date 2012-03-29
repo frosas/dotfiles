@@ -30,3 +30,5 @@ GREP_OPTIONS="--color=auto"
 # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
 PROMPT_COMMAND="history -a"
 shopt -s histappend
+
+# CDPATH=.:~/Projects:~/Sites
