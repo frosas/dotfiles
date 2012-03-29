@@ -26,3 +26,7 @@ PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR
 PATH=~/bin:$PATH
 VISUAL=vim
 GREP_OPTIONS="--color=auto"
+
+# Keep bash history up to date at every command (http://briancarper.net/blog/248/)
+PROMPT_COMMAND="history -a"
+shopt -s histappend
