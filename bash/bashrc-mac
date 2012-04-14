@@ -7,4 +7,4 @@ fi
 # 
 
 alias ls="ls -FAGh"
-PATH=~/bin/mac:$PATH
+export PATH=~/bin/mac:$PATH

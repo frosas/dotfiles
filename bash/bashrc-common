@@ -19,16 +19,16 @@ else
     COLOR_USUARI=$VERD_FOSC
 fi
 
-PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR_DIRECTORI}\w${COLOR_SIMBOL}\$${RESTAURAR_COLOR} "
+export PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR_DIRECTORI}\w${COLOR_SIMBOL}\$${RESTAURAR_COLOR} "
 
 ######################################################################
 
-PATH=~/bin:$PATH
-VISUAL=vim
-GREP_OPTIONS="--color=auto"
+export PATH=~/bin:$PATH
+export VISUAL=vim
+export GREP_OPTIONS="--color=auto"
 
 # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
-PROMPT_COMMAND="history -a"
+export PROMPT_COMMAND="history -a"
 shopt -s histappend
 
-# CDPATH=.:~/Projects:~/Sites
+# export CDPATH=.:~/Projects:~/Sites
