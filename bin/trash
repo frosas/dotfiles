@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e # Exit on errors
+
 # Stores deleted files to user trash instead of deleting it
 
 function absolute_path {
