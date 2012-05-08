@@ -13,4 +13,4 @@ function move_file {
 }
 
 FILE=$1
-move_file "$FILE" "$HOME/.Trash/`date +%s``absolute_path $FILE`"
+move_file "$FILE" "$HOME/.Trash/`date +%Y-%m-%d-%H:%M:%S``absolute_path $FILE`"
