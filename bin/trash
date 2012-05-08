@@ -14,5 +14,8 @@ function move_file {
     mkdir -p "$TO" && mv "$FROM" "$TO"
 }
 
-FILE=$1
-move_file "$FILE" "$HOME/.Trash/`date +%Y-%m-%d-%H:%M:%S``absolute_path $FILE`"
+DATE=`date +%Y-%m-%d-%H:%M:%S`
+
+for FILE in "$@"; do
+    move_file "$FILE" "$HOME/.Trash/$DATE`absolute_path $FILE`"
+done
