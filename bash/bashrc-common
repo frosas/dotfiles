@@ -32,3 +32,5 @@ export PROMPT_COMMAND="history -a"
 shopt -s histappend
 
 # export CDPATH=.:~/Projects:~/Sites
+
+HISTSIZE=1000
