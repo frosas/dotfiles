@@ -19,7 +19,7 @@ else
     COLOR_USUARI=$VERD_FOSC
 fi
 
-export PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR_DIRECTORI}\w${COLOR_SIMBOL}\$${RESTAURAR_COLOR} "
+PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR_DIRECTORI}\w${COLOR_SIMBOL}\$(__git_ps1 @%s)\$${RESTAURAR_COLOR} "
 
 ######################################################################
 
