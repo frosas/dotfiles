@@ -13,7 +13,7 @@ function title {
     echo
 }
 
-DIFF="git diff --color "$@""
+DIFF="git diff --color --ignore-space-at-eol "$@""
 
 (
     title STAGED
