@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# From http://coderwall.com/p/euwpig?i=3&p=1&t=git
+
+git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit "$@"
