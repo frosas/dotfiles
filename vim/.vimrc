@@ -31,6 +31,7 @@ set nowrap
 set linebreak
 set showcmd
 set ruler
+set number
 set wildmenu
 set wildmode=list:longest
 set laststatus=2
@@ -45,10 +46,13 @@ if has("gui_running")
 endif
 
 " Key mappings
-nmap <silent> <c-t> :CommandT<CR>
+nmap <silent> <c-t> :split +ConqueTerm\ bash<CR>
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 " Syntax highlighting
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.json set filetype=javascript
 au BufRead,BufNewFile *.html.twig set filetype=html
+
+" Conque
+let g:ConqueTerm_CloseOnEnd = 1
