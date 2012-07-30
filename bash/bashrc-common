@@ -2,24 +2,22 @@
 # Prompt
 ######################################################################
 
-GRIS_FOSC="\[\033[1;30m\]"
-VERMELL="\[\033[1;31m\]"
-VERD_FOSC="\[\033[0;32m\]"
-BLAU="\[\033[1;34m\]"
-RESTAURAR_COLOR="\[\033[0m\]"
-
-COLOR_NORMAL=$GRIS_FOSC
-COLOR_DIRECTORI=$BLAU
-COLOR_SIMBOL=$GRIS_FOSC
-COLOR_SERVIDOR=$BLAU
+# Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
+RESTORE_COLOR="\[\033[0m\]"
+GREEN="\[\033[0;32m\]"
+PURPLE="\[\033[0;35m\]"
+DARK_GRAY="\[\033[1;30m\]"
+LIGHT_RED="\[\033[1;31m\]"
+LIGHT_BLUE="\[\033[1;34m\]"
 
 if [ "`id -u`" -eq 0 ]; then
-    COLOR_USUARI=$VERMELL
+    USER_COLOR=$LIGHT_RED
 else
-    COLOR_USUARI=$VERD_FOSC
+    USER_COLOR=$GREEN
 fi
 
-PS1="${COLOR_USUARI}\u${COLOR_NORMAL}@${COLOR_SERVIDOR}\h${COLOR_NORMAL}:${COLOR_DIRECTORI}\w${COLOR_SIMBOL}\$(__git_ps1 @%s)\$${RESTAURAR_COLOR} "
+PS1_GIT="\$(__git_ps1 \"$DARK_GRAY@$PURPLE%s\")"
+PS1="$USER_COLOR\u$DARK_GRAY@$LIGHT_BLUE\h$DARK_GRAY:$LIGHT_BLUE\w$PS1_GIT$DARK_GRAY\$$RESTORE_COLOR "
 
 ######################################################################
 
