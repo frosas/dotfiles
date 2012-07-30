@@ -31,7 +31,6 @@ set nowrap
 set linebreak
 set showcmd
 set ruler
-set number
 set wildmenu
 set wildmode=list:longest
 set laststatus=2
