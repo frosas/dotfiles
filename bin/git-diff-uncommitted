@@ -4,18 +4,24 @@
 #
 # Based on http://stackoverflow.com/a/4864668/337172
 
-function title {
+function echo-info {
     BLUE="\033[1;34m"
-    echo
-    echo -e "$BLUE#"
-    echo -e "$BLUE# $1"
-    echo -e "$BLUE#"
-    echo
+    echo -e "$BLUE$1"
+}
+
+function title {
+    echo-info
+    echo-info "#"
+    echo-info "# $1"
+    echo-info "#"
+    echo-info
 }
 
 DIFF="git diff --color --ignore-space-at-eol "$@""
 
 (
+    echo-info "Note: spaces are ignored."
+
     title STAGED
     $DIFF --cached
 
