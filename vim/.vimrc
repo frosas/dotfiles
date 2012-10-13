@@ -1,3 +1,16 @@
+" Vundle (https://github.com/gmarik/vundle)
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'docunext/closetag.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tsaleh/vim-matchit'
+filetype plugin indent on
+
 " Tabs
 set tabstop=4
 set shiftwidth=4
@@ -20,10 +33,6 @@ augroup myfiletypes
     autocmd!
     autocmd FileType ruby,eruby,yaml set ai et sw=2 sts=2
 augroup END
-
-" Pathogen
-runtime pathogen/autoload/pathogen.vim
-call pathogen#runtime_append_all_bundles() 
 
 " UI
 syntax on
