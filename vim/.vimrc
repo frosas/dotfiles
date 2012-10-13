@@ -9,6 +9,7 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'docunext/closetag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
+Bundle 'rosenfeld/conque-term'
 filetype plugin indent on
 
 " Tabs
