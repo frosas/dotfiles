@@ -45,7 +45,7 @@ set wildmode=list:longest
 set laststatus=2
 set scrolloff=2
 if has("gui_running")
-    set guifont=DejaVu\ Sans\ Mono:h12
+    set guifont=Ubuntu\ Mono:h14
     set lines=45
     set columns=135
     set background=dark
