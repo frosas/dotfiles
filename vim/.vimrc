@@ -57,6 +57,12 @@ endif
 " Key mappings
 nmap <silent> <c-t> :split +ConqueTerm\ bash<CR>
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+" Open in a new window by default
+" See https://github.com/kien/ctrlp.vim/issues/160
+let g:ctrlp_prompt_mappings = { 
+    \ 'AcceptSelection("e")': ['<s-cr>'],
+    \ 'AcceptSelection("h")': ['<cr>'],
+    \ }
 
 " Syntax highlighting
 au BufRead,BufNewFile *.md set filetype=markdown
