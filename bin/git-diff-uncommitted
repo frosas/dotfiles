@@ -29,9 +29,8 @@ DIFF="git diff --color --ignore-space-at-eol "$@""
     $DIFF
 
     title UNTRACKED
-    # TODO Make it work when filenames have spaces
-    for FILE in `git ls-files --others --exclude-standard`; do
-        $DIFF /dev/null $FILE
+    git ls-files --others --exclude-standard -z | while read -d $'\0' FILE; do
+        $DIFF /dev/null "$FILE"
     done
 
 ) | less -R # TODO --quit-if-one-screen doesn't work
