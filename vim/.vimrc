@@ -32,7 +32,7 @@ filetype plugin indent on
 " Ruby, from http://oldwiki.rubyonrails.org/rails/pages/HowtoUseVimWithRails
 augroup myfiletypes 
     autocmd!
-    autocmd FileType ruby,eruby,yaml set ai et sw=2 sts=2
+    autocmd FileType ruby,eruby set ai et sw=2 sts=2
 augroup END
 
 " UI
