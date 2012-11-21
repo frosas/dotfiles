@@ -1,0 +1,10 @@
+#!/bin/bash
+
+GREP_SYMFONY='
+    --exclude=./app/logs/* 
+    --exclude=./app/cache/* 
+    --exclude=./app/var/*
+    --exclude=./app/bootstrap.php.cache
+    --exclude=./vendor/*'
+
+grep-text $GREP_SYMFONY "$@"
