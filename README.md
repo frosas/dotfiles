@@ -4,17 +4,23 @@ Some scripts and configuration files
 
 ## Export
 
-    $ git clone $url ~/projects/dotfiles
+```bash
+$ git clone https://github.com/frosas/dotfiles.git ~/projects/dotfiles
+```
 
 ## Bash
 
 In ~/.bashrc
 
-    source ~/projects/dotfiles/bash/bashrc-common
-    source ~/projects/dotfiles/bash/bashrc-mac
+```bash
+source ~/projects/dotfiles/bash/bashrc-common
+source ~/projects/dotfiles/bash/bashrc-mac # or ~/projects/dotfiles/bash/bashrc-linux
+```
 
 ## Vim
 
-    $ cd ~
-    $ ln -s ~/projects/dotfiles/vim/.vim
-    $ ln -s ~/projects/dotfiles/vim/.vimrc
+```bash
+$ cd ~
+$ ln -s ~/projects/dotfiles/vim/.vim
+$ ln -s ~/projects/dotfiles/vim/.vimrc
+```
