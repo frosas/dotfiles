@@ -13,8 +13,7 @@ $ git clone https://github.com/frosas/dotfiles.git ~/projects/dotfiles
 In ~/.bashrc
 
 ```bash
-source ~/projects/dotfiles/bash/bashrc-common
-source ~/projects/dotfiles/bash/bashrc-mac # or ~/projects/dotfiles/bash/bashrc-linux
+source ~/projects/dotfiles/bash/bashrc
 ```
 
 ## Vim
