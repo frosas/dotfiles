@@ -1,3 +1,8 @@
+if [ `uname` = Darwin ]; then 
+    # __git_ps1 is defined here
+    . `brew --prefix`/etc/bash_completion
+fi
+
 ######################################################################
 # Prompt
 ######################################################################
@@ -38,3 +43,12 @@ shopt -s histappend
 # export CDPATH=.:~/Projects:~/Sites
 
 HISTSIZE=1000
+
+if [ `uname` = Darwin ]; then 
+    alias ls="ls -FAGh"
+    export PATH=~/bin/mac:$PATH
+fi
+
+if [ `uname` = Linux ]; then 
+    alias ls="ls -FAh --color"
+fi

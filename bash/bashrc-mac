@@ -1,4 +1,0 @@
-. `brew --prefix`/etc/bash_completion
-
-alias ls="ls -FAGh"
-export PATH=~/bin/mac:$PATH
