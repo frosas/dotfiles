@@ -31,8 +31,10 @@ PS1="$USER_COLOR\u$DARK_GRAY@$LIGHT_BLUE\h$DARK_GRAY:$LIGHT_BLUE\w$PS1_GIT$DARK_
 
 ######################################################################
 
+SCRIPT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH # Recommended by Homebrew
-export PATH=~/bin:$PATH
+export PATH=$SCRIPT_DIR/../bin:$PATH
 export VISUAL=vim
 export GREP_OPTIONS="--color=auto"
 
@@ -46,7 +48,7 @@ HISTSIZE=1000
 
 if [ `uname` = Darwin ]; then 
     alias ls="ls -FAGh"
-    export PATH=~/bin/mac:$PATH
+    export PATH=$SCRIPT_DIR/../bin/mac:$PATH
 fi
 
 if [ `uname` = Linux ]; then 
