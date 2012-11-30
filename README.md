@@ -1,12 +1,11 @@
-Some scripts and configuration files
 
-# Usage
-
-## Export
+# Installation
 
 ```bash
 $ git clone https://github.com/frosas/dotfiles.git ~/projects/dotfiles
 ```
+
+# Configuration
 
 ## Bash
 
