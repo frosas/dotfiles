@@ -22,4 +22,5 @@ source ~/projects/dotfiles/bash/bashrc
 $ cd ~
 $ ln -s ~/projects/dotfiles/vim/.vim
 $ ln -s ~/projects/dotfiles/vim/.vimrc
+$ vim +BundleInstall +qall # See https://github.com/gmarik/vundle
 ```
