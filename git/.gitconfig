@@ -1,0 +1,11 @@
+[user]
+	name = Francesc Rosàs
+	email = francescrosasbosque@gmail.com
+[color]
+    ui = true
+[core]
+	excludesfile = /Users/frosas/.gitignore
+[github]
+	user = frosas
+[push]
+	default = simple
