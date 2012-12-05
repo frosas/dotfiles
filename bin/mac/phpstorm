@@ -1,3 +1,4 @@
 #!/bin/bash
 
-open -a phpstorm "$@"
+LATEST_VERSION=`ls -td /Applications/PhpStorm* | head -1`
+open -a "$LATEST_VERSION" "$@"
