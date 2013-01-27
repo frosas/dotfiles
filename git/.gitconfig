@@ -4,7 +4,7 @@
 [color]
     ui = true
 [core]
-	excludesfile = /Users/frosas/.gitignore
+	excludesfile = ~/.gitignore
 [github]
 	user = frosas
 [push]
