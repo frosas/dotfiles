@@ -11,6 +11,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'rosenfeld/conque-term'
 Bundle 'Syntastic'
+Bundle 'pangloss/vim-javascript'
 filetype plugin indent on
 
 " Tabs
