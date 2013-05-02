@@ -1,4 +1,3 @@
-
 # Installation
 
 ```bash
@@ -14,6 +13,8 @@ In ~/.bashrc
 ```bash
 source ~/projects/dotfiles/bash/bashrc
 ```
+
+Also make sure `~/.bash_profile` is loading `~/.bashrc`
 
 ## Vim
 
