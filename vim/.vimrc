@@ -11,6 +11,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'rosenfeld/conque-term'
 Bundle 'Syntastic'
+Bundle 'JSON.vim'
 Bundle 'pangloss/vim-javascript'
 filetype plugin indent on
 
@@ -62,7 +63,7 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 " Syntax highlighting
 au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.json set filetype=javascript
+au BufRead,BufNewFile *.json set filetype=json 
 au BufRead,BufNewFile *.html.twig set filetype=html
 
 " Conque
