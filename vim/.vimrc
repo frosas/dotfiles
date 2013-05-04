@@ -71,4 +71,5 @@ let g:ConqueTerm_CloseOnEnd = 1
 
 " Syntastic
 let g:syntastic_check_on_open = 1
-let g:syntastic_phpcs_disable = 1 " We only want errors
+" let g:syntastic_phpcs_disable = 1 " We only want errors
+let g:syntastic_quiet_warnings = 1
