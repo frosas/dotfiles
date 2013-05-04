@@ -4,13 +4,10 @@
 # Mac
 .DS_Store
 
-# NetBeans
-/nbproject
-
 # Eclipse
-/.settings
-/.buildpath
-/.project
+.settings
+.buildpath
+.project
 
 # PhpStorm
-/.idea
+.idea
