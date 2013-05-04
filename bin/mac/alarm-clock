@@ -4,10 +4,6 @@ function set_volume {
     osascript -e "set volume $1"
 }
 
-function open_url {
-    open -a 'google chrome' "$1"
-}
-
 # open_url http://rac1.org/wp-content/plugins/rac-player/reproductor.php
-open_url http://www.catradio.cat/catinfo
+chrome http://www.catradio.cat/catinfo
 set_volume 4
