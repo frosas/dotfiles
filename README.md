@@ -8,13 +8,11 @@ $ git clone https://github.com/frosas/dotfiles.git ~/projects/dotfiles
 
 ## Bash
 
-In ~/.bashrc
+In ~/.profile
 
 ```bash
 source ~/projects/dotfiles/bash/bashrc
 ```
-
-Also make sure `~/.bash_profile` is loading `~/.bashrc`
 
 ## Vim
 
