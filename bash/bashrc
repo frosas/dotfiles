@@ -54,3 +54,7 @@ fi
 if [ `uname` = Linux ]; then 
     alias ls="ls -FAh --color"
 fi
+
+alias gs="git status"
+alias gd="git-diff-uncommitted"
+alias gl="git-log"
