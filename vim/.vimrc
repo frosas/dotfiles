@@ -13,6 +13,7 @@ Bundle 'rosenfeld/conque-term'
 Bundle 'Syntastic'
 Bundle 'JSON.vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'airblade/vim-gitgutter'
 filetype plugin indent on
 
 " Tabs
@@ -73,3 +74,6 @@ let g:ConqueTerm_CloseOnEnd = 1
 let g:syntastic_check_on_open = 1
 " let g:syntastic_phpcs_disable = 1 " We only want errors
 let g:syntastic_quiet_warnings = 1
+
+" GitGutter
+highlight clear SignColumn
