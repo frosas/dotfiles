@@ -15,7 +15,7 @@ else
     echo "Local branch not found, ignoring"
 fi
 
-if [ "$(git branch -r | grep "^ *$BRANCH$")" ]; then
+if [ "$(git branch -r | grep "^ *origin/$BRANCH$")" ]; then
     if [ "$(git branch -r --no-merged | grep "^ *origin/$BRANCH$")" == "" ]; then
         git push origin ":$BRANCH"
     else
