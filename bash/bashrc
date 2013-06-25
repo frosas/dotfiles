@@ -58,3 +58,4 @@ fi
 alias gs="git status"
 alias gd="git-diff-uncommitted"
 alias gl="git-log"
+alias gla="gl --all"
