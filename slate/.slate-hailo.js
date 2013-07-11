@@ -1,5 +1,9 @@
 slate.log('Loading config')
 
+var getKeystroke = function(key) {
+    return key + ':ctrl'
+}
+
 var screens = {
     laptop: '1280x800',
     thunderbolt: '2560x1440'
@@ -45,11 +49,11 @@ operations.layout = {
     })
 }
 
-slate.bind('s:ctrl', function() {
-    slate.log('Setting default layout')
+slate.bind(getKeystroke('s'), function() {
     operations.layout.twoScreens.run()
-    slate.log('Done')
 })
+
+slate.bind(getKeystroke('r'), slate.operation('relaunch'))
 
 slate.default(2, layouts.twoScreens)
 
