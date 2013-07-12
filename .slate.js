@@ -1,7 +1,7 @@
 slate.log('Loading config')
 
 var getKeystroke = function(key) {
-    return key + ':ctrl'
+    return key + ':ctrl,shift'
 }
 
 var screens = {
