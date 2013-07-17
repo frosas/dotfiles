@@ -34,6 +34,24 @@ operations.moveToRight = function(screen) {
     })
 }
 
+operations.maximize = function(screen) {
+    return slate.operation('move', {
+        x: 'screenOriginX',
+        y: 'screenOriginY',
+        width: 'screenSizeX',
+        height: 'screenSizeY'
+    })
+}
+
+layouts.oneScreen = slate.layout('oneScreen', {
+    'Google Chrome': {
+        operations: operations.maximize(screens.laptop)
+    },
+    PhpStorm: {
+        operations: operations.maximize(screens.laptop)
+    }
+})
+
 layouts.twoScreens = slate.layout('twoScreens', {
     'Google Chrome': {
         operations: operations.moveToLeft(screens.thunderbolt)
@@ -44,17 +62,24 @@ layouts.twoScreens = slate.layout('twoScreens', {
 })
 
 operations.layout = {
-    twoScreens: slate.operation('layout', {
-        name: layouts.twoScreens
-    })
+    oneScreen: slate.operation('layout', {name: layouts.oneScreen}),
+    twoScreens: slate.operation('layout', {name: layouts.twoScreens})
 }
 
 slate.bind(getKeystroke('s'), function() {
-    operations.layout.twoScreens.run()
+    switch (slate.screenCount()) {
+        case 1:
+            operations.layout.oneScreen.run()
+            break
+        case 2:
+            operations.layout.twoScreens.run()
+            break
+    }
 })
 
 slate.bind(getKeystroke('r'), slate.operation('relaunch'))
 
+slate.default(1, layouts.oneScreen)
 slate.default(2, layouts.twoScreens)
 
 slate.log('Config loaded')
