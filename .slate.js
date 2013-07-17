@@ -43,43 +43,34 @@ operations.maximize = function(screen) {
     })
 }
 
-// Layouts by screen count
+// Application operation by screen count
 
-var layoutsByScreenCount = {}
-
-layoutsByScreenCount[1] = slate.layout('oneScreen', {
+var appOperationByScreenCount = {
     'Google Chrome': {
-        operations: operations.maximize(screens.laptop)
+        1: operations.maximize(screens.laptop),
+        2: operations.moveToLeft(screens.thunderbolt)
     },
     PhpStorm: {
-        operations: operations.maximize(screens.laptop)
+        1: operations.maximize(screens.laptop),
+        2: operations.moveToRight(screens.thunderbolt)
     }
-})
-
-layoutsByScreenCount[2] = slate.layout('twoScreens', {
-    'Google Chrome': {
-        operations: operations.moveToLeft(screens.thunderbolt)
-    },
-    PhpStorm: {
-        operations: operations.moveToRight(screens.thunderbolt)
-    }
-})
-
-// Key bindings
-
-slate.bind(getKeystroke('s'), function() {
-    var layout = layoutsByScreenCount[slate.screenCount()]
-    if (layout) slate.operation('layout', {name: layout}).run()
-})
-
-slate.bind(getKeystroke('r'), slate.operation('relaunch'))
-
-// Default layouts according screens count
-
-for (var screenCount in layoutsByScreenCount) {
-    slate.default(screenCount, layoutsByScreenCount[screenCount])
 }
 
+var refresh = function() {
+    var screenCount = slate.screenCount()
+    slate.eachApp(function(app) {
+        var operationByScreenCount = appOperationByScreenCount[app.name()] || []
+        var operation = operationByScreenCount[screenCount] || function() {}
+        app.mainWindow().doOperation(operation)
+    })
+}
+
+slate.on('screenConfigurationChanged', refresh)
+
+slate.bind(getKeystroke('s'), refresh)
+
 //
+
+slate.bind(getKeystroke('r'), slate.operation('relaunch'))
 
 slate.log('Config loaded')
