@@ -9,10 +9,10 @@ var screens = {
     thunderbolt: '2560x1440'
 }
 
-var windowMargin = 20
+// Operations
 
 var operations = {}
-var layouts = {}
+var windowMargin = 20
 
 operations.moveToLeft = function(screen) {
     return slate.operation('move', {
@@ -43,7 +43,11 @@ operations.maximize = function(screen) {
     })
 }
 
-layouts.oneScreen = slate.layout('oneScreen', {
+// Layouts by screen count
+
+var layoutsByScreenCount = {}
+
+layoutsByScreenCount[1] = slate.layout('oneScreen', {
     'Google Chrome': {
         operations: operations.maximize(screens.laptop)
     },
@@ -52,7 +56,7 @@ layouts.oneScreen = slate.layout('oneScreen', {
     }
 })
 
-layouts.twoScreens = slate.layout('twoScreens', {
+layoutsByScreenCount[2] = slate.layout('twoScreens', {
     'Google Chrome': {
         operations: operations.moveToLeft(screens.thunderbolt)
     },
@@ -61,25 +65,21 @@ layouts.twoScreens = slate.layout('twoScreens', {
     }
 })
 
-operations.layout = {
-    oneScreen: slate.operation('layout', {name: layouts.oneScreen}),
-    twoScreens: slate.operation('layout', {name: layouts.twoScreens})
-}
+// Key bindings
 
 slate.bind(getKeystroke('s'), function() {
-    switch (slate.screenCount()) {
-        case 1:
-            operations.layout.oneScreen.run()
-            break
-        case 2:
-            operations.layout.twoScreens.run()
-            break
-    }
+    var layout = layoutsByScreenCount[slate.screenCount()]
+    if (layout) slate.operation('layout', {name: layout}).run()
 })
 
 slate.bind(getKeystroke('r'), slate.operation('relaunch'))
 
-slate.default(1, layouts.oneScreen)
-slate.default(2, layouts.twoScreens)
+// Default layouts according screens count
+
+for (var screenCount in layoutsByScreenCount) {
+    slate.default(screenCount, layoutsByScreenCount[screenCount])
+}
+
+//
 
 slate.log('Config loaded')
