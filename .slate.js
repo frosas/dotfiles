@@ -34,7 +34,7 @@ operations.moveToRight = function(screen) {
     })
 }
 
-operations.maximize = function(screen) {
+operations.maximize = function() {
     return slate.operation('move', {
         x: 'screenOriginX',
         y: 'screenOriginY',
@@ -47,11 +47,11 @@ operations.maximize = function(screen) {
 
 var appOperationByScreenCount = {
     'Google Chrome': {
-        1: operations.maximize(screens.laptop),
+        1: operations.maximize(),
         2: operations.moveToLeft(screens.thunderbolt)
     },
     PhpStorm: {
-        1: operations.maximize(screens.laptop),
+        1: operations.maximize(),
         2: operations.moveToRight(screens.thunderbolt)
     }
 }
