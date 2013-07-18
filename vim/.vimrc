@@ -66,6 +66,7 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.json set filetype=json 
 au BufRead,BufNewFile *.html.twig set filetype=html
+au BufRead,BufNewFile *.pp set filetype=ruby " Puppet
 
 " Conque
 let g:ConqueTerm_CloseOnEnd = 1
