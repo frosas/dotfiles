@@ -14,23 +14,34 @@ var screens = {
 var operations = {}
 var windowMargin = 20
 
-operations.moveToLeft = function(screen) {
+/**
+ * Applies the operation or list of operations
+ */
+operations.apply = function(window, operation) {
+    if (Array.isArray(operation)) {
+        operation.forEach(function(subOperation) {
+            operations.apply(window, subOperation)
+        })
+    } else {
+        window.doOperation(operation)
+    }
+}
+
+operations.moveToHalfLeft = function() {
     return slate.operation('move', {
-        screen: screen,
-        x: 'screenOriginX + ' + windowMargin,
-        y: 'screenOriginY + ' + windowMargin,
-        width: 'screenSizeX / 2 - ' + windowMargin * 1.5,
-        height: 'screenSizeY - ' + windowMargin * 2
+        x: 'screenOriginX',
+        y: 'screenOriginY',
+        width: 'screenSizeX / 2',
+        height: 'screenSizeY'
     })
 }
 
-operations.moveToRight = function(screen) {
+operations.moveToHalfRight = function() {
     return slate.operation('move', {
-        screen: screen,
-        x: 'screenOriginX + screenSizeX / 2 + ' + windowMargin * .5,
-        y: 'screenOriginY + ' + windowMargin, 
-        width: 'screenSizeX / 2 - ' + windowMargin * 1.5,
-        height: 'screenSizeY - ' + windowMargin * 2
+        x: 'screenOriginX + screenSizeX / 2',
+        y: 'screenOriginY', 
+        width: 'screenSizeX / 2',
+        height: 'screenSizeY'
     })
 }
 
@@ -43,25 +54,42 @@ operations.maximize = function() {
     })
 }
 
+operations.pad = function(top, right, bottom, left) {
+    var xPadding = right + left
+    var yPadding = top + bottom
+    return [
+        slate.operation('nudge', {x: '+' + left, y: '+' + top}),
+        slate.operation('resize', {width: '-' + xPadding, height: '-' + yPadding})
+    ]
+}
+
 // Application operation by screen count
 
-var appOperationByScreenCount = {
+var appsOperationsByScreenCount = {
     'Google Chrome': {
         1: operations.maximize(),
-        2: operations.moveToLeft(screens.thunderbolt)
+        2: [
+            slate.operation('throw', {screen: screens.thunderbolt}),
+            operations.moveToHalfLeft(),
+            operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
+        ]
     },
     PhpStorm: {
         1: operations.maximize(),
-        2: operations.moveToRight(screens.thunderbolt)
+        2: [
+            slate.operation('throw', {screen: screens.thunderbolt}),
+            operations.moveToHalfRight(),
+            operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
+        ]
     }
 }
 
 var refresh = function() {
     var screenCount = slate.screenCount()
     slate.eachApp(function(app) {
-        var operationByScreenCount = appOperationByScreenCount[app.name()] || []
-        var operation = operationByScreenCount[screenCount] || function() {}
-        app.mainWindow().doOperation(operation)
+        var appOperationsByScreenCount = appsOperationsByScreenCount[app.name()] || []
+        var appOperations = appOperationsByScreenCount[screenCount] || []
+        operations.apply(app.mainWindow(), appOperations)
     })
 }
 
