@@ -58,8 +58,8 @@ operations.pad = function(top, right, bottom, left) {
     var xPadding = right + left
     var yPadding = top + bottom
     return [
-        slate.operation('nudge', {x: '+' + left, y: '+' + top}),
-        slate.operation('resize', {width: '-' + xPadding, height: '-' + yPadding})
+        slate.operation('resize', {width: '-' + xPadding, height: '-' + yPadding}),
+        slate.operation('nudge', {x: '+' + left, y: '+' + top})
     ]
 }
 
