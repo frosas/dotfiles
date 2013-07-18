@@ -67,7 +67,7 @@ var refresh = function() {
 
 slate.on('screenConfigurationChanged', refresh)
 
-slate.bind(getKeystroke('s'), refresh)
+refresh()
 
 //
 
