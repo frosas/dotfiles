@@ -14,6 +14,7 @@ Bundle 'rosenfeld/conque-term'
 Bundle 'JSON.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'go.vim'
 filetype plugin indent on
 
 " Tabs
@@ -67,6 +68,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.json set filetype=json 
 au BufRead,BufNewFile *.html.twig set filetype=html
 au BufRead,BufNewFile *.pp set filetype=ruby " Puppet
+au BufRead,BufNewFile *.go set filetype=go
 
 " Conque
 let g:ConqueTerm_CloseOnEnd = 1
