@@ -89,7 +89,9 @@ var refresh = function() {
     slate.eachApp(function(app) {
         var appOperationsByScreenCount = appsOperationsByScreenCount[app.name()] || []
         var appOperations = appOperationsByScreenCount[screenCount] || []
-        operations.apply(app.mainWindow(), appOperations)
+        app.eachWindow(function(window) {
+            operations.apply(window, appOperations)
+        })
     })
 }
 
