@@ -17,7 +17,7 @@ function title {
     echo-info
 }
 
-DIFF="git diff --color --ignore-space-at-eol "$@""
+DIFF="git diff --color -b "$@""
 
 (
     echo-info "Note: spaces are ignored."
