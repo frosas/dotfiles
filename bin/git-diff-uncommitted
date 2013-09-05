@@ -17,19 +17,19 @@ function title {
     echo-info
 }
 
-DIFF="git diff --color -b "$@""
+DIFF="git diff --color -b"
 
 (
     echo-info "Note: spaces are ignored."
 
     title STAGED
-    $DIFF --cached
+    $DIFF --cached "$@"
 
     title UNSTAGED
-    $DIFF
+    $DIFF "$@"
 
     title UNTRACKED
-    git ls-files --others --exclude-standard -z | while read -d $'\0' FILE; do
+    git ls-files --others --exclude-standard -z "$@" | while read -d $'\0' FILE; do
         $DIFF /dev/null "$FILE"
     done
 
