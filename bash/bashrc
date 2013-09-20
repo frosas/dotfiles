@@ -22,6 +22,9 @@ else
 fi
 
 if [ `type -t __git_ps1` ]; then
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
     PS1_GIT="\$(__git_ps1 \"$DARK_GRAY@$PURPLE%s\")"
 else
     PS1_GIT=""
