@@ -8,12 +8,12 @@ fi
 ######################################################################
 
 # Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
-RESTORE_COLOR="\[\033[0m\]"
-GREEN="\[\033[0;32m\]"
-PURPLE="\[\033[0;35m\]"
-DARK_GRAY="\[\033[1;30m\]"
-LIGHT_RED="\[\033[1;31m\]"
-LIGHT_BLUE="\[\033[1;34m\]"
+RESTORE_COLOR="\033[0m"
+GREEN="\033[0;32m"
+PURPLE="\033[0;35m"
+DARK_GRAY="\033[1;30m"
+LIGHT_RED="\033[1;31m"
+LIGHT_BLUE="\033[1;34m"
 
 if [ "`id -u`" -eq 0 ]; then
     USER_COLOR=$LIGHT_RED
