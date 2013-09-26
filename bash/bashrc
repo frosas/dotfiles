@@ -56,7 +56,7 @@ shopt -s histappend
 
 # export CDPATH=.:~/Projects:~/Sites
 
-HISTSIZE=1000
+HISTSIZE=10000
 
 if [ `uname` = Darwin ]; then 
     alias ls="ls -FAGh"
