@@ -13,13 +13,8 @@ GREEN="\033[0;32m"
 PURPLE="\033[0;35m"
 DARK_GRAY="\033[1;30m"
 LIGHT_RED="\033[1;31m"
+LIGHT_YELLOW="\033[1;33m"
 LIGHT_BLUE="\033[1;34m"
-
-if [ "`id -u`" -eq 0 ]; then
-    USER_COLOR=$LIGHT_RED
-else
-    USER_COLOR=$GREEN
-fi
 
 if [ `type -t __git_ps1` ]; then
     function git_ps1 {
@@ -39,7 +34,7 @@ else
     PS1_GIT=""
 fi
 
-PS1="$USER_COLOR\u$DARK_GRAY@$LIGHT_BLUE\h$DARK_GRAY:$LIGHT_BLUE\w$PS1_GIT$DARK_GRAY\$$RESTORE_COLOR "
+PS1="$LIGHT_YELLOW\u$DARK_GRAY@$LIGHT_BLUE\h$DARK_GRAY:$GREEN\w$PS1_GIT$DARK_GRAY\$$RESTORE_COLOR "
 
 ######################################################################
 
