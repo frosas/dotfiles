@@ -34,7 +34,8 @@ else
     PS1_GIT=""
 fi
 
-PS1="$DARK_GRAY\u@\h:$GREEN\w$PS1_GIT$DARK_GRAY\$$RESTORE_COLOR "
+# \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
+PS1="\[$DARK_GRAY\]\u@\h:\[$GREEN\]\w$PS1_GIT$DARK_GRAY\$\[$RESTORE_COLOR\] "
 
 ######################################################################
 
