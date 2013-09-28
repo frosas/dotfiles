@@ -8,13 +8,13 @@ fi
 ######################################################################
 
 # Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
-RESTORE_COLOR="\033[0m"
-GREEN="\033[0;32m"
-PURPLE="\033[0;35m"
-DARK_GRAY="\033[1;30m"
-LIGHT_RED="\033[1;31m"
-LIGHT_YELLOW="\033[1;33m"
-LIGHT_BLUE="\033[1;34m"
+RESTORE_COLOR="\e[0m"
+GREEN="\e[0;32m"
+PURPLE="\e[0;35m"
+DARK_GRAY="\e[1;30m"
+LIGHT_RED="\e[1;31m"
+LIGHT_YELLOW="\e[1;33m"
+LIGHT_BLUE="\e[1;34m"
 
 if [ `type -t __git_ps1` ]; then
     function git_ps1 {
