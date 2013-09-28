@@ -8,17 +8,14 @@ fi
 ######################################################################
 
 # Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
-RESET="\e[0m"
-GREEN="\e[0;32m"
-PURPLE="\e[0;35m"
-DARK_GRAY="\e[1;30m"
-LIGHT_RED="\e[1;31m"
-LIGHT_YELLOW="\e[1;33m"
-LIGHT_BLUE="\e[1;34m"
+RESET=$(tput sgr0)
+DARK_GRAY=$(tput setaf 0)
+GREEN=$(tput setaf 2)
+MAGENTA=$(tput setaf 5)
 
 if [ `type -t __git_ps1` ]; then
     function git_ps1 {
-        GIT_PS1=$(__git_ps1 "$DARK_GRAY@$PURPLE%s")
+        GIT_PS1=$(__git_ps1 "$DARK_GRAY@$MAGENTA%s")
 
         # We simply want a ! if the repo is not completely clean (see GIT_PS1_SHOW* vars)
         GIT_PS1=$(echo $GIT_PS1 | sed "s/ .*$/!/") 
