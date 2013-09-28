@@ -8,7 +8,7 @@ fi
 ######################################################################
 
 # Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
-RESTORE_COLOR="\e[0m"
+RESET="\e[0m"
 GREEN="\e[0;32m"
 PURPLE="\e[0;35m"
 DARK_GRAY="\e[1;30m"
@@ -35,7 +35,7 @@ else
 fi
 
 # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
-PS1="\[$DARK_GRAY\]\u@\h:\[$GREEN\]\w$PS1_GIT$DARK_GRAY\$\[$RESTORE_COLOR\] "
+PS1="\[$RESET\]\[$DARK_GRAY\]\u@\h:\[$GREEN\]\w$PS1_GIT$DARK_GRAY\$\[$RESET\] "
 
 ######################################################################
 
