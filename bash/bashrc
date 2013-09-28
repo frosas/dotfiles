@@ -13,26 +13,28 @@ DARK_GRAY=$(tput setaf 0)
 GREEN=$(tput setaf 2)
 MAGENTA=$(tput setaf 5)
 
-if [ `type -t __git_ps1` ]; then
-    function git_ps1 {
-        GIT_PS1=$(__git_ps1 "$DARK_GRAY@$MAGENTA%s")
-
-        # We simply want a ! if the repo is not completely clean (see GIT_PS1_SHOW* vars)
-        GIT_PS1=$(echo $GIT_PS1 | sed "s/ .*$/!/") 
-
-        echo $GIT_PS1
-    }
+function git_ps1 {
+    if [ ! `type -t __git_ps1` ]; then return; fi
 
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWSTASHSTATE=1
-    PS1_GIT="\$(git_ps1)"
-else
-    PS1_GIT=""
-fi
 
-# \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
-PS1="\[$RESET\]\[$DARK_GRAY\]\u@\h:\[$GREEN\]\w$PS1_GIT$DARK_GRAY\$\[$RESET\] "
+    GIT_PS1=$(__git_ps1 "\[$DARK_GRAY\]@\[$MAGENTA\]%s")
+
+    # We simply want a ! if the repo is not completely clean (see GIT_PS1_SHOW* vars)
+    GIT_PS1=$(echo $GIT_PS1 | sed "s/ .*$/!/") 
+
+    echo $GIT_PS1
+}
+
+function prompt_command {
+    # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
+    # http://askubuntu.com/questions/24358)
+    PS1="\[$RESET\]\[$DARK_GRAY\]\u@\h:\[$GREEN\]\w$(git_ps1)\[$DARK_GRAY\]\$\[$RESET\] "
+}
+
+PROMPT_COMMAND=prompt_command
 
 ######################################################################
 
@@ -44,7 +46,7 @@ export VISUAL=vim
 export GREP_OPTIONS="--color=auto"
 
 # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
-export PROMPT_COMMAND="history -a"
+export PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
 shopt -s histappend
 
 # export CDPATH=.:~/Projects:~/Sites
