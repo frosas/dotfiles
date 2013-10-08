@@ -9,3 +9,7 @@
 	user = frosas
 [push]
 	default = simple
+[alias]
+    ci = commit
+    co = checkout
+    b = branch
