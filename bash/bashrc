@@ -23,7 +23,7 @@ function git_ps1 {
     GIT_PS1=$(__git_ps1 "\[$DARK_GRAY\]@\[$MAGENTA\]%s")
 
     # We simply want a ! if the repo is not completely clean (see GIT_PS1_SHOW* vars)
-    GIT_PS1=$(echo $GIT_PS1 | sed "s/ [*+$]*$/!/") 
+    GIT_PS1=$(echo "$GIT_PS1" | sed "s/ [*+$]*$/!/") 
 
     echo $GIT_PS1
 }
