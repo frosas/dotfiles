@@ -34,11 +34,8 @@ set incsearch
 " Specific file types configuration
 filetype plugin indent on
 
-" Ruby, from http://oldwiki.rubyonrails.org/rails/pages/HowtoUseVimWithRails
-augroup myfiletypes 
-    autocmd!
-    autocmd FileType ruby,eruby set ai et sw=2 sts=2
-augroup END
+" From http://tangledhelix.com/blog/2010/03/05/indenting-ruby-in-vim/
+autocmd FileType ruby setlocal et ts=2 sw=2 tw=0
 
 " UI
 syntax on
