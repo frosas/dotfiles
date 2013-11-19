@@ -74,8 +74,11 @@ var appsOperationsByScreenCount = {
             operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
         ]
     },
-    PhpStorm: {
-        1: operations.maximize(),
+    iTerm: {
+        1: [
+            operations.maximize(),
+            operations.pad(windowMargin, windowMargin, windowMargin, windowMargin),
+        ],
         2: [
             slate.operation('throw', {screen: screens.thunderbolt}),
             operations.moveToHalfRight(),
