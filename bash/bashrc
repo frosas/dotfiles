@@ -55,7 +55,6 @@ HISTSIZE=10000
 
 if [ `uname` = Darwin ]; then 
     alias ls="ls -FAGh"
-    alias mvim="open -a macvim "$@""
     export PATH=$SCRIPT_DIR/../bin/mac:$PATH
 fi
 
