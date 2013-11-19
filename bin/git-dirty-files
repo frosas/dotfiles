@@ -1,3 +1,0 @@
-#!/bin/bash
-
-git status -s | awk '{print $2}'

@@ -13,3 +13,4 @@
     ci = commit
     co = checkout
     b = branch
+    dirty-files = "!git status -s | awk '{print $2}'"
