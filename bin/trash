@@ -2,7 +2,7 @@
 
 set -e # Exit on errors
 
-# Stores deleted files to user trash instead of deleting it
+# Stores deleted files to user trash instead of deleting them
 
 function absolute_path {
     _PATH=$1
