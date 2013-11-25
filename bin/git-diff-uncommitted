@@ -17,7 +17,7 @@ function title {
     echo-info
 }
 
-DIFF="git diff --color -b"
+DIFF="git diff --color -b -C"
 
 (
     echo-info "Note: spaces are ignored."
