@@ -1,3 +1,0 @@
-#!/bin/bash
-
-text-files -print0 -false | xargs -0 grep "$@"

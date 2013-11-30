@@ -1,3 +1,0 @@
-#!/bin/bash
-
-text-files \( -name '*.rb' -or -name '*.erb' \) -print0 -false | xargs -0 grep "$@"
