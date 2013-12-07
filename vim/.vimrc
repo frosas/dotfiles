@@ -59,6 +59,7 @@ endif
 " Key mappings
 nmap <silent> <c-t> :split +ConqueTerm\ bash<CR>
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+nmap <silent> <c-f> :NERDTreeFind<CR>
 
 " Syntax highlighting
 au BufRead,BufNewFile *.md set filetype=markdown
