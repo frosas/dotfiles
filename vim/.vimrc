@@ -10,11 +10,11 @@ Bundle 'docunext/closetag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'rosenfeld/conque-term'
-" Bundle 'Syntastic'
 Bundle 'JSON.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'go.vim'
+Bundle 'html5.vim'
 filetype plugin indent on
 
 " Tabs
