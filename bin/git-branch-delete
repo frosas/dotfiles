@@ -1,27 +1,5 @@
 #!/bin/bash
 
-# TODO DRY
-
 BRANCH="$1"
-
-if [ "$(git branch | grep "^ *$BRANCH$")" ]; then
-    if [ "$(git branch --no-merged | grep "^ *$BRANCH$")" == "" ]; then
-        git branch -d "$BRANCH"
-    else
-        echo "Unmerged local branch, aborting"
-        exit 1
-    fi
-else
-    echo "Local branch not found, ignoring"
-fi
-
-if [ "$(git branch -r | grep "^ *origin/$BRANCH$")" ]; then
-    if [ "$(git branch -r --no-merged | grep "^ *origin/$BRANCH$")" == "" ]; then
-        git push origin ":$BRANCH"
-    else
-        echo "Unmerged remote branch, aborting"
-        exit 1
-    fi
-else
-    echo "Remote branch not found, ignoring"
-fi
+git branch -D "$BRANCH"
+git push origin ":$BRANCH"
