@@ -11,6 +11,7 @@ fi
 RESET=$(tput sgr0)
 DARK_GRAY=$(tput setaf 0)
 GREEN=$(tput setaf 2)
+ORANGE=$(tput setaf 3)
 MAGENTA=$(tput setaf 5)
 
 function git_ps1 {
@@ -20,10 +21,12 @@ function git_ps1 {
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWSTASHSTATE=1
 
-    GIT_PS1=$(__git_ps1 "\[$DARK_GRAY\]@\[$MAGENTA\]%s")
+    GIT_PS1=$(__git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s")
 
-    # We simply want a ! if the repo is not completely clean (see GIT_PS1_SHOW* vars)
-    GIT_PS1=$(echo "$GIT_PS1" | sed "s/ [*+$%#]*$/!/") 
+    GIT_PS1=$(echo "$GIT_PS1" | sed "s/ \([^\w]*\)$/\\\[$DARK_GRAY\\\]\[\\\[$ORANGE\\\]\1\\\[$DARK_GRAY\\\]\]/") 
+    GIT_PS1=$(echo "$GIT_PS1" | sed "s/\*/d/") # Dirty
+    GIT_PS1=$(echo "$GIT_PS1" | sed "s/+/s/") # Staged
+    GIT_PS1=$(echo "$GIT_PS1" | sed "s/%/u/") # Untracked
 
     echo $GIT_PS1
 }
@@ -31,7 +34,7 @@ function git_ps1 {
 function prompt_command {
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
     # http://askubuntu.com/questions/24358)
-    PS1="\[$RESET\]\[$DARK_GRAY\]\u@\h:\[$GREEN\]\w$(git_ps1)\[$DARK_GRAY\]\$\[$RESET\] "
+    PS1="\[$RESET\]\n\[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]▶\[$RESET\] "
 }
 
 PROMPT_COMMAND=prompt_command
