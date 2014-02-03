@@ -34,7 +34,7 @@ function git_ps1 {
 function prompt_command {
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
     # http://askubuntu.com/questions/24358)
-    PS1="\[$RESET\]\n\[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]▶\[$RESET\] "
+    PS1="\[$RESET\]\n\[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 }
 
 PROMPT_COMMAND=prompt_command
