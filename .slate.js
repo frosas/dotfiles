@@ -65,15 +65,18 @@ operations.pad = function(top, right, bottom, left) {
 
 // Application operation by screen count
 
+var browserOperations = {
+    1: operations.maximize(),
+    2: [
+        slate.operation('throw', {screen: screens.thunderbolt}),
+        operations.moveToHalfLeft(),
+        operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
+    ]
+};
+
 var appsOperationsByScreenCount = {
-    'Google Chrome': {
-        1: operations.maximize(),
-        2: [
-            slate.operation('throw', {screen: screens.thunderbolt}),
-            operations.moveToHalfLeft(),
-            operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
-        ]
-    },
+    'Google Chrome': browserOperations,
+    'Firefox': browserOperations,
     iTerm: {
         1: [
             operations.maximize(),
