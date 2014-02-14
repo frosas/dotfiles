@@ -65,19 +65,21 @@ operations.pad = function(top, right, bottom, left) {
 
 // Application operation by screen count
 
-var browserOperations = {
-    1: operations.maximize(),
-    2: [
-        slate.operation('throw', {screen: screens.thunderbolt}),
-        operations.moveToHalfLeft(),
-        operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
-    ]
-};
+var appsOperationsByScreenCount = {};
 
-var appsOperationsByScreenCount = {
-    'Google Chrome': browserOperations,
-    'Firefox': browserOperations,
-    iTerm: {
+;['Google Chrome', 'Firefox'].forEach(function(app) {
+    appsOperationsByScreenCount[app] = {
+        1: operations.maximize(),
+        2: [
+            slate.operation('throw', {screen: screens.thunderbolt}),
+            operations.moveToHalfLeft(),
+            operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
+        ]
+    }
+})
+
+;['iTerm', 'PhpStorm', 'Sublime Text 2'].forEach(function(app) {
+    appsOperationsByScreenCount[app] = {
         1: [
             operations.maximize(),
             operations.pad(windowMargin, windowMargin, windowMargin, windowMargin),
@@ -88,7 +90,7 @@ var appsOperationsByScreenCount = {
             operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
         ]
     }
-}
+})
 
 var refresh = function() {
     var screenCount = slate.screenCount()
