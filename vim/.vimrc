@@ -19,6 +19,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'chriskempson/base16-vim'
 filetype plugin indent on
 
 " Tabs
@@ -53,7 +54,8 @@ set laststatus=2
 set scrolloff=2
 set t_Co=256
 set background=dark
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
+colorscheme base16-default
 if has("gui_running")
     set guifont=Monaco:h12
     set lines=45
