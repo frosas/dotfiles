@@ -78,7 +78,7 @@ var appsOperationsByScreenCount = {};
     }
 })
 
-;['iTerm', 'PhpStorm', 'Sublime Text 2'].forEach(function(app) {
+;['iTerm', 'PhpStorm', 'Sublime Text 2', 'MacVim'].forEach(function(app) {
     appsOperationsByScreenCount[app] = {
         1: [
             operations.maximize(),
