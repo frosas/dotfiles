@@ -11,10 +11,14 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'rosenfeld/conque-term'
 Bundle 'JSON.vim'
-Bundle 'pangloss/vim-javascript'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'go.vim'
 Bundle 'html5.vim'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'Raimondi/delimitMate'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'marijnh/tern_for_vim'
 filetype plugin indent on
 
 " Tabs
@@ -47,13 +51,13 @@ set wildmenu
 set wildmode=list:longest
 set laststatus=2
 set scrolloff=2
+set t_Co=256
+set background=dark
+colorscheme Tomorrow-Night
 if has("gui_running")
     set guifont=Monaco:h12
     set lines=45
     set columns=135
-    set background=dark
-    " This has to be set after loading Pathogen
-    colorscheme Tomorrow-Night
 endif
 
 " Key mappings
