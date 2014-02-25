@@ -5,7 +5,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
-Bundle 'chriskempson/vim-tomorrow-theme'
+" Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'docunext/closetag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
@@ -76,6 +76,9 @@ au BufRead,BufNewFile *.go set filetype=go
 
 " Conque
 let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_StartMessages = 0
+" Clearing the screen doesn't work with 'xterm'
+let g:ConqueTerm_TERM = 'ansi' 
 
 " Syntastic
 let g:syntastic_check_on_open = 1
