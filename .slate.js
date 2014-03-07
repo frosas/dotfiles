@@ -42,7 +42,7 @@ operations.toRightRegion = function() {
     return slate.operation('move', {
         x: 'screenOriginX + ' + leftRegionWidth,
         y: 'screenOriginY',
-        width: 'screenSizeX - ' + leftRegionWidth,
+        width: 'screenSizeX - (' + leftRegionWidth + ')',
         height: 'screenSizeY'
     })
 }
