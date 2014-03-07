@@ -27,7 +27,7 @@ operations.apply = function(window, operation) {
     }
 }
 
-var leftRegionWidth = 'screenSizeX / 2 + 100'
+var leftRegionWidth = 'screenSizeX / 2 - 100'
 
 operations.toLeftRegion = function() {
     return slate.operation('move', {
@@ -69,7 +69,7 @@ operations.pad = function(top, right, bottom, left) {
 
 var appsOperationsByScreenCount = {};
 
-;['Google Chrome', 'Firefox'].forEach(function(app) {
+;['iTerm', 'PhpStorm', 'Sublime Text 2', 'MacVim', 'Atom'].forEach(function(app) {
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
@@ -80,12 +80,9 @@ var appsOperationsByScreenCount = {};
     }
 })
 
-;['iTerm', 'PhpStorm', 'Sublime Text 2', 'MacVim', 'Atom'].forEach(function(app) {
+;['Google Chrome', 'Firefox'].forEach(function(app) {
     appsOperationsByScreenCount[app] = {
-        1: [
-            operations.maximize(),
-            operations.pad(windowMargin, windowMargin, windowMargin, windowMargin),
-        ],
+        1: operations.maximize(),
         2: [
             slate.operation('throw', {screen: screens.thunderbolt}),
             operations.toRightRegion(),
