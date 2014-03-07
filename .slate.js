@@ -27,20 +27,22 @@ operations.apply = function(window, operation) {
     }
 }
 
-operations.moveToHalfLeft = function() {
+var leftRegionWidth = 'screenSizeX / 2 + 100'
+
+operations.toLeftRegion = function() {
     return slate.operation('move', {
         x: 'screenOriginX',
         y: 'screenOriginY',
-        width: 'screenSizeX / 2',
+        width: leftRegionWidth,
         height: 'screenSizeY'
     })
 }
 
-operations.moveToHalfRight = function() {
+operations.toRightRegion = function() {
     return slate.operation('move', {
-        x: 'screenOriginX + screenSizeX / 2',
-        y: 'screenOriginY', 
-        width: 'screenSizeX / 2',
+        x: 'screenOriginX + ' + leftRegionWidth,
+        y: 'screenOriginY',
+        width: 'screenSizeX - ' + leftRegionWidth,
         height: 'screenSizeY'
     })
 }
@@ -72,7 +74,7 @@ var appsOperationsByScreenCount = {};
         1: operations.maximize(),
         2: [
             slate.operation('throw', {screen: screens.thunderbolt}),
-            operations.moveToHalfLeft(),
+            operations.toLeftRegion(),
             operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
         ]
     }
@@ -86,7 +88,7 @@ var appsOperationsByScreenCount = {};
         ],
         2: [
             slate.operation('throw', {screen: screens.thunderbolt}),
-            operations.moveToHalfRight(),
+            operations.toRightRegion(),
             operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
         ]
     }
