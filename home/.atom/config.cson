@@ -1,0 +1,65 @@
+'exception-reporting':
+  'userId': '70a0032d-3fb2-4bcb-e887-64623e256e19'
+'release-notes':
+  'viewedVersion': '0.69.0'
+'welcome':
+  'showOnStartup': false
+'metrics':
+  'userId': 'ba44e3beb28ecd4cac067ffa00fb25caece41ae8'
+'editor':
+  'tabLength': 4
+  'fontSize': 12
+  'showIndentGuide': true
+'core':
+  'themes': [
+    'atom-dark-ui'
+    'base16-tomorrow-dark-theme'
+  ]
+  'ignoredNames': [
+    '.git'
+    '.svn'
+    '.DS_Store'
+  ]
+  'disabledPackages': [
+    'autosave'
+    'language-c'
+    'language-java'
+    'language-make'
+    'language-objective-c'
+    'language-perl'
+    'language-property-list'
+    'language-ruby-on-rails'
+    'language-toml'
+    'vim-mode'
+    'editor-stats'
+    'symbols-view'
+    'command-logger'
+    'archive-view'
+    'whitespace'
+    'autoflow'
+    'bookmarks'
+    'grammar-selector'
+    'image-view'
+    'open-on-github'
+    'package-generator'
+    'spell-check'
+    'styleguide'
+    'welcome'
+  ]
+  'audioBeep': false
+  'projectHome': '/Users/francesc/src'
+'spell-check':
+  'grammars': [
+    'source.gfm'
+    'text.git-commit'
+    'text.plain'
+  ]
+'atom-jshint':
+  'showErrorPanel': false
+'markdown-preview':
+  'grammars': [
+    'source.gfm'
+    'source.litcoffee'
+    'text.plain'
+    'text.plain.null-grammar'
+  ]
