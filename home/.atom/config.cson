@@ -1,15 +1,15 @@
 'exception-reporting':
   'userId': '70a0032d-3fb2-4bcb-e887-64623e256e19'
 'release-notes':
-  'viewedVersion': '0.69.0'
+  'viewedVersion': '0.71.0'
 'welcome':
   'showOnStartup': false
 'metrics':
   'userId': 'ba44e3beb28ecd4cac067ffa00fb25caece41ae8'
 'editor':
   'tabLength': 4
-  'fontSize': 12
   'showIndentGuide': true
+  'fontSize': 12
 'core':
   'themes': [
     'atom-dark-ui'
@@ -31,7 +31,6 @@
     'language-ruby-on-rails'
     'language-toml'
     'vim-mode'
-    'editor-stats'
     'symbols-view'
     'command-logger'
     'archive-view'
@@ -63,3 +62,6 @@
     'text.plain'
     'text.plain.null-grammar'
   ]
+'autoclose-html':
+  'closeOnEndOfOpeningTag': true
+  'forceInline': 'div, span, title, h1, h2, h3, h4, h5, h6'
