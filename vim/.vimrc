@@ -17,7 +17,6 @@ Bundle 'html5.vim'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'chriskempson/base16-vim'
 filetype plugin indent on
