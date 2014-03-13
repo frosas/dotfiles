@@ -5,7 +5,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
-" Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'docunext/closetag.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
@@ -17,7 +16,6 @@ Bundle 'html5.vim'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
-Bundle 'marijnh/tern_for_vim'
 Bundle 'chriskempson/base16-vim'
 filetype plugin indent on
 
@@ -53,8 +51,7 @@ set laststatus=2
 set scrolloff=2
 set t_Co=256
 set background=dark
-" colorscheme Tomorrow-Night
-colorscheme base16-default
+colorscheme base16-tomorrow
 if has("gui_running")
     set guifont=Monaco:h12
     set lines=45
