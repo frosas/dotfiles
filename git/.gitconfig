@@ -13,4 +13,7 @@
     ci = commit
     co = checkout
     b = branch
-    dirty-files = "!git status -s | awk '{print $2}'"
+    f = fetch --all --prune
+    m = merge --ff-only @{u}
+    s = stash -u
+    sp = stash pop
