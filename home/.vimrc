@@ -39,6 +39,8 @@ filetype plugin indent on
 " From http://tangledhelix.com/blog/2010/03/05/indenting-ruby-in-vim/
 autocmd FileType ruby setlocal et ts=2 sw=2 tw=0
 
+set iskeyword+=-
+
 " UI
 syntax on
 set nowrap
