@@ -10,6 +10,7 @@
   'tabLength': 4
   'showIndentGuide': true
   'fontSize': 12
+  'fontFamily': 'Consolas'
 'core':
   'themes': [
     'atom-dark-ui'
