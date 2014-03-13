@@ -19,3 +19,4 @@
     sp = stash pop
     dirty-files = "!git status -s | awk '{print $2}'"
     untracked-files = ls-files -o --exclude-standard
+    pretty-log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit
