@@ -17,3 +17,4 @@
     m = merge --ff-only @{u}
     s = stash -u
     sp = stash pop
+    dirty-files = "!git status -s | awk '{print $2}'"
