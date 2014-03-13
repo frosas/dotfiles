@@ -1,32 +1,14 @@
-# Installation
+# Setup
 
 ```bash
-$ git clone https://github.com/frosas/dotfiles.git ~/projects/dotfiles
+$ git clone https://github.com/frosas/dotfiles.git
+$ dotfiles/setup
 ```
 
-# Configuration
-
-## Bash
+## Manual steps
 
 In ~/.profile
 
 ```bash
-source ~/projects/dotfiles/bash/bashrc
-```
-
-## Vim
-
-```bash
-$ cd ~
-$ ln -s ~/projects/dotfiles/vim/.vim
-$ ln -s ~/projects/dotfiles/vim/.vimrc
-$ vim +BundleInstall +qall # See https://github.com/gmarik/vundle
-```
-
-## Git
-
-```bash
-$ cd ~
-$ ln -s ~/projects/dotfiles/git/.gitconfig
-$ ln -s ~/projects/dotfiles/git/.gitignore
+source dotfiles/bash/rc
 ```

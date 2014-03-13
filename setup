@@ -1,5 +1,13 @@
 #!/bin/bash
 
+(
+    HOME_DIR=$(cd $(dirname $0) && pwd)/home &&
+    cd ~ &&
+    find $HOME_DIR -depth 1 -exec ln -s {} \;
+)
+
+vim +BundleInstall +qall # See https://github.com/gmarik/vundle
+
 if [ `uname` = Darwin ]; then 
     # From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
