@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# controls_spaces is excluded as it has a bug (https://github.com/fabpot/PHP-CS-Fixer/issues/125)
-php-cs-fixer fix "$@" --fixers=-visibility,-return,-phpdoc_params,-controls_spaces --level=all
