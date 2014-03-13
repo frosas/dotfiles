@@ -18,3 +18,4 @@
     s = stash -u
     sp = stash pop
     dirty-files = "!git status -s | awk '{print $2}'"
+    untracked-files = ls-files -o --exclude-standard
