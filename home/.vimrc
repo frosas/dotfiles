@@ -17,6 +17,7 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
 Bundle 'chriskempson/base16-vim'
+Bundle 'bling/vim-airline'
 filetype plugin indent on
 
 " Tabs
