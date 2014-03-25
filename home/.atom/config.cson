@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': '70a0032d-3fb2-4bcb-e887-64623e256e19'
 'release-notes':
-  'viewedVersion': '0.73.0'
+  'viewedVersion': '0.78.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -23,19 +23,9 @@
   ]
   'disabledPackages': [
     'autosave'
-    'language-c'
-    'language-java'
-    'language-make'
-    'language-objective-c'
-    'language-perl'
-    'language-property-list'
-    'language-ruby-on-rails'
-    'language-toml'
     'vim-mode'
-    'symbols-view'
     'command-logger'
     'archive-view'
-    'whitespace'
     'autoflow'
     'bookmarks'
     'grammar-selector'
@@ -45,6 +35,12 @@
     'spell-check'
     'styleguide'
     'welcome'
+    'background-tips'
+    'bracket-matcher'
+    'dev-live-reload'
+    'keybinding-resolver'
+    'link'
+    'timecop'
   ]
   'audioBeep': false
   'projectHome': '/Users/francesc/src'
@@ -66,3 +62,7 @@
 'autoclose-html':
   'closeOnEndOfOpeningTag': true
   'forceInline': 'div, span, title, h1, h2, h3, h4, h5, h6'
+'autocomplete':
+  'includeCompletionsFromAllBuffers': true
+'tree-view':
+  'hideIgnoredNames': true
