@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# TODO Fix ag .gitignore handling
-
-ag "$@" $(git ls-files -co --exclude-standard)
