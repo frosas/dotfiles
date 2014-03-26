@@ -41,6 +41,8 @@
     'keybinding-resolver'
     'link'
     'timecop'
+    'feedback'
+    'editorconfig'
   ]
   'audioBeep': false
   'projectHome': '/Users/francesc/src'
