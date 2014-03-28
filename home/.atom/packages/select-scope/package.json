@@ -1,0 +1,30 @@
+{
+  "name": "select-scope",
+  "main": "./lib/select-scope",
+  "version": "0.2.0",
+  "description": "Select successively increasing code blocks",
+  "activationEvents": [
+    "select-scope:select-more"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmadden/select-scope"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "readme": "# select-scope package\n\nAdds a command to select successively larger scopes around the cursor (bound to `ctrl-s`).\n\nInspired by JetBrains RubyMine's select scope function.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/wmadden/select-scope/issues"
+  },
+  "homepage": "https://github.com/wmadden/select-scope",
+  "_id": "select-scope@0.2.0",
+  "dist": {
+    "shasum": "cc697abe994b833ef6346098ae0494de281ca74e"
+  },
+  "_resolved": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114216-64725-479pru/package.tgz",
+  "_from": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114216-64725-479pru/package.tgz"
+}
