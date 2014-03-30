@@ -21,29 +21,7 @@
     '.svn'
     '.DS_Store'
   ]
-  'disabledPackages': [
-    'autosave'
-    'vim-mode'
-    'command-logger'
-    'archive-view'
-    'autoflow'
-    'bookmarks'
-    'grammar-selector'
-    'image-view'
-    'open-on-github'
-    'package-generator'
-    'spell-check'
-    'styleguide'
-    'welcome'
-    'background-tips'
-    'bracket-matcher'
-    'dev-live-reload'
-    'keybinding-resolver'
-    'link'
-    'timecop'
-    'feedback'
-    'editorconfig'
-  ]
+  'disabledPackages': []
   'audioBeep': false
   'projectHome': '/Users/francesc/src'
 'spell-check':
@@ -68,3 +46,14 @@
   'includeCompletionsFromAllBuffers': true
 'tree-view':
   'hideIgnoredNames': true
+'recent-files':
+  'updated': false
+'todo-show':
+  'findTheseRegexes': [
+    'FIXMEs'
+    '/\\WFIXME\\W(.+$)/g'
+    'TODOs'
+    '/\\WTODO\\W(.+$)/g'
+    'CHANGEDs'
+    '/\\WCHANGED\\W(.+$)/g'
+  ]
