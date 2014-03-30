@@ -1,5 +1,0 @@
-#!/bin/bash
-
-FILES=$(git ls-files)
-FILES=$(for F in $FILES; do if [ -f $F ]; then echo $F; fi; done)
-echo "$FILES" | ack -x "$@"

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for REPO in `git-repositories`; do 
-    echo $REPO && (cd $REPO && git status) && echo
-done
