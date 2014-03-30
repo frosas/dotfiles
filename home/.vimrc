@@ -18,6 +18,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
 Bundle 'chriskempson/base16-vim'
 Bundle 'bling/vim-airline'
+Bundle 'scrooloose/syntastic'
 filetype plugin indent on
 
 " Tabs
@@ -81,8 +82,7 @@ let g:ConqueTerm_TERM = 'ansi'
 
 " Syntastic
 let g:syntastic_check_on_open = 1
-" let g:syntastic_phpcs_disable = 1 " We only want errors
-let g:syntastic_quiet_warnings = 1
+" let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " GitGutter
 highlight clear SignColumn
