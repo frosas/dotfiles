@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': '70a0032d-3fb2-4bcb-e887-64623e256e19'
 'release-notes':
-  'viewedVersion': '0.78.0'
+  'viewedVersion': '0.83.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -57,3 +57,7 @@
     'CHANGEDs'
     '/\\WCHANGED\\W(.+$)/g'
   ]
+'auto-update-packages':
+  'intervalMinutes': 60
+'autocomplete-plus':
+  'includeCompletionsFromAllBuffers': true

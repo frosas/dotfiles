@@ -4,8 +4,6 @@ Fetches TODO, FIXME, CHANGED comments from the project. Or anything else you wan
 
 Ignores anything in your .gitignore.
 
-If you have npm errors installing, retry. Usually works then.
-
 
 ![](https://raw.github.com/jamischarles/atom-todo-show/master/screenshots/preview.png)
 
@@ -20,3 +18,5 @@ If you have npm errors installing, retry. Usually works then.
 - refactor and clean up code
 - fix / add keymap shortcut
 - add test cases
+
+Inspired by the textmate TODO bundle.

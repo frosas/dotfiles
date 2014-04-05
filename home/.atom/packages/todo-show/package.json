@@ -1,7 +1,7 @@
 {
   "name": "todo-show",
   "main": "./lib/show-todo",
-  "version": "0.3.0",
+  "version": "0.5.1",
   "private": true,
   "description": "Finds all the TODOs, FIXMEs, CHANGEDs in your project.",
   "activationEvents": [
@@ -22,16 +22,15 @@
     "q": "^1.0.1",
     "loophole": "^1.0.0"
   },
-  "readme": "# TODO-show package\n\nFetches TODO, FIXME, CHANGED comments from the project. Or anything else you want (settings).\n\nIgnores anything in your .gitignore.\n\nIf you have npm errors installing, retry. Usually works then.\n\n\n![](https://raw.github.com/jamischarles/atom-todo-show/master/screenshots/preview.png)\n\n## Coming features (PR's welcome)\n- ~~TODO, FIXME, CHANGED included in search~~\n- goto result should start at comment, NOT at todo symbol\n- don't open multiple search windows when we search multiple times\n- how do we handle file changes?\n- nicer styling\n- ignore TODOs outside of comment blocks\n- have nice message when no results are found\n- refactor and clean up code\n- fix / add keymap shortcut\n- add test cases\n",
+  "readme": "# TODO-show package\n\nFetches TODO, FIXME, CHANGED comments from the project. Or anything else you want (settings).\n\nIgnores anything in your .gitignore.\n\n\n![](https://raw.github.com/jamischarles/atom-todo-show/master/screenshots/preview.png)\n\n## Coming features (PR's welcome)\n- ~~TODO, FIXME, CHANGED included in search~~\n- goto result should start at comment, NOT at todo symbol\n- don't open multiple search windows when we search multiple times\n- how do we handle file changes?\n- nicer styling\n- ignore TODOs outside of comment blocks\n- have nice message when no results are found\n- refactor and clean up code\n- fix / add keymap shortcut\n- add test cases\n\nInspired by the textmate TODO bundle.\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/jamischarles/atom-todo-show/issues"
   },
   "homepage": "https://github.com/jamischarles/atom-todo-show",
-  "_id": "todo-show@0.3.0",
+  "_id": "todo-show@0.5.1",
   "dist": {
-    "shasum": "b026f38e2da87a22bb0178337ff2b43e398b09a8"
+    "shasum": "6484a32e8d3b9ff3fee8a456f2a72796fe5922b3"
   },
-  "_resolved": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114228-45920-on2d5q/package.tgz",
-  "_from": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114228-45920-on2d5q/package.tgz"
+  "_from": "/Users/francesc/.atom/.node-gyp/.atom/.apm/todo-show/0.5.1/package.tgz"
 }

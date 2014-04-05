@@ -1,4 +1,5 @@
 _ = require 'lodash'
+util = require './util'
 
 module.exports =
 class Violation
@@ -11,4 +12,6 @@ class Violation
       throw new Error(message)
 
   getHTML: ->
-    null
+    HTML = util.punctuate(util.capitalize(@message))
+    HTML = _.escape(HTML)
+    HTML.replace(/(`|&#39;)(.+?)\1/g, '<code>$2</code>')
