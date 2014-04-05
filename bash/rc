@@ -1,3 +1,5 @@
+# vim: set filetype=bash
+
 if [ `uname` = Darwin ]; then 
     # __git_ps1 is defined here
     . `brew --prefix`/etc/bash_completion
@@ -23,12 +25,14 @@ function git_ps1 {
 
     GIT_PS1=$(__git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s")
 
-    GIT_PS1=$(echo "$GIT_PS1" | sed "s/ \([^\w]*\)$/\\\[$DARK_GRAY\\\]\[\\\[$ORANGE\\\]\1\\\[$DARK_GRAY\\\]\]/") 
-    GIT_PS1=$(echo "$GIT_PS1" | sed "s/\*/d/") # Dirty
-    GIT_PS1=$(echo "$GIT_PS1" | sed "s/+/s/") # Staged
-    GIT_PS1=$(echo "$GIT_PS1" | sed "s/%/u/") # Untracked
+    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/\*/ dirty/")
+    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/+/ staged/")
+    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/%/ untracked/")
+    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/\$/ stashed/")
+    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/ //")
+    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/ \([^\w]*\)$/\\\[$DARK_GRAY\\\]\[\\\[$ORANGE\\\]\1\\\[$DARK_GRAY\\\]\]/") 
 
-    echo $GIT_PS1
+    echo "$GIT_PS1"
 }
 
 function prompt_command {
