@@ -1,7 +1,7 @@
 {
   "name": "jsformat",
   "main": "./lib/format",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "private": true,
   "description": "javascript formatting for the atom text editor",
   "keywords": [
@@ -24,16 +24,16 @@
   "dependencies": {
     "js-beautify": "~1.4.2"
   },
-  "readme": "# JsFormat\n\nJavascript + json formatting/beautification for the Atom text editor.\n\n#### Keybinding\n`ctrl+alt+f`\n\n#### Command Palette\n`JsFormat: Format`\n\n#### Warning\nThis project is insanely pre-alpha.\nSo no, you can't customize settings yet.\n",
+  "readme": "# JsFormat\n\nJavascript + json formatting/beautification for the Atom text editor.\n\n#### Keybinding\n`ctrl+alt+f`\n\n#### Command Palette\n`JsFormat: Format`\n\n#### Warning\nThis project is insanely pre-alpha.\n\n#### Settings\nJsFormat uses whatever tab/indent settings are configured with the standard ```Tab Length``` Atom settings. The ```Preferred Line Length``` Atom setting is only respected when the ```Soft Wrap At Preferred Line Length``` Atom setting is enabled.\n\nThe following **JsBeautifier** settings are available through the JsFormat settings panel (defaults shown below). Check out the official [jsbeautifier documentation](https://github.com/einars/js-beautify#options) for more details on the options:\n\n* `indent_with_tabs`: false,\n* `max_preserve_newlines`: 4,\n* `preserve_newlines`: true,\n* `space_in_paren`: false,\n* `jslint_happy`: false,\n* `brace_style`: \"collapse\",\n* `keep_array_indentation`: false,\n* `keep_function_indentation`: false,\n* `space_before_conditional`: true,\n* `eval_code`: false,\n* `unescape_strings`: false,\n* `break_chained_methods`: false,\n* `e4x`: false\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/jdc0589/jsformat-atom/issues"
   },
   "homepage": "https://github.com/jdc0589/jsformat-atom",
-  "_id": "jsformat@0.0.6",
+  "_id": "jsformat@0.1.0",
   "dist": {
-    "shasum": "9981875d39529d180c4ae0027a75986f97371a53"
+    "shasum": "fcbeb4c1deee092134b7d5462e71442610339b43"
   },
-  "_resolved": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114217-28206-uvhn7p/package.tgz",
-  "_from": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114217-28206-uvhn7p/package.tgz"
+  "_resolved": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-11438-912-1b7vu9v/package.tgz",
+  "_from": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-11438-912-1b7vu9v/package.tgz"
 }
