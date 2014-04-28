@@ -9,6 +9,9 @@
 vim +BundleInstall +qall # See https://github.com/gmarik/vundle
 
 if [ `uname` = Darwin ]; then 
+
+    brew install bash-completion macvim node the_silver_searcher trash wget
+
     # From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
     # Disable Notification Center and remove the menu bar icon
