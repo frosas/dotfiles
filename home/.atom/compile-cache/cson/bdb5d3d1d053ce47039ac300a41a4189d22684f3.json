@@ -1,0 +1,1 @@
+{"context-menu":{".overlayer":{"Enable JsFormat":"jsformat:format"}},"menu":[{"label":"Packages","submenu":[{"label":"JsFormat","submenu":[{"label":"Format Javascript","command":"jsformat:format"}]}]}]}
