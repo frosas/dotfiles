@@ -2,8 +2,10 @@
 
 (
     HOME_DIR=$(cd $(dirname $0) && pwd)/home &&
-    cd ~ &&
-    find $HOME_DIR -depth 1 -exec ln -s {} \;
+    (cd ~ && find $HOME_DIR -depth 1 -exec ln -s {} \;) &&
+    if [[ `uname` = Darwin ]]; then
+        (cd ~/Library/Preferences && ln -s $HOME_DIR/Library/Preferences/*)
+    fi
 )
 
 vim +BundleInstall +qall # See https://github.com/gmarik/vundle
