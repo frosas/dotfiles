@@ -18,3 +18,5 @@ source dotfiles/bash/rc
 Misc apps:
 
 - https://github.com/codler/Battery-Time-Remaining
+- https://github.com/jigish/slate
+- http://www.ragingmenace.com/software/menumeters/
