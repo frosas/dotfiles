@@ -14,3 +14,7 @@ In ~/.profile
 ```bash
 source dotfiles/bash/rc
 ```
+ 
+Misc apps:
+
+- https://github.com/codler/Battery-Time-Remaining
