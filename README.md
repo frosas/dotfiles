@@ -2,7 +2,9 @@
 
 ```bash
 $ git clone https://github.com/frosas/dotfiles.git
-$ dotfiles/setup
+$ cd dotfiles
+$ git submodule update --init
+$ ./setup
 ```
 
 ## Manual steps
