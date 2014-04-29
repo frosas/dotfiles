@@ -1,6 +1,8 @@
 #!/bin/bash
 
 (
+    # TODO Fix HOME_DIR being something like '/Users/frosasbosque/src/dotfiles 
+    # /Users/frosasbosque/src/dotfiles/home' because the CDPATH
     HOME_DIR=$(cd $(dirname $0) && pwd)/home &&
     (cd ~ && find $HOME_DIR -depth 1 -exec ln -s {} \;) &&
     if [[ `uname` = Darwin ]]; then
