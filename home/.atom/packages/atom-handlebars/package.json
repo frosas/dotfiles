@@ -1,0 +1,39 @@
+{
+  "name": "atom-handlebars",
+  "version": "0.3.35",
+  "description": "Handlebars support in Atom",
+  "engines": {
+    "atom": "*",
+    "node": "*"
+  },
+  "homepage": "https://github.com/Sneagan/atom-handlebars",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sneagan/atom-handlebars.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sneagan/atom-handlebars/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "atom",
+    "handlebars"
+  ],
+  "author": {
+    "name": "Jackson Egan",
+    "email": "jackson@sneagan.com",
+    "url": "http://sneagan.com/"
+  },
+  "readme": "# Handlebars support in Atom\n\nAdds syntax highlighting and snippets to Handlebars files in Atom.\n\nModified from [HTML Language Support in Atom](https://github.com/atom/language-html).\n\nContributions are greatly appreciated. Please fork this repository and open a pull request to add snippets, make grammar tweaks, etc.\n",
+  "readmeFilename": "README.md",
+  "_id": "atom-handlebars@0.3.35",
+  "dist": {
+    "shasum": "46fc04f1e27cdc3ef5e73770c496d2aa35773189"
+  },
+  "_resolved": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114330-12403-431eo0/package.tgz",
+  "_from": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114330-12403-431eo0/package.tgz"
+}
