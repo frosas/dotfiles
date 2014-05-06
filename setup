@@ -14,7 +14,7 @@ vim +BundleInstall +qall # See https://github.com/gmarik/vundle
 
 if [ `uname` = Darwin ]; then 
 
-    brew install bash-completion macvim node the_silver_searcher trash wget
+    brew install bash-completion macvim node the_silver_searcher trash wget git
 
     # From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
