@@ -16,23 +16,14 @@ GREEN=$(tput setaf 2)
 ORANGE=$(tput setaf 3)
 MAGENTA=$(tput setaf 5)
 
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWSTASHSTATE=1
+
 function git_ps1 {
-    if [ ! `type -t __git_ps1` ]; then return; fi
-
-    GIT_PS1_SHOWDIRTYSTATE=1
-    GIT_PS1_SHOWUNTRACKEDFILES=1
-    GIT_PS1_SHOWSTASHSTATE=1
-
-    GIT_PS1=$(__git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s")
-
-    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/\*/ dirty/")
-    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/+/ staged/")
-    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/%/ untracked/")
-    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/\$/ stashed/")
-    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/ //")
-    # GIT_PS1=$(echo "$GIT_PS1" | sed "s/ \([^\w]*\)$/\\\[$DARK_GRAY\\\]\[\\\[$ORANGE\\\]\1\\\[$DARK_GRAY\\\]\]/") 
-
-    echo "$GIT_PS1"
+    if [ `type -t __git_ps1` ]; then
+        __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s"
+    fi
 }
 
 function prompt_command {
