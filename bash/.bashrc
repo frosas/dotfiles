@@ -30,6 +30,9 @@ function prompt_command {
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
     # http://askubuntu.com/questions/24358)
     PS1="\[$RESET\]\n\[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
+
+    # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
+    (history -a &)
 }
 
 # Avoid the 'bash: prompt_command: command not found' running `screen`
@@ -46,8 +49,6 @@ export PATH=$SCRIPT_DIR/../bin:$PATH
 export VISUAL=vim
 export GREP_OPTIONS="--color=auto"
 
-# Keep bash history up to date at every command (http://briancarper.net/blog/248/)
-export PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
 shopt -s histappend
 
 HISTSIZE=10000
