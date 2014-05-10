@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': '70a0032d-3fb2-4bcb-e887-64623e256e19'
 'release-notes':
-  'viewedVersion': '0.92.0'
+  'viewedVersion': '0.94.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -10,7 +10,7 @@
   'tabLength': 4
   'fontFamily': 'Consolas'
   'showIndentGuide': true
-  'fontSize': 14
+  'fontSize': 13
 'core':
   'themes': [
     'atom-dark-ui'
@@ -18,10 +18,8 @@
   ]
   'disabledPackages': [
     'jsonpp'
-    'atom-lint'
   ]
   'audioBeep': false
-  'projectHome': '/Users/francesc/src'
 'spell-check':
   'grammars': [
     'source.gfm'

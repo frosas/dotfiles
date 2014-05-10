@@ -2,10 +2,11 @@
 #  ColorPicker
 # ----------------------------------------------------------------------------
 
+        Convert = require './ColorPicker-convert'
         ConditionalContextMenu = require './conditional-contextmenu'
         VariableInspector = require './variable-inspector'
 
-        _regexes = require './ColorPicker-regexes.coffee'
+        _regexes = require './ColorPicker-regexes'
 
     # -------------------------------------
     #  Public functionality
@@ -29,8 +30,7 @@
 
             # Get a match at the current cursor position
             getMatchAtCursor: ->
-                _editor = atom.workspace.getActiveEditor()
-                return unless _editor
+                return unless _editor = atom.workspace.getActiveEditor()
 
                 _line = _editor.getCursor().getCurrentBufferLine()
                 _cursorBuffer = _editor.getCursorBufferPosition()
@@ -82,7 +82,21 @@
             open: (getMatch = false) ->
                 if getMatch then @match = @getMatchAtCursor()
 
+                if not @match
+                    randomRGBFragment = -> (Math.random() * 255) << 0
+
+                    _line = '#' + Convert.rgbToHex [randomRGBFragment(), randomRGBFragment(), randomRGBFragment()]
+                    _cursorBuffer = atom.workspace.getActiveEditor().getCursorBufferPosition()
+                    _cursorRow = _cursorBuffer.row
+                    _cursorColumn = _cursorBuffer.column
+
+                    _match = (@matchesOnLine _line, _cursorRow)[0]
+                    _match.index = _cursorColumn
+                    _match.end = _cursorColumn
+
+                    @match = _match
                 return unless @match
+
                 @view.reset()
                 @setMatchColor()
                 @view.open()

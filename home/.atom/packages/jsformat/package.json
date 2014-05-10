@@ -1,7 +1,7 @@
 {
   "name": "jsformat",
   "main": "./lib/format",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "javascript formatting for the atom text editor",
   "keywords": [
@@ -30,10 +30,10 @@
     "url": "https://github.com/jdc0589/jsformat-atom/issues"
   },
   "homepage": "https://github.com/jdc0589/jsformat-atom",
-  "_id": "jsformat@0.2.0",
+  "_id": "jsformat@0.2.1",
   "dist": {
-    "shasum": "a40da489539edf8b5779c584085798dc86279bdb"
+    "shasum": "9e6572a1cfd19ed9deacb2f7242eac393bf0deb6"
   },
-  "_resolved": "/var/folders/4f/1wy5_sbs75l9yr51y0z724hm0000gn/T/d-114314-98643-usahpz/package.tgz",
-  "_from": "/var/folders/4f/1wy5_sbs75l9yr51y0z724hm0000gn/T/d-114314-98643-usahpz/package.tgz"
+  "_resolved": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114410-13474-yd72ci/package.tgz",
+  "_from": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114410-13474-yd72ci/package.tgz"
 }
