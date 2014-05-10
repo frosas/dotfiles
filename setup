@@ -14,8 +14,6 @@ vim +BundleInstall +qall # See https://github.com/gmarik/vundle
 
 if [ `uname` = Darwin ]; then 
 
-    brew install bash-completion macvim node the_silver_searcher trash wget git ag
-
     # From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
     # Disable Notification Center and remove the menu bar icon
@@ -34,4 +32,10 @@ if [ `uname` = Darwin ]; then
 
     # Display full POSIX path as Finder window title
     defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+    ###
+
+    brew install bash-completion macvim node the_silver_searcher trash wget git ag npm
 fi
+
+npm install -g jshint
