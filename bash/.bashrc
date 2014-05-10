@@ -25,9 +25,8 @@ function git_ps1 {
 
 function prompt_command {
     LAST_EXIT_CODE=$?
-
     if [[ $LAST_EXIT_CODE != 0 ]]; then 
-        echo "${RED}✗ ($LAST_EXIT_CODE)$RESET"
+        echo "${RED}✗ $DARK_GRAY($LAST_EXIT_CODE)$RESET"
     fi
 
     GIT_PS1_SHOWDIRTYSTATE=1
