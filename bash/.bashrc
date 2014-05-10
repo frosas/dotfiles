@@ -9,28 +9,31 @@ fi
 # Prompt
 ######################################################################
 
-# Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
-RESET=$(tput sgr0)
-DARK_GRAY=$(tput setaf 0)
-GREEN=$(tput setaf 2)
-ORANGE=$(tput setaf 3)
-MAGENTA=$(tput setaf 5)
-
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWSTASHSTATE=1
-
-function git_ps1 {
-    if [ `type -t __git_ps1` ]; then
-        __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s"
-    fi
-}
-
 function prompt_command {
+    # Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
+    RESET=$(tput sgr0)
+    DARK_GRAY=$(tput setaf 0)
+    GREEN=$(tput setaf 2)
+    ORANGE=$(tput setaf 3)
+    MAGENTA=$(tput setaf 5)
+
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWSTASHSTATE=1
+
+    function git_ps1 {
+        if [ `type -t __git_ps1` ]; then
+            __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s"
+        fi
+    }
+
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
     # http://askubuntu.com/questions/24358)
     PS1="\[$RESET\]\n\[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 }
+
+# Avoid the 'bash: prompt_command: command not found' running `screen`
+export -f prompt_command
 
 PROMPT_COMMAND=prompt_command
 
@@ -46,8 +49,6 @@ export GREP_OPTIONS="--color=auto"
 # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
 export PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
 shopt -s histappend
-
-# export CDPATH=.:~/Projects:~/Sites
 
 HISTSIZE=10000
 

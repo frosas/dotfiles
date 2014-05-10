@@ -9,10 +9,10 @@ $ ./setup
 
 ## Manual steps
 
-In ~/.profile
+In ~/.bashrc
 
 ```bash
-source dotfiles/bash/rc
+source dotfiles/bash/.bashrc
 ```
  
 Misc apps:
