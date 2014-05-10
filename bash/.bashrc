@@ -9,23 +9,30 @@ fi
 # Prompt
 ######################################################################
 
+# Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
+RESET=$(tput sgr0)
+DARK_GRAY=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+ORANGE=$(tput setaf 3)
+MAGENTA=$(tput setaf 5)
+
+function git_ps1 {
+    if [ `type -t __git_ps1` ]; then
+        __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s"
+    fi
+}
+
 function prompt_command {
-    # Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
-    RESET=$(tput sgr0)
-    DARK_GRAY=$(tput setaf 0)
-    GREEN=$(tput setaf 2)
-    ORANGE=$(tput setaf 3)
-    MAGENTA=$(tput setaf 5)
+    LAST_EXIT_CODE=$?
+
+    if [[ $LAST_EXIT_CODE != 0 ]]; then 
+        echo "${RED}✗ ($LAST_EXIT_CODE)$RESET"
+    fi
 
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWSTASHSTATE=1
-
-    function git_ps1 {
-        if [ `type -t __git_ps1` ]; then
-            __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s"
-        fi
-    }
 
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
     # http://askubuntu.com/questions/24358)
@@ -36,7 +43,7 @@ function prompt_command {
 }
 
 # Avoid the 'bash: prompt_command: command not found' running `screen`
-export -f prompt_command
+export -f git_ps1 prompt_command
 
 PROMPT_COMMAND=prompt_command
 
