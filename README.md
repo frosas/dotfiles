@@ -20,3 +20,4 @@ Misc apps:
 - https://github.com/codler/Battery-Time-Remaining
 - https://github.com/jigish/slate
 - http://www.ragingmenace.com/software/menumeters/
+- http://www.globaldelight.com/boom/
