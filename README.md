@@ -13,6 +13,7 @@ In ~/.bashrc
 
 ```bash
 source dotfiles/bash/.bashrc
+export CDPATH=.:~/projects
 ```
  
 Misc apps:
