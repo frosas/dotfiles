@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# From http://stackoverflow.com/questions/3572030/bash-script-absolute-path-with-osx
-function realpath {
-    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
-}
-
-exec /Applications/PhpStorm.app/Contents/MacOS/idea_appLauncher diff "`realpath $1`" "`realpath $2`"
