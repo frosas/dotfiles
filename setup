@@ -44,7 +44,7 @@ if [ `uname` = Darwin ]; then
     brew linkapps
     (cp -aH /Applications/MacVim.app ~/Applications/; true)
 
-    APPS="atom boom ccmenu firefox gimp google-chrome iterm2 kdiff3 skype slate sourcetree spotify the-unarchiver"
+    APPS="atom boom ccmenu firefox gimp google-chrome iterm2 kdiff3 skype slate sourcetree spotify the-unarchiver battery-time-remaining"
     for APP in $APPS; do
         (brew cask install $APP; true)
     done
