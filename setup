@@ -35,7 +35,12 @@ if [ `uname` = Darwin ]; then
 
     ###
 
-    brew install bash-completion macvim node the_silver_searcher trash wget git ag npm
+    brew install bash-completion node the_silver_searcher trash wget git ag npm
+
+    # MacVim
+    brew install macvim --override-system-vim
+    brew linkapps
+    cp -aH /Applications/MacVim.app ~/Applications/
 fi
 
 npm install -g jshint
