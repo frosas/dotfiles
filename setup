@@ -37,7 +37,11 @@ if [ `uname` = Darwin ]; then
 
     ###
 
-    (brew install bash-completion node the_silver_searcher trash wget git ag npm brew-cask; true)
+    (
+        brew install bash-completion node the_silver_searcher trash wget git ag \
+            npm caskroom/cask/brew-cask
+        true
+    )
 
     # MacVim
     brew install macvim --override-system-vim
