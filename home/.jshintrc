@@ -1,0 +1,5 @@
+// See http://www.jshint.com/docs/options/
+
+{
+    asi: false
+}
