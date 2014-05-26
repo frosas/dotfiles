@@ -69,7 +69,7 @@ operations.pad = function(top, right, bottom, left) {
 
 var appsOperationsByScreenCount = {};
 
-;['iTerm', 'PhpStorm', 'Sublime Text 2', 'MacVim', 'Atom'].forEach(function(app) {
+;['iTerm', 'PhpStorm', 'MacVim', 'Atom', 'Eclipse', 'Terminal'].forEach(function(app) {
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
@@ -80,7 +80,7 @@ var appsOperationsByScreenCount = {};
     }
 })
 
-;['Google Chrome', 'Firefox'].forEach(function(app) {
+;['Google Chrome', 'Firefox', 'Safari', 'SourceTree'].forEach(function(app) {
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
