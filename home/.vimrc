@@ -18,7 +18,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
 Bundle 'chriskempson/base16-vim'
 Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
+Bundle 'chaquotay/ftl-vim-syntax'
 filetype plugin indent on
 
 " Tabs
@@ -73,6 +73,7 @@ au BufRead,BufNewFile *.json set filetype=json
 au BufRead,BufNewFile *.html.twig set filetype=html
 au BufRead,BufNewFile *.pp set filetype=ruby " Puppet
 au BufRead,BufNewFile *.go set filetype=go
+au BufRead,BufNewFile *.ftl set filetype=ftl
 
 " Conque
 let g:ConqueTerm_CloseOnEnd = 1
