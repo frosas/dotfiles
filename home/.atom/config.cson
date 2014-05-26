@@ -8,9 +8,9 @@
   'userId': 'ba44e3beb28ecd4cac067ffa00fb25caece41ae8'
 'editor':
   'tabLength': 4
-  'fontFamily': 'Consolas'
   'showIndentGuide': true
-  'fontSize': 13
+  'fontSize': 12
+  'fontFamily': 'Monaco'
 'core':
   'themes': [
     'atom-dark-ui'
