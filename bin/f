@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# f - A convenient shortcut for 'find'
+
+query="$1"
+shift
+find . -ipath "*$query*" "$@"
