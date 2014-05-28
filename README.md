@@ -22,3 +22,4 @@ Misc apps:
 - https://github.com/jigish/slate
 - http://www.ragingmenace.com/software/menumeters/
 - http://www.globaldelight.com/boom/
+- http://interealtime.com/redscreen-advanced-screen-dimming-for-mac-os-x/
