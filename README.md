@@ -12,7 +12,7 @@ $ ./setup
 In ~/.bashrc
 
 ```bash
-source dotfiles/bash/.bashrc
+source ~/.../dotfiles/bash/.bashrc
 export CDPATH=.:~/projects
 ```
  
