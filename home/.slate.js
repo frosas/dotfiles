@@ -4,10 +4,13 @@ var getKeystroke = function(key) {
     return key + ':ctrl,shift'
 }
 
-var screens = {
-    laptop: '1280x800',
-    thunderbolt: '2560x1440'
-}
+var screens = {}
+slate.eachScreen(function(screen) {
+    // Screen IDs are ordered from left to right so external-0 stays on the left 
+    // of external-1
+    var name = screen.isMain() ? 'main' : 'external-' + screen.id()
+    screens[name] = screen.id()
+})
 
 // Operations
 
@@ -73,7 +76,7 @@ var appsOperationsByScreenCount = {}
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
-            slate.operation('throw', {screen: screens.thunderbolt}),
+            slate.operation('throw', {screen: screens['external-0']}),
             operations.toLeftRegion(),
             operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
         ]
@@ -84,7 +87,7 @@ var appsOperationsByScreenCount = {}
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
-            slate.operation('throw', {screen: screens.thunderbolt}),
+            slate.operation('throw', {screen: screens['external-0']}),
             operations.toRightRegion(),
             operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
         ]
@@ -93,7 +96,7 @@ var appsOperationsByScreenCount = {}
 
 ;['PhpStorm', 'MacVim', 'Atom', 'Eclipse'].forEach(function(app) {
     var appOperations = [
-        slate.operation('throw', {screen: screens.laptop}),
+        slate.operation('throw', {screen: screens.main}),
         operations.maximize()
     ]
     appsOperationsByScreenCount[app] = {
