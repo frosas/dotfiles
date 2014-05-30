@@ -14,6 +14,10 @@ slate.eachScreen(function(screen) {
     screens[name] = screen.id()
 })
 
+var getScreen = function(name) {
+    return name in screens ? screens[name] : screens.main
+}
+
 // Operations
 
 var operations = {}
@@ -78,7 +82,7 @@ var appsOperationsByScreenCount = {}
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
-            slate.operation('throw', {screen: screens['external-0']}),
+            slate.operation('throw', {screen: getScreen('external-0')}),
             operations.toLeftRegion(),
             operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
         ]
@@ -89,7 +93,7 @@ var appsOperationsByScreenCount = {}
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
-            slate.operation('throw', {screen: screens['external-0']}),
+            slate.operation('throw', {screen: getScreen('external-0')}),
             operations.toRightRegion(),
             operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
         ]
@@ -98,7 +102,7 @@ var appsOperationsByScreenCount = {}
 
 ;['PhpStorm', 'MacVim', 'Atom', 'Eclipse'].forEach(function(app) {
     var appOperations = [
-        slate.operation('throw', {screen: screens.main}),
+        slate.operation('throw', {screen: getScreen('main')}),
         operations.maximize()
     ]
     appsOperationsByScreenCount[app] = {
