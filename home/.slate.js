@@ -12,7 +12,7 @@ var screens = {
 // Operations
 
 var operations = {}
-var windowMargin = 20
+var windowMargin = 5
 
 /**
  * Applies the operation or list of operations
@@ -27,7 +27,7 @@ operations.apply = function(window, operation) {
     }
 }
 
-var leftRegionWidth = 'screenSizeX / 2 - 100'
+var leftRegionWidth = 'screenSizeX / 2 - 120'
 
 operations.toLeftRegion = function() {
     return slate.operation('move', {
