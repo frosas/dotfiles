@@ -8,15 +8,19 @@ var getKeystroke = function(key) {
     return key + ':ctrl,shift'
 }
 
-var screens = {}
-slate.eachScreen(function(screen) {
-    // Screen IDs are ordered from left to right so external-0 stays on the left 
-    // of external-1
-    var name = screen.isMain() ? 'main' : 'external-' + screen.id()
-    screens[name] = screen.id()
-})
+var getScreens = function() {
+    var screens = {}
+    slate.eachScreen(function(screen) {
+        // Screen IDs are ordered from left to right so external-0 stays on the left 
+        // of external-1
+        var name = screen.isMain() ? 'main' : 'external-' + screen.id()
+        screens[name] = screen.id()
+    })
+    return screens
+}
 
 var getScreen = function(name) {
+    var screens = getScreens()
     return name in screens ? screens[name] : screens.main
 }
 
