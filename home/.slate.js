@@ -67,9 +67,9 @@ operations.pad = function(top, right, bottom, left) {
 
 // Application operation by screen count
 
-var appsOperationsByScreenCount = {};
+var appsOperationsByScreenCount = {}
 
-;['iTerm', 'PhpStorm', 'MacVim', 'Atom', 'Eclipse', 'Terminal'].forEach(function(app) {
+;['iTerm', 'Terminal'].forEach(function(app) {
     appsOperationsByScreenCount[app] = {
         1: operations.maximize(),
         2: [
@@ -88,6 +88,17 @@ var appsOperationsByScreenCount = {};
             operations.toRightRegion(),
             operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
         ]
+    }
+})
+
+;['PhpStorm', 'MacVim', 'Atom', 'Eclipse'].forEach(function(app) {
+    var appOperations = [
+        slate.operation('throw', {screen: screens.laptop}),
+        operations.maximize()
+    ]
+    appsOperationsByScreenCount[app] = {
+        1: appOperations,
+        2: appOperations
     }
 })
 
