@@ -104,10 +104,10 @@ var refresh = function() {
 
 slate.on('screenConfigurationChanged', refresh)
 
-refresh()
-
 //
 
-slate.bind(getKeystroke('r'), slate.operation('relaunch'))
+slate.bind(getKeystroke('l' /* for 'load' */), slate.operation('relaunch'))
+
+slate.bind(getKeystroke('r'), refresh)
 
 slate.log('Config loaded')
