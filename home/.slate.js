@@ -110,4 +110,8 @@ slate.bind(getKeystroke('l' /* for 'load' */), slate.operation('relaunch'))
 
 slate.bind(getKeystroke('r'), refresh)
 
+slate.bind(getKeystroke('f'), function(window) {
+    window.doOperation(operations.maximize())
+})
+
 slate.log('Config loaded')
