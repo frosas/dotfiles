@@ -117,7 +117,7 @@ var appsOperationsByScreenCount = {}
     }
 })
 
-var refresh = function() {
+var layout = function() {
     var screenCount = slate.screenCount()
     slate.eachApp(function(app) {
         var appOperationsByScreenCount = appsOperationsByScreenCount[app.name()] || []
@@ -128,13 +128,14 @@ var refresh = function() {
     })
 }
 
-//
+slate.default(1, layout)
+slate.default(2, layout)
 
-slate.bind(getKeystroke('l' /* for 'load' */), slate.operation('relaunch'))
+// Keybindings
 
-slate.bind(getKeystroke('r'), refresh)
-
-slate.bind(getKeystroke('f'), function(window) {
+slate.bind(getKeystroke('r'), slate.operation('relaunch'))
+slate.bind(getKeystroke('l'), layout)
+slate.bind(getKeystroke('m'), function(window) {
     window.doOperation(operations.maximize())
 })
 
