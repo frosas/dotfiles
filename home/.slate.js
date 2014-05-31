@@ -135,8 +135,6 @@ slate.default(2, layout)
 
 slate.bind(getKeystroke('r'), slate.operation('relaunch'))
 slate.bind(getKeystroke('l'), layout)
-slate.bind(getKeystroke('m'), function(window) {
-    window.doOperation(operations.maximize())
-})
+slate.bind(getKeystroke('m'), operations.maximize())
 
 slate.log('Config loaded')
