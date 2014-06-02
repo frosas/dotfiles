@@ -1,7 +1,5 @@
 // Docs at https://github.com/jigish/slate/wiki/JavaScript-Configs
 
-// TODO Refresh on change screens count
-
 slate.log('Loading config')
 
 var getKeystroke = function(key) {
