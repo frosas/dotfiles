@@ -18,9 +18,6 @@ if [ `uname` = Darwin ]; then
 
     # From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
-    # Disable Notification Center and remove the menu bar icon
-    launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
-
     # Disable press-and-hold for keys in favor of key repeat
     defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
