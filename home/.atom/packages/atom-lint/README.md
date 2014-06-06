@@ -6,12 +6,9 @@ Generic code linting support for [Atom](https://atom.io).
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/83656/2719884/196c7e02-c568-11e3-8455-4ee4ba095752.png)
 
-Atom-Lint is currently in beta development.
-
 ## Supported Linters
 
 More linters will be supported in the future.
-
 * [RuboCop](https://github.com/bbatsov/rubocop) for Ruby
 * [flake8](https://flake8.readthedocs.org/) for Python
 * [HLint](http://community.haskell.org/~ndm/hlint/) for Haskell
@@ -27,6 +24,8 @@ More linters will be supported in the future.
 * [Clang](http://clang.llvm.org) for C/C++/Objective-C
 * [rustc](http://www.rust-lang.org/) for Rust
   (Installation of [language-rust](https://atom.io/packages/language-rust) package is required)
+* [erlc](http://erlang.org/doc/man/erlc.html) for Erlang
+  (Installation of [language-erlang](https://atom.io/packages/language-erlang) package is required)
 
 ## Features
 
@@ -79,11 +78,16 @@ You can configure Atom-Lint by editing `~/.atom/config.cson` (choose **Open Your
     'headerSearchPaths': ['/path/to/include','/path2/to/include']
   'coffeelint':
     'path': '/path/to/bin/coffeelint'
-    'ignoredNames': [
-      'coffeelint/specific/excluded/file.coffee'
-    ]
   'csslint':
     'path': '/path/to/bin/csslint'
+    'rules': # See http://csslint.net/about.html for rules
+      'ignore': [
+        'adjoining-classes'
+      ]
+      'errors': []
+      'warnings': []
+  'erlc':
+    'path': '/path/to/bin/erlc'
   'flake8':
     'path': '/path/to/bin/flake8'
   'gc':
@@ -108,6 +112,7 @@ You can configure Atom-Lint by editing `~/.atom/config.cson` (choose **Open Your
 
 * `atom-lint.LINTER.path`
 
+Normally you can omit this setting.
 By default Atom-Lint automatically refers the environment variable `PATH` of your login shell
 if it's `bash` or `zsh`, and then invokes the command.
 Thus, if you're using a language version manager such as [rbenv](https://github.com/sstephenson/rbenv),
