@@ -15,7 +15,7 @@
     b = branch
     fetch-all = fetch --all --prune
     merge-upstream = merge --ff-only @{u}
-    s = stash -u
+    s = stash save -u
     sp = stash pop
     ss = stash show -v 
     dirty-files = "!git status -s | awk '{print $2}'"
