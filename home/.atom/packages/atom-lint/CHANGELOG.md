@@ -2,6 +2,13 @@
 
 ## Development
 
+## v0.13.0
+
+* [#70](https://github.com/yujinakayama/atom-lint/pull/70): Detect project-specific Clang flags automatically. ([@Kev])
+* Fix bug in handling of project root directory in `erlc`. ([@yujinakayama])
+
+## v0.12.0
+
 * [#59](https://github.com/yujinakayama/atom-lint/pull/59): Add Erlang support via `erlc`. ([@bryanhunter])
 * [#55](https://github.com/yujinakayama/atom-lint/pull/55): Add configuration `atom-lint.csslint.rules` which allows you to customize CSSLint rules. ([@elrolito])
 
@@ -128,3 +135,4 @@
 [@skevy]: https://github.com/skevy
 [@bryanhunter]: https://github.com/bryanhunter
 [@elrolito]: https://github.com/elrolito
+[@Kev]: https://github.com/Kev
