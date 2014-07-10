@@ -111,10 +111,14 @@ var layout = function() {
     runAppOperationsByNames(['iTerm', 'Terminal'], (function() {
         switch (screenCount) {
             case 1: return operations.maximize()
-            default: return [
+            case 2: return [
                 slate.operation('throw', {screen: getScreen('external-0')}),
                 operations.toLeftRegion(),
                 operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
+            ]
+            case 3: return [
+                slate.operation('throw', {screen: getScreen('external-1')}),
+                operations.maximize()
             ]
         }
     })())
@@ -122,10 +126,14 @@ var layout = function() {
     runAppOperationsByNames(['Google Chrome', 'Firefox', 'Safari', 'SourceTree'], (function() {
         switch (screenCount) {
             case 1: return operations.maximize()
-            default: return [
+            case 2: return [
                 slate.operation('throw', {screen: getScreen('external-0')}),
                 operations.toRightRegion(),
                 operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
+            ]
+            case 3: return [
+                slate.operation('throw', {screen: getScreen('external-0')}),
+                operations.maximize()
             ]
         }
     })())
