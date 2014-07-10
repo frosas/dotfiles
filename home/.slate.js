@@ -83,52 +83,57 @@ operations.pad = function(top, right, bottom, left) {
     ]
 }
 
-// Application operation by screen count
+var runAppOperations = function(app, appOperations) {
+    app.eachWindow(function(window) { operations.apply(window, appOperations) })
+}
 
-var appsOperationsByScreenCount = {}
+var getAppByName = function(name) {
+    var app
+    slate.eachApp(function(currentApp) { if (currentApp.name() == name) app = currentApp })
+    return app
+}
 
-;['iTerm', 'Terminal'].forEach(function(app) {
-    appsOperationsByScreenCount[app] = {
-        1: operations.maximize(),
-        2: [
-            slate.operation('throw', {screen: getScreen('external-0')}),
-            operations.toLeftRegion(),
-            operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
-        ]
-    }
-})
+var getAvailableAppsByName = function(names) {
+    return names.map(getAppByName).filter(function(app) { return app })
+}
 
-;['Google Chrome', 'Firefox', 'Safari', 'SourceTree'].forEach(function(app) {
-    appsOperationsByScreenCount[app] = {
-        1: operations.maximize(),
-        2: [
-            slate.operation('throw', {screen: getScreen('external-0')}),
-            operations.toRightRegion(),
-            operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
-        ]
-    }
-})
-
-;['PhpStorm', 'MacVim', 'Atom', 'Eclipse'].forEach(function(app) {
-    var appOperations = [
-        slate.operation('throw', {screen: getScreen('main')}),
-        operations.maximize()
-    ]
-    appsOperationsByScreenCount[app] = {
-        1: appOperations,
-        2: appOperations
-    }
-})
+var runAppOperationsByNames = function(names, appOperations) {
+    getAvailableAppsByName(names).forEach(function(app) {
+        runAppOperations(app, appOperations)
+    })
+}
 
 var layout = function() {
     var screenCount = slate.screenCount()
-    slate.eachApp(function(app) {
-        var appOperationsByScreenCount = appsOperationsByScreenCount[app.name()] || []
-        var appOperations = appOperationsByScreenCount[screenCount] || []
-        app.eachWindow(function(window) {
-            operations.apply(window, appOperations)
-        })
-    })
+
+    slate.log('Laying out (' + screenCount + ' screens)')
+
+    runAppOperationsByNames(['iTerm', 'Terminal'], (function() {
+        switch (screenCount) {
+            case 1: return operations.maximize()
+            default: return [
+                slate.operation('throw', {screen: getScreen('external-0')}),
+                operations.toLeftRegion(),
+                operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
+            ]
+        }
+    })())
+
+    runAppOperationsByNames(['Google Chrome', 'Firefox', 'Safari', 'SourceTree'], (function() {
+        switch (screenCount) {
+            case 1: return operations.maximize()
+            default: return [
+                slate.operation('throw', {screen: getScreen('external-0')}),
+                operations.toRightRegion(),
+                operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
+            ]
+        }
+    })())
+
+    runAppOperationsByNames(['PhpStorm', 'MacVim', 'Atom', 'Eclipse'], [
+        slate.operation('throw', {screen: getScreen('main')}),
+        operations.maximize()
+    ])
 }
 
 slate.default(1, layout)
