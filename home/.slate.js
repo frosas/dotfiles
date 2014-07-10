@@ -141,6 +141,7 @@ var layout = function() {
 
 slate.default(1, layout)
 slate.default(2, layout)
+slate.default(3, layout)
 
 // Keybindings
 
