@@ -8,10 +8,15 @@ var getKeystroke = function(key) {
 
 var getScreens = function() {
     var screens = {}
+    var externalScreensCount = 0
     slate.eachScreen(function(screen) {
         // Screen IDs are ordered from left to right so external-0 stays on the left 
         // of external-1
-        var name = screen.isMain() ? 'main' : 'external-' + screen.id()
+        var name = screen.isMain() ? 'main' : (function() {
+            var id = 'external-' + externalScreensCount 
+            externalScreensCount++
+            return id
+        })()
         screens[name] = screen.id()
     })
     return screens
