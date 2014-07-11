@@ -65,6 +65,24 @@ operations.toRightRegion = function() {
     })
 }
 
+operations.toTop = function() {
+    return slate.operation('move', {
+        x: 'screenOriginX',
+        y: 'screenOriginY',
+        width: 'screenSizeX',
+        height: 'screenSizeY / 2'
+    })
+}
+
+operations.toBottom = function() {
+    return slate.operation('move', {
+        x: 'screenOriginX',
+        y: 'screenOriginY / 2',
+        width: 'screenSizeX',
+        height: 'screenSizeY / 2'
+    })
+}
+
 operations.maximize = function() {
     return slate.operation('move', {
         x: 'screenOriginX',
@@ -137,6 +155,38 @@ var layout = function() {
         slate.operation('throw', {screen: getScreen('main')}),
         operations.maximize()
     ])
+
+    runAppOperationsByNames(['HipChat'], (function() {
+        switch (screenCount) {
+            case 1:
+            case 2: 
+                return [
+                    slate.operation('throw', {screen: getScreen('main')}),
+                    operations.maximize()
+                ]
+            case 3:
+                return [
+                    slate.operation('throw', {screen: getScreen('external-1')}),
+                    operations.toTop()
+                ]
+        }
+    })())
+
+    runAppOperationsByNames(['Spotify'], (function() {
+        switch (screenCount) {
+            case 1:
+            case 2: 
+                return [
+                    slate.operation('throw', {screen: getScreen('main')}),
+                    operations.maximize()
+                ]
+            case 3:
+                return [
+                    slate.operation('throw', {screen: getScreen('external-1')}),
+                    operations.toBottom()
+                ]
+        }
+    })())
 }
 
 slate.default(1, layout)
