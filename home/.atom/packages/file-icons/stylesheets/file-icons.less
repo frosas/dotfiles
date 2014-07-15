@@ -30,12 +30,12 @@
   &[data-name$="TODO"]:before { .checklist-icon; .medium-yellow; }
 
   // Code icon
-  &[data-name$=".ts"]:before  { .code-icon; .medium-purple; }
   &[data-name$=".xml"]:before { .code-icon; .medium-blue;   }
 
   // Javascript icon
   &[data-name$=".js"]:before  { .js-icon; .medium-yellow; }
   &[data-name$=".jsx"]:before { .js-icon; .medium-green; }
+  &[data-name$=".ts"]:before  { .js-icon; .medium-purple; }
 
   // Coffee icon
   &[data-name$=".coffee"]:before    { .coffee-icon; .medium-maroon; }
@@ -51,7 +51,8 @@
   // Database icon
   &[data-name$=".json"]:before { .database-icon; .medium-yellow; }
   &[data-name$=".cson"]:before { .database-icon; .medium-maroon; }
-  &[data-name$=".yml"]:before  { .database-icon; .light-red; }
+  &[data-name$=".yml"]:before,
+  &[data-name$=".yaml"]:before { .database-icon; .light-red; }
 
   // Elixir icon
   &[data-name$=".ex"]:before        { .elixir-icon;   .dark-purple; }
@@ -81,8 +82,8 @@
   &[data-name$=".htaccess"]:before      { .gear-icon; .medium-red;    }
 
   // Npm icon
-  &[data-name=".npmignore"]:before       { .npm-icon; .medium-red; }
-  &[data-name="npm-debug.log"]:before    { .npm-icon; .medium-red; }
+  &[data-name=".npmignore"]:before       { .node-icon; }
+  &[data-name="npm-debug.log"]:before    { .node-icon; .medium-red; }
 
   // Sass icon
   &[data-name$=".sass"]:before { .sass-icon; .light-purple; }
@@ -117,6 +118,9 @@
   // Scala
   &[data-name$=".scala"]:before { .scala-icon; .medium-green; }
 
+  // Haskell
+  &[data-name$=".hs"]:before { .haskell-icon; .medium-purple; }
+
   // Objective-C, C++, C
   &[data-name$=".c"]:before   { .c-icon; .medium-blue;   }
   &[data-name$=".h"]:before   { .medium-purple; }
@@ -137,6 +141,7 @@
 
   // shell
   &[data-name$=".sh"]:before,
+  &[data-name$=".bash"]:before,
   &[data-name=".bashrc"]:before { .terminal-icon; .medium-purple; }
   &[data-name$=".zsh"]:before,
   &[data-name=".zshrc"]:before { .terminal-icon; .medium-blue; }
@@ -146,18 +151,18 @@
   // Grunt icon
   &[data-name="GRUNTFILE.js"]:before,
   &[data-name="Gruntfile.js"]:before,
-  &[data-name="gruntfile.js"]:before,
+  &[data-name="gruntfile.js"]:before { .grunt-icon; .medium-yellow; }
   &[data-name="GRUNTFILE.coffee"]:before,
   &[data-name="Gruntfile.coffee"]:before,
-  &[data-name="gruntfile.coffee"]:before { .grunt-icon; .medium-yellow; }
+  &[data-name="gruntfile.coffee"]:before { .grunt-icon; .medium-maroon; }
 
   // Gulp icon
   &[data-name="GULPFILE.js"]:before,
   &[data-name="Gulpfile.js"]:before,
-  &[data-name="gulpfile.js"]:before,
+  &[data-name="gulpfile.js"]:before  { .gulp-icon; .medium-red; }
   &[data-name="GULPFILE.coffee"]:before,
   &[data-name="Gulpfile.coffee"]:before,
-  &[data-name="gulpfile.coffee"]:before { .gulp-icon; .medium-red; }
+  &[data-name="gulpfile.coffee"]:before { .gulp-icon; .medium-maroon; }
 
   // Mustache icon
   &[data-name$=".hbs"]:before,

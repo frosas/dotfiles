@@ -1,7 +1,7 @@
 {
   "name": "file-icons",
   "main": "./lib/file-icons",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": true,
   "description": "Assign file extension icons and colours for improved visual grepping",
   "repository": {
@@ -19,10 +19,10 @@
     "url": "https://github.com/DanBrooker/file-icons/issues"
   },
   "homepage": "https://github.com/DanBrooker/file-icons",
-  "_id": "file-icons@1.2.4",
+  "_id": "file-icons@1.2.5",
   "dist": {
-    "shasum": "7021c14fcee6fcc0b2110f81b7f860a907ed0fde"
+    "shasum": "38bb83c009ab2bcb55617875e95f97060d374f68"
   },
-  "_resolved": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114530-12822-ye4e3y/package.tgz",
-  "_from": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114530-12822-ye4e3y/package.tgz"
+  "_resolved": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114613-29439-xloomp/package.tgz",
+  "_from": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114613-29439-xloomp/package.tgz"
 }
