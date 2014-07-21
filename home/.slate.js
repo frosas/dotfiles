@@ -1,6 +1,6 @@
 // Docs at https://github.com/jigish/slate/wiki/JavaScript-Configs
 
-slate.log('Loading config')
+slate.log('Loading config') // Good to know this file was found
 
 var getKeystroke = function(key) {
     return key + ':shift,ctrl'
@@ -198,5 +198,7 @@ slate.default(3, layout)
 slate.bind(getKeystroke('r'), slate.operation('relaunch'))
 slate.bind(getKeystroke('l'), layout)
 slate.bind(getKeystroke('m'), operations.maximize())
+slate.bind(getKeystroke('k'), operations.toTop())
+slate.bind(getKeystroke('j'), operations.toBottom())
 
-slate.log('Config loaded')
+slate.log('Config loaded') // Good to know everything loaded ok
