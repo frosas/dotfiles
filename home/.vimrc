@@ -18,6 +18,8 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
 Bundle 'chriskempson/base16-vim'
 Bundle 'bling/vim-airline'
+" Notice it's slow for java files
+Bundle 'scrooloose/syntastic'
 Bundle 'chaquotay/ftl-vim-syntax'
 filetype plugin indent on
 
