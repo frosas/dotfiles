@@ -58,3 +58,5 @@
   'intervalMinutes': 60
 'autocomplete-plus':
   'includeCompletionsFromAllBuffers': true
+'whitespace':
+  'removeTrailingWhitespace': false

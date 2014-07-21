@@ -32,7 +32,7 @@
   // Code icon
   &[data-name$=".xml"]:before { .code-icon; .medium-blue;   }
 
-  // Javascript icon
+  // JavaScript icon
   &[data-name$=".js"]:before  { .js-icon; .medium-yellow; }
   &[data-name$=".jsx"]:before { .js-icon; .medium-green; }
   &[data-name$=".ts"]:before  { .js-icon; .medium-purple; }
@@ -66,11 +66,17 @@
 
   // HTML5 icon
   &[data-name$=".erb"]:before  { .html5-icon; .medium-red;    }
-  &[data-name$=".php"]:before  { .php-icon; .dark-blue;     }
   &[data-name$=".html"]:before { .html5-icon; .medium-orange; }
   &[data-name$=".haml"]:before { .html5-icon; .light-red;     }
   &[data-name$=".jade"]:before { .html5-icon; .medium-green;  }
   &[data-name$=".jsp"]:before  { .html5-icon; .medium-purple; }
+  &[data-name$=".ctp"]:before  { .html5-icon; .medium-blue;   }
+  &[data-name$=".ejs"]:before  { .html5-icon; .medium-green; }
+
+  // Mustache icon
+  &[data-name$=".hbs"]:before,
+  &[data-name$=".handlebars"]:before,
+  &[data-name$=".mustache"]:before { .hbs-mustache-icon; .medium-orange; }
 
   // Gear icon
   &[data-name$=".gitignore"]:before     { .gear-icon;                 }
@@ -85,9 +91,16 @@
   &[data-name=".npmignore"]:before       { .node-icon; }
   &[data-name="npm-debug.log"]:before    { .node-icon; .medium-red; }
 
+  // Bower icon
+  &[data-name=".bowerrc"]:before     { .bower-icon; }
+  &[data-name="bower.json"]:before   { .bower-icon; .medium-yellow; }
+
   // Sass icon
   &[data-name$=".sass"]:before { .sass-icon; .light-purple; }
   &[data-name$=".scss"]:before { .sass-icon; .dark-purple; }
+
+  // PHP icon
+  &[data-name$=".php"]:before  { .php-icon; .dark-blue; }
 
   // Python icon
   &[data-name$=".py"]:before { .python-icon; .dark-yellow; }
@@ -105,6 +118,8 @@
 
   &[data-name$="_spec.rb"]:before { .comment-icon; .medium-green; }
 
+  &[data-name$=".pp"]:before { .puppet-icon; .medium-purple }
+
   // Perl icon
   &[data-name$=".pl"]:before { .perl-icon; .medium-purple; }
   &[data-name$=".pm"]:before { .perl-icon; .medium-purple; }
@@ -113,7 +128,7 @@
   &[data-name$=".java"]:before { .java-icon; .medium-purple; }
 
   // Go
-  &[data-name$=".go"]:before { .medium-green; }
+  &[data-name$=".go"]:before { .go-icon; .light-green; }
 
   // Scala
   &[data-name$=".scala"]:before { .scala-icon; .medium-green; }
@@ -122,11 +137,11 @@
   &[data-name$=".hs"]:before { .haskell-icon; .medium-purple; }
 
   // Objective-C, C++, C
-  &[data-name$=".c"]:before   { .c-icon; .medium-blue;   }
-  &[data-name$=".h"]:before   { .medium-purple; }
-  &[data-name$=".cpp"]:before { .cpp-icon; .medium-blue;   }
-  &[data-name$=".m"]:before   { .objc-icon; .medium-blue;   }
-  &[data-name$=".swift"]:before   { .objc-icon; .medium-green;   }
+  &[data-name$=".c"]:before       { .c-icon; .medium-blue;   }
+  &[data-name$=".h"]:before       { .medium-purple; }
+  &[data-name$=".cpp"]:before     { .cpp-icon; .medium-blue;   }
+  &[data-name$=".m"]:before       { .objc-icon; .medium-blue;   }
+  &[data-name$=".swift"]:before   { .swift-icon; .medium-green;   }
 
   &[data-name$=".cs"]:before   { .csharp-icon; .medium-blue;   }
 
@@ -163,9 +178,4 @@
   &[data-name="GULPFILE.coffee"]:before,
   &[data-name="Gulpfile.coffee"]:before,
   &[data-name="gulpfile.coffee"]:before { .gulp-icon; .medium-maroon; }
-
-  // Mustache icon
-  &[data-name$=".hbs"]:before,
-  &[data-name$=".mustache"]:before { .hbs-mustache-icon; .medium-orange; }
-
 }
