@@ -2,6 +2,14 @@
 
 ## Development
 
+## v0.14.1
+
+* Fix regression of RuboCop execution in 0.14.0. ([@yujinakayama])
+
+## v0.14.0
+
+* Dump detailed debug outputs on linter errors. ([@yujinakayama])
+
 ## v0.13.0
 
 * [#70](https://github.com/yujinakayama/atom-lint/pull/70): Detect project-specific Clang flags automatically. ([@Kev])

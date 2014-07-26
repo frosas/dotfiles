@@ -1,6 +1,7 @@
 {Range, Point} = require 'atom'
 CommandRunner = require '../command-runner'
 Violation = require '../violation'
+LinterError = require '../linter-error'
 ClangFlags = require 'clang-flags'
 
 # /Users/me/NAKPlaybackIndicatorContentView.h:19:9: fatal error: 'UIKit/UIKit.h' file not found
@@ -36,7 +37,7 @@ class Clang
         violations = @parseDiagnostics(result.stderr)
         callback(null, violations)
       else
-        callback(new Error("Process exited with code #{result.exitCode}"))
+        callback(new LinterError("clang exited with code #{result.exitCode}", result))
 
   parseDiagnostics: (log) ->
     lines = log.split('\n')
@@ -76,7 +77,7 @@ class Clang
 
     userClangPath = atom.config.get('atom-lint.clang.path')
     userHeaderSearchPaths = atom.config.get('atom-lint.clang.headerSearchPaths')
-    addConfigToDiscoveredFlags = atom.config.get('atom-lint.clang.mergeAtomLintConfigIntoAutoDiscoveredFlags')
+    alwaysUseConfig = atom.config.get('atom-lint.clang.mergeAtomLintConfigIntoAutoDiscoveredFlags')
 
     if userClangPath?
       command.push(userClangPath)
@@ -90,7 +91,7 @@ class Clang
 
     if currentFileFlags.length > 0
       command = command.concat currentFileFlags
-    if currentFileFlags.length == 0 || addConfigToDiscoveredFlags
+    if currentFileFlags.length == 0 || alwaysUseConfig
       command.push('-Wall')
 
       if userHeaderSearchPaths?
