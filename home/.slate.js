@@ -105,14 +105,18 @@ var runAppOperations = function(app, appOperations) {
     app.eachWindow(function(window) { operations.apply(window, appOperations) })
 }
 
-var getAppByName = function(name) {
-    var app
-    slate.eachApp(function(currentApp) { if (currentApp.name() == name) app = currentApp })
-    return app
+var getAppsByName = function(names) {
+    var apps = []
+    slate.eachApp(function(app) {
+        if (names.some(function(name) { return name == app.name() })) {
+            apps.push(app)
+        }
+    })
+    return apps
 }
 
 var getAvailableAppsByName = function(names) {
-    return names.map(getAppByName).filter(function(app) { return app })
+    return getAppsByName(names).filter(function(app) { return app })
 }
 
 var runAppOperationsByNames = function(names, appOperations) {
