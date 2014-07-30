@@ -18,6 +18,7 @@
   ]
   'disabledPackages': [
     'jsonpp'
+    'vim-mode'
   ]
   'audioBeep': false
   'useReactEditor': true

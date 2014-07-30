@@ -2,6 +2,14 @@
 
 ## Development
 
+## v0.14.3
+
+* [#80](https://github.com/yujinakayama/atom-lint/pull/80): Fix a bug that couldn't find `HOME` environment using RuboCop. ([@rochefort])
+
+## v0.14.2
+
+* Fix a bug where linters could not be run when the login shell is zsh and zsh option `CLOBBER` is unset. ([@yujinakayama])
+
 ## v0.14.1
 
 * Fix regression of RuboCop execution in 0.14.0. ([@yujinakayama])
@@ -144,3 +152,4 @@
 [@bryanhunter]: https://github.com/bryanhunter
 [@elrolito]: https://github.com/elrolito
 [@Kev]: https://github.com/Kev
+[@rochefort]: https://github.com/rochefort

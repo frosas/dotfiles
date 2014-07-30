@@ -3,7 +3,6 @@ os = require 'os'
 path = require 'path'
 fs = require 'fs'
 _ = require 'lodash'
-{$} = require 'atom'
 
 each_slice = (array, size, callback) ->
   for i in [0..array.length] by size
@@ -23,6 +22,8 @@ class CommandRunner
       return callback(new Error("#{process.env.SHELL} is not supported."))
 
     outputPath = path.join(os.tmpdir(), 'CommandRunner_fetchEnvOfLoginShell.txt')
+    fs.unlinkSync(outputPath) if fs.existsSync(outputPath)
+
     # Running non-shell-builtin command with -i (interactive) option causes shell to freeze with
     # CPU 100%. So we run it in subshell to make it non-interactive.
     command = "#{process.env.SHELL} -l -i -c '$(printenv > #{outputPath})'"
@@ -65,8 +66,10 @@ class CommandRunner
   @getEnv: (callback) ->
     if @_cachedEnv == undefined
       @fetchEnvOfLoginShell (error, env) =>
+        console.log(error.stack) if error?
         env ?= {}
         @_cachedEnv = @mergePathEnvs(env, process.env)
+        @_cachedEnv['HOME'] = process.env.HOME
         callback(@_cachedEnv)
     else
       callback(@_cachedEnv)
@@ -75,7 +78,6 @@ class CommandRunner
 
   run: (callback) ->
     CommandRunner.getEnv (env) =>
-      env ?= process.env
       @runWithEnv(env, callback)
 
   runWithEnv: (env, callback) ->
