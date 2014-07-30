@@ -14,7 +14,7 @@ RESET=$(tput sgr0)
 DARK_GRAY=$(tput setaf 0)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
-ORANGE=$(tput setaf 3)
+YELLOW=$(tput setaf 3)
 MAGENTA=$(tput setaf 5)
 
 function git_ps1 {
@@ -35,7 +35,7 @@ function prompt_command {
 
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
     # http://askubuntu.com/questions/24358)
-    PS1="\[$RESET\]\n\[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
+    PS1="\[$RESET\]\n\[$GREEN\]● \[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 
     # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
     (history -a &)
