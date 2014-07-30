@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# From http://stackoverflow.com/questions/5749807/in-perforce-how-do-i-find-the-local-path-for-files-in-a-pending-changelist
+
+p4 opened -s | awk '{print $1}' | p4 -x - where | awk '{print $3}'
