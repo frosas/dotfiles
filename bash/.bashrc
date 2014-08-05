@@ -35,7 +35,9 @@ function prompt_command {
 
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
     # http://askubuntu.com/questions/24358)
-    PS1="\[$RESET\]\n\[$GREEN\]● \[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
+    #
+    # Avoid using Unicode characters as it interferes with Vim's Conque-Term
+    PS1="\[$RESET\]\n\[$GREEN\]> \[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 
     # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
     (history -a &)
