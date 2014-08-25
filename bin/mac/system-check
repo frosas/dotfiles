@@ -2,8 +2,10 @@
 
 set -xe
 
-brew update
-brew outdated
-brew doctor
+brew update >/dev/null
+brew doctor # We update first to avoid the "Your Homebrew is outdated" warning
+brew outdated # Update with `brew upgrade`
+
+npm outdated -gq # Update with `npm update -g`
+
 softwareupdate -l
-npm outdated -q
