@@ -1,7 +1,7 @@
 {
   "name": "goto",
   "main": "./lib/index",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "description": "Provides Go To Symbol based on syntaxes",
   "author": {
     "name": "Michael Kleehammer",
@@ -32,10 +32,10 @@
   "readme": "# goto package\n\nProvides \"goto symbol\" functionality for the current file or the entire project.\n\nThis is a replacement for Atom's built-in symbols-view package that uses Atom's own syntax files\nto identify symbols rather than ctags.  The ctags project is very useful but it is never going\nto keep up with all of the new Atom syntaxes that will be created as Atom grows.\n\nCommands:\n\n* `cmd-r` - Goto File Symbol\n* `cmd-shift-r` - Goto Project Symbol\n* `cmd-alt-down` - Goto Declaration\n* Rebuild Index\n* Invalidate Index\n\n## Index\n\nThe symbol index is currently maintained in memory.  Goto File Symbol will reindex the current\nfile if necessary and editing a file will automatically invalidate the symbol cache for it.\n\nSymbols for the entire project are not indexed until the Goto Project Symbol or Goto\nDeclaration commands are used.\n\nWhile symbols are automatically kept up to date as buffers are modified, the package  does not\nyet watch for external file modifications.  If you change files externally, such as through a\n\"git pull\" or switching branches, you can use run Invalidate Index to clear the current index\nso it will be rebuilt when needed or Rebuild Index to rebuild it immediately.\n\n## Options\n\n### More Ignored Names\n\nA whitespace and/or comma separated list of globs (filenames or wildcards) to ignore, applied\nto both files and directories.  This can be useful for speeding up the rebuilding of the index.\n\nExample: `node_modules, *.sql`\n\n### Auto Scroll\n\nBy default the Goto File Symbol command will scroll the selected command into view.  Pressing\n`Esc` to cancel the command restores the position of the screen.  Uncheck this option to\ndisable the scrolling.\n\nNote that the Goto Project Symbol does not scroll the editor since it displays choices from\nmultiple files.\n",
   "readmeFilename": "README.md",
   "homepage": "https://github.com/mkleehammer/goto",
-  "_id": "goto@1.5.0",
+  "_id": "goto@1.7.0",
   "dist": {
-    "shasum": "df27edc474af47c7c6ca6f09853640817c2f06d7"
+    "shasum": "e509d9bcaafc94e34c9da45726ded9a10ee32c7c"
   },
-  "_resolved": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11454-26299-1u8yhfd/package.tgz",
-  "_from": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11454-26299-1u8yhfd/package.tgz"
+  "_resolved": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11485-91722-q87bhr/package.tgz",
+  "_from": "/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11485-91722-q87bhr/package.tgz"
 }
