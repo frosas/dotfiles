@@ -37,7 +37,7 @@ function prompt_command {
     # http://askubuntu.com/questions/24358)
     #
     # Avoid using Unicode characters as it interferes with Vim's Conque-Term
-    PS1="\[$RESET\]\n\[$GREEN\]> \[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
+    PS1="\[$RESET\]\n\[$RED\]>> \[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 
     # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
     (history -a &)
