@@ -138,7 +138,7 @@ var layout = function() {
                 return [
                     slate.operation('throw', {screen: getScreen('external-0')}),
                     operations.toLeftRegion(),
-                    operations.pad(windowMargin, windowMargin / 2, windowMargin, windowMargin)
+                    operations.pad(windowMargin, windowMargin / 2, windowMargin, 0)
                 ]
         }
     })())
@@ -150,7 +150,7 @@ var layout = function() {
             case 3: return [
                 slate.operation('throw', {screen: getScreen('external-0')}),
                 operations.toRightRegion(),
-                operations.pad(windowMargin, windowMargin, windowMargin, windowMargin / 2)
+                operations.pad(windowMargin, 0, windowMargin, windowMargin / 2)
             ]
         }
     })())
@@ -171,7 +171,8 @@ var layout = function() {
             case 3:
                 return [
                     slate.operation('throw', {screen: getScreen('external-1')}),
-                    operations.toTop()
+                    operations.toTop(),
+                    operations.pad(windowMargin, 0, windowMargin / 2, 0)
                 ]
         }
     })())
@@ -187,7 +188,8 @@ var layout = function() {
             case 3:
                 return [
                     slate.operation('throw', {screen: getScreen('external-1')}),
-                    operations.toBottom()
+                    operations.toBottom(),
+                    operations.pad(windowMargin / 2, 0, windowMargin, 0)
                 ]
         }
     })())
