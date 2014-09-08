@@ -2,10 +2,6 @@
 
 slate.log('Loading config') // Good to know this file was found
 
-var getKeystroke = function(key) {
-    return key + ':shift,ctrl'
-}
-
 var getScreens = function() {
     var screens = {}
     var externalScreensCount = 0
@@ -47,22 +43,28 @@ operations.apply = function(window, operation) {
 
 var leftRegionWidth = 'screenSizeX * 0.4'
 
-operations.toLeftRegion = function() {
-    return slate.operation('move', {
-        x: 'screenOriginX',
-        y: 'screenOriginY',
-        width: leftRegionWidth,
-        height: 'screenSizeY'
-    })
+operations.toLeft = function() {
+    return [
+        slate.operation('move', {
+            x: 'screenOriginX',
+            y: 'screenOriginY',
+            width: leftRegionWidth,
+            height: 'screenSizeY'
+        }),
+        operations.pad(windowMargin, windowMargin / 2, windowMargin, 0)
+    ]
 }
 
-operations.toRightRegion = function() {
-    return slate.operation('move', {
-        x: 'screenOriginX + ' + leftRegionWidth,
-        y: 'screenOriginY',
-        width: 'screenSizeX - (' + leftRegionWidth + ')',
-        height: 'screenSizeY'
-    })
+operations.toRight = function() {
+    return [
+        slate.operation('move', {
+            x: 'screenOriginX + ' + leftRegionWidth,
+            y: 'screenOriginY',
+            width: 'screenSizeX - (' + leftRegionWidth + ')',
+            height: 'screenSizeY'
+        }),
+        operations.pad(windowMargin, 0, windowMargin, windowMargin / 2)
+    ]
 }
 
 operations.toTop = function() {
@@ -75,12 +77,15 @@ operations.toTop = function() {
 }
 
 operations.toBottom = function() {
-    return slate.operation('move', {
-        x: 'screenOriginX',
-        y: 'screenOriginY / 2',
-        width: 'screenSizeX',
-        height: 'screenSizeY / 2'
-    })
+    return [
+        slate.operation('move', {
+            x: 'screenOriginX',
+            y: 'screenOriginY / 2',
+            width: 'screenSizeX',
+            height: 'screenSizeY / 2'
+        }),
+        operations.pad(windowMargin / 2, 0, windowMargin, 0)
+    ]
 }
 
 operations.maximize = function() {
@@ -125,7 +130,7 @@ var runAppOperationsByNames = function(names, appOperations) {
     })
 }
 
-var layout = function() {
+var layoutAll = function() {
     var screenCount = slate.screenCount()
 
     slate.log('Laying out (' + screenCount + ' screens)')
@@ -137,8 +142,7 @@ var layout = function() {
             case 3: 
                 return [
                     slate.operation('throw', {screen: getScreen('external-0')}),
-                    operations.toLeftRegion(),
-                    operations.pad(windowMargin, windowMargin / 2, windowMargin, 0)
+                    operations.toLeft()
                 ]
         }
     })())
@@ -149,8 +153,7 @@ var layout = function() {
             case 2:
             case 3: return [
                 slate.operation('throw', {screen: getScreen('external-0')}),
-                operations.toRightRegion(),
-                operations.pad(windowMargin, 0, windowMargin, windowMargin / 2)
+                operations.toRight()
             ]
         }
     })())
@@ -188,23 +191,33 @@ var layout = function() {
             case 3:
                 return [
                     slate.operation('throw', {screen: getScreen('external-1')}),
-                    operations.toBottom(),
-                    operations.pad(windowMargin / 2, 0, windowMargin, 0)
+                    operations.toBottom()
                 ]
         }
     })())
 }
 
-slate.default(1, layout)
-slate.default(2, layout)
-slate.default(3, layout)
+slate.default(1, layoutAll)
+slate.default(2, layoutAll)
+slate.default(3, layoutAll)
 
 // Keybindings
 
-slate.bind(getKeystroke('r'), slate.operation('relaunch'))
-slate.bind(getKeystroke('l'), layout)
-slate.bind(getKeystroke('m'), operations.maximize())
-slate.bind(getKeystroke('k'), operations.toTop())
-slate.bind(getKeystroke('j'), operations.toBottom())
+var bind = function(keystroke, keystrokeOperations) {
+    slate.bind(keystroke + ':shift,ctrl', function(window) { 
+        operations.apply(window, keystrokeOperations) 
+    })
+}
 
-slate.log('Config loaded') // Good to know everything loaded ok
+bind('r', slate.operation('relaunch'))
+bind('a', layoutAll)
+bind('m', operations.maximize())
+bind('h', operations.toLeft())
+bind('l', operations.toRight())
+bind('k', operations.toTop())
+bind('j', operations.toBottom())
+bind('0', slate.operation('throw', {screen: getScreen('main')}))
+bind('1', slate.operation('throw', {screen: getScreen('external-0')}))
+bind('2', slate.operation('throw', {screen: getScreen('external-1')}))
+
+slate.log('Config loaded') // Good to know everything loaded fine
