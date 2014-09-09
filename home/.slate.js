@@ -26,7 +26,6 @@ var getScreen = function(name) {
 // Operations
 
 var operations = {}
-var windowMargin = 5
 
 /**
  * Applies the operation or list of operations
@@ -44,27 +43,21 @@ operations.apply = function(window, operation) {
 var leftRegionWidth = 'screenSizeX * 0.4'
 
 operations.toLeft = function() {
-    return [
-        slate.operation('move', {
-            x: 'screenOriginX',
-            y: 'screenOriginY',
-            width: leftRegionWidth,
-            height: 'screenSizeY'
-        }),
-        operations.pad(windowMargin, windowMargin / 2, windowMargin, 0)
-    ]
+    return slate.operation('move', {
+        x: 'screenOriginX',
+        y: 'screenOriginY',
+        width: leftRegionWidth,
+        height: 'screenSizeY'
+    })
 }
 
 operations.toRight = function() {
-    return [
-        slate.operation('move', {
-            x: 'screenOriginX + ' + leftRegionWidth,
-            y: 'screenOriginY',
-            width: 'screenSizeX - (' + leftRegionWidth + ')',
-            height: 'screenSizeY'
-        }),
-        operations.pad(windowMargin, 0, windowMargin, windowMargin / 2)
-    ]
+    return slate.operation('move', {
+        x: 'screenOriginX + ' + leftRegionWidth,
+        y: 'screenOriginY',
+        width: 'screenSizeX - (' + leftRegionWidth + ')',
+        height: 'screenSizeY'
+    })
 }
 
 operations.toTop = function() {
@@ -77,15 +70,12 @@ operations.toTop = function() {
 }
 
 operations.toBottom = function() {
-    return [
-        slate.operation('move', {
-            x: 'screenOriginX',
-            y: 'screenOriginY / 2',
-            width: 'screenSizeX',
-            height: 'screenSizeY / 2'
-        }),
-        operations.pad(windowMargin / 2, 0, windowMargin, 0)
-    ]
+    return slate.operation('move', {
+        x: 'screenOriginX',
+        y: 'screenOriginY / 2',
+        width: 'screenSizeX',
+        height: 'screenSizeY / 2'
+    })
 }
 
 operations.maximize = function() {
@@ -95,15 +85,6 @@ operations.maximize = function() {
         width: 'screenSizeX',
         height: 'screenSizeY'
     })
-}
-
-operations.pad = function(top, right, bottom, left) {
-    var xPadding = right + left
-    var yPadding = top + bottom
-    return [
-        slate.operation('resize', {width: '-' + xPadding, height: '-' + yPadding}),
-        slate.operation('nudge', {x: '+' + left, y: '+' + top})
-    ]
 }
 
 var runAppOperations = function(app, appOperations) {
@@ -174,8 +155,7 @@ var layoutAll = function() {
             case 3:
                 return [
                     slate.operation('throw', {screen: getScreen('external-1')}),
-                    operations.toTop(),
-                    operations.pad(windowMargin, 0, windowMargin / 2, 0)
+                    operations.toTop()
                 ]
         }
     })())
