@@ -205,7 +205,9 @@ slate.default(3, layoutAll)
 
 var bind = function(keystroke, keystrokeOperations) {
     slate.bind(keystroke + ':shift,ctrl', function(window) { 
-        operations.apply(window, keystrokeOperations) 
+        slate.log('Triggering \'' + keystroke + '\'')
+        if (keystrokeOperations instanceof Function) keystrokeOperations()
+        else operations.apply(window, keystrokeOperations) 
     })
 }
 
