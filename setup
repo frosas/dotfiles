@@ -36,7 +36,7 @@ if [ `uname` = Darwin ]; then
 
     (
         brew install bash-completion node the_silver_searcher trash wget git ag \
-            npm caskroom/cask/brew-cask tree coreutils
+            npm caskroom/cask/brew-cask tree coreutils pstree
         true
     )
 
