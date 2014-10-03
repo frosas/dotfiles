@@ -1,0 +1,36 @@
+@import "ui-variables";
+@import "octicon-mixins";
+
+.key-peek {
+
+  // -webkit-flex: 0.25;
+  // overflow: scroll;
+  //
+
+  .keystroke {
+    .octicon(keyboard);
+  }
+
+  table {
+    .used {
+      color: @text-color-success;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    // .used .command{
+    //   .octicon(check);
+    // }
+
+    .command, .selector, .source {
+      //min-width: 10em;
+      text-align: center;
+      margin-right: 3em;
+    }
+
+    .source {
+      cursor: pointer;
+      padding-left: 4em;
+    }
+  }
+}

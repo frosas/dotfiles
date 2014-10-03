@@ -8,11 +8,8 @@ Javascript + json formatting/beautification for the Atom text editor.
 #### Command Palette
 `JsFormat: Format`
 
-#### Warning
-This project is insanely pre-alpha.
-
 #### Settings
-JsFormat uses whatever tab/indent settings are configured with the standard ```Tab Length``` Atom settings. The ```Preferred Line Length``` Atom setting is only respected when the ```Soft Wrap At Preferred Line Length``` Atom setting is enabled.
+JsFormat uses whatever tab/indent settings are configured with the standard ```Tab Length``` Atom settings. The ```Preferred Line Length``` Atom setting is only respected when the ```Soft Wrap At Preferred Line Length``` Atom setting is enabled. By default, JSFormat's `format_on_save` is set to true.
 
 The following **JsBeautifier** settings are available through the JsFormat settings panel (defaults shown below). Check out the official [jsbeautifier documentation](https://github.com/einars/js-beautify#options) for more details on the options:
 

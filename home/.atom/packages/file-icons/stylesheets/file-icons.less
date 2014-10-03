@@ -28,6 +28,8 @@
 
 @{pane-tab-selector}, .icon-file-text {
 
+  &:before { .text-icon; }
+
   // Checklist icon
   &[data-name$="TODO"]:before { .checklist-icon; .medium-yellow; }
 
@@ -51,6 +53,7 @@
 
   // Dashboard icon
   &[data-name$=".slim"]:before { .dashboard-icon; .medium-orange; }
+  &[data-name$=".skim"]:before { .dashboard-icon; .medium-orange; }
 
   // Database icon
   &[data-name$=".json"]:before { .database-icon; .medium-yellow; }
@@ -215,4 +218,20 @@
 
   // Dockerfile icon
   &[data-name="Dockerfile"]:before { .docker-icon; .dark-blue; }
+
+  // XAML icon
+  &[data-name$=".xaml"]:before { .code-icon; .medium-blue;   }
+
+  // PowerShell icon
+  &[data-name$=".ps1"]:before { .terminal-icon; .medium-blue; }
+
+  // Readme
+  &[data-name="README.md"]:before,
+  &[data-name="Readme.md"]:before,
+  &[data-name="readme.md"]:before { .book-icon; .medium-blue; }
+
+  // Images
+  &[data-name$=".png"]:before { .image-icon; .medium-orange; }
+  &[data-name$=".gif"]:before { .image-icon; .medium-yellow; }
+  &[data-name$=".jpg"]:before { .image-icon; .medium-green;  }
 }
