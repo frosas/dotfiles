@@ -198,8 +198,8 @@ bind('h', operations.toLeft())
 bind('l', operations.toRight())
 bind('k', operations.toTop())
 bind('j', operations.toBottom())
-bind('0', slate.operation('throw', {screen: getScreen('main')}))
-bind('1', slate.operation('throw', {screen: getScreen('external-0')}))
-bind('2', slate.operation('throw', {screen: getScreen('external-1')}))
+bind('1', slate.operation('throw', {screen: getScreen('main')}))
+bind('2', slate.operation('throw', {screen: getScreen('external-0')}))
+bind('3', slate.operation('throw', {screen: getScreen('external-1')}))
 
 slate.log('Config loaded') // Good to know everything loaded fine
