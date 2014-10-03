@@ -74,6 +74,7 @@ nmap <silent> <c-f> :NERDTreeFind<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.json set filetype=json 
 au BufRead,BufNewFile *.html.twig set filetype=html
+au BufRead,BufNewFile *.hbs set filetype=html
 au BufRead,BufNewFile *.pp set filetype=ruby " Puppet
 au BufRead,BufNewFile *.go set filetype=go
 au BufRead,BufNewFile *.ftl set filetype=ftl
