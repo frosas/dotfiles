@@ -1,0 +1,38 @@
+{
+  "name": "fixmyjs",
+  "version": "1.1.0",
+  "description": "Automagically fix JSHint lint warnings",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sindresorhus/atom-fixmyjs"
+  },
+  "private": true,
+  "activationEvents": [
+    "FixMyJS"
+  ],
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "atom": ">=0.135.0"
+  },
+  "dependencies": {
+    "fixmyjs": "^0.13.2",
+    "jshint": "^2.5.6"
+  },
+  "readme": "# fixmyjs\n\n[Atom package](https://atom.io/packages/fixmyjs)\n\n> Automagically fix JSHint lint warnings using [fixmyjs](https://github.com/jshint/fixmyjs)\n\n<img src=\"https://cloud.githubusercontent.com/assets/170270/4474662/ceab387a-4962-11e4-99ab-17dd5c44847c.gif\" width=\"399\">\n\n*Issues with the output should be reported on the fixmyjs [issue tracker](https://github.com/jshint/fixmyjs/issues).*\n\n\n## Install\n\n```sh\n$ apm install fixmyjs\n```\n\nOr Settings → Packages → Search for `fixmyjs`\n\n\n## Usage\n\nOpen the Command Palette, and type `fixmyjs`.\n\nCan also be run on just a selection. For example the code in a `<script>` tag.\n\n\n## Legacy mode\n\nBy default, this plugin uses the FixMyJS `legacy` mode. This option uses the last stable version of the module which uses JSHint to detect errors in your code and fix them.\n\nIt does not include all of the fixes the current version of FixMyJS exposes, but does do a much better job of preserving source formatting. Legacy mode can be disabled in the Settings.\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+  "readmeFilename": "readme.md",
+  "bugs": {
+    "url": "https://github.com/sindresorhus/atom-fixmyjs/issues"
+  },
+  "homepage": "https://github.com/sindresorhus/atom-fixmyjs",
+  "_id": "fixmyjs@1.1.0",
+  "dist": {
+    "shasum": "7e598922eb42f22e295d37acd8293ad7f70e3dae"
+  },
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11495-3190-5dx2ut/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11495-3190-5dx2ut/package.tgz"
+}

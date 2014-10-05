@@ -1,27 +1,26 @@
 {
   "name": "php-twig",
-  "version": "0.2.1",
+  "version": "3.0.0",
   "private": true,
-  "description": "Twig syntax highlighting for atom",
+  "description": "Twig support for Atom.",
   "repository": {
     "type": "git",
     "url": "https://github.com/reesef/php-twig"
   },
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">0.10.0"
   },
   "dependencies": {},
-  "readme": "# PHP-twig for atom\n\nTwig syntax highlighting for atom.\n\nConverted from [PHP-twig for textmate](https://github.com/Anomareh/PHP-Twig.tmbundle).\n",
+  "readme": "# PHP-twig for atom\n\nTwig syntax highlighting for atom.\n\nLanguages supported :\n* HTML\n* CSS\n* Javascript\n* JSON\n* XML\n\n\nOriginally converted from https://github.com/Anomareh/PHP-Twig.tmbundle\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/reesef/php-twig/issues"
   },
   "homepage": "https://github.com/reesef/php-twig",
-  "_id": "php-twig@0.2.1",
+  "_id": "php-twig@3.0.0",
   "dist": {
-    "shasum": "9074120f52c6836b4bee0f982cb39e2a5e0b55bd"
+    "shasum": "716adc4463b21550bed3cd6ba74ef8b7d572d776"
   },
-  "_resolved": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114225-52900-1ij29mi/package.tgz",
-  "_from": "/var/folders/b1/njkl_p1x7yd4zf8sf67f4xy40000gn/T/d-114225-52900-1ij29mi/package.tgz"
+  "_from": "/Users/frosasbosque/.atom/.node-gyp/.atom/.apm/php-twig/3.0.0/package.tgz"
 }

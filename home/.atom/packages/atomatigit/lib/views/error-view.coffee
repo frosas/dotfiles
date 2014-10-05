@@ -1,29 +1,22 @@
-{View} = require 'atom'
+_          = require 'lodash'
+prettyjson = require 'prettyjson'
+{$, View}  = require 'atom'
 
-module.exports =
+# Public: The {ErrorView} class generates an error message box.
 class ErrorView extends View
-  @content: ->
+  @content: (raw) ->
+    message = if _.isString(raw) then raw else raw.message
     @div =>
-      @div class: "loading loading-spinner-small spinner", outlet: "spinner"
-      @div class: "inset-panel atomatigit-error", outlet: "message_panel", =>
-        @div class: "panel-heading", =>
-          @div class: "close-button", outlet: "close_button", =>
-            @raw("&#10006;")
-          @text "git output"
-        @div class: "panel-body padded error-message", outlet: "message"
+      @div class: 'overlay from-bottom atomatigit-error', outlet: 'messagePanel', =>
+        @div class: 'panel-body padded error-message', message
 
-  initialize: (model) ->
-    @model = model
-    @model.on "error", => @repaint()
-    @model.on "change:task_counter", => @toggle_spinner()
-    @close_button.on "click", => @message_panel.hide()
+  # Public: Constructor.
+  initialize: (error) ->
+    if atom.config.get('atomatigit.debug')
+      console.trace prettyjson.render(error, noColor: true)
 
-  repaint: ->
-    @message_panel.show()
-    @message.html @model.messageMarkup()
+    @messagePanel.on 'click', @detach
+    atom.workspaceView.append(this)
+    setTimeout @detach, 10000
 
-  toggle_spinner: ->
-    if @model.workingP()
-      @spinner.show()
-    else
-      @spinner.hide()
+module.exports = ErrorView

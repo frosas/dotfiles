@@ -1,7 +1,7 @@
 {
   "name": "git-log",
   "main": "./lib/git-log.js",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "This package graphs your git commits",
   "repository": {
     "type": "git",
@@ -11,19 +11,17 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-    "d3": ">0.0"
-  },
+  "dependencies": {},
   "readme": "# Git Log Package\n\nGit-log is a package for [Atom][atom] that creates a graph of your git commits and shows commit related information for you on the editor.\n\n![](https://raw.githubusercontent.com/NikhilKalige/git-log/master/resources/git-log.gif)\n\n## Installing\n\nUse the Atom package manager, which can be found in the Settings view or\nrun `apm install git-log` from the command line.\n\n## Feature requests & bug reports\n\nThe main development branch is `develop` and the stable 'production' branch is `master`. Please remember to base your branch from `develop` and issue the pull request back to that branch.\n\n### Note\nThe inspiration for this package is SourceTree App. \n\n[atom]: http://atom.io/",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/nikhilkalige/git-log/issues"
   },
   "homepage": "https://github.com/nikhilkalige/git-log",
-  "_id": "git-log@0.1.2",
+  "_id": "git-log@0.2.0",
   "dist": {
-    "shasum": "2ec5f71a86d6382505a3bad62d3b873c3af1ab45"
+    "shasum": "332c361ab4cf4596fb11e32076a8c30525d8cf0a"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114819-77916-1oih1c9/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114819-77916-1oih1c9/package.tgz"
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11495-3317-qmmx85/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11495-3317-qmmx85/package.tgz"
 }

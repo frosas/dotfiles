@@ -1,3 +1,7 @@
+# All this file really does is handle the following
+# 1) Defines Regex defaults
+# 2) Instantiates the commands, the panes, and then calls showTodoView.renderTodos()
+
 # Deps
 querystring = require 'querystring'
 url = require 'url'
@@ -12,11 +16,17 @@ module.exports =
   configDefaults:
     findTheseRegexes: [
       'FIXMEs'
-      '/FIXME:(.+$)/g'
+      '/FIXME:?(.+$)/g'
       'TODOs' #title
-      '/TODO:(.+$)/g' 
+      '/TODO:?(.+$)/g'
       'CHANGEDs'
-      '/CHANGED:(.+$)/g'
+      '/CHANGED:?(.+$)/g'
+      'XXXs'
+      '/XXX:?(.+$)/g'
+    ],
+    ignoreThesePaths: [
+      '/node_modules/'
+      '/vendor/'
     ]
 
   activate: (state) ->

@@ -1,23 +1,14 @@
-FileTypeNotSupportedView = require './not-supported-view'
-
+###
+ Package dependencies
+###
 jsbeautify = (require 'js-beautify').js_beautify
 
+packgeConfig = require './config'
+Observer = require './observer'
+FileTypeNotSupportedView = require './not-supported-view'
+
 module.exports =
-  configDefaults:
-    format_on_save: true,
-    indent_with_tabs: false,
-    max_preserve_newlines: 4,
-    preserve_newlines: true,
-    space_in_paren: false,
-    jslint_happy: false,
-    brace_style: "collapse",
-    keep_array_indentation: false,
-    keep_function_indentation: false,
-    space_before_conditional: true,
-    eval_code: false,
-    unescape_strings: false,
-    break_chained_methods: false,
-    e4x: false
+  config: packgeConfig
 
   activate: (state) ->
     atom.workspaceView.command 'jsformat:format', => @format(state)
@@ -25,12 +16,14 @@ module.exports =
     @editorSaveSubscriptions = {}
     @editorCloseSubscriptions = {}
 
+    # @editorSaveSubscriptions = new Observer()
+    # @editorCloseSubscriptions = new Observer()
+
     atom.config.observe 'jsformat.format_on_save', =>
       @subscribeToEvents()
 
   format: (state) ->
     editor = atom.workspace.activePaneItem
-
     if !editor
       return
 
@@ -41,7 +34,7 @@ module.exports =
     whitespaceRegex = /\s/g
     currentCursorPosition = mainCursor.getBufferPosition()
     mainCursor.setBufferPosition([currentCursorPosition.row, currentCursorPosition.column + 1])
-    isInsideWord = mainCursor.isInsideWord()
+    isBeforeWord = mainCursor.isInsideWord()
     mainCursor.setBufferPosition(currentCursorPosition)
 
     if mainCursor.isInsideWord()
@@ -53,7 +46,7 @@ module.exports =
       # but .setBufferPosition returns undefined :(
       # So we have to define some stuff above instead...
 
-    else if isInsideWord
+    else if isBeforeWord
       # The cursor is right before a word in this case, so let's use the current cursor position as a reference
       #
       mainCursor.setBufferPosition(currentCursorPosition)
@@ -85,22 +78,15 @@ module.exports =
       mainCursor.setBufferPosition(newCursorPosition)
 
     else
-      notification = new FileTypeNotSupportedView(state)
-      atom.workspaceView.append(notification)
-      destroyer = () ->
-        notification.detach()
-
-      setTimeout destroyer, 1500
+      @displayUnsupportedLanguageNotification state
 
   formatJavascript: (editor) ->
-    settings = atom.config.getSettings().editor
-    opts = {
-      indent_size: editor.getTabLength(),
-      wrap_line_length: settings.preferredLineLength
-    }
+    editorSettings = atom.config.get('editor')
 
-    for configKey, defaultValue of @configDefaults
-      opts[configKey] = atom.config.get('jsformat.' + configKey) ? defaultValue
+    opts = atom.config.get('jsformat')
+
+    opts.indent_size = editorSettings.tabLength
+    opts.wrap_line_length = editorSettings.preferredLineLength
 
     if @selectionsAreEmpty editor
       editor.setText(jsbeautify(editor.getText(), opts))
@@ -116,8 +102,7 @@ module.exports =
 
   subscribeToEvents: (state) ->
     if atom.config.get('jsformat.format_on_save') ? @configDefaults['format_on_save']
-      @editorCreationSubscription = atom.workspaceView.eachEditorView (editorView) =>
-        editor = editorView.getEditor()
+      @editorCreationSubscription = atom.workspace.observeTextEditors (editor) =>
         grammar = editor.getGrammar().scopeName
 
         if grammar is 'source.js' or grammar is 'source.json'
@@ -133,9 +118,20 @@ module.exports =
 
             delete @editorSaveSubscriptions[editor.id]
             delete @editorCloseSubscriptions[editor.id]
+
+
+          # saveSubscription = buffer.onWillSave =>
+          #   buffer.transact =>
+          #     @format(state)
+          #
+          # closeSubscription = buffer.onDidDestroy =>
+          #   debugger
+          #
+          # @editorSaveSubscriptions.addSubscription(saveSubscription)
+          # @editorCloseSubscriptions.addSubscription(closeSubscription)
     else
       if @editorCreationSubscription
-        @editorCreationSubscription.off()
+        @editorCreationSubscription.dispose()
         @editorCreationSubscription = null
 
         for subscriptionId, subscription of @editorSaveSubscriptions
@@ -145,3 +141,17 @@ module.exports =
         for subscriptionId, subscription of @editorCloseSubscriptions
           subscription.dispose()
           delete @editorCloseSubscriptions[subscriptionId]
+
+        # @editorSaveSubscriptions.dispose()
+        # @editorSaveSubscriptions = new Observer()
+        #
+        # @editorCloseSubscriptions.dispose()
+        # @editorCloseSubscriptions = new Observer()
+
+  displayUnsupportedLanguageNotification: (state) ->
+    notification = new FileTypeNotSupportedView(state)
+    atom.workspaceView.append(notification)
+    destroyer = () ->
+      notification.detach()
+
+    setTimeout destroyer, 1500

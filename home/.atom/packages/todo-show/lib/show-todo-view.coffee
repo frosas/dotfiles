@@ -1,3 +1,11 @@
+# This file handles all the fetching and displaying logic. It doesn't handle any of the pane magic.
+# Pane magic happens in show-todo.coffee.
+# Markup is in template/show-todo-template.html
+# Styling is in the stylesheets folder.
+#
+# FIXME: Realizing this is some pretty nasty code. This should really, REALLY be cleaned up. Testing should help.
+# Also, having a greater understanding of Atom should help.
+
 vm = require 'vm'  #needed for the Content Security Policy errors when executing JS from my template view
 Q = require 'q'
 path = require 'path'
@@ -88,60 +96,73 @@ class ShowTodoView extends ScrollView
 
 
   #get the regexes to look for from the settings
-  buildRegexLookups: ->
-    lookupFromSettings = atom.config.get('todo-show.findTheseRegexes') #array. [title1, regex1, title2, regex2]
-
+  # @FIXME: Add proper comments
+  # @param settingsRegexes {array} - An array of regexes from settings.
+  buildRegexLookups: (settingsRegexes) ->
     regexes = [] #[{title, regex, results}]
 
-    for regex, i in lookupFromSettings
+    for regex, i in settingsRegexes
       match = {
         'title': regex
-        'regex': lookupFromSettings[i+1]
+        'regex': settingsRegexes[i+1]
         'results': []
       }
       _i = _i+1    #_ overrides the one that coffeescript actually creates. Seems hackish. FIXME: maybe just use modulus
       regexes.push(match)
 
-    # console.log 'regexes', regexes
     return regexes
 
-  #@TODO: Actually figure out how promises work.
-  # scan the project for the regex that is passed
-  # returns a promise that the project scan generates
-  fetchRegexItem: (regexObject) ->
-    # convert regexStr to actual regex obj
-    # convert it from /findMe/i  to (regex, flags)
+  # Pass in '/FIXME:(.+$)/g ' and returns a proper RegExp obj
+  makeRegexObj: (regexStr) ->
     # extract the regex pattern
-    pattern = regexObject.regex.match(/\/(.+)\//)?[1] #extract anything between the slashes
+    pattern = regexStr.match(/\/(.+)\//)?[1] #extract anything between the slashes
     # extract the flags (after the last slash)
-    flags = regexObject.regex.match(/\/(\w+$)/)?[1] #extract any words after the last slash. Flags are optional
+    flags = regexStr.match(/\/(\w+$)/)?[1] #extract any words after the last slash. Flags are optional
 
     #abort if there's no valid pattern
     return false unless pattern
 
-    regexObj = new RegExp(pattern, flags)
+    return new RegExp(pattern, flags)
+
+  #@TODO: Actually figure out how promises work.
+  # scan the project for the regex that is passed
+  # returns a promise that the project scan generates
+  # @TODO: Improve the param name. Confusing
+  fetchRegexItem: (lookupObj) ->
+    regexObj = @makeRegexObj(lookupObj.regex)
+
+    #abort if there's no valid pattern
+    return false unless regexObj
 
     # console.log('pattern', pattern)
     # console.log('regexObj', regexObj)
     return atom.project.scan regexObj, (e) ->
+      # Check against ignored paths
+      include = true
+      ignoreFromSettings = atom.config.get('todo-show.ignoreThesePaths')
 
-      #loop through the results in the file, strip out 'todo:', and allow an optional space after todo:
-      # regExMatch.matchText = regExMatch.matchText.match(regexObj)[1] for regExMatch in e.matches
-      for regExMatch in e.matches
+      for ignorePath in ignoreFromSettings
+        ignoredPath = atom.project.getPath() + ignorePath
 
-        # strip out the regex token from the found phrase (todo, fixme, etc)
-        # FIXME: I have no idea why this requires a stupid while loop. Figure it out and/or fix it.
-        while (match = regexObj.exec(regExMatch.matchText))
-          regExMatch.matchText = match[1]
+        if e.filePath.substring(0, ignoredPath.length) == ignoredPath
+          include = false
 
-      regexObject.results.push(e) # add it to the array of results for this regex
+      if include
+        # loop through the results in the file, strip out 'todo:', and allow an optional space after todo:
+        # regExMatch.matchText = regExMatch.matchText.match(regexObj)[1] for regExMatch in e.matches
+        for regExMatch in e.matches
+          # strip out the regex token from the found phrase (todo, fixme, etc)
+          # FIXME: I have no idea why this requires a stupid while loop. Figure it out and/or fix it.
+          while (match = regexObj.exec(regExMatch.matchText))
+            regExMatch.matchText = match[1]
 
+        lookupObj.results.push(e) # add it to the array of results for this regex
 
   renderTodos: ->
     @showLoading()
 
     #fetch the reges from the settings
-    regexes = @buildRegexLookups()
+    regexes = @buildRegexLookups(atom.config.get('todo-show.findTheseRegexes'))
 
     #@FIXME: abstract this into a separate, testable function?
     promises = []
