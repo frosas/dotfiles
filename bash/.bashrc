@@ -43,9 +43,6 @@ function prompt_command {
     (history -a &)
 }
 
-# Avoid the 'bash: prompt_command: command not found' running `screen`
-export -f git_ps1 prompt_command
-
 PROMPT_COMMAND=prompt_command
 
 ######################################################################
