@@ -39,8 +39,7 @@ function prompt_command {
     # Avoid using Unicode characters as it interferes with Vim's Conque-Term
     PS1="\[$RESET\]\n\[$RED\]>> \[$DARK_GRAY\]\u in \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 
-    # Keep bash history up to date at every command (http://briancarper.net/blog/248/)
-    (history -a &)
+    (history -a & history -n &) # See [1]
 }
 
 PROMPT_COMMAND=prompt_command
@@ -54,9 +53,9 @@ export PATH=$SCRIPT_DIR/../bin:$PATH
 export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
+# See [1]
 shopt -s histappend
-
-HISTSIZE=10000
+HISTSIZE=10000 
 
 if [ `uname` = Darwin ]; then 
     alias ls="ls -FAGh"
@@ -73,3 +72,5 @@ alias gl="git pretty-log"
 alias gla="gl --all"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
+
+# [1] http://briancarper.net/blog/248/ 
