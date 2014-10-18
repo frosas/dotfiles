@@ -1,4 +1,18 @@
-# [0.7.5]()
+# [0.7.8](140ace97c44f2b3343dd80a8fa34ed5437c121a2)
+
+* Added `end_with_newline` setting.
+
+# [0.7.7](357ee8761a801f505305fadd475a13255eb18b73)
+
+* Fixed regression where closing a tab would throw an error
+
+# [0.7.6](212aace57a36176386dd9891a2a23e7de712bb5f)
+
+* Updated JS-Beautify to 1.5.4
+* Better descriptions in the config page
+* More tests
+
+# [0.7.5](330b5cbc654618e142713a95c0147b0ca117fa68)
 
 * Better config page
 * More tests

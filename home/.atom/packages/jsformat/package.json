@@ -1,7 +1,7 @@
 {
   "name": "jsformat",
   "main": "./lib/format",
-  "version": "0.7.5",
+  "version": "0.7.9",
   "private": true,
   "description": "javascript formatting for the atom text editor",
   "keywords": [
@@ -21,17 +21,18 @@
   },
   "dependencies": {
     "event-kit": "~0.7.2",
-    "js-beautify": "~1.5.3"
+    "js-beautify": "~1.5.4"
   },
-  "readme": "# JsFormat\n\nJavascript + json formatting/beautification for the Atom text editor.\n\n#### Keybinding\n`ctrl+alt+f`\n\n#### Command Palette\n`JsFormat: Format`\n\n#### Settings\nJsFormat uses whatever tab/indent settings are configured with the standard ```Tab Length``` Atom settings. The ```Preferred Line Length``` Atom setting is only respected when the ```Soft Wrap At Preferred Line Length``` Atom setting is enabled. By default, JSFormat's `format_on_save` is set to true.\n\nThe following **JsBeautifier** settings are available through the JsFormat settings panel (defaults shown below). Check out the official [jsbeautifier documentation](https://github.com/einars/js-beautify#options) for more details on the options:\n\n* `indent_with_tabs`: false,\n* `max_preserve_newlines`: 4,\n* `preserve_newlines`: true,\n* `space_in_paren`: false,\n* `jslint_happy`: false,\n* `brace_style`: \"collapse\",\n* `keep_array_indentation`: false,\n* `keep_function_indentation`: false,\n* `space_before_conditional`: true,\n* `eval_code`: false,\n* `unescape_strings`: false,\n* `break_chained_methods`: false,\n* `e4x`: false\n",
+  "readme": "# JsFormat\n\nJavaScript + JSON formatting/beautification for the Atom text editor.\n\n#### Keybinding\n`ctrl+alt+f`\n\n#### Command Palette\n`Jsformat: Format`\n\n#### Settings\nJsFormat uses whatever tab/indent settings are configured with the standard ```Tab Length``` Atom settings.  \n\nThe ```Preferred Line Length``` Atom setting is only respected when the ```Soft Wrap At Preferred Line Length``` Atom setting is enabled.  \n\nBy default, JSFormat's Format on save is set to true.\n\nThe following **JsBeautifier** settings are available through the JsFormat settings panel (defaults shown below). Check out the official [jsbeautifier documentation](https://github.com/einars/js-beautify#options) for more details on the options:\n\n* Indent with tabs: false\n* End with newline: true\n* Max preserve newlines: 4\n* Preserve newlines: true\n* Space in parentheses: false\n* JSLint happy: false\n* Brace style: \"collapse\"\n* Keep array indentation: false\n* Keep function indentation: false\n* Space after anonymous functions: false\n* Space before conditional: true\n* Evaluate code: false\n* Unescape strings: false\n* Break Chained Methods: false\n* e4x style: false\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/jdc0589/jsformat-atom/issues"
   },
   "homepage": "https://github.com/jdc0589/jsformat-atom",
-  "_id": "jsformat@0.7.5",
+  "_id": "jsformat@0.7.9",
   "dist": {
-    "shasum": "c637ae26d24befbd5c9467699d491e3121e1d489"
+    "shasum": "7e83077dce309cdeb431232e003fb74d1e5f9ba5"
   },
-  "_from": "/Users/frosasbosque/.atom/.node-gyp/.atom/.apm/jsformat/0.7.5/package.tgz"
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114914-88420-zrw4e/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114914-88420-zrw4e/package.tgz"
 }

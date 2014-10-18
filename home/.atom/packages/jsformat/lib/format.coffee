@@ -27,7 +27,7 @@ module.exports =
     if !editor
       return
 
-    grammar = editor.getGrammar()?.scopeName
+    grammar = editor.getGrammar().scopeName
     mainCursor = editor.getCursors()[0]
     textBuffer = editor.getBuffer()
     nonWhitespaceRegex = /\S/g
@@ -39,7 +39,6 @@ module.exports =
 
     if mainCursor.isInsideWord()
       # The cursor is inside a word, so let's use the beginning as the reference
-      #
       currentPosition = mainCursor.getBeginningOfCurrentWordBufferPosition()
 
       # ideally we could do mainCursor.setBufferPosition([currentCursorPosition.row, currentCursorPosition.column + 1]).isInsideWord()
@@ -48,7 +47,6 @@ module.exports =
 
     else if isBeforeWord
       # The cursor is right before a word in this case, so let's use the current cursor position as a reference
-      #
       mainCursor.setBufferPosition(currentCursorPosition)
       currentPosition = currentCursorPosition
 
@@ -57,18 +55,11 @@ module.exports =
     nonWhitespaceCharacters = whitespaceText.match(nonWhitespaceRegex)
     whitespaceCharacterCount = whitespaceText.match(whitespaceRegex)
 
-    if !whitespaceCharacterCount
-      whitespaceCharacterCount = 0
-    else
-      whitespaceCharacterCount = whitespaceCharacterCount.length
-
-    if !nonWhitespaceCharacters
-      nonWhitespaceCharacters = 0
-    else
-      nonWhitespaceCharacters = nonWhitespaceCharacters.length
+    whitespaceCharacterCount = if whitespaceCharacterCount then whitespaceCharacterCount.length else 0
+    nonWhitespaceCharacters = if nonWhitespaceCharacters then nonWhitespaceCharacters.length else 0
 
     if grammar is 'source.json' or grammar is 'source.js'
-      @formatJavascript editor
+      @formatJavascript(editor)
 
       nonWhitespaceCount = 0
       text = editor.getText()
@@ -78,7 +69,7 @@ module.exports =
       mainCursor.setBufferPosition(newCursorPosition)
 
     else
-      @displayUnsupportedLanguageNotification state
+      @displayUnsupportedLanguageNotification(state)
 
   formatJavascript: (editor) ->
     editorSettings = atom.config.get('editor')
@@ -88,7 +79,7 @@ module.exports =
     opts.indent_size = editorSettings.tabLength
     opts.wrap_line_length = editorSettings.preferredLineLength
 
-    if @selectionsAreEmpty editor
+    if @selectionsAreEmpty(editor)
       editor.setText(jsbeautify(editor.getText(), opts))
 
     else
@@ -109,8 +100,9 @@ module.exports =
           buffer = editor.getBuffer()
 
           @editorSaveSubscriptions[editor.id] = buffer.onWillSave =>
-            buffer.transact =>
-              @format(state)
+            if buffer.isModified()
+              buffer.transact =>
+                @format(state)
 
           @editorCloseSubscriptions[editor.id] = buffer.onDidDestroy =>
             @editorSaveSubscriptions[editor.id].dispose()
@@ -135,11 +127,15 @@ module.exports =
         @editorCreationSubscription = null
 
         for subscriptionId, subscription of @editorSaveSubscriptions
+          # unsubscribe to the save event of the editor
           subscription.dispose()
+          # delete the keys to reduce memory usage
           delete @editorSaveSubscriptions[subscriptionId]
 
         for subscriptionId, subscription of @editorCloseSubscriptions
+          # unsubscribe to the save event of the editor
           subscription.dispose()
+          # delete the keys to reduce memory usage
           delete @editorCloseSubscriptions[subscriptionId]
 
         # @editorSaveSubscriptions.dispose()

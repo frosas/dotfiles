@@ -9,8 +9,8 @@
 'editor':
   'tabLength': 4
   'showIndentGuide': true
-  'fontSize': 12
   'fontFamily': 'Monaco'
+  'fontSize': 12
 'core':
   'themes': [
     'atom-dark-ui'
@@ -44,6 +44,7 @@
   'includeCompletionsFromAllBuffers': true
 'tree-view':
   'hideIgnoredNames': true
+  'hideVcsIgnoredFiles': true
 'recent-files':
   'updated': false
 'todo-show':
@@ -61,4 +62,7 @@
   'includeCompletionsFromAllBuffers': true
 'whitespace':
   'removeTrailingWhitespace': false
-'atom-lint': {}
+  'ignoreWhitespaceOnCurrentLine': false
+  'ensureSingleTrailingNewline': false
+'jsformat':
+  'format_on_save': false
