@@ -1,12 +1,17 @@
 #!/bin/bash
 
+# TODO Use Ansible?
+
 set -xe
 
 (
     # TODO Fix HOME_DIR being something like '/Users/frosasbosque/src/dotfiles 
     # /Users/frosasbosque/src/dotfiles/home' because the CDPATH
     HOME_DIR=$(cd $(dirname $0) && pwd)/home
+
+    # TODO Link only the files and create the dirs if they don't exist
     (cd ~ && find $HOME_DIR -depth 1 -exec ln -s {} \;)
+    (ln -s $HOME_DIR/.ssh/config ~/.ssh; true)
     if [[ `uname` = Darwin ]]; then
         (cd ~/Library/Preferences && ln -s $HOME_DIR/Library/Preferences/*)
     fi
