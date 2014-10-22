@@ -38,7 +38,7 @@ function prompt_command {
     #
     # Avoid using Unicode characters as it interferes with Vim's Conque-Term
     PS1_USER=$([[ "frosas frosasbosque" =~ `whoami` ]] || echo " \[$DARK_GRAY\]\u in")
-    PS1="\[$RESET\]\n\[$RED\]>>$PS1_USER \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
+    PS1="\[$RESET\]\n$PS1_USER\[$GREEN\]\w$(git_ps1) \[$RED\]$\[$RESET\] "
 
     (history -n & history -a &) # See [1]
 }
