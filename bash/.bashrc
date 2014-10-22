@@ -40,7 +40,7 @@ function prompt_command {
     PS1_USER=$([[ "frosas frosasbosque" =~ `whoami` ]] || echo " \[$DARK_GRAY\]\u in")
     PS1="\[$RESET\]\n\[$RED\]>>$PS1_USER \[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 
-    (history -a & history -n &) # See [1]
+    (history -n & history -a &) # See [1]
 }
 
 PROMPT_COMMAND=prompt_command
