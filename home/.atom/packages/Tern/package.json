@@ -1,0 +1,251 @@
+{
+  "name": "Tern",
+  "main": "./lib/tern",
+  "version": "0.8.0",
+  "private": true,
+  "description": "Smart javascript code intelligence for Atom.io",
+  "activationEvents": [
+    "tern:completion",
+    "tern:start-server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artoale/atom-tern"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.108.0"
+  },
+  "dependencies": {
+    "underscore-plus": "*",
+    "tern": ">=0.5.0"
+  },
+  "readme": "# Tern\n\nSmart javascript code intelligence for Atom.io\n\n##Installation\n`apm install tern` or search for `tern` in the package manager\n\n##Usage\n* `Cmd+shift+p`, search for `Tern: start server`\n* Start writing awesome JS!\n* Default keybinding: `Cmd+space`\n* the suggestion popup is open automatically when a `.` is typed (to be improved)\n\n##Issues\nThis plugin is experimental and is likely to be buggy. Please, help me improve it by reporting any bug, suggesting improvements and, if you feel like it, by sending PR\n\n##TO-DO\n* Support other `tern` feature\n    * Refactoring\n    * Go-to definition\n    * etc..\n* Improve automatic completion pop-up\n    * Insert text when no match is found\n    * Heuristic to decide when to open suggestion list\n* Performance\n    * Send diff instead of whole file (supported by `tern`)\n* Tests\n\n##Authors\nTern plugin for atom is written by [Alessandro Artoni](https://artoale.com) and it's made possible thanks to the awesome [tern project](http://ternjs.net/) by [Marijn Haverbeke](https://github.com/marijnh).\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/artoale/atom-tern/issues"
+  },
+  "homepage": "https://github.com/artoale/atom-tern",
+  "_id": "Tern@0.8.0",
+  "dist": {
+    "shasum": "91f5e6cbc66955adf284b048802e79508e590a8b"
+  },
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114923-30537-xjeko8/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114923-30537-xjeko8/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "tern",
+        "version": "0.7.0",
+        "path": "node_modules/tern/lib/tern.js"
+      },
+      {
+        "name": "acorn",
+        "version": "0.9.0",
+        "path": "node_modules/tern/node_modules/acorn/acorn.js"
+      },
+      {
+        "name": "glob",
+        "version": "3.2.11",
+        "path": "node_modules/tern/node_modules/glob/glob.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/tern/node_modules/glob/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "minimatch",
+        "version": "0.3.0",
+        "path": "node_modules/tern/node_modules/glob/node_modules/minimatch/minimatch.js"
+      },
+      {
+        "name": "lru-cache",
+        "version": "2.5.0",
+        "path": "node_modules/tern/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
+      },
+      {
+        "name": "sigmund",
+        "version": "1.0.0",
+        "path": "node_modules/tern/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js"
+      },
+      {
+        "name": "minimatch",
+        "version": "0.2.14",
+        "path": "node_modules/tern/node_modules/minimatch/minimatch.js"
+      },
+      {
+        "name": "lru-cache",
+        "version": "2.5.0",
+        "path": "node_modules/tern/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
+      },
+      {
+        "name": "sigmund",
+        "version": "1.0.0",
+        "path": "node_modules/tern/node_modules/minimatch/node_modules/sigmund/sigmund.js"
+      },
+      {
+        "name": "underscore-plus",
+        "version": "1.6.1",
+        "path": "node_modules/underscore-plus/lib/underscore-plus.js"
+      },
+      {
+        "name": "underscore",
+        "version": "1.6.0",
+        "path": "node_modules/underscore-plus/node_modules/underscore/underscore.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/autocomplete-view.coffee",
+        "lib/client.coffee",
+        "lib/server.coffee",
+        "lib/tern-view.coffee",
+        "lib/tern.coffee"
+      ],
+      ".json": [
+        "node_modules/tern/defs/browser.json",
+        "node_modules/tern/defs/chai.json",
+        "node_modules/tern/defs/ecma5.json",
+        "node_modules/tern/defs/jquery.json",
+        "node_modules/tern/defs/underscore.json",
+        "node_modules/tern/node_modules/acorn/package.json",
+        "node_modules/tern/node_modules/glob/node_modules/inherits/package.json",
+        "node_modules/tern/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/package.json",
+        "node_modules/tern/node_modules/glob/node_modules/minimatch/node_modules/sigmund/package.json",
+        "node_modules/tern/node_modules/glob/node_modules/minimatch/package.json",
+        "node_modules/tern/node_modules/glob/package.json",
+        "node_modules/tern/node_modules/minimatch/node_modules/lru-cache/package.json",
+        "node_modules/tern/node_modules/minimatch/node_modules/sigmund/package.json",
+        "node_modules/tern/node_modules/minimatch/package.json",
+        "node_modules/tern/package.json",
+        "node_modules/underscore-plus/node_modules/underscore/package.json",
+        "node_modules/underscore-plus/package.json",
+        "package.json"
+      ],
+      ".js": [
+        "node_modules/tern/doc/demo/demo.js",
+        "node_modules/tern/doc/demo/polyfill.js",
+        "node_modules/tern/doc/demo/underscore.js",
+        "node_modules/tern/lib/comment.js",
+        "node_modules/tern/lib/condense.js",
+        "node_modules/tern/lib/def.js",
+        "node_modules/tern/lib/infer.js",
+        "node_modules/tern/lib/jsdoc.js",
+        "node_modules/tern/lib/signal.js",
+        "node_modules/tern/lib/tern.js",
+        "node_modules/tern/lib/typescript.js",
+        "node_modules/tern/node_modules/acorn/acorn.js",
+        "node_modules/tern/node_modules/acorn/acorn_csp.js",
+        "node_modules/tern/node_modules/acorn/acorn_loose.js",
+        "node_modules/tern/node_modules/acorn/tools/generate-identifier-regex.js",
+        "node_modules/tern/node_modules/acorn/util/test_walk.js",
+        "node_modules/tern/node_modules/acorn/util/walk.js",
+        "node_modules/tern/node_modules/glob/examples/g.js",
+        "node_modules/tern/node_modules/glob/examples/usr-local.js",
+        "node_modules/tern/node_modules/glob/glob.js",
+        "node_modules/tern/node_modules/glob/node_modules/inherits/inherits.js",
+        "node_modules/tern/node_modules/glob/node_modules/inherits/inherits_browser.js",
+        "node_modules/tern/node_modules/glob/node_modules/inherits/test.js",
+        "node_modules/tern/node_modules/glob/node_modules/minimatch/minimatch.js",
+        "node_modules/tern/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js",
+        "node_modules/tern/node_modules/glob/node_modules/minimatch/node_modules/sigmund/bench.js",
+        "node_modules/tern/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js",
+        "node_modules/tern/node_modules/minimatch/minimatch.js",
+        "node_modules/tern/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js",
+        "node_modules/tern/node_modules/minimatch/node_modules/sigmund/bench.js",
+        "node_modules/tern/node_modules/minimatch/node_modules/sigmund/sigmund.js",
+        "node_modules/tern/plugin/angular.js",
+        "node_modules/tern/plugin/component.js",
+        "node_modules/tern/plugin/doc_comment.js",
+        "node_modules/tern/plugin/node.js",
+        "node_modules/tern/plugin/requirejs.js",
+        "node_modules/underscore-plus/lib/underscore-plus.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore.js"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "underscore-plus": "*",
+          "tern": ">=0.5.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/tern/defs",
+          "node_modules/tern/doc/demo",
+          "node_modules/tern/lib",
+          "node_modules/tern",
+          "node_modules/tern/plugin",
+          "node_modules/tern/test/cases/angular",
+          "node_modules/tern/test/cases",
+          "node_modules/tern/test/cases/component",
+          "node_modules/tern/test/cases/component/components/marijnh-tern",
+          "node_modules/tern/test/cases/defs",
+          "node_modules/tern/test/cases/node",
+          "node_modules/tern/test/cases/node/dir",
+          "node_modules/tern/test/cases/node/dir/lib",
+          "node_modules/tern/test/cases/requirejs",
+          "node_modules/tern/test/cases/requirejs/subdir",
+          "node_modules/tern/test/cases/requirejs_config",
+          "node_modules/tern/test/condense",
+          "node_modules/tern/test",
+          "node_modules/tern/test/data"
+        ],
+        "dependencies": {
+          "acorn": ">=0.5.0",
+          "glob": "3",
+          "minimatch": "0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/tern/node_modules/glob/examples",
+          "node_modules/tern/node_modules/glob",
+          "node_modules/tern/node_modules/glob/test"
+        ],
+        "dependencies": {
+          "inherits": "2",
+          "minimatch": "0.3"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/tern/node_modules/glob/node_modules/minimatch",
+          "node_modules/tern/node_modules/glob/node_modules/minimatch/test"
+        ],
+        "dependencies": {
+          "lru-cache": "2",
+          "sigmund": "~1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/tern/node_modules/minimatch",
+          "node_modules/tern/node_modules/minimatch/test"
+        ],
+        "dependencies": {
+          "lru-cache": "2",
+          "sigmund": "~1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/underscore-plus/lib",
+          "node_modules/underscore-plus"
+        ],
+        "dependencies": {
+          "underscore": "~1.6.0"
+        }
+      }
+    ]
+  }
+}

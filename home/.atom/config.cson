@@ -67,3 +67,12 @@
     'ensureSingleTrailingNewline': false
   'jsformat':
     'format_on_save': false
+'metrics':
+  'userId': '66a66b277d73bb7770347ed47c9fdca56e52213d'
+'welcome':
+  'showOnStartup': false
+'exception-reporting':
+  'userId': 'acb74c7e-1de6-337a-5f90-33eaac4f4168'
+'recent-files':
+  'updated': false
+'autoclose-html': {}
