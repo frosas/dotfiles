@@ -10,8 +10,8 @@
   'editor':
     'tabLength': 4
     'showIndentGuide': true
-    'fontFamily': 'Monaco'
-    'fontSize': 13
+    'fontFamily': 'Ubuntu Mono'
+    'fontSize': 14
   'core':
     'themes': [
       'atom-dark-ui'
@@ -67,6 +67,14 @@
     'ensureSingleTrailingNewline': false
   'jsformat':
     'format_on_save': false
+'.basic.html.text':
+  'editor': {}
+'.ftl.html.text':
+  'editor': {}
+'.js.regexp.source':
+  'editor': {}
+'.js.source':
+  'editor': {}
 'metrics':
   'userId': '66a66b277d73bb7770347ed47c9fdca56e52213d'
 'welcome':
