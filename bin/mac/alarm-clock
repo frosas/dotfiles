@@ -1,5 +1,4 @@
 #!/bin/bash
 
-open spotify:
-open https://open.spotify.com/user/spotify_uk_/playlist/6FfOZSAN3N6u7v81uS7mxZ
 osascript -e "set volume 4"
+open https://play.spotify.com/user/spotify_uk_/playlist/6FfOZSAN3N6u7v81uS7mxZ?play=true
