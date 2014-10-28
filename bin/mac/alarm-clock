@@ -1,4 +1,12 @@
 #!/bin/bash
 
-osascript -e "set volume 4"
-open https://play.spotify.com/user/spotify_uk_/playlist/6FfOZSAN3N6u7v81uS7mxZ?play=true
+osascript -e 'set volume 4'
+
+# Shuffling doesn't seem to be random if it's not turned off first
+osascript -e 'tell application "Spotify" to set shuffling to false'
+osascript -e 'tell application "Spotify" to set shuffling to true'
+
+osascript -e 'tell application "Spotify" to play track "spotify:user:spotify:playlist:4hOKQuZbraPDIfaGbM3lKI"'
+
+# Skip the first track as it's always the same
+osascript -e 'tell application "Spotify" to next track'
