@@ -1,7 +1,7 @@
 {
   "name": "vim-mode",
   "main": "./lib/vim-mode",
-  "version": "0.15.0",
+  "version": "0.17.0",
   "description": "Add vim modal control",
   "license": "MIT",
   "private": true,
@@ -21,9 +21,84 @@
     "url": "https://github.com/atom/vim-mode/issues"
   },
   "homepage": "https://github.com/atom/vim-mode",
-  "_id": "vim-mode@0.15.0",
+  "_id": "vim-mode@0.17.0",
   "dist": {
-    "shasum": "592bb9c1e3ad302bb806bdf1088ccbc70907665a"
+    "shasum": "6407854e4cf9a2f994371468e505320d9188cae8"
   },
-  "_from": "/Users/frosasbosque/.atom/.node-gyp/.atom/.apm/vim-mode/0.15.0/package.tgz"
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141011-83096-53baxf/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141011-83096-53baxf/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "underscore-plus",
+        "version": "1.6.1",
+        "path": "node_modules/underscore-plus/lib/underscore-plus.js"
+      },
+      {
+        "name": "underscore",
+        "version": "1.6.0",
+        "path": "node_modules/underscore-plus/node_modules/underscore/underscore.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/motions/find-motion.coffee",
+        "lib/motions/general-motions.coffee",
+        "lib/motions/index.coffee",
+        "lib/motions/move-to-mark-motion.coffee",
+        "lib/motions/search-motion.coffee",
+        "lib/operators/general-operators.coffee",
+        "lib/operators/indent-operators.coffee",
+        "lib/operators/index.coffee",
+        "lib/operators/input.coffee",
+        "lib/operators/put-operator.coffee",
+        "lib/operators/replace-operator.coffee",
+        "lib/panes.coffee",
+        "lib/prefixes.coffee",
+        "lib/scroll.coffee",
+        "lib/text-objects.coffee",
+        "lib/utils.coffee",
+        "lib/view-models/search-view-model.coffee",
+        "lib/view-models/view-model.coffee",
+        "lib/view-models/vim-command-mode-input-view.coffee",
+        "lib/vim-mode.coffee",
+        "lib/vim-state.coffee"
+      ],
+      ".js": [
+        "node_modules/underscore-plus/lib/underscore-plus.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
+        "node_modules/underscore-plus/node_modules/underscore/underscore.js"
+      ],
+      ".json": [
+        "node_modules/underscore-plus/node_modules/underscore/package.json",
+        "node_modules/underscore-plus/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib/motions",
+          "lib/operators",
+          "lib",
+          "lib/view-models",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "underscore-plus": "1.x"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/underscore-plus/lib",
+          "node_modules/underscore-plus"
+        ],
+        "dependencies": {
+          "underscore": "~1.6.0"
+        }
+      }
+    ]
+  }
 }

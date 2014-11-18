@@ -1,3 +1,12 @@
+#[0.7.10]()
+
+* Updated dependencies
+  * [atom/event-kit](https://github.com/atom/event-kit) 0.7.2 -> 0.8.0
+
+#[0.7.9](3eaff5c7a0fd8ca0cf707a9128d6268f9928a6de)
+
+* Smarter Format on save
+
 # [0.7.8](140ace97c44f2b3343dd80a8fa34ed5437c121a2)
 
 * Added `end_with_newline` setting.

@@ -39,9 +39,6 @@ class VimState
     else
       @activateCommandMode()
 
-    atom.project.eachBuffer (buffer) =>
-      @registerChangeHandler(buffer)
-
   # Private: Creates a handle to block insertion while in command mode.
   #
   # This is currently a bit of a hack. If a user is in command mode they
@@ -86,17 +83,6 @@ class VimState
     @editorView.on events.join(' '), =>
       @resetInputTransactions()
 
-
-  # Private: Watches for any deletes on the current buffer and places it in the
-  # last deleted buffer.
-  #
-  # Returns nothing.
-  registerChangeHandler: (buffer) ->
-    buffer.on 'changed', ({newRange, newText, oldRange, oldText}) =>
-      return unless @setRegister?
-      if newText == ''
-        @setRegister('"', text: oldText, type: Utils.copyType(oldText))
-
   # Private: Creates the plugin's bindings
   #
   # Returns nothing.
@@ -126,7 +112,7 @@ class VimState
       'delete-to-last-character-of-line': => [new Operators.Delete(@editor, @), new Motions.MoveToLastCharacterOfLine(@editor, @)]
       'toggle-case': => new Operators.ToggleCase(@editor, @)
       'yank': => @linewiseAliasedOperator(Operators.Yank)
-      'yank-line': => [new Operators.Yank(@editor, @), new Motions.MoveToLine(@editor, @)]
+      'yank-line': => [new Operators.Yank(@editor, @), new Motions.MoveToRelativeLine(@editor, @)]
       'put-before': => new Operators.Put(@editor, @, location: 'before')
       'put-after': => new Operators.Put(@editor, @, location: 'after')
       'join': => new Operators.Join(@editor, @)
@@ -157,6 +143,12 @@ class VimState
       'move-to-middle-of-screen': => new Motions.MoveToMiddleOfScreen(@editor, @, @editorView)
       'scroll-down': => new Scroll.ScrollDown(@editorView, @editor)
       'scroll-up': => new Scroll.ScrollUp(@editorView, @editor)
+      'scroll-cursor-to-top': => new Scroll.ScrollCursorToTop(@editorView, @editor)
+      'scroll-cursor-to-top-leave': => new Scroll.ScrollCursorToTop(@editorView, @editor, {leaveCursor: true})
+      'scroll-cursor-to-middle': => new Scroll.ScrollCursorToMiddle(@editorView, @editor)
+      'scroll-cursor-to-middle-leave': => new Scroll.ScrollCursorToMiddle(@editorView, @editor, {leaveCursor: true})
+      'scroll-cursor-to-bottom': => new Scroll.ScrollCursorToBottom(@editorView, @editor)
+      'scroll-cursor-to-bottom-leave': => new Scroll.ScrollCursorToBottom(@editorView, @editor, {leaveCursor: true})
       'select-inside-word': => new TextObjects.SelectInsideWord(@editor)
       'select-inside-double-quotes': => new TextObjects.SelectInsideQuotes(@editor, '"', false)
       'select-inside-single-quotes': => new TextObjects.SelectInsideQuotes(@editor, '\'', false)
@@ -271,7 +263,10 @@ class VimState
         @topOperation().compose(poppedOperation)
         @processOpStack()
       catch e
-        ((e instanceof Operators.OperatorError) or (e instanceof Motions.MotionError)) and @resetCommandMode() or throw e
+        if (e instanceof Operators.OperatorError) or (e instanceof Motions.MotionError)
+          @resetCommandMode()
+        else
+          throw e
     else
       @history.unshift(poppedOperation) if poppedOperation.isRecordable()
       poppedOperation.execute()
@@ -377,7 +372,7 @@ class VimState
     @submode = null
 
     if @editorView.is(".insert-mode")
-      cursor = @editor.getCursor()
+      cursor = @editor.getLastCursor()
       cursor.moveLeft() unless cursor.isAtBeginningOfLine()
 
     @changeModeClass('command-mode')
@@ -428,7 +423,7 @@ class VimState
     @changeModeClass('visual-mode')
 
     if @submode == 'linewise'
-      @editor.selectLine()
+      @editor.selectLinesContainingCursors()
 
     @updateStatusBar()
 
@@ -502,7 +497,7 @@ class VimState
   # Returns nothing.
   linewiseAliasedOperator: (constructor) ->
     if @isOperatorPending(constructor)
-      new Motions.MoveToLine(@editor, @)
+      new Motions.MoveToRelativeLine(@editor, @)
     else
       new constructor(@editor, @)
 
@@ -520,7 +515,7 @@ class VimState
       @opStack.length > 0
 
   updateStatusBar: ->
-    atom.packages.once 'activated', =>
+    atom.packages.onDidActivateAll =>
       if !$('#status-bar-vim-mode').length
         atom.workspaceView.statusBar?.prependRight("<div id='status-bar-vim-mode' class='inline-block'>Command</div>")
         @updateStatusBar()
