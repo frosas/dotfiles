@@ -40,6 +40,9 @@ function prompt_command {
     PS1_USER=$([[ "frosas frosasbosque" =~ `whoami` ]] || echo " \[$DARK_GRAY\]\u in")
     PS1="\[$RESET\]\n$PS1_USER\[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]$\[$RESET\] "
 
+    # Name the iTerm tab with the current directory
+    echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007"
+
     (history -n & history -a &) # See [1]
 }
 
