@@ -23,6 +23,7 @@
     untracked-files = ls-files -o --exclude-standard
     pretty-log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit
     ap = add -p
+    cp = checkout -p
     p = pull --ff-only
     remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)'
     web = instaweb -d webrick
