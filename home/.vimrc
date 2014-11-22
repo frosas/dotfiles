@@ -56,16 +56,18 @@ set wildmenu
 set wildmode=list:longest
 set laststatus=2
 set scrolloff=2
-set t_Co=256
-colorscheme base16-tomorrow
-set background=dark
-"Make the background transparent
-hi Normal ctermbg=NONE
 if has("gui_running")
     set guifont=Monaco:h12
     set lines=45
     set columns=135
 endif
+
+" Color scheme
+" set t_Co=256
+set background=dark
+colorscheme base16-default
+" Ensure we use the same background as in the console
+hi Normal ctermbg=NONE
 
 " Key mappings
 nmap <silent> <c-t> :split +ConqueTerm\ bash<CR>
