@@ -73,6 +73,9 @@ hi Normal ctermbg=NONE
 nmap <silent> <c-t> :split +ConqueTerm\ bash<CR>
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 nmap <silent> <c-f> :NERDTreeFind<CR>
+" vim-gitgutter
+" - Next change: ]c
+" - Previous change: [c
 
 " Syntax highlighting
 au BufRead,BufNewFile *.md set filetype=markdown
