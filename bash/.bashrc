@@ -57,6 +57,7 @@ SCRIPT_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH # Recommended by Homebrew
 export PATH=$SCRIPT_DIR/../bin:$PATH
+export PATH=node_modules/.bin:$PATH
 export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
