@@ -98,3 +98,7 @@ highlight clear SignColumn
 
 " CtrlP
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
+" Airline
+let g:airline_left_sep=''
+let g:airline_right_sep=''
