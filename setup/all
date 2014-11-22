@@ -9,8 +9,8 @@ $HERE/vim
 
 if [[ `uname` = Darwin ]]; then 
     $HERE/mac-preferences
-    $HERE/mac-brew
-    $HERE/mac-brew-cask
+    $HERE/brew
+    $HERE/cask
 fi
 
 $HERE/node
