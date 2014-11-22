@@ -80,4 +80,9 @@ alias gla="gl --all"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
 
+# Ruby
+# See http://askubuntu.com/questions/502305/bundle-install-permissions-denied
+export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
+export PATH=$PATH:$GEM_HOME/bin
+
 # [1] http://briancarper.net/blog/248/ 

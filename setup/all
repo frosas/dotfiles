@@ -12,6 +12,7 @@ if [[ `uname` = Darwin ]]; then
     $HERE/brew
     $HERE/cask
     $HERE/iterm
+    $HERE/ruby
 fi
 
 $HERE/node

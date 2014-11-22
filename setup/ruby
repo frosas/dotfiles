@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -ex
+
+brew install ruby
+gem install bundle
