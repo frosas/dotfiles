@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -xe
+
+brew install bash-completion node npm the_silver_searcher trash wget git ag tree \
+    coreutils pstree
+
+brew install macvim --override-system-vim
+
+brew linkapps
+
+cp -aH /Applications/MacVim.app ~/Applications || true

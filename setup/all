@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -xe
+
+HERE=$(cd $(dirname $0) >/dev/null && pwd)
+
+$HERE/symlinks
+$HERE/vim
+
+if [[ `uname` = Darwin ]]; then 
+    $HERE/mac-preferences
+    $HERE/mac-brew
+    $HERE/mac-brew-cask
+fi
+
+$HERE/node

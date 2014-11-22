@@ -4,7 +4,7 @@
 $ git clone git@github.com:frosas/dotfiles.git
 $ cd dotfiles
 $ git submodule update --init
-$ ./setup
+$ setup/all
 ```
 
 ## Manual steps
@@ -18,15 +18,16 @@ export CDPATH=.:~/projects
 
 ```bash
 $ crontab -e
-MAILTO="francescrosasbosque@gmail.com"
 PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-@weekly .../dotfiles/bin/mac/system-check
+@weekly /home/.../dotfiles/bin/mac/system-check
 ```
  
-Misc apps:
+Misc apps
 
 - https://github.com/codler/Battery-Time-Remaining
-- https://github.com/jigish/slate
-- http://www.ragingmenace.com/software/menumeters/
-- http://www.globaldelight.com/boom/
-- http://interealtime.com/redscreen-advanced-screen-dimming-for-mac-os-x/
+- http://interealtime.com/redscreen-advanced-screen-dimming-for-mac-os-x/ (it seems to be deleted, try with http://web.archive.org/web/*/http://interealtime.com/RedScreen/RedScreen.dmg)
+
+### TODO
+
+- Use Ansible?
+
