@@ -104,3 +104,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 " Airline
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+
+" NERDTree
+let NERDTreeShowHidden=1
