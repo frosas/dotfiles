@@ -57,8 +57,10 @@ set wildmode=list:longest
 set laststatus=2
 set scrolloff=2
 set t_Co=256
-set background=dark
 colorscheme base16-tomorrow
+set background=dark
+"Make the background transparent
+hi Normal ctermbg=NONE
 if has("gui_running")
     set guifont=Monaco:h12
     set lines=45

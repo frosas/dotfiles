@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -ex
+
+HERE=$(cd $(dirname $0) >/dev/null && pwd)
+
+brew cask install iterm2
+
+open -a iterm "$HERE/../iterm-color-schemes/schemes/BirdsOfParadise.itermcolors"
