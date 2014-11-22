@@ -88,7 +88,6 @@ au BufRead,BufNewFile *.ftl set filetype=ftl
 
 " Conque
 let g:ConqueTerm_CloseOnEnd = 1
-let g:ConqueTerm_StartMessages = 0
 " Clearing the screen doesn't work with 'xterm'
 let g:ConqueTerm_TERM = 'ansi' 
 
