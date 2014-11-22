@@ -9,13 +9,16 @@ fi
 # Prompt
 ######################################################################
 
-# Codes at http://www.linuxselfhelp.com/howtos/Bash-Prompt/Bash-Prompt-HOWTO-6.html
 RESET=$(tput sgr0)
-DARK_GRAY=$(tput setaf 0)
+BLACK=$(tput setaf 0)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
+BLUE=$(tput setaf 4)
 MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+DARK_GRAY=$(tput setaf 8)
 
 function git_ps1 {
     if [ `type -t __git_ps1` ]; then
