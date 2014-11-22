@@ -26,6 +26,7 @@ Misc apps
 
 - https://github.com/codler/Battery-Time-Remaining
 - http://interealtime.com/redscreen-advanced-screen-dimming-for-mac-os-x/ (it seems to be deleted, try with http://web.archive.org/web/*/http://interealtime.com/RedScreen/RedScreen.dmg)
+- http://www.macupdate.com/app/mac/45273/did-i-click
 
 ### TODO
 
