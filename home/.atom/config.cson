@@ -12,7 +12,6 @@
     'showIndentGuide': true
     'fontFamily': 'Ubuntu Mono'
     'fontSize': 14
-    'invisibles': {}
   'core':
     'themes': [
       'atom-dark-ui'
@@ -68,7 +67,6 @@
     'ensureSingleTrailingNewline': false
   'jsformat':
     'format_on_save': false
-  'atom-lint': {}
 '.ftl.html.text':
   'editor': {}
 '.basic.html.text':
