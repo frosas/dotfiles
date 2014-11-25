@@ -67,20 +67,20 @@
     'ensureSingleTrailingNewline': false
   'jsformat':
     'format_on_save': false
-'.ftl.html.text':
+'.js.regexp.source':
   'editor': {}
 '.basic.html.text':
   'editor': {}
-'.js.regexp.source':
+'.ftl.html.text':
   'editor': {}
 '.js.source':
   'editor': {}
-'autoclose-html': {}
-'recent-files':
-  'updated': false
-'exception-reporting':
-  'userId': 'acb74c7e-1de6-337a-5f90-33eaac4f4168'
-'welcome':
-  'showOnStartup': false
 'metrics':
   'userId': '66a66b277d73bb7770347ed47c9fdca56e52213d'
+'welcome':
+  'showOnStartup': false
+'exception-reporting':
+  'userId': 'acb74c7e-1de6-337a-5f90-33eaac4f4168'
+'recent-files':
+  'updated': false
+'autoclose-html': {}

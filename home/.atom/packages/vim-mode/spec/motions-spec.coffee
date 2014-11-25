@@ -1,21 +1,21 @@
 helpers = require './spec-helper'
 
 describe "Motions", ->
-  [editor, editorView, vimState] = []
+  [editor, editorElement, vimState] = []
 
   beforeEach ->
     vimMode = atom.packages.loadPackage('vim-mode')
     vimMode.activateResources()
 
-    helpers.getEditorView editorView, (view) ->
-      editorView = view
-      editor = editorView.editor
-      vimState = editorView.vimState
+    helpers.getEditorElement (element) ->
+      editorElement = element
+      editor = editorElement.getModel()
+      vimState = editorElement.vimState
       vimState.activateCommandMode()
       vimState.resetCommandMode()
 
   keydown = (key, options={}) ->
-    options.element ?= editorView[0]
+    options.element ?= editorElement
     helpers.keydown(key, options)
 
   commandModeInputKeydown = (key, opts = {}) ->
@@ -1199,17 +1199,17 @@ describe "Motions", ->
       spyOn(editor, 'setCursorScreenPosition')
 
     it "moves the cursor to the first row if visible", ->
-      spyOn(editorView, 'getFirstVisibleScreenRow').andReturn(0)
+      spyOn(editor, 'getFirstVisibleScreenRow').andReturn(0)
       keydown('H', shift: true)
       expect(editor.setCursorScreenPosition).toHaveBeenCalledWith([0, 0])
 
     it "moves the cursor to the first visible row plus offset", ->
-      spyOn(editorView, 'getFirstVisibleScreenRow').andReturn(2)
+      spyOn(editor, 'getFirstVisibleScreenRow').andReturn(2)
       keydown('H', shift: true)
       expect(editor.setCursorScreenPosition).toHaveBeenCalledWith([4, 0])
 
     it "respects counts", ->
-      spyOn(editorView, 'getFirstVisibleScreenRow').andReturn(0)
+      spyOn(editor, 'getFirstVisibleScreenRow').andReturn(0)
       keydown('3')
       keydown('H', shift: true)
       expect(editor.setCursorScreenPosition).toHaveBeenCalledWith([2, 0])
@@ -1221,17 +1221,17 @@ describe "Motions", ->
       spyOn(editor, 'setCursorScreenPosition')
 
     it "moves the cursor to the first row if visible", ->
-      spyOn(editorView, 'getLastVisibleScreenRow').andReturn(10)
+      spyOn(editor, 'getLastVisibleScreenRow').andReturn(10)
       keydown('L', shift: true)
       expect(editor.setCursorScreenPosition).toHaveBeenCalledWith([10, 0])
 
     it "moves the cursor to the first visible row plus offset", ->
-      spyOn(editorView, 'getLastVisibleScreenRow').andReturn(6)
+      spyOn(editor, 'getLastVisibleScreenRow').andReturn(6)
       keydown('L', shift: true)
       expect(editor.setCursorScreenPosition).toHaveBeenCalledWith([4, 0])
 
     it "respects counts", ->
-      spyOn(editorView, 'getLastVisibleScreenRow').andReturn(10)
+      spyOn(editor, 'getLastVisibleScreenRow').andReturn(10)
       keydown('3')
       keydown('L', shift: true)
       expect(editor.setCursorScreenPosition).toHaveBeenCalledWith([8, 0])
@@ -1241,8 +1241,8 @@ describe "Motions", ->
       editor.setText("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n")
       editor.setCursorScreenPosition([8, 0])
       spyOn(editor, 'setCursorScreenPosition')
-      spyOn(editorView, 'getLastVisibleScreenRow').andReturn(10)
-      spyOn(editorView, 'getFirstVisibleScreenRow').andReturn(0)
+      spyOn(editor, 'getLastVisibleScreenRow').andReturn(10)
+      spyOn(editor, 'getFirstVisibleScreenRow').andReturn(0)
 
     it "moves the cursor to the first row if visible", ->
       keydown('M', shift: true)
@@ -1408,6 +1408,22 @@ describe "Motions", ->
       keydown('t')
       commandModeInputKeydown('a')
       expect(editor.getText()).toEqual 'abcabc\n'
+
+  describe 'the V keybinding', ->
+    beforeEach ->
+      editor.setText("01\n002\n0003\n00004\n000005\n")
+      editor.setCursorScreenPosition([1, 1])
+
+    it "selects down a line", ->
+      keydown('V', shift: true)
+      keydown('j')
+      keydown('j')
+      expect(editor.getSelectedText()).toBe "002\n0003\n00004\n"
+
+    it "selects up a line", ->
+      keydown('V', shift: true)
+      keydown('k')
+      expect(editor.getSelectedText()).toBe "01\n002\n"
 
   describe 'the ; and , keybindings', ->
     beforeEach ->
