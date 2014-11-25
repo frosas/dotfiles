@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# A diff like the one you see in GitHub PRs
+
+OTHER_BRANCH=${1:-"origin/master"}
+git diff $(git merge-base $OTHER_BRANCH HEAD)..
