@@ -1,7 +1,7 @@
 {
   "name": "vim-mode",
   "main": "./lib/vim-mode",
-  "version": "0.19.1",
+  "version": "0.20.3",
   "description": "Add vim modal control",
   "license": "MIT",
   "private": true,
@@ -10,7 +10,7 @@
     "url": "https://github.com/atom/vim-mode"
   },
   "engines": {
-    "atom": ">0.99.0"
+    "atom": ">0.151.0"
   },
   "dependencies": {
     "underscore-plus": "1.x",
@@ -22,12 +22,12 @@
     "url": "https://github.com/atom/vim-mode/issues"
   },
   "homepage": "https://github.com/atom/vim-mode",
-  "_id": "vim-mode@0.19.1",
+  "_id": "vim-mode@0.20.3",
   "dist": {
-    "shasum": "51471a406cc86ab2841a8d2ec47b26b4e1a5e7cb"
+    "shasum": "7996ce6c1776f67826de12e5c84028654867097b"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141025-6112-5zp63d/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141025-6112-5zp63d/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141027-59527-yesrm5/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141027-59527-yesrm5/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -79,6 +79,7 @@
     ],
     "extensions": {
       ".coffee": [
+        "lib/global-vim-state.coffee",
         "lib/motions/find-motion.coffee",
         "lib/motions/general-motions.coffee",
         "lib/motions/index.coffee",
@@ -93,6 +94,7 @@
         "lib/panes.coffee",
         "lib/prefixes.coffee",
         "lib/scroll.coffee",
+        "lib/status-bar-manager.coffee",
         "lib/text-objects.coffee",
         "lib/utils.coffee",
         "lib/view-models/search-view-model.coffee",
@@ -142,9 +144,9 @@
     "folders": [
       {
         "paths": [
+          "lib",
           "lib/motions",
           "lib/operators",
-          "lib",
           "lib/view-models",
           "",
           "spec"

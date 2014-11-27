@@ -23,8 +23,8 @@ describe "Operators", ->
     opts.raw = true
     keydown(key, opts)
 
-  describe "cancel operation is robust", ->
-    it "can call cancel operation, even if no operator pending", ->
+  describe "cancelling operations", ->
+    it "does not throw an error even if no operation is pending", ->
       # cancel operation pushes an empty input operation
       # doing this without a pending operation throws an exception
       expect(-> vimState.pushOperations(new Input(''))).toThrow()
@@ -34,12 +34,8 @@ describe "Operators", ->
       expect(vimState.isOperatorPending()).toBe true
       editor.commandModeInputView.viewModel.cancel()
 
-      # now again cancel op, although there is none pending
       expect(vimState.isOperatorPending()).toBe false
-
-      # which should not raise an exception
       expect(-> editor.commandModeInputView.viewModel.cancel()).not.toThrow()
-
 
   describe "the x keybinding", ->
     describe "on a line with content", ->
@@ -873,7 +869,6 @@ describe "Operators", ->
       keydown 'u'
       expect(editor.getText()).toBe "abc\n  012\n"
 
-
   describe "the a keybinding", ->
     beforeEach ->
       editor.getBuffer().setText("012\n")
@@ -1066,7 +1061,7 @@ describe "Operators", ->
 
     describe "when used in a scope that supports auto-indent", ->
       beforeEach ->
-        jsGrammar = atom.syntax.grammarForScopeName('source.js')
+        jsGrammar = atom.grammars.grammarForScopeName('source.js')
         editor.setGrammar(jsGrammar)
 
       afterEach ->

@@ -1,12 +1,10 @@
-{$} = require 'atom'
 VimState = require '../lib/vim-state'
+GlobalVimState = require '../lib/global-vim-state'
 VimMode  = require '../lib/vim-mode'
-
-originalKeymap = null
+StatusBarManager = require '../lib/status-bar-manager'
 
 beforeEach ->
   atom.workspace ||= {}
-  VimMode._initializeWorkspaceState()
 
 getEditorElement = (callback) ->
   textEditor = null
@@ -19,10 +17,10 @@ getEditorElement = (callback) ->
     element = document.createElement("atom-text-editor")
     element.setModel(textEditor)
     element.classList.add('vim-mode')
-    element.vimState = new VimState(element)
+    element.vimState = new VimState(element, new StatusBarManager, new GlobalVimState)
 
-    $(element).simulateDomAttachment()
-    $(element).enableKeymap()
+    element.addEventListener "keydown", (e) ->
+      atom.keymaps.handleKeyboardEvent(e)
 
     callback(element)
 
@@ -34,22 +32,29 @@ mockPlatform = (editorElement, platform) ->
 unmockPlatform = (editorElement) ->
   editorElement.parentNode.removeChild(editorElement)
 
+dispatchKeyboardEvent = (target, eventArgs...) ->
+  e = document.createEvent('KeyboardEvent')
+  e.initKeyboardEvent(eventArgs...)
+  # 0 is the default, and it's valid ASCII, but it's wrong.
+  Object.defineProperty(e, 'keyCode', get: -> undefined) if e.keyCode is 0
+  target.dispatchEvent e
+
+dispatchTextEvent = (target, eventArgs...) ->
+  e = document.createEvent('TextEvent')
+  e.initTextEvent(eventArgs...)
+  target.dispatchEvent e
+
 keydown = (key, {element, ctrl, shift, alt, meta, raw}={}) ->
-  dispatchKeyboardEvent = (target, eventArgs...) ->
-    e = document.createEvent('KeyboardEvent')
-    e.initKeyboardEvent eventArgs...
-    # 0 is the default, and it's valid ASCII, but it's wrong.
-    Object.defineProperty(e, 'keyCode', get: -> undefined) if e.keyCode is 0
-    target.dispatchEvent e
-
-  dispatchTextEvent = (target, eventArgs...) ->
-    e = document.createEvent('TextEvent')
-    e.initTextEvent eventArgs...
-    target.dispatchEvent e
-
   key = "U+#{key.charCodeAt(0).toString(16)}" unless key == 'escape' || raw?
   element ||= document.activeElement
-  eventArgs = [true, true, null, key, 0, ctrl, alt, shift, meta] # bubbles, cancelable, view, key, location
+  eventArgs = [
+    true, # bubbles
+    true, # cancelable
+    null, # view
+    key,  # key
+    0,    # location
+    ctrl, alt, shift, meta
+  ]
 
   canceled = not dispatchKeyboardEvent(element, 'keydown', eventArgs...)
   dispatchKeyboardEvent(element, 'keypress', eventArgs...)

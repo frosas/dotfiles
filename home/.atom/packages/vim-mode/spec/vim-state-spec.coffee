@@ -1,6 +1,6 @@
-{$} = require 'atom'
 helpers = require './spec-helper'
 VimState = require '../lib/vim-state'
+StatusBarManager = require '../lib/status-bar-manager'
 
 describe "VimState", ->
   [editor, editorElement, vimState] = []
@@ -32,7 +32,7 @@ describe "VimState", ->
 
     it "puts the editor in insert-mode if startInInsertMode is true", ->
       atom.config.set 'vim-mode.startInInsertMode', true
-      editor.vimState = new VimState(editorElement) # Reload vim-mode
+      editor.vimState = new VimState(editorElement, new StatusBarManager)
       expect(editorElement.classList.contains('insert-mode')).toBe(true)
 
   describe "::destroy", ->
@@ -44,13 +44,6 @@ describe "VimState", ->
     it "removes the mode classes from the editor", ->
       expect(editorElement.classList.contains("command-mode")).toBeTruthy()
       vimState.destroy()
-      expect(editorElement.classList.contains("command-mode")).toBeFalsy()
-
-    it "removes the vim-mode undo handler from the editor", ->
-      keydown("i")
-      vimState.destroy()
-      $(editorElement).trigger("core:undo")
-      expect(editorElement.component.isInputEnabled()).toBeTruthy()
       expect(editorElement.classList.contains("command-mode")).toBeFalsy()
 
   describe "command-mode", ->
@@ -188,14 +181,6 @@ describe "VimState", ->
       expect(editorElement.classList.contains('command-mode')).toBe(true)
       expect(editorElement.classList.contains('insert-mode')).toBe(false)
       expect(editorElement.classList.contains('visual-mode')).toBe(false)
-
-    it "puts the editor into command mode before undoing, saving work", ->
-      editor.setText("012345\n\nabcdef")
-      $(editorElement).trigger("core:undo")
-      expect(editorElement.classList.contains("command-mode")).toBe(true)
-      expect(editor.getText()).toEqual("")
-      $(editorElement).trigger("core:redo")
-      expect(editor.getText()).toEqual("012345\n\nabcdef")
 
   describe "visual-mode", ->
     beforeEach -> keydown('v')

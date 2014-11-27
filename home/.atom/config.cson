@@ -19,6 +19,7 @@
     ]
     'disabledPackages': [
       'jsonpp'
+      'atom-lint'
       'vim-mode'
     ]
     'audioBeep': false
@@ -67,20 +68,24 @@
     'ensureSingleTrailingNewline': false
   'jsformat':
     'format_on_save': false
-'.js.regexp.source':
+  'linter':
+    'showAllErrorsInStatusBar': true
+  'vim-mode':
+    'startInInsertMode': true
+'.ftl.html.text':
   'editor': {}
 '.basic.html.text':
   'editor': {}
-'.ftl.html.text':
+'.js.regexp.source':
   'editor': {}
 '.js.source':
   'editor': {}
-'metrics':
-  'userId': '66a66b277d73bb7770347ed47c9fdca56e52213d'
-'welcome':
-  'showOnStartup': false
-'exception-reporting':
-  'userId': 'acb74c7e-1de6-337a-5f90-33eaac4f4168'
+'autoclose-html': {}
 'recent-files':
   'updated': false
-'autoclose-html': {}
+'exception-reporting':
+  'userId': 'acb74c7e-1de6-337a-5f90-33eaac4f4168'
+'welcome':
+  'showOnStartup': false
+'metrics':
+  'userId': '66a66b277d73bb7770347ed47c9fdca56e52213d'

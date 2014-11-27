@@ -1,5 +1,5 @@
 _ = require 'underscore-plus'
-{$} = require 'atom'
+{Point, Range} = require 'atom'
 {Emitter, Disposable, CompositeDisposable} = require 'event-kit'
 
 Operators = require './operators/index'
@@ -10,8 +10,6 @@ TextObjects = require './text-objects'
 Utils = require './utils'
 Panes = require './panes'
 Scroll = require './scroll'
-{$$, Point, Range} = require 'atom'
-Marker = require 'atom'
 
 module.exports =
 class VimState
@@ -21,7 +19,7 @@ class VimState
   submode: null
   initialSelectedRange: null
 
-  constructor: (@editorElement) ->
+  constructor: (@editorElement, @statusBarManager, @globalVimState) ->
     @emitter = new Emitter
     @subscriptions = new CompositeDisposable
     @editor = @editorElement.getModel()
@@ -33,8 +31,8 @@ class VimState
     params.manager = this;
     params.id = 0;
 
+    @editorElement.classList.add("vim-mode")
     @setupCommandMode()
-    @registerUndoIntercept()
     if atom.config.get 'vim-mode.startInInsertMode'
       @activateInsertMode()
     else
@@ -44,20 +42,8 @@ class VimState
     @subscriptions.dispose()
     @deactivateInsertMode()
     @editorElement.component.setInputEnabled(true)
+    @editorElement.classList.remove("vim-mode")
     @editorElement.classList.remove("command-mode")
-
-  # Private: Intercept undo in insert mode.
-  #
-  # Undo in insert mode will blow up the previous transaction, but not
-  # put it into the redo stack anywhere correctly, as it hasn't been
-  # completed. As a workaround, we exit insert mode first and then
-  # bubble the event up
-  registerUndoIntercept: ->
-    preempt = $(@editorElement).preempt 'core:undo', (e) =>
-      return true unless @mode == 'insert'
-      @activateCommandMode()
-      return true
-    @subscriptions.add(new Disposable -> preempt.off())
 
   # Private: Creates the plugin's bindings
   #
@@ -278,7 +264,7 @@ class VimState
       type = Utils.copyType(text)
       {text, type}
     else
-      atom.workspace.vimState.registers[name]
+      @globalVimState.registers[name]
 
   # Private: Fetches the value of a given mark.
   #
@@ -305,7 +291,7 @@ class VimState
     else if name == '_'
       # Blackhole register, nothing to do
     else
-      atom.workspace.vimState.registers[name] = value
+      @globalVimState.registers[name] = value
 
   # Private: Sets the value of a given mark.
   #
@@ -325,7 +311,7 @@ class VimState
   #
   # Returns nothing
   pushSearchHistory: (search) ->
-    atom.workspace.vimState.searchHistory.unshift search
+    @globalVimState.searchHistory.unshift search
 
   # Public: Get the search history item at the given index.
   #
@@ -333,7 +319,7 @@ class VimState
   #
   # Returns a search motion
   getSearchHistoryItem: (index) ->
-    atom.workspace.vimState.searchHistory[index]
+    @globalVimState.searchHistory[index]
 
   ##############################################################################
   # Mode Switching
@@ -404,7 +390,7 @@ class VimState
 
     if @submode == 'linewise'
       @editor.selectLinesContainingCursors()
-      @initialSelectedRange = @editor.getSelection().getBufferRange()
+      @initialSelectedRange = @editor.getLastSelection().getBufferRange()
 
     @updateStatusBar()
 
@@ -497,15 +483,4 @@ class VimState
       @opStack.length > 0
 
   updateStatusBar: ->
-    atom.packages.onDidActivateAll =>
-      if !$('#status-bar-vim-mode').length
-        atom.workspaceView.statusBar?.prependRight("<div id='status-bar-vim-mode' class='inline-block'>Command</div>")
-        @updateStatusBar()
-
-    @removeStatusBarClass()
-    switch @mode
-      when 'insert'  then $('#status-bar-vim-mode').addClass('status-bar-vim-mode-insert').html("Insert")
-      when 'command' then $('#status-bar-vim-mode').addClass('status-bar-vim-mode-command').html("Command")
-      when 'visual'  then $('#status-bar-vim-mode').addClass('status-bar-vim-mode-visual').html("Visual")
-
-  removeStatusBarClass: -> $('#status-bar-vim-mode').removeClass('status-bar-vim-mode-insert status-bar-vim-mode-command status-bar-vim-mode-visual')
+    @statusBarManager.update(@mode)
