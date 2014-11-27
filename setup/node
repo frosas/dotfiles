@@ -1,5 +1,5 @@
 #!/bin/bash
 
-set -xe
+set -ex
 
-npm install -g jshint
+npm install -g eslint jshint
