@@ -75,7 +75,7 @@ if [ `uname` = Linux ]; then
 fi
 
 alias gs="git status --short"
-alias gd="git-diff-uncommitted"
+alias gd="git-uncommitted-diff"
 alias gl="git pretty-log"
 alias gla="gl --all"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
