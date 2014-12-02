@@ -12,6 +12,7 @@
     'showIndentGuide': true
     'fontFamily': 'Ubuntu Mono'
     'fontSize': 14
+    'invisibles': {}
   'core':
     'themes': [
       'atom-dark-ui'
@@ -21,7 +22,6 @@
       'jsonpp'
       'atom-lint'
       'vim-mode'
-      'linter-jshint'
     ]
     'audioBeep': false
     'useReactEditor': true
@@ -70,10 +70,15 @@
   'jsformat':
     'format_on_save': false
   'linter':
-    'statusBar': 'Show all errors'
+    'showGutters': false
   'vim-mode':
     'startInInsertMode': true
   'linter-htmlhint': {}
+  'linter-eslint': {}
+  'atomatigit': {}
+  'git-diff':
+    'showIconsInEditorGutter': true
+  'minimap': {}
 '.ftl.html.text':
   'editor': {}
 '.basic.html.text':
