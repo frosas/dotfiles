@@ -6,4 +6,4 @@ brew install caskroom/cask/brew-cask
 
 brew cask install atom boom ccmenu firefox gimp google-chrome iterm2 kdiff3 skype \
     slate sourcetree spotify the-unarchiver disk-inventory-x menumeters transmission \
-    dropbox vlc
+    dropbox vlc flux
