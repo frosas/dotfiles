@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# From http://durdn.com/blog/2012/12/05/git-12-curated-git-tips-and-workflows/
+git rev-list --all | (while read REVISION; do git grep "$@" $REVISION; done)
