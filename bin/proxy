@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -i ~/Dropbox/Keys/aws-ec2-eu-west-1.pem -ND 8080 ubuntu@misc.frosas.net
