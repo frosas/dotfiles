@@ -1,3 +1,5 @@
 #!/bin/bash
 
-git log $(git merge-base HEAD origin/master)..
+BRANCH=${1:-"HEAD"}
+REFERENCE_BRANCH=${2:-"origin/master"}
+git log $(git merge-base $BRANCH $REFERENCE_BRANCH)..$BRANCH "$@"

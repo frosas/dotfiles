@@ -2,5 +2,6 @@
 
 # A diff like the one you see in GitHub PRs
 
-OTHER_BRANCH=${1:-"origin/master"}
-git diff $(git merge-base $OTHER_BRANCH HEAD)..
+BRANCH=${1:-"HEAD"}
+REFERENCE_BRANCH=${2:-"origin/master"}
+git diff $(git merge-base $BRANCH $REFERENCE_BRANCH)..$BRANCH "$@"
