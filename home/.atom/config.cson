@@ -11,8 +11,8 @@
     'tabLength': 4
     'showIndentGuide': true
     'fontFamily': 'Ubuntu Mono'
-    'fontSize': 14
     'invisibles': {}
+    'fontSize': 14
   'core':
     'themes': [
       'atom-dark-ui'
@@ -22,6 +22,8 @@
       'jsonpp'
       'atom-lint'
       'vim-mode'
+      'linter-jshint'
+      'spell-check'
     ]
     'audioBeep': false
     'useReactEditor': true
@@ -73,9 +75,6 @@
     'showGutters': false
   'vim-mode':
     'startInInsertMode': true
-  'linter-htmlhint': {}
-  'linter-eslint': {}
-  'atomatigit': {}
   'git-diff':
     'showIconsInEditorGutter': true
   'minimap': {}

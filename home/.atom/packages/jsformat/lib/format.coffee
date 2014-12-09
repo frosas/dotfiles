@@ -11,7 +11,7 @@ module.exports =
   config: packgeConfig
 
   activate: (state) ->
-    atom.workspaceView.command 'jsformat:format', => @format(state)
+    atom.commands.add 'atom-workspace', 'jsformat:format', => @format(state)
 
     @editorSaveSubscriptions = {}
     @editorCloseSubscriptions = {}
@@ -23,42 +23,45 @@ module.exports =
       @subscribeToEvents()
 
   format: (state) ->
-    editor = atom.workspace.activePaneItem
+    editor = atom.workspace.getActivePaneItem()
     if !editor
       return
 
-    grammar = editor.getGrammar().scopeName
-    mainCursor = editor.getCursors()[0]
-    textBuffer = editor.getBuffer()
-    nonWhitespaceRegex = /\S/g
-    whitespaceRegex = /\s/g
-    currentCursorPosition = mainCursor.getBufferPosition()
-    mainCursor.setBufferPosition([currentCursorPosition.row, currentCursorPosition.column + 1])
-    isBeforeWord = mainCursor.isInsideWord()
-    mainCursor.setBufferPosition(currentCursorPosition)
+    grammar = editor.getGrammar().name
 
-    if mainCursor.isInsideWord()
-      # The cursor is inside a word, so let's use the beginning as the reference
-      currentPosition = mainCursor.getBeginningOfCurrentWordBufferPosition()
-
-      # ideally we could do mainCursor.setBufferPosition([currentCursorPosition.row, currentCursorPosition.column + 1]).isInsideWord()
-      # but .setBufferPosition returns undefined :(
-      # So we have to define some stuff above instead...
-
-    else if isBeforeWord
-      # The cursor is right before a word in this case, so let's use the current cursor position as a reference
+    if (!(grammar is 'JSON' or grammar is 'JavaScript'))
+      @displayUnsupportedLanguageNotification(grammar)
+    else
+      mainCursor = editor.getCursors()[0]
+      textBuffer = editor.getBuffer()
+      nonWhitespaceRegex = /\S/g
+      whitespaceRegex = /\s/g
+      currentCursorPosition = mainCursor.getBufferPosition()
+      mainCursor.setBufferPosition([currentCursorPosition.row, currentCursorPosition.column + 1])
+      isBeforeWord = mainCursor.isInsideWord()
       mainCursor.setBufferPosition(currentCursorPosition)
-      currentPosition = currentCursorPosition
 
-    whitespaceText = textBuffer.getTextInRange([[0, 0], currentPosition])
+      if mainCursor.isInsideWord()
+        # The cursor is inside a word, so let's use the beginning as the reference
+        currentPosition = mainCursor.getBeginningOfCurrentWordBufferPosition()
 
-    nonWhitespaceCharacters = whitespaceText.match(nonWhitespaceRegex)
-    whitespaceCharacterCount = whitespaceText.match(whitespaceRegex)
+        # ideally we could do mainCursor.setBufferPosition([currentCursorPosition.row, currentCursorPosition.column + 1]).isInsideWord()
+        # but .setBufferPosition returns undefined :(
+        # So we have to define some stuff above instead...
 
-    whitespaceCharacterCount = if whitespaceCharacterCount then whitespaceCharacterCount.length else 0
-    nonWhitespaceCharacters = if nonWhitespaceCharacters then nonWhitespaceCharacters.length else 0
+      else if isBeforeWord
+        # The cursor is right before a word in this case, so let's use the current cursor position as a reference
+        mainCursor.setBufferPosition(currentCursorPosition)
+        currentPosition = currentCursorPosition
 
-    if grammar is 'source.json' or grammar is 'source.js'
+      whitespaceText = textBuffer.getTextInRange([[0, 0], currentPosition])
+
+      nonWhitespaceCharacters = whitespaceText.match(nonWhitespaceRegex)
+      whitespaceCharacterCount = whitespaceText.match(whitespaceRegex)
+
+      whitespaceCharacterCount = if whitespaceCharacterCount then whitespaceCharacterCount.length else 0
+      nonWhitespaceCharacters = if nonWhitespaceCharacters then nonWhitespaceCharacters.length else 0
+
       @formatJavascript(editor)
 
       nonWhitespaceCount = 0
@@ -68,9 +71,6 @@ module.exports =
 
       mainCursor.setBufferPosition(newCursorPosition)
 
-    else
-      @displayUnsupportedLanguageNotification(state)
-
   formatJavascript: (editor) ->
     editorSettings = atom.config.get('editor')
 
@@ -79,12 +79,15 @@ module.exports =
     opts.indent_size = editorSettings.tabLength
     opts.wrap_line_length = editorSettings.preferredLineLength
 
-    if @selectionsAreEmpty(editor)
-      editor.setText(jsbeautify(editor.getText(), opts))
+    beautifiedText = jsbeautify(editor.getText(), opts)
 
-    else
-      for selection in editor.getSelections()
-        selection.insertText(jsbeautify(selection.getText(), opts), {select:true})
+    if (editor.getText() != beautifiedText)
+      if @selectionsAreEmpty(editor)
+        editor.setText(jsbeautify(editor.getText(), opts))
+
+      else
+        for selection in editor.getSelections()
+          selection.insertText(jsbeautify(selection.getText(), opts), {select:true})
 
   selectionsAreEmpty: (editor) ->
     for selection in editor.getSelections()
@@ -110,7 +113,6 @@ module.exports =
 
             delete @editorSaveSubscriptions[editor.id]
             delete @editorCloseSubscriptions[editor.id]
-
 
           # saveSubscription = buffer.onWillSave =>
           #   buffer.transact =>
@@ -144,8 +146,8 @@ module.exports =
         # @editorCloseSubscriptions.dispose()
         # @editorCloseSubscriptions = new Observer()
 
-  displayUnsupportedLanguageNotification: (state) ->
-    notification = new FileTypeNotSupportedView(state)
+  displayUnsupportedLanguageNotification: (language) ->
+    notification = new FileTypeNotSupportedView(language)
     atom.workspaceView.append(notification)
     destroyer = () ->
       notification.detach()

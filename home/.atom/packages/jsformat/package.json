@@ -1,7 +1,7 @@
 {
   "name": "jsformat",
   "main": "./lib/format",
-  "version": "0.7.10",
+  "version": "0.7.12",
   "private": true,
   "description": "javascript formatting for the atom text editor",
   "keywords": [
@@ -20,7 +20,7 @@
     "atom": ">=0.100.0"
   },
   "dependencies": {
-    "event-kit": "~0.8.0",
+    "event-kit": "~0.8.1",
     "js-beautify": "~1.5.4"
   },
   "readme": "# JsFormat\n\nJavaScript + JSON formatting/beautification for the Atom text editor.\n\n#### Keybinding\n`ctrl+alt+f`\n\n#### Command Palette\n`Jsformat: Format`\n\n#### Settings\nJsFormat uses whatever tab/indent settings are configured with the standard ```Tab Length``` Atom settings.  \n\nThe ```Preferred Line Length``` Atom setting is only respected when the ```Soft Wrap At Preferred Line Length``` Atom setting is enabled.  \n\nBy default, JSFormat's Format on save is set to true.\n\nThe following **JsBeautifier** settings are available through the JsFormat settings panel (defaults shown below). Check out the official [jsbeautifier documentation](https://github.com/einars/js-beautify#options) for more details on the options:\n\n* Indent with tabs: false\n* End with newline: true\n* Max preserve newlines: 4\n* Preserve newlines: true\n* Space in parentheses: false\n* JSLint happy: false\n* Brace style: \"collapse\"\n* Keep array indentation: false\n* Keep function indentation: false\n* Space after anonymous functions: false\n* Space before conditional: true\n* Evaluate code: false\n* Unescape strings: false\n* Break Chained Methods: false\n* e4x style: false\n",
@@ -29,18 +29,18 @@
     "url": "https://github.com/jdc0589/jsformat-atom/issues"
   },
   "homepage": "https://github.com/jdc0589/jsformat-atom",
-  "_id": "jsformat@0.7.10",
+  "_id": "jsformat@0.7.12",
   "dist": {
-    "shasum": "2aec258dd38b808d87136fdf1ac11b52ce050e58"
+    "shasum": "4d1c4a307cde5c0ffb7db15b9e938a010080d1f7"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141011-61923-17343t0/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141011-61923-17343t0/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114117-24082-1jxp0gx/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114117-24082-1jxp0gx/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "event-kit",
-        "version": "0.8.0",
+        "version": "0.8.1",
         "path": "node_modules/event-kit/lib/event-kit.js"
       },
       {
@@ -95,7 +95,7 @@
       },
       {
         "name": "ini",
-        "version": "1.3.0",
+        "version": "1.3.2",
         "path": "node_modules/js-beautify/node_modules/config-chain/node_modules/ini/ini.js"
       },
       {
@@ -213,7 +213,7 @@
           "spec/specfiles"
         ],
         "dependencies": {
-          "event-kit": "~0.8.0",
+          "event-kit": "~0.8.1",
           "js-beautify": "~1.5.4"
         }
       },

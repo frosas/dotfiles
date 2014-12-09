@@ -1,4 +1,16 @@
-#[0.7.10]()
+#[0.7.12]()
+
+* Fixed some deprecation messages
+* Updated command palette info
+
+#[0.7.11](28f0093925f28302390edff166aeb63e584834ee)
+
+* Performance improvements
+  * Checking file language before doing anything else
+  * checking beautified text against current editor text
+* Better unsupported language message
+
+#[0.7.10](63b0131bb3dc0ce1ff63da4e8c7c04a167ab6c2c)
 
 * Updated dependencies
   * [atom/event-kit](https://github.com/atom/event-kit) 0.7.2 -> 0.8.0

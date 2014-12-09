@@ -1,5 +1,10 @@
 ## HEAD
 
+## 0.21
+
+* Fix issue where search panel was not removed properly
+* Updated the stylesheet for compatibility with shadow-DOM-enabled editors
+
 ## 0.20
 * Ctrl-w for delete-to-beginning-of-word in insert mode
 * Folding key-bindings

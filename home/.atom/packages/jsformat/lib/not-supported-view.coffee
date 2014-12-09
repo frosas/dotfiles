@@ -3,9 +3,9 @@ path = require 'path'
 
 module.exports =
 class NotSupportedNotificationView extends View
-  constructor: (state, @message) ->
-    this.message = @message
-    super(state)
+  constructor: (@fileType) ->
+    this.fileType = @fileType
+    super()
 
   @content: ->
     editor = atom.workspace.activePaneItem
@@ -14,4 +14,4 @@ class NotSupportedNotificationView extends View
     message = ext.length > 0 ? ext : title
 
     @div class: 'test overlay from-top', =>
-      @div "Format: '#{message}' files not yet supported.", class: "message"
+      @div "Formatting '#{message}' files is not yet supported.", class: "message"
