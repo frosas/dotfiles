@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# A diff like the one you see in GitHub PRs
-
-BRANCH=${1:-"HEAD"}
-REFERENCE_BRANCH=${2:-"origin/master"}
-git diff $(git merge-base $BRANCH $REFERENCE_BRANCH)..$BRANCH "$@"
