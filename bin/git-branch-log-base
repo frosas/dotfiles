@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Shows logs up to the common ancestor 
+
+REFERENCE_BRANCH=${1:-"origin/master"}; shift
+BRANCH=${2:-"HEAD"}; shift
+git log $(git merge-base $BRANCH $REFERENCE_BRANCH)..$BRANCH "$@"
