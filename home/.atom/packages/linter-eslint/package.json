@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationEvents": [],
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "eslint": "^0.9.2"
+    "eslint": "^0.10.1"
   },
   "readme": "linter-eslint\n=========================\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [eslint](http://eslint.org). It will be used with files that have the “JavaScript” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Plugin installation\n```\n$ apm install linter-eslint\n```\n\n## Settings\nYou can configure linter-eslint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):\n```\n'linter-eslint':\n  'eslintRulesDir': ''\n```\n\nThe `eslintRulesDir` is relative to the working directory (project root).\n\n## Contributing\nIf you would like to contribute enhancements or fixes, please do the following:\n\n1. Fork the plugin repository.\n1. Hack on a separate topic branch created from the latest `master`.\n1. Commit and push the topic branch.\n1. Make a pull request.\n1. welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n- Indent is 2 spaces.\n- Code should pass coffeelint linter.\n- Vertical whitespace helps readability, don’t be afraid to use it.\n\nThank you for helping out!\n\n## Donation\n[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)\n",
   "readmeFilename": "README.md",
@@ -22,18 +22,18 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@0.2.3",
+  "_id": "linter-eslint@0.2.4",
   "dist": {
-    "shasum": "185531ef6ebdc932ae55f956e99267cacfde8500"
+    "shasum": "c6c938abe80164debb22a55b142ae4b13073338c"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141027-49664-1o5k164/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141027-49664-1o5k164/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141110-94003-1rpirmz/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141110-94003-1rpirmz/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "eslint",
-        "version": "0.9.2",
+        "version": "0.10.1",
         "path": "node_modules/eslint/lib/api.js"
       },
       {
@@ -123,8 +123,13 @@
       },
       {
         "name": "doctrine",
-        "version": "0.5.2",
+        "version": "0.6.2",
         "path": "node_modules/eslint/node_modules/doctrine/doctrine.js"
+      },
+      {
+        "name": "esutils",
+        "version": "1.1.6",
+        "path": "node_modules/eslint/node_modules/doctrine/node_modules/esutils/lib/utils.js"
       },
       {
         "name": "escope",
@@ -148,17 +153,17 @@
       },
       {
         "name": "argparse",
-        "version": "0.1.15",
+        "version": "0.1.16",
         "path": "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/index.js"
       },
       {
         "name": "underscore",
-        "version": "1.4.4",
+        "version": "1.7.0",
         "path": "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/underscore.js"
       },
       {
         "name": "underscore.string",
-        "version": "2.3.3",
+        "version": "2.4.0",
         "path": "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/lib/underscore.string.js"
       },
       {
@@ -208,7 +213,7 @@
       },
       {
         "name": "fast-levenshtein",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "path": "node_modules/eslint/node_modules/optionator/node_modules/fast-levenshtein/levenshtein.js"
       },
       {
@@ -276,7 +281,9 @@
         "node_modules/eslint/node_modules/debug/component.json",
         "node_modules/eslint/node_modules/debug/node_modules/ms/package.json",
         "node_modules/eslint/node_modules/debug/package.json",
+        "node_modules/eslint/node_modules/doctrine/coverage/coverage-final.json",
         "node_modules/eslint/node_modules/doctrine/eslint.json",
+        "node_modules/eslint/node_modules/doctrine/node_modules/esutils/package.json",
         "node_modules/eslint/node_modules/doctrine/package.json",
         "node_modules/eslint/node_modules/escope/bower.json",
         "node_modules/eslint/node_modules/escope/package.json",
@@ -285,6 +292,7 @@
         "node_modules/eslint/node_modules/js-yaml/bower.json",
         "node_modules/eslint/node_modules/js-yaml/examples/dumper.json",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/package.json",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/bower.json",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/component.json",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/package.json",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/package.json",
@@ -390,6 +398,7 @@
         "node_modules/eslint/lib/rules/no-floating-decimal.js",
         "node_modules/eslint/lib/rules/no-func-assign.js",
         "node_modules/eslint/lib/rules/no-implied-eval.js",
+        "node_modules/eslint/lib/rules/no-inline-comments.js",
         "node_modules/eslint/lib/rules/no-inner-declarations.js",
         "node_modules/eslint/lib/rules/no-invalid-regexp.js",
         "node_modules/eslint/lib/rules/no-irregular-whitespace.js",
@@ -449,6 +458,7 @@
         "node_modules/eslint/lib/rules/no-with.js",
         "node_modules/eslint/lib/rules/no-wrap-func.js",
         "node_modules/eslint/lib/rules/one-var.js",
+        "node_modules/eslint/lib/rules/operator-assignment.js",
         "node_modules/eslint/lib/rules/padded-blocks.js",
         "node_modules/eslint/lib/rules/quote-props.js",
         "node_modules/eslint/lib/rules/quotes.js",
@@ -461,7 +471,7 @@
         "node_modules/eslint/lib/rules/space-in-parens.js",
         "node_modules/eslint/lib/rules/space-infix-ops.js",
         "node_modules/eslint/lib/rules/space-return-throw-case.js",
-        "node_modules/eslint/lib/rules/space-unary-word-ops.js",
+        "node_modules/eslint/lib/rules/space-unary-ops.js",
         "node_modules/eslint/lib/rules/spaced-line-comment.js",
         "node_modules/eslint/lib/rules/strict.js",
         "node_modules/eslint/lib/rules/use-isnan.js",
@@ -472,6 +482,8 @@
         "node_modules/eslint/lib/rules/wrap-regex.js",
         "node_modules/eslint/lib/rules/yoda.js",
         "node_modules/eslint/lib/rules.js",
+        "node_modules/eslint/lib/timing.js",
+        "node_modules/eslint/lib/token-store.js",
         "node_modules/eslint/lib/util/traverse.js",
         "node_modules/eslint/lib/util.js",
         "node_modules/eslint/node_modules/chalk/index.js",
@@ -510,7 +522,14 @@
         "node_modules/eslint/node_modules/debug/debug.js",
         "node_modules/eslint/node_modules/debug/node.js",
         "node_modules/eslint/node_modules/debug/node_modules/ms/index.js",
+        "node_modules/eslint/node_modules/doctrine/coverage/lcov-report/prettify.js",
         "node_modules/eslint/node_modules/doctrine/doctrine.js",
+        "node_modules/eslint/node_modules/doctrine/gulpfile.js",
+        "node_modules/eslint/node_modules/doctrine/node_modules/esutils/lib/ast.js",
+        "node_modules/eslint/node_modules/doctrine/node_modules/esutils/lib/code.js",
+        "node_modules/eslint/node_modules/doctrine/node_modules/esutils/lib/keyword.js",
+        "node_modules/eslint/node_modules/doctrine/node_modules/esutils/lib/utils.js",
+        "node_modules/eslint/node_modules/doctrine/tmp/t.js",
         "node_modules/eslint/node_modules/escope/Gruntfile.js",
         "node_modules/eslint/node_modules/escope/escope.js",
         "node_modules/eslint/node_modules/esprima/bin/esparse.js",
@@ -585,10 +604,10 @@
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/lib/help/added_formatters.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/lib/help/formatter.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/lib/namespace.js",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/index.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/underscore-min.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/underscore.js",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/dist/underscore.string.min.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/foo.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/gulpfile.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/lib/underscore.string.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/esprima/bin/esparse.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/esprima/bin/esvalidate.js",
@@ -652,7 +671,7 @@
           "lib"
         ],
         "dependencies": {
-          "eslint": "^0.9.2"
+          "eslint": "^0.10.1"
         }
       },
       {
@@ -669,7 +688,7 @@
           "chalk": "~0.5.1",
           "concat-stream": "^1.4.6",
           "debug": "^2.0.0",
-          "doctrine": "^0.5.2",
+          "doctrine": "^0.6.2",
           "escope": "~1.0.0",
           "esprima": "^1.2.2",
           "estraverse": "~1.5.1",
@@ -746,6 +765,18 @@
       },
       {
         "paths": [
+          "node_modules/eslint/node_modules/doctrine/coverage",
+          "node_modules/eslint/node_modules/doctrine/coverage/lcov-report",
+          "node_modules/eslint/node_modules/doctrine",
+          "node_modules/eslint/node_modules/doctrine/test",
+          "node_modules/eslint/node_modules/doctrine/tmp"
+        ],
+        "dependencies": {
+          "esutils": "^1.1.4"
+        }
+      },
+      {
+        "paths": [
           "node_modules/eslint/node_modules/escope"
         ],
         "dependencies": {
@@ -781,8 +812,8 @@
           "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/lib/help"
         ],
         "dependencies": {
-          "underscore": "~1.4.3",
-          "underscore.string": "~2.3.1"
+          "underscore": "~1.7.0",
+          "underscore.string": "~2.4.0"
         }
       },
       {

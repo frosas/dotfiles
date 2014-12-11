@@ -1,7 +1,7 @@
 {
   "name": "minimap",
   "main": "./lib/minimap",
-  "version": "3.4.5",
+  "version": "3.4.7",
   "private": true,
   "description": "A preview of the full source code.",
   "author": {
@@ -43,12 +43,12 @@
     "url": "https://github.com/fundon/atom-minimap/issues"
   },
   "homepage": "https://github.com/fundon/atom-minimap",
-  "_id": "minimap@3.4.5",
+  "_id": "minimap@3.4.7",
   "dist": {
-    "shasum": "37e0c77843407b1a22c5b39c057789b3b0e79664"
+    "shasum": "b4e8f8acd109d19ff95568f328dd2092e3ee2ae9"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114115-3538-11ulq11/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114115-3538-11ulq11/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141110-6917-8bs52m/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141110-6917-8bs52m/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -59,7 +59,7 @@
       },
       {
         "name": "space-pen",
-        "version": "4.2.2",
+        "version": "4.3.0",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/lib/space-pen.js"
       },
       {
@@ -265,7 +265,7 @@
         "dependencies": {
           "fuzzaldrin": "^2.1.0",
           "grim": "^0.12.0",
-          "space-pen": "^4.2.2"
+          "space-pen": "^4.3.0"
         }
       },
       {

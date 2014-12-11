@@ -75,7 +75,7 @@ class MinimapView extends View
   # Creates a new {MinimapView}.
   #
   # editorView - The `TextEditorView` for which displaying a minimap.
-  constructor: (editorView) ->
+  constructor: (editorView, @paneView) ->
     @emitter = new Emitter
     @setEditorView(editorView)
 
@@ -213,8 +213,12 @@ class MinimapView extends View
 
   setEditorView: (@editorView) ->
     @editor = @editorView.getModel()
-    @pane = atom.workspace.paneForItem(@editor)
-    @paneView = atom.views.getView(@pane)
+    if @paneView?
+      @pane = @paneView.getModel()
+    else
+      @pane = atom.workspace.paneForItem(@editor)
+      @paneView = atom.views.getView(@pane)
+
     @renderView?.setEditorView(@editorView)
 
     if @obsPane?
@@ -489,11 +493,13 @@ class MinimapView extends View
     @isClicked = true
     e.preventDefault()
     e.stopPropagation()
-    # VisibleArea's center-y
+
     y = e.pageY - @offsetTop
-    top = @indicator.computeFromCenterY(y) / @scaleY
-    # @note: currently, no animation.
-    @editor.scrollToScreenPosition({top, left: 0})
+    top = (y + @renderView.scrollTop()) / @scaleY
+
+    position = @editor.displayBuffer.screenPositionForPixelPosition({top, left: 0})
+    @editor.scrollToScreenPosition(position, center: true)
+
     # Fix trigger `mousewheel` event.
     setTimeout =>
       @isClicked = false
