@@ -4,7 +4,7 @@
     "name": "Matt Berkowitz"
   },
   "main": "./lib/autoclose-html",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "private": true,
   "description": "Automates closing of HTML Tags",
   "repository": {
@@ -34,10 +34,23 @@
     "url": "https://github.com/mattberkowitz/autoclose-html/issues"
   },
   "homepage": "https://github.com/mattberkowitz/autoclose-html",
-  "_id": "autoclose-html@0.12.0",
+  "_id": "autoclose-html@0.13.0",
   "dist": {
-    "shasum": "bd74559af2823a3a505747036886cd1344d17790"
+    "shasum": "26b8d45294ed06b5e58e2fe8e2177059717d8cf6"
   },
-  "_resolved": "C:\\Users\\msilva\\AppData\\Local\\Temp\\d-114711-6236-8rgida\\package.tgz",
-  "_from": "/Users/frosasbosque/.atom/.node-gyp/.atom/.apm/autoclose-html/0.12.0/package.tgz"
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141113-8239-xpmket/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141113-8239-xpmket/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/autoclose-html.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }

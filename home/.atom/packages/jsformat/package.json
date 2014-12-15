@@ -1,7 +1,7 @@
 {
   "name": "jsformat",
   "main": "./lib/format",
-  "version": "0.7.12",
+  "version": "0.7.14",
   "private": true,
   "description": "javascript formatting for the atom text editor",
   "keywords": [
@@ -29,12 +29,12 @@
     "url": "https://github.com/jdc0589/jsformat-atom/issues"
   },
   "homepage": "https://github.com/jdc0589/jsformat-atom",
-  "_id": "jsformat@0.7.12",
+  "_id": "jsformat@0.7.14",
   "dist": {
-    "shasum": "4d1c4a307cde5c0ffb7db15b9e938a010080d1f7"
+    "shasum": "f6fce4b835b54ace2ca2a5253e859598f6797dfd"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114117-24082-1jxp0gx/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114117-24082-1jxp0gx/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141111-54402-pbd69x/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141111-54402-pbd69x/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

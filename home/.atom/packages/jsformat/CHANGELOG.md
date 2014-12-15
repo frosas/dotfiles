@@ -1,4 +1,13 @@
-#[0.7.12]()
+#[0.7.14]()
+
+* Possible fix for `cannot dispose of undefined` error
+
+#[0.7.13](1039677dd3e59200b8dacea75f15b85ea0cd0800)
+
+* Fixed keybindings not working
+* Fixed package not being labeled properly in command palette
+
+#[0.7.12](949eb2305ea52c5836c08b2c034c0d4ff7d151cb)
 
 * Fixed some deprecation messages
 * Updated command palette info
