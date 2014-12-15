@@ -1,9 +1,17 @@
 # vim: set filetype=bash
 
+######################################################################
+# Bash completion
+######################################################################
+
 if [ `uname` = Darwin ]; then 
     # __git_ps1 is defined here
     . `brew --prefix`/etc/bash_completion
 fi
+
+# Completion for `g` alias
+# From https://gist.github.com/JuggoPop/10706934
+__git_complete g __git_main
 
 ######################################################################
 # Prompt
@@ -74,6 +82,7 @@ if [ `uname` = Linux ]; then
     alias ls="ls -FAh --color"
 fi
 
+alias g="git" # See completion for `g` above
 alias gs="git status --short"
 alias gd="git-uncommitted-diff"
 alias gl="git pretty-log"
