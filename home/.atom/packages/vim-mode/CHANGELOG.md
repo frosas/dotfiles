@@ -1,5 +1,15 @@
 ## HEAD
 
+## 0.23
+
+* Made motions, operators and text-objects work properly in the
+  presence of multiple cursors.
+
+## 0.22
+
+* Fixed a stylesheet issue that caused visual glitches when vim-mode
+  was disabled with the Shadow DOM turned on.
+
 ## 0.21
 
 * Fix issue where search panel was not removed properly
@@ -17,7 +27,7 @@
 * Fix interaction with autocomplete
 
 ## 0.19
-* Properly re-enable editor input when after disabling vim-mode
+* Properly re-enable editor input after disabling vim-mode
 
 ## 0.17
 * Fix typo

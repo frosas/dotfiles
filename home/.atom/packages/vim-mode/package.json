@@ -1,7 +1,7 @@
 {
   "name": "vim-mode",
   "main": "./lib/vim-mode",
-  "version": "0.21.0",
+  "version": "0.23.0",
   "description": "Add vim modal control",
   "license": "MIT",
   "private": true,
@@ -22,12 +22,12 @@
     "url": "https://github.com/atom/vim-mode/issues"
   },
   "homepage": "https://github.com/atom/vim-mode",
-  "_id": "vim-mode@0.21.0",
+  "_id": "vim-mode@0.23.0",
   "dist": {
-    "shasum": "e2533cd7bfaf3f3a2cacfb6cbddb0a82fd21e6f5"
+    "shasum": "6c6d4573fd1801a5479c9f910ceb0f3a521fb9fd"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114118-57385-82xg8/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-114118-57385-82xg8/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11506-28116-1y8fwh4/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11506-28116-1y8fwh4/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -68,7 +68,7 @@
       },
       {
         "name": "underscore-plus",
-        "version": "1.6.1",
+        "version": "1.6.6",
         "path": "node_modules/underscore-plus/lib/underscore-plus.js"
       },
       {

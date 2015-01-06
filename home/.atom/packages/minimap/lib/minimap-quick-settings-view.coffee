@@ -2,7 +2,7 @@
 {CompositeDisposable, Emitter} = require 'event-kit'
 $ = View.__super__.constructor
 
-Minimap = require './minimap'
+Minimap = require './main'
 
 module.exports =
 class MinimapQuickSettingsView extends View
@@ -48,7 +48,8 @@ class MinimapQuickSettingsView extends View
     @emitter.on 'did-destroy', callback
 
   attach: ->
-    atom.workspaceView.append this
+    workspaceElement = atom.views.getView(atom.workspace)
+    workspaceElement.appendChild @element
     @hiddenInput.focus()
 
   destroy: =>
@@ -97,7 +98,7 @@ class MinimapQuickSettingsView extends View
       @selectedItem.addClass('selected')
 
   removeItemFor: (name, plugin) ->
-    @list.remove(@plugins[name])
+    try @list.remove(@plugins[name])
     delete @plugins[name]
 
   activateItem: (name, plugin) ->

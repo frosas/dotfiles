@@ -33,6 +33,10 @@
   // Checklist icon
   &[data-name$="TODO"]:before { .checklist-icon; .medium-yellow; }
 
+  // Clojure
+  &[data-name$=".clj"]:before,
+  &[data-name$=".cljs"]:before { .clojure-icon; .medium-blue; }
+
   // Code icon
   &[data-name$=".xml"]:before { .code-icon; .medium-blue;   }
   &[data-name$=".jl"]:before { .code-icon; .medium-purple;   }
@@ -75,6 +79,9 @@
   &[data-name$=".hbs"]:before,
   &[data-name$=".handlebars"]:before,
   &[data-name$=".mustache"]:before { .hbs-mustache-icon; .medium-orange; }
+  // Emblem
+  &[data-name$=".emblem"]:before,
+  &[data-name$=".em"]:before { .hbs-mustache-icon; .medium-blue; }
 
   // Smarty icon
   &[data-name$=".tpl"]:before { .smarty-icon; .medium-yellow; }
@@ -112,21 +119,27 @@
   &[data-name$=".py"]:before { .python-icon; .dark-yellow; }
 
   // Ruby icon
+  &[data-name="Capfile"]:before,
   &[data-name$="Gemfile"]:before,
   &[data-name$="Gemfile.lock"]:before,
+  &[data-name="Guardfile"]:before,
   &[data-name$="Rakefile"]:before,
   &[data-name$=".gemspec"]:before,
   &[data-name=".ruby-gemset"]:before,
-  &[data-name=".ruby-version"]:before { .ruby-icon; }
+  &[data-name=".ruby-version"]:before,
+  &[data-name=".rspec"]:before { .ruby-icon; }
 
   &[data-name$=".rb"]:before,
+  &[data-name$=".ru"]:before,
   &[data-name$=".erb"]:before,
   &[data-name$=".opal"]:before   { .ruby-icon; .medium-red; }
 
-  &[data-name$="_spec.rb"]:before { .comment-icon; .medium-green; }
+  &[data-name="rails"]:before { .rails-icon; .medium-red; }
 
   &[data-name$=".pp"]:before { .puppet-icon; .medium-purple }
 
+  // Cucumber (Gherkin) icon
+  &[data-name$=".feature"]:before { .comment-icon; .medium-green; }
 
   // JavaScript icon
   &[data-name$=".js"]:before  { .js-icon; .medium-yellow; }
@@ -178,6 +191,9 @@
   &[data-name$=".h"]:before       { .c-icon; .medium-purple; }
   &[data-name$=".cpp"]:before     { .cpp-icon; .medium-blue; }
   &[data-name$=".hpp"]:before     { .cpp-icon; .medium-purple; }
+  &[data-name$=".cxx"]:before     { .cpp-icon; .medium-blue; }
+  &[data-name$=".cc"]:before     { .cpp-icon; .medium-blue; }
+  &[data-name$=".hxx"]:before     { .cpp-icon; .medium-purple; }
   &[data-name$=".ipp"]:before     { .cpp-icon; .medium-orange; }
   &[data-name$=".m"]:before       { .objc-icon; .medium-blue; }
   &[data-name$=".mm"]:before      { .objc-icon; .medium-blue; }
@@ -232,6 +248,9 @@
   &[data-name="GULPFILE.coffee"]:before,
   &[data-name="Gulpfile.coffee"]:before,
   &[data-name="gulpfile.coffee"]:before { .gulp-icon; .medium-maroon; }
+
+  // Travis icon
+  &[data-name^=".travis"]:before { .travis-icon; .medium-red; }
 
   // Dockerfile icon
   &[data-name="Dockerfile"]:before { .docker-icon; .dark-blue; }

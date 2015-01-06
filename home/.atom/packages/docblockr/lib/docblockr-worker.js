@@ -85,7 +85,7 @@ module.exports =
           self.write(editor, '\n$0\n */');
         }
         // extend line comments (// and #)
-        else if(self.validate_request({preceding:true, preceding_regex:regex.extend_line, scope:'comment.line'})) {
+        else if((self.editor_settings.extend_double_slash == true) && (self.validate_request({preceding:true, preceding_regex:regex.extend_line, scope:'comment.line'}))) {
           // console.log('Snippet Extend line command');
           var _regex = /^(\s*(?:#|\/\/[\/!]?)\s*).*$/;
           var editor = atom.workspace.getActiveEditor();
@@ -135,13 +135,20 @@ module.exports =
 
       atom.workspaceView.command('docblockr:wrap-lines', function(event) {
         // console.log('Wraplines command');
-        self.wrap_lines_command();
+        if(self.validate_request({scope:'comment.block'}))
+          self.wrap_lines_command();
       });
 
       atom.workspaceView.command('docblockr:decorate', function(event) {
         // console.log('Decorate command');
         if(self.validate_request({scope:'comment.line.double-slash'}))
           self.decorate_command();
+      });
+
+      atom.workspaceView.command('docblockr:decorate-multiline', function(event) {
+        // console.log('Decorate Multiline command');
+        if(self.validate_request({scope:'comment.block'}))
+          self.decorate_multiline_command();
       });
     }
 
@@ -293,8 +300,8 @@ module.exports =
       var spaces = this.get_indent_spaces(editor, prev_line);
 
       if(spaces !== null) {
-        var to_star = prev_line.exec(/^(\s*\*)/);
-        to_star = matches[1].length;
+        var matches = /^(\s*\*)/.exec(prev_line);
+        var to_star = matches[1].length;
         var to_insert = spaces - current_pos.column + to_star;
         if(to_insert <= 0) {
           this.write(editor, '\t');
@@ -345,7 +352,7 @@ module.exports =
       var editor = atom.workspace.getActiveEditor();
       var pos = editor.getCursorBufferPosition();
       var whitespace_re = /^(\s*)\/\//;
-      var scope_range = this.scope_range(editor, pos, '.comment.line.double-slash');
+      var scope_range = this.scope_range(editor, pos, 'comment.line.double-slash');
 
       var max_len = 0;
       var _i, _len, _row, leading_ws, line_text, tab_count;
@@ -377,7 +384,75 @@ module.exports =
         var _range = [[scope_range[0].row + _i, 0], [scope_range[0].row + _i, _length]];
         editor.setTextInBufferRange(_range, leading_ws + line_text + this.repeat(' ', r_padding) + '//');
       }
-      editor.buffer.insert(scope_range[0], '/' + this.repeat('/', line_length + 3) + '\n');
+      editor.buffer.insert(scope_range[0], this.repeat('/', line_length + 3) + '\n');
+    };
+
+    DocBlockrAtom.prototype.decorate_multiline_command = function() {
+      var editor = atom.workspace.getActiveEditor();
+      var pos = editor.getCursorBufferPosition();
+      var whitespace_re = /^(\s*)\/\*/;
+      var tab_size = atom.config.get('editor.tabLength');
+      var scope_range = this.scope_range(editor, pos, 'comment.block');
+      var line_lengths = {};
+
+      var max_len = 0;
+      var _i, _len, _row, block_ws, leading_ws, line_text, block_tab_count, content_tab_count, matches;
+      _row = scope_range[0].row;
+      _len = Math.abs(scope_range[0].row - scope_range[1].row);
+
+      // get block indent from first line
+      line_text = editor.lineForBufferRow(_row);
+      block_tab_count = line_text.split('\t').length - 1;
+      matches = whitespace_re.exec(line_text);
+      if(matches == null)
+        block_ws = 0;
+      else
+        block_ws = matches[1].length;
+      block_ws-= block_tab_count;
+
+      // get max_len
+      for(_i = 1; _i < _len; _i++) {
+        var text_length;
+        line_text = editor.lineForBufferRow(_row + _i);
+        text_length = line_text.length;
+        content_tab_count = line_text.split('\t').length - 1;
+        line_lengths[_i] = text_length - content_tab_count + (content_tab_count * tab_size);
+        max_len = Math.max(max_len, line_lengths[_i]);
+      }
+
+      var line_length = max_len - block_ws;
+      block_ws = this.repeat('\t', block_tab_count) + this.repeat(' ', block_ws);
+
+      // last line
+      line_text = editor.lineForBufferRow(scope_range[1].row);
+      line_text = line_text.replace(/^(\s*)(\*)+\//, function(self) {
+        return function(match, p1, stars) {
+          var len = stars.length;
+          return (p1 +  self.repeat('*' , (line_length + 2 - len)) + '/' + '\n');
+        }
+      }(this));
+      var _range = [[scope_range[1].row, 0], [scope_range[1].row, line_length]];
+      editor.setTextInBufferRange(_range, line_text);
+
+      // first line
+      line_text = editor.lineForBufferRow(scope_range[0].row);
+      line_text = line_text.replace(/^(\s*)\/(\*)+/, function(self) {
+        return function(match, p1, stars) {
+          var len = stars.length;
+          return (p1 +  '/' +  self.repeat('*' , (line_length + 2 - len)));
+        }
+      }(this));
+      _range = [[scope_range[0].row, 0], [scope_range[0].row, line_length]];
+      editor.setTextInBufferRange(_range, line_text);
+
+      // skip first line and last line
+      for(_i = _len-1; _i > 0; _i--) {
+        line_text = editor.lineForBufferRow(_row + _i);
+        var _length = editor.lineLengthForBufferRow(_row + _i);
+        var r_padding = 1 + (max_len - line_lengths[_i]);
+        _range = [[scope_range[0].row + _i, 0], [scope_range[0].row + _i, _length]];
+        editor.setTextInBufferRange(_range, line_text + this.repeat(' ', r_padding) + '*');
+      }
     };
 
     DocBlockrAtom.prototype.deindent_command = function() {
@@ -408,7 +483,7 @@ module.exports =
 
       if(editor.snippetExpansion != null)
         editor.snippetExpansion.destroy();
-      var scope_range = this.scope_range(editor, pos, '.comment.block');
+      var scope_range = this.scope_range(editor, pos, 'comment.block');
       var text = editor.getTextInBufferRange([scope_range[0], scope_range[1]]);
       // escape string, so variables starting with $ won't be removed
       text = escape(text);
@@ -441,7 +516,7 @@ module.exports =
       var spacer_between_sections = (this.editor_settings.spacer_between_sections === true);
       var spacer_between_desc_tags = (this.editor_settings.spacer_between_sections == 'after_description');
 
-      var scope_range = this.scope_range(editor, pos, '.comment.block');
+      var scope_range = this.scope_range(editor, pos, 'comment.block');
       //var text = editor.getTextInBufferRange([scope_range[0], scope_range[1]]);
 
       // find the first word
@@ -694,7 +769,7 @@ module.exports =
       }
       _row = point.row;
       var last_row = editor.getLastBufferRow();
-      while(_row < last_row) {
+      while(_row <= last_row) {
         line_length = editor.lineLengthForBufferRow(_row);
         _range = editor.displayBuffer.bufferRangeForScopeAtPosition(scope_name, [_row, 0]);
         if(_range == null)
@@ -712,13 +787,15 @@ module.exports =
       var scope = editor.getGrammar().scopeName;
       var regex = /\bsource\.([a-z+\-]+)/;
       var matches = regex.exec(scope);
-      var source_lang = (matches === null)? 'js': matches[1];
+      var source_lang = (matches === null)? null: matches[1];
 
       var settings = atom.config.getSettings().docblockr;
 
-      if(source_lang === "php")
-          return new DocsParser.PhpParser(settings);
-      else if(source_lang === "coffee")
+      if((source_lang === null) && (scope == "text.html.php")) {
+        return new DocsParser.PhpParser(settings);
+      }
+
+      if(source_lang === "coffee")
           return new DocsParser.CoffeeParser(settings);
       else if((source_lang === "actionscript") || (source_lang == 'haxe'))
           return new DocsParser.ActionscriptParser(settings);
@@ -737,6 +814,7 @@ module.exports =
 
     DocBlockrAtom.prototype.generate_snippet = function(out, inline) {
       //# substitute any variables in the tags
+
       if(out)
         out = this.substitute_variables(out);
 

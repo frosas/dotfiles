@@ -23,7 +23,7 @@ module.exports =
       @subscribeToEvents()
 
   format: (state) ->
-    editor = atom.workspace.getActivePaneItem()
+    editor = atom.workspace.getActiveTextEditor()
     if !editor
       return
 
@@ -31,6 +31,8 @@ module.exports =
 
     if (!(grammar is 'JSON' or grammar is 'JavaScript'))
       @displayUnsupportedLanguageNotification(grammar)
+    else if (atom.config.get('jsformat.ignore_files').indexOf(editor.getTitle()) != -1)
+      return
     else
       mainCursor = editor.getCursors()[0]
       textBuffer = editor.getBuffer()
@@ -54,20 +56,19 @@ module.exports =
         mainCursor.setBufferPosition(currentCursorPosition)
         currentPosition = currentCursorPosition
 
-      whitespaceText = textBuffer.getTextInRange([[0, 0], currentPosition])
+      textuntilCursor = textBuffer.getTextInRange([[0, 0], currentPosition])
 
-      nonWhitespaceCharacters = whitespaceText.match(nonWhitespaceRegex)
-      whitespaceCharacterCount = whitespaceText.match(whitespaceRegex)
+      nonWhitespaceCharacters = textuntilCursor.match(nonWhitespaceRegex)
+      whitespaceCharacters = textuntilCursor.match(whitespaceRegex)
 
-      whitespaceCharacterCount = if whitespaceCharacterCount then whitespaceCharacterCount.length else 0
       nonWhitespaceCharacters = if nonWhitespaceCharacters then nonWhitespaceCharacters.length else 0
+      whitespaceCharacters = if whitespaceCharacters then whitespaceCharacters.length else 0
 
       @formatJavascript(editor)
 
-      nonWhitespaceCount = 0
       text = editor.getText()
 
-      newCursorPosition = textBuffer.positionForCharacterIndex(nonWhitespaceCharacters + whitespaceCharacterCount);
+      newCursorPosition = textBuffer.positionForCharacterIndex(nonWhitespaceCharacters + whitespaceCharacters);
 
       mainCursor.setBufferPosition(newCursorPosition)
 
@@ -75,27 +76,28 @@ module.exports =
     editorSettings = atom.config.get('editor')
 
     opts = atom.config.get('jsformat')
-
+    opts.indent_with_tabs = editor.getSoftTabs()
     opts.indent_size = editorSettings.tabLength
     opts.wrap_line_length = editorSettings.preferredLineLength
 
-    beautifiedText = jsbeautify(editor.getText(), opts)
+    editorText = editor.getText()
+    beautifiedText = jsbeautify(editorText, opts)
 
-    if (editor.getText() != beautifiedText)
+    if (editorText != beautifiedText)
       if @selectionsAreEmpty(editor)
-        editor.setText(jsbeautify(editor.getText(), opts))
+        editor.setText(beautifiedText)
 
       else
         for selection in editor.getSelections()
-          selection.insertText(jsbeautify(selection.getText(), opts), {select:true})
+          selection.insertText(jsbeautify(selection.getText(), opts), { select: true })
 
   selectionsAreEmpty: (editor) ->
     for selection in editor.getSelections()
       return false unless selection.isEmpty()
-    true
+    return true
 
   subscribeToEvents: (state) ->
-    if atom.config.get('jsformat.format_on_save') ? @configDefaults['format_on_save']
+    if (atom.config.get('jsformat.format_on_save'))
       @editorCreationSubscription = atom.workspace.observeTextEditors (editor) =>
         grammar = editor.getGrammar().scopeName
 

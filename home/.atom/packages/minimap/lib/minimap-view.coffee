@@ -79,8 +79,6 @@ class MinimapView extends View
     @emitter = new Emitter
     @setEditorView(editorView)
 
-    @paneView.classList.add('with-minimap')
-
     @subscriptions = new CompositeDisposable
 
     super({minimapView: this, editorView})
@@ -210,6 +208,8 @@ class MinimapView extends View
     @detachFromPaneView()
     @renderView.destroy()
     @remove()
+
+  getTextEditor: -> @editor
 
   setEditorView: (@editorView) ->
     @editor = @editorView.getModel()

@@ -1,4 +1,4 @@
-'global':
+'*':
   'exception-reporting':
     'userId': '70a0032d-3fb2-4bcb-e887-64623e256e19'
   'release-notes':
@@ -8,25 +8,25 @@
   'metrics':
     'userId': 'ba44e3beb28ecd4cac067ffa00fb25caece41ae8'
   'editor':
-    'tabLength': 4
-    'showIndentGuide': true
     'fontFamily': 'Ubuntu Mono'
-    'invisibles': {}
     'fontSize': 14
+    'showIndentGuide': true
+    'tabLength': 4
+    'invisibles': {}
   'core':
-    'themes': [
-      'atom-dark-ui'
-      'base16-tomorrow-dark-theme'
-    ]
     'disabledPackages': [
       'jsonpp'
       'atom-lint'
       'vim-mode'
       'linter-jshint'
       'spell-check'
+      'minimap'
+    ]
+    'themes': [
+      'atom-dark-ui'
+      'base16-tomorrow-dark-theme'
     ]
     'audioBeep': false
-    'useReactEditor': true
   'spell-check':
     'grammars': [
       'source.gfm'
@@ -48,8 +48,8 @@
   'autocomplete':
     'includeCompletionsFromAllBuffers': true
   'tree-view':
-    'hideIgnoredNames': true
     'hideVcsIgnoredFiles': true
+    'hideIgnoredNames': true
   'recent-files':
     'updated': false
   'todo-show':
@@ -77,21 +77,3 @@
     'startInInsertMode': true
   'git-diff':
     'showIconsInEditorGutter': true
-  'minimap': {}
-'.ftl.html.text':
-  'editor': {}
-'.basic.html.text':
-  'editor': {}
-'.js.regexp.source':
-  'editor': {}
-'.js.source':
-  'editor': {}
-'autoclose-html': {}
-'recent-files':
-  'updated': false
-'exception-reporting':
-  'userId': 'acb74c7e-1de6-337a-5f90-33eaac4f4168'
-'welcome':
-  'showOnStartup': false
-'metrics':
-  'userId': '66a66b277d73bb7770347ed47c9fdca56e52213d'

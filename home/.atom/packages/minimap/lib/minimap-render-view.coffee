@@ -97,18 +97,6 @@ class MinimapRenderView extends ScrollView
   onDidChangeScale: (callback) ->
     @emitter.on 'did-change-scale', callback
 
-  onDidAddDecoration: (callback) ->
-    @emitter.on 'did-add-decoration', callback
-
-  onDidRemoveDecoration: (callback) ->
-    @emitter.on 'did-remove-decoration', callback
-
-  onDidChangeDecoration: (callback) ->
-    @emitter.on 'did-change-decoration', callback
-
-  onDidUpdateDecoration: (callback) ->
-    @emitter.on 'did-update-decoration', callback
-
   # Sets the `TextEditorView` for which the {MinimapRenderView} instance
   # is displayed.
   #
@@ -313,6 +301,12 @@ class MinimapRenderView extends ScrollView
       height: @getMinimapHeight()
     }
 
+  getDummyDOMRoot: (shadowRoot) ->
+    if shadowRoot
+      @minimapView.getEditorViewRoot()
+    else
+      @editorView
+
   # Returns a pixel position corresponding to a character's screen
   # position.
   #
@@ -438,7 +432,7 @@ class MinimapRenderView extends ScrollView
 
     # Whitespaces can be substituted by other characters so we need
     # to replace them when that's the case.
-    if line.invisibles?
+    if line? and line.invisibles?
       re = ///
       #{line.invisibles.cr}|
       #{line.invisibles.eol}|

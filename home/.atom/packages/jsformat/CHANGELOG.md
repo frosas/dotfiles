@@ -1,6 +1,23 @@
-#[0.7.14]()
+#[0.7.18]()
 
-* Possible fix for `cannot dispose of undefined` error
+* Indentation style is now based on editor setting and not JSFormat's setting
+
+#[0.7.17](7381fa3ba031aeaf0e74f1542b10130176ae5eb2)
+
+* Code cleanup
+
+#[0.7.16](995fa1da818b2c195d89a6325606168f77501ed0)
+
+* Ignore files option to ignore files like `.jshintrc`
+
+#[0.7.15](f480d7ba6453dd7d3a10c3bcbe51421e75caed0f)
+
+* Fixed error on preferences page
+* Small performance optimizations when formatting text
+
+#[0.7.14](21007152bf3e60990fe38fb22f01f85f41f6782c)
+
+* Possible fix for `cannot dispose of undefined` error (UPDATE: Not fixed)
 
 #[0.7.13](1039677dd3e59200b8dacea75f15b85ea0cd0800)
 
