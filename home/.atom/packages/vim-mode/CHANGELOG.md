@@ -1,5 +1,22 @@
 ## HEAD
 
+## 0.26
+
+* Add o mapping in visual mode, for reversing selections
+* Implement toggle-case in visual mode
+* Fix bug in 'around word' text object
+
+## 0.25
+
+* Fixed a regression in the handling of the 'cw' command
+* Made the replace operator work with multiple cursors
+
+## 0.24
+
+* Fixed the position of the cursor after certain yank operations.
+* Fixed an issue where duplicate vim states were created when an editors were
+  moved to different panes.
+
 ## 0.23
 
 * Made motions, operators and text-objects work properly in the

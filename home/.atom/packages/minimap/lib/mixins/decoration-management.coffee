@@ -130,7 +130,7 @@ class DecorationManagement extends Mixin
 
       [start, end] = [end, start] if start.row > end.row
 
-      @stackRangeChanges({start, end})
+      @stackRangeChanges({start, end, screenDelta: end - start})
 
     decoration = new Decoration(marker, this, decorationParams)
     @decorationsByMarkerId[marker.id] ?= []
@@ -167,6 +167,10 @@ class DecorationManagement extends Mixin
     lastRenderedScreenRow  = @getLastVisibleScreenRow()
     firstRenderedScreenRow = @getFirstVisibleScreenRow()
     screenDelta = (lastRenderedScreenRow - firstRenderedScreenRow) - (endScreenRow - startScreenRow)
+
+    if isNaN(screenDelta)
+      console.log startScreenRow, endScreenRow, firstRenderedScreenRow, lastRenderedScreenRow
+      screenDelta = 0
 
     changeEvent =
       start: startScreenRow

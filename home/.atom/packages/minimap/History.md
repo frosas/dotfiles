@@ -1,3 +1,37 @@
+<a name="v3.5.4"></a>
+# v3.5.4 (2015-01-07)
+
+## :bug: Bug Fixes
+
+- Fix error raised when clicking on minimap ([a77a94a9](https://github.com/fundon/atom-minimap/commit/a77a94a981128a5a2f1335bc02729d510dfd8310), [#198](https://github.com/fundon/atom-minimap/issues/198))
+- Add guard when screenDelta is NaN ([4f1f204c](https://github.com/fundon/atom-minimap/commit/4f1f204c6b18380e5286e0e680289d62177bfd22))
+- Fix screen delta not set in decoration changes ([3aa521bd](https://github.com/fundon/atom-minimap/commit/3aa521bdefab1d5c0f27169e106a2e40dca53b6a))
+
+<a name="v3.5.3"></a>
+# v3.5.3 (2015-01-07)
+
+## :bug: Bug Fixes
+
+- Fix broken access to minimap for editor when editor is undefined ([3127b25b](https://github.com/fundon/atom-minimap/commit/3127b25bb3d845825a3ec477da1942215f630df1), [#200](https://github.com/fundon/atom-minimap/issues/200))
+
+<a name="v3.5.2"></a>
+# v3.5.2 (2015-01-07)
+
+## :bug: Bug Fixes
+
+- Fix broken quick settings command in v3 mode ([8cbde1df](https://github.com/fundon/atom-minimap/commit/8cbde1dfd4a6418335ea6f5235cbbd6b627ef16b), [#194](https://github.com/fundon/atom-minimap/issues/194))
+
+<a name="v3.5.1"></a>
+# v3.5.1 (2015-01-07)
+
+## :bug: Bug Fixes
+
+- Fix minimap position not updated if setting change before attachment ([4b9b6242](https://github.com/fundon/atom-minimap/commit/4b9b624243cd8102bc1bd4f4a19eab1d59247b5d))
+- Prevent NaN screenDelta in changes ([4f00149e](https://github.com/fundon/atom-minimap/commit/4f00149e8d98a9affe6ca3488db33aa41d1b334a))
+- Stop drag gesture when mouse leaves the window ([8d026d14](https://github.com/fundon/atom-minimap/commit/8d026d147e60cb142573ebee755e5ece5028d174), [#193](https://github.com/fundon/atom-minimap/issues/193))
+- Fix minimap canvas scaling when device pixel ratio > 1 ([8c066eee](https://github.com/fundon/atom-minimap/commit/8c066eee35694320687b157de5fbb8bd3f3e447d), [#192](https://github.com/fundon/atom-minimap/issues/192))
+- Fix duplicated minimap when dragging tab ([83830ca4](https://github.com/fundon/atom-minimap/commit/83830ca40b34fd7361c973a96619dfb20c0bf958))
+
 <a name="v3.5.0"></a>
 # v3.5.0 (2015-01-05)
 

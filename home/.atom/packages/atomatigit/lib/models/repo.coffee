@@ -56,6 +56,7 @@ class Repo extends Model
   fetch: ->
     git.cmd 'fetch'
     .catch (error) -> new ErrorView(error)
+    .done -> atom.workspaceView.trigger 'atomatigit:refresh'
 
   # checkoutBranch: =>
   #   @branchList.checkoutBranch
@@ -63,10 +64,12 @@ class Repo extends Model
   stash: ->
     git.cmd 'stash'
     .catch (error) -> new ErrorView(error)
+    .done -> atom.workspaceView.trigger 'atomatigit:refresh'
 
   stashPop: ->
     git.cmd 'stash pop'
     .catch (error) -> new ErrorView(error)
+    .done -> atom.workspaceView.trigger 'atomatigit:refresh'
 
   # Internal: Initiate a new commit.
   initiateCommit: =>
@@ -120,6 +123,7 @@ class Repo extends Model
   completeCommit: =>
     git.commit @commitMessagePath()
     .then @reload
+    .then -> atom.workspaceView.trigger 'atomatigit:focus'
     .catch (error) -> new ErrorView(error)
     .finally @cleanupCommitMessageFile
 
@@ -130,6 +134,7 @@ class Repo extends Model
       callback: (name) ->
         git.cmd "checkout -b #{name}"
         .catch (error) -> new ErrorView(error)
+        .done -> atom.workspaceView.trigger 'atomatigit:refresh'
 
   # Public: Initiate a user defined git command.
   initiateGitCommand: =>
@@ -139,6 +144,7 @@ class Repo extends Model
         git.cmd command
         .then (output) -> new OutputView(output)
         .catch (error) -> new ErrorView(error)
+        .done -> atom.workspaceView.trigger 'atomatigit:refresh'
 
   # Public: Push the repository to the remote.
   push: =>

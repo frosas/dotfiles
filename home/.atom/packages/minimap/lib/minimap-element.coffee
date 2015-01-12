@@ -28,7 +28,7 @@ class MinimapElement extends HTMLElement
 
     @observeConfig
       'minimap.displayMinimapOnLeft': (displayMinimapOnLeft) =>
-        swapPosition = @attached and displayMinimapOnLeft isnt @displayMinimapOnLeft
+        swapPosition = @minimap? and displayMinimapOnLeft isnt @displayMinimapOnLeft
         @displayMinimapOnLeft = displayMinimapOnLeft
 
         @swapMinimapPosition() if swapPosition
@@ -262,8 +262,9 @@ class MinimapElement extends HTMLElement
 
     canvasTop = @minimap.getFirstVisibleScreenRow() * @minimap.getLineHeight() - @minimap.getMinimapScrollTop()
 
-    @applyStyles @canvas,
-      transform: @makeTranslate(0, canvasTop)
+    canvasTransform = @makeTranslate(0, canvasTop)
+    canvasTransform += " " + @makeScale(1/devicePixelRatio) if devicePixelRatio isnt 1
+    @applyStyles @canvas, transform: canvasTransform
 
     if @minimapScrollIndicator and @minimap.canScroll() and not @scrollIndicator
       @initializeScrollIndicator()
@@ -368,10 +369,12 @@ class MinimapElement extends HTMLElement
 
     document.body.addEventListener('mousemove', mousemoveHandler)
     document.body.addEventListener('mouseup', mouseupHandler)
+    document.body.addEventListener('mouseout', mouseupHandler)
 
     @dragSubscription = new Disposable =>
       document.body.removeEventListener('mousemove', mousemoveHandler)
       document.body.removeEventListener('mouseup', mouseupHandler)
+      document.body.removeEventListener('mouseout', mouseupHandler)
 
   drag: (e, initial) ->
     y = e.pageY - initial.offsetTop - initial.dragOffset
@@ -404,6 +407,12 @@ class MinimapElement extends HTMLElement
       "translate3d(#{x}px, #{y}px, 0)"
     else
       "translate(#{x}px, #{y}px)"
+
+  makeScale: (x=0,y=x) ->
+    if @useHardwareAcceleration
+      "scale3d(#{x}, #{y}, 1)"
+    else
+      "scale(#{x}, #{y})"
 
 #    ######## ##       ######## ##     ## ######## ##    ## ########
 #    ##       ##       ##       ###   ### ##       ###   ##    ##

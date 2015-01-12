@@ -21,6 +21,7 @@
       'linter-jshint'
       'spell-check'
       'minimap'
+      'emmet'
     ]
     'themes': [
       'atom-dark-ui'
@@ -77,3 +78,4 @@
     'startInInsertMode': true
   'git-diff':
     'showIconsInEditorGutter': true
+  'emmet': {}

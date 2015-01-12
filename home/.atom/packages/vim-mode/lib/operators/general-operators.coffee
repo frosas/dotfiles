@@ -38,22 +38,10 @@ class Operator
     if not motion.select
       throw new OperatorError('Must compose with a motion')
 
-    # Take on the composed object's isLinewise function if this object
-    # doesn't have one.
-    motion.isLinewise ?= motion.composedObject?.isLinewise
-
     @motion = motion
     @complete = true
 
   canComposeWith: (operation) -> operation.select?
-
-  # Protected: Wraps the function within an single undo step.
-  #
-  # fn - The function to wrap.
-  #
-  # Returns nothing.
-  undoTransaction: (fn) ->
-    @editor.getBuffer().transact(fn)
 
   # Public: Preps text and sets the text register
   #
@@ -103,9 +91,6 @@ class Delete extends Operator
   # Returns nothing.
   execute: (count) ->
     if _.contains(@motion.select(count, @selectOptions), true)
-      validSelection = true
-
-    if validSelection?
       text = @editor.getSelectedText()
       @setTextRegister(@register, text)
       @editor.delete()
@@ -116,34 +101,45 @@ class Delete extends Operator
           cursor.moveLeft() if cursor.isAtEndOfLine()
 
     @vimState.activateCommandMode()
+
 #
 # It toggles the case of everything selected by the following motion
 #
 class ToggleCase extends Operator
-
-  constructor: (@editor, @vimState, {@selectOptions}={}) -> @complete = true
+  constructor: (@editor, @vimState, {@selectOptions}={}) ->
+    @complete = true
 
   execute: (count=1) ->
-    pos = @editor.getCursorBufferPosition()
-    lastCharIndex = @editor.lineTextForBufferRow(pos.row).length - 1
-    count = Math.min count, @editor.lineTextForBufferRow(pos.row).length - pos.column
+    if @vimState.mode is 'visual'
+      @editor.replaceSelectedText {}, (text) ->
+        text.split('').map((char) ->
+          lower = char.toLowerCase()
+          if char is lower
+            char.toUpperCase()
+          else
+            lower
+        ).join('')
+    else
+      pos = @editor.getCursorBufferPosition()
+      lastCharIndex = @editor.lineTextForBufferRow(pos.row).length - 1
+      count = Math.min count, @editor.lineTextForBufferRow(pos.row).length - pos.column
 
-    # Do nothing on an empty line
-    return if @editor.getBuffer().isRowBlank(pos.row)
+      # Do nothing on an empty line
+      return if @editor.getBuffer().isRowBlank(pos.row)
 
-    @undoTransaction =>
-      _.times count, =>
-        point = @editor.getCursorBufferPosition()
-        range = Range.fromPointWithDelta(point, 0, 1)
-        char = @editor.getTextInBufferRange(range)
+      @editor.transact =>
+        _.times count, =>
+          point = @editor.getCursorBufferPosition()
+          range = Range.fromPointWithDelta(point, 0, 1)
+          char = @editor.getTextInBufferRange(range)
 
-        if char is char.toLowerCase()
-          @editor.setTextInBufferRange(range, char.toUpperCase())
-        else
-          @editor.setTextInBufferRange(range, char.toLowerCase())
+          if char is char.toLowerCase()
+            @editor.setTextInBufferRange(range, char.toUpperCase())
+          else
+            @editor.setTextInBufferRange(range, char.toLowerCase())
 
-        unless point.column >= lastCharIndex
-          @editor.moveRight()
+          unless point.column >= lastCharIndex
+            @editor.moveRight()
 
     @vimState.activateCommandMode()
 
@@ -160,11 +156,11 @@ class Yank extends Operator
   execute: (count) ->
     originalPositions = @editor.getCursorBufferPositions()
     if _.contains(@motion.select(count), true)
-      selectedPositions = @editor.getCursorBufferPositions()
       text = @editor.getSelectedText()
+      startPositions = _.pluck(@editor.getSelectedBufferRanges(), "start")
       newPositions = for originalPosition, i in originalPositions
-        if selectedPositions[i] and not @motion.isLinewise?()
-          Point.min(selectedPositions[i], originalPositions[i])
+        if startPositions[i] and (@vimState.mode is 'visual' or not @motion.isLinewise?())
+          Point.min(startPositions[i], originalPositions[i])
         else
           originalPosition
     else
@@ -188,7 +184,7 @@ class Join extends Operator
   #
   # Returns nothing.
   execute: (count=1) ->
-    @undoTransaction =>
+    @editor.transact =>
       _.times count, =>
         @editor.joinLines()
     @vimState.activateCommandMode()
@@ -202,7 +198,7 @@ class Repeat extends Operator
   isRecordable: -> false
 
   execute: (count=1) ->
-    @undoTransaction =>
+    @editor.transact =>
       _.times count, =>
         cmd = @vimState.history[0]
         cmd?.execute()

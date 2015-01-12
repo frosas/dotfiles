@@ -15,6 +15,7 @@ class V4Main
     MinimapElement.registerViewProvider()
 
   deactivate: ->
+    @deactivateAllPlugins()
     minimap.destroy() for id,minimap of @editorsMinimaps
     @subscriptions.dispose()
     @editorsMinimaps = {}
@@ -28,7 +29,7 @@ class V4Main
       @toggled = true
       @initSubscriptions()
 
-  minimapForEditor: (editor) -> @editorsMinimaps[editor.id]
+  minimapForEditor: (editor) -> @editorsMinimaps[editor.id] if editor?
 
   observeMinimaps: (iterator) ->
     return unless iterator?
@@ -44,6 +45,8 @@ class V4Main
     Minimap ?= require './minimap'
 
     @subscriptions.add atom.workspace.observeTextEditors (textEditor) =>
+      return if @editorsMinimaps[textEditor.id]?
+
       minimap = new Minimap({textEditor})
       @editorsMinimaps[textEditor.id] = minimap
 

@@ -454,6 +454,17 @@ describe "Operators", ->
         keydown('r', ctrl: true)
         expect(editor.getText()).toBe "12345\nfg\nABCDE"
 
+    describe "when followed by a w", ->
+      it "changes the word", ->
+        editor.setText("word1 word2 word3")
+        editor.setCursorBufferPosition([0, "word1 w".length])
+
+        keydown("c")
+        keydown("w")
+        keydown("escape")
+
+        expect(editor.getText()).toBe "word1 w word3"
+
     describe "when followed by a G", ->
       beforeEach ->
         originalText = "12345\nabcde\nABCDE"
@@ -480,22 +491,22 @@ describe "Operators", ->
         editor.setText "12345\nabcde\nABCDE"
 
       describe "on the beginning of the second line", ->
-        it "deletes the line", ->
+        it "deletes all the text on the line", ->
           editor.setCursorScreenPosition([1,0])
           keydown('c')
           keydown('2')
           keydown('G', shift: true)
           keydown('escape');
-          expect(editor.getText()).toBe("12345\nABCDE")
+          expect(editor.getText()).toBe("12345\n\nABCDE")
 
       describe "on the middle of the second line", ->
-        it "deletes the line", ->
+        it "deletes all the text on the line", ->
           editor.setCursorScreenPosition([1,2])
           keydown('c')
           keydown('2')
           keydown('G', shift: true)
           keydown('escape');
-          expect(editor.getText()).toBe("12345\nABCDE")
+          expect(editor.getText()).toBe("12345\n\nABCDE")
 
   describe "the C keybinding", ->
     beforeEach ->
@@ -525,6 +536,9 @@ describe "Operators", ->
 
       it "saves the lines to the default register", ->
         expect(vimState.getRegister('"').text).toBe "012 345\nabc\n"
+
+      it "places the cursor at the beginning of the selection", ->
+        expect(editor.getCursorBufferPositions()).toEqual([[0, 0]])
 
     describe "when followed by a second y ", ->
       beforeEach ->
@@ -559,7 +573,7 @@ describe "Operators", ->
       it "saves the line to the a register", ->
         expect(vimState.getRegister('a').text).toBe "012 345\n"
 
-    describe "with a motion", ->
+    describe "with a forward motion", ->
       beforeEach ->
         keydown('y')
         keydown('e')
@@ -569,6 +583,14 @@ describe "Operators", ->
 
       it "leaves the cursor at the starting position", ->
         expect(editor.getCursorScreenPosition()).toEqual [0, 4]
+
+    describe "with a text object", ->
+      it "moves the cursor to the beginning of the text object", ->
+        editor.setCursorBufferPosition([0, 5])
+        keydown("y")
+        keydown("i")
+        keydown("w")
+        expect(editor.getCursorBufferPositions()).toEqual([[0, 4]])
 
     describe "with a left motion", ->
       beforeEach ->
@@ -1146,23 +1168,24 @@ describe "Operators", ->
     beforeEach ->
       editor.setText("12\n34\n\n")
       editor.setCursorBufferPosition([0,0])
+      editor.addCursorAtBufferPosition([1, 0])
 
     it "replaces a single character", ->
       keydown('r')
       commandModeInputKeydown('x')
-      expect(editor.getText()).toBe 'x2\n34\n\n'
+      expect(editor.getText()).toBe 'x2\nx4\n\n'
 
     it "replaces a single character with a line break", ->
       keydown('r')
       editor.commandModeInputView.editor.trigger 'core:confirm'
-      expect(editor.getText()).toBe '\n2\n34\n\n'
-      expect(editor.getCursorBufferPosition()).toEqual [1, 0]
+      expect(editor.getText()).toBe '\n2\n\n4\n\n'
+      expect(editor.getCursorBufferPositions()).toEqual [[1, 0], [3, 0]]
 
     it "composes properly with motions", ->
       keydown('2')
       keydown('r')
       commandModeInputKeydown('x')
-      expect(editor.getText()).toBe 'xx\n34\n\n'
+      expect(editor.getText()).toBe 'xx\nxx\n\n'
 
     it "does nothing on an empty line", ->
       editor.setCursorBufferPosition([2, 0])
@@ -1179,17 +1202,17 @@ describe "Operators", ->
     describe "when in visual mode", ->
       beforeEach ->
         keydown('v')
-        keydown('$')
+        keydown('e')
 
       it "replaces the entire selection with the given character", ->
         keydown('r')
         commandModeInputKeydown('x')
-        expect(editor.getText()).toBe 'xx\n34\n\n'
+        expect(editor.getText()).toBe 'xx\nxx\n\n'
 
       it "leaves the cursor at the beginning of the selection", ->
         keydown('r')
         commandModeInputKeydown('x')
-        expect(editor.getCursorBufferPosition()).toEqual [0, 0]
+        expect(editor.getCursorBufferPositions()).toEqual [[0, 0], [1, 0]]
 
   describe 'the m keybinding', ->
     beforeEach ->
@@ -1225,6 +1248,12 @@ describe "Operators", ->
 
       expect(editor.getText()).toBe 'AbC'
       expect(editor.getCursorScreenPosition()).toEqual [0, 2]
+
+    describe "in visual mode", ->
+      it "toggles the case of the selected text", ->
+        keydown("V", shift: true)
+        keydown("~")
+        expect(editor.getText()).toBe 'AbC'
 
   describe "the i keybinding", ->
     beforeEach ->
