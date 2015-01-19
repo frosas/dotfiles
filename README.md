@@ -15,8 +15,10 @@ In ~/.bashrc
 
 ```bash
 source .../dotfiles/bash/.bashrc
-export CDPATH=.:~/projects
+export CDPATH=.:~/.dir-shortcuts:~/projects
 ```
+
+Symlink arbitrary dirs to ~/.dir-shortcuts
 
 **Cron tasks**
 
