@@ -25,9 +25,12 @@ class VimState
     @opStack = []
     @history = []
     @marks = {}
-    params = {}
-    params.manager = this;
-    params.id = 0;
+
+    @editor.onDidChangeSelectionRange =>
+      if _.all(@editor.getSelections(), (selection) -> selection.isEmpty())
+        @activateCommandMode() if @mode is 'visual'
+      else
+        @activateVisualMode('characterwise') if @mode is 'command'
 
     @editorElement.classList.add("vim-mode")
     @setupCommandMode()
@@ -55,6 +58,7 @@ class VimState
       'reset-command-mode': => @resetCommandMode()
       'repeat-prefix': (e) => @repeatPrefix(e)
       'reverse-selections': (e) => @reverseSelections(e)
+      'undo': (e) => @undo(e)
 
     @registerOperationCommands
       'activate-insert-mode': => new Operators.Insert(@editor, @)
@@ -210,6 +214,10 @@ class VimState
   # Returns nothing.
   clearOpStack: ->
     @opStack = []
+
+  undo: ->
+    @editor.undo()
+    @activateCommandMode()
 
   # Private: Processes the command if the last operation is complete.
   #
@@ -393,7 +401,7 @@ class VimState
 
     if @submode == 'linewise'
       @editor.selectLinesContainingCursors()
-    else
+    else if @editor.getSelectedText() is ''
       @editor.selectRight()
 
     @updateStatusBar()

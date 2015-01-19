@@ -1,7 +1,7 @@
 {
   "name": "atomatigit",
   "main": "./lib/atomatigit",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "description": "Full git interaction, a la magit",
   "repository": {
     "type": "git",
@@ -24,12 +24,12 @@
     "url": "https://github.com/diiq/atomatigit/issues"
   },
   "homepage": "https://github.com/diiq/atomatigit",
-  "_id": "atomatigit@1.2.0",
+  "_id": "atomatigit@1.2.3",
   "dist": {
-    "shasum": "79ae47b5004c59f81fe13fcd8e9f1a85f49cd982"
+    "shasum": "c4668d3d66f333a2e2a35fac55b02ea17700c693"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115012-13429-6zxni5/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115012-13429-6zxni5/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115015-8245-1vcbww/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115015-8245-1vcbww/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

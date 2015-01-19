@@ -20,6 +20,12 @@ module.exports =
       type: 'boolean'
       default: false
       order: 3
+    display_commit_comparisons:
+      title: 'Display Commit Comparisons'
+      description: 'Display how many commits ahead/behind your branches are'
+      type: 'boolean'
+      default: true
+      order: 4
 
   repo: null
   repoView: null
@@ -28,26 +34,30 @@ module.exports =
 
   # Public: Package activation.
   activate: (state) ->
-    @insertShowCommand()
-    ErrorView = require './views/error-view'
-    return @errorNoGitRepo() unless atom.project.getRepo()
-    Repo      = require './models/repo'
-    RepoView  = require './views/repo-view'
     @insertCommands()
+    return @errorNoGitRepo() unless atom.project.getRepo()
     atom.workspaceView.trigger 'atomatigit:show' if atom.config.get('atomatigit.show_on_startup')
 
   # Public: Close the atomatigit pane.
   hide: ->
     @repoView.detach() if @repoView.hasParent()
+    atom.workspace.getActivePane().activate()
+
+  # Internal: Append the repoView (if not already) and focus the pane
+  append: ->
+    atom.workspaceView.appendToRight(@repoView) unless @repoView?.hasParent()
+    @repoView.focus()
 
   # Public: Open (or focus) the atomatigit window.
   show: ->
     return @errorNoGitRepo() unless atom.project.getRepo()
+    @loadClasses() unless Repo and RepoView
     @repo ?= new Repo()
-    @repoView ?= new RepoView(@repo)
-    @repo.reload().then =>
-      atom.workspaceView.appendToRight(@repoView) unless @repoView?.hasParent()
-      @repoView.focus()
+    if !@repoView?
+      @repoView = new RepoView(@repo)
+      @repoView.InitPromise.then => @append()
+    else
+      @append()
 
   # Internal: Destroy atomatigit instance.
   deactivate: ->
@@ -56,13 +66,16 @@ module.exports =
 
   # Internal: Display error message if the project is no git repository.
   errorNoGitRepo: ->
+    ErrorView = require './views/error-view'
     new ErrorView(message: 'Project is no git repository!') if @startup_error_shown
     @startup_error_shown = true
 
-  # Internal: Register show command with atom.
-  insertShowCommand: ->
-    atom.workspaceView.command 'atomatigit:show', => @show()
-
   # Internal: Register package commands with atom.
   insertCommands: ->
+    atom.workspaceView.command 'atomatigit:show', => @show()
     atom.workspaceView.command 'atomatigit:close', => @hide()
+
+  # Internal: Load required classes on activation
+  loadClasses: ->
+    Repo      = require './models/repo'
+    RepoView  = require './views/repo-view'

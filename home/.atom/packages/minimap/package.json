@@ -1,7 +1,7 @@
 {
   "name": "minimap",
   "main": "./lib/main",
-  "version": "3.5.4",
+  "version": "3.5.6",
   "private": true,
   "description": "A preview of the full source code.",
   "author": {
@@ -44,12 +44,12 @@
     "url": "https://github.com/fundon/atom-minimap/issues"
   },
   "homepage": "https://github.com/fundon/atom-minimap",
-  "_id": "minimap@3.5.4",
+  "_id": "minimap@3.5.6",
   "dist": {
-    "shasum": "b12791511c7efde6cfd3699c2a4ed97d6665297d"
+    "shasum": "8dfd84dc8ec665e160e3126367caa814b813a7d1"
   },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11508-18049-1n157ux/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11508-18049-1n157ux/package.tgz",
+  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115016-30845-pxj5gv/package.tgz",
+  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115016-30845-pxj5gv/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -65,7 +65,7 @@
       },
       {
         "name": "grim",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "path": "node_modules/atom-space-pen-views/node_modules/grim/lib/grim.js"
       },
       {
@@ -85,7 +85,7 @@
       },
       {
         "name": "source-map",
-        "version": "0.1.42",
+        "version": "0.1.43",
         "path": "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map.js"
       },
       {
@@ -325,6 +325,7 @@
         "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map/base64-vlq.js",
         "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map/base64.js",
         "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map/binary-search.js",
+        "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map/mapping-list.js",
         "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map/source-map-consumer.js",
         "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map/source-map-generator.js",
         "node_modules/atom-space-pen-views/node_modules/grim/node_modules/coffeestack/node_modules/source-map/lib/source-map/source-node.js",

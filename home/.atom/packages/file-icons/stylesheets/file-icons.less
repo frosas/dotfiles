@@ -134,6 +134,8 @@
   &[data-name$=".erb"]:before,
   &[data-name$=".opal"]:before   { .ruby-icon; .medium-red; }
 
+  &[data-name$="_spec.rb"]:before   { .ruby-icon; .light-green; }
+
   &[data-name="rails"]:before { .rails-icon; .medium-red; }
 
   &[data-name$=".pp"]:before { .puppet-icon; .medium-purple }
@@ -185,6 +187,10 @@
 
   // Haskell
   &[data-name$=".hs"]:before { .haskell-icon; .medium-purple; }
+
+  // Rust
+  &[data-name$=".rs"]:before   { .rust-icon; .medium-maroon; }
+  &[data-name$=".rlib"]:before { .rust-icon; .light-maroon; }
 
   // Objective-C, C++, C
   &[data-name$=".c"]:before       { .c-icon; .medium-blue; }
