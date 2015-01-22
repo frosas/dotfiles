@@ -4,7 +4,6 @@
 
         Convert = require './ColorPicker-convert'
         VariableInspector = require './variable-inspector'
-
         _regexes = require './ColorPicker-regexes'
 
     # -------------------------------------
@@ -14,8 +13,11 @@
             view: null
             match: null
 
+        #  Activate package
+        # ---------------------------
             activate: ->
-                atom.workspaceView.command "color-picker:open", => @open true
+                atom.commands.add 'atom-text-editor',
+                    'color-picker:open': => @open true
 
                 atom.contextMenu.add '.editor': [{
                     label: 'Color picker'
@@ -24,8 +26,7 @@
                     shouldDisplay: => return true if @match = @getMatchAtCursor()
                 }]
 
-                ColorPickerView = require './ColorPicker-view'
-                @view = new ColorPickerView
+                return @view = new (require './ColorPicker-view')
 
             deactivate: -> @view.destroy()
 
@@ -42,9 +43,8 @@
                 return @matchAtPosition _cursorColumn, (@matchesOnLine _line, _cursorRow)
 
         #  Match the current line against the regexes
-        #
-        #  @String line
-        #  @Number cursorRow
+        #  - line {String}
+        #  - cursorRow {Number}
         # ---------------------------
             matchesOnLine: (line, cursorRow) ->
                 return unless line and typeof cursorRow is 'number'
@@ -73,9 +73,8 @@
 
         #  Get a single match on a position based on a match array
         #  as seen in matchesOnLine
-        #
-        #  @Number column
-        #  @Array matches
+        #  - column {Number}
+        #  - matches {Array}
         # ---------------------------
             matchAtPosition: (column, matches) ->
                 return unless column and matches
@@ -110,9 +109,8 @@
 
         #  Set the color of a match to its object, and then send it
         #  to the color picker view
-        #
-        #  @Object match
-        #  @Function callback
+        #  - match {Object}
+        #  - callback {Function}
         # ---------------------------
             setMatchColor: ->
                 return unless @match
@@ -126,16 +124,16 @@
 
                 _callback = => @setMatchColor()
 
-                return switch @match.type
+                switch @match.type
                     when 'variable:sass' then @setVariableDefinitionColor @match, _callback
                     when 'variable:less' then @setVariableDefinitionColor @match, _callback
                     else do => @match.color = @match.match; _callback @match
+                return
 
         #  Set the variable definition by sending it through a
         #  provided callback when found
-        #
-        #  @Object match
-        #  @Function callback
+        #  - match {Object}
+        #  - callback {Function}
         # ---------------------------
             setVariableDefinitionColor: (match, callback) ->
                 return unless match and callback
@@ -149,12 +147,12 @@
                     match.pointer = pointer
 
                     callback match
+                return
 
         #  Find variable definition by searching recursively until a
         #  non-variable (a color) is found
-        #
-        #  @String name
-        #  @String type
+        #  - name {String}
+        #  - type {String}
         # ---------------------------
             findVariableDefinition: (name, type, pointer) ->
                 return (VariableInspector.findDefinition name, type).then (definition) =>

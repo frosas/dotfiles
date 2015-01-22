@@ -1,81 +1,81 @@
-'*':
-  'exception-reporting':
-    'userId': '70a0032d-3fb2-4bcb-e887-64623e256e19'
-  'release-notes':
-    'viewedVersion': '0.95.0'
-  'welcome':
-    'showOnStartup': false
-  'metrics':
-    'userId': 'ba44e3beb28ecd4cac067ffa00fb25caece41ae8'
-  'editor':
-    'fontFamily': 'Ubuntu Mono'
-    'fontSize': 14
-    'showIndentGuide': true
-    'tabLength': 4
-    'invisibles': {}
-  'core':
-    'disabledPackages': [
-      'jsonpp'
-      'atom-lint'
-      'vim-mode'
-      'linter-jshint'
-      'spell-check'
-      'minimap'
-      'emmet'
+"*":
+  "exception-reporting":
+    userId: "70a0032d-3fb2-4bcb-e887-64623e256e19"
+  "release-notes":
+    viewedVersion: "0.95.0"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "ba44e3beb28ecd4cac067ffa00fb25caece41ae8"
+  editor:
+    fontFamily: "Ubuntu Mono"
+    fontSize: 14
+    showIndentGuide: true
+    tabLength: 4
+    invisibles: {}
+  core:
+    disabledPackages: [
+      "jsonpp"
+      "atom-lint"
+      "vim-mode"
+      "linter-jshint"
+      "spell-check"
+      "minimap"
+      "emmet"
     ]
-    'themes': [
-      'atom-dark-ui'
-      'base16-tomorrow-dark-theme'
+    themes: [
+      "atom-dark-ui"
+      "base16-tomorrow-dark-theme"
     ]
-    'audioBeep': false
-  'spell-check':
-    'grammars': [
-      'source.gfm'
-      'text.git-commit'
-      'text.plain'
+    audioBeep: false
+  "spell-check":
+    grammars: [
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
     ]
-  'atom-jshint':
-    'showErrorPanel': false
-  'markdown-preview':
-    'grammars': [
-      'source.gfm'
-      'source.litcoffee'
-      'text.plain'
-      'text.plain.null-grammar'
+  "atom-jshint":
+    showErrorPanel: false
+  "markdown-preview":
+    grammars: [
+      "source.gfm"
+      "source.litcoffee"
+      "text.plain"
+      "text.plain.null-grammar"
     ]
-  'autoclose-html':
-    'closeOnEndOfOpeningTag': true
-    'forceInline': 'div, span, title, h1, h2, h3, h4, h5, h6'
-  'autocomplete':
-    'includeCompletionsFromAllBuffers': true
-  'tree-view':
-    'hideVcsIgnoredFiles': true
-    'hideIgnoredNames': true
-  'recent-files':
-    'updated': false
-  'todo-show':
-    'findTheseRegexes': [
-      'FIXMEs'
-      '/\\WFIXME\\W(.+$)/g'
-      'TODOs'
-      '/\\WTODO\\W(.+$)/g'
-      'CHANGEDs'
-      '/\\WCHANGED\\W(.+$)/g'
+  "autoclose-html":
+    closeOnEndOfOpeningTag: true
+    forceInline: "div, span, title, h1, h2, h3, h4, h5, h6"
+  autocomplete:
+    includeCompletionsFromAllBuffers: true
+  "tree-view":
+    hideVcsIgnoredFiles: true
+    hideIgnoredNames: true
+  "recent-files":
+    updated: false
+  "todo-show":
+    findTheseRegexes: [
+      "FIXMEs"
+      "/\\WFIXME\\W(.+$)/g"
+      "TODOs"
+      "/\\WTODO\\W(.+$)/g"
+      "CHANGEDs"
+      "/\\WCHANGED\\W(.+$)/g"
     ]
-  'auto-update-packages':
-    'intervalMinutes': 60
-  'autocomplete-plus':
-    'includeCompletionsFromAllBuffers': true
-  'whitespace':
-    'removeTrailingWhitespace': false
-    'ignoreWhitespaceOnCurrentLine': false
-    'ensureSingleTrailingNewline': false
-  'jsformat':
-    'format_on_save': false
-  'linter':
-    'showGutters': false
-  'vim-mode':
-    'startInInsertMode': true
-  'git-diff':
-    'showIconsInEditorGutter': true
-  'emmet': {}
+  "auto-update-packages":
+    intervalMinutes: 60
+  "autocomplete-plus":
+    includeCompletionsFromAllBuffers: true
+  whitespace:
+    removeTrailingWhitespace: false
+    ignoreWhitespaceOnCurrentLine: false
+    ensureSingleTrailingNewline: false
+  jsformat:
+    format_on_save: false
+  linter:
+    showGutters: false
+  "vim-mode":
+    startInInsertMode: true
+  "git-diff":
+    showIconsInEditorGutter: true
+  emmet: {}

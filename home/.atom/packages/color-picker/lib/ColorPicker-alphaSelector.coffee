@@ -1,20 +1,19 @@
 # ----------------------------------------------------------------------------
 #  ColorPicker: Alpha selector
 # ----------------------------------------------------------------------------
-        Convert = require './ColorPicker-convert'
 
-        $el = atom.workspaceView.find '#ColorPicker-alphaSelector'
-        $selection = atom.workspaceView.find '#ColorPicker-alphaSelection'
-        _context = $el[0].getContext '2d'
-        _width = $el.width()
-        _height = $el.height()
+    module.exports = (picker) ->
+        _el = picker.querySelector '#ColorPicker-alphaSelector'
+        _selection = picker.querySelector '#ColorPicker-alphaSelection'
+        _context = _el.getContext '2d'
+        _width = _el.offsetWidth
+        _height = _el.offsetHeight
 
     # -------------------------------------
     #  Public functionality
     # -------------------------------------
-        module.exports =
-            $el: $el
-            $selection: $selection
+        return {
+            el: _el
             width: _width
             height: _height
 
@@ -30,3 +29,11 @@
 
                 _context.fillStyle = _gradient
                 _context.fillRect 0, 0, _width, _height
+                return
+
+        #  Set the selector position
+        # ---------------------------
+            setPosition: ({top}) ->
+                _selection.style['top'] = (top / _height) * 100 + '%'
+                return
+        }
