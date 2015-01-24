@@ -11,6 +11,7 @@
     fontFamily: "Ubuntu Mono"
     fontSize: 14
     showIndentGuide: true
+    autoIndentOnPaste: false
     tabLength: 4
     invisibles: {}
   core:
@@ -22,6 +23,7 @@
       "spell-check"
       "minimap"
       "emmet"
+      "atomatigit"
     ]
     themes: [
       "atom-dark-ui"
@@ -74,8 +76,11 @@
     format_on_save: false
   linter:
     showGutters: false
+    statusBar: "Show all errors"
   "vim-mode":
     startInInsertMode: true
   "git-diff":
     showIconsInEditorGutter: true
   emmet: {}
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
