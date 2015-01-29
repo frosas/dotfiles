@@ -11,7 +11,6 @@
     fontFamily: "Ubuntu Mono"
     fontSize: 14
     showIndentGuide: true
-    autoIndentOnPaste: false
     tabLength: 4
     invisibles: {}
   core:
