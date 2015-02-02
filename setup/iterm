@@ -4,6 +4,4 @@ set -ex
 
 HERE=$(cd $(dirname $0) >/dev/null && pwd)
 
-brew cask install iterm2
-
 open -a iterm "$HERE/../base16-iterm2/base16-default.dark.itermcolors"

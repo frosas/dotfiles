@@ -9,4 +9,5 @@ brew install macvim --override-system-vim
 
 brew linkapps
 
+# TODO What is this for?
 cp -aH /Applications/MacVim.app ~/Applications || true

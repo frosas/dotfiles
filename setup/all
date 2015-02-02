@@ -10,7 +10,6 @@ $HERE/vim
 if [[ `uname` = Darwin ]]; then 
     $HERE/mac-preferences
     $HERE/brew
-    $HERE/cask
     $HERE/iterm
     $HERE/ruby
 fi

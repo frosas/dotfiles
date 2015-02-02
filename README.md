@@ -34,9 +34,16 @@ Enable "Load preferences from a custom folder" and point to `iterm` directory.
  
 **Misc apps**
 
+- https://atom.io/
+- http://www.globaldelight.com/boom/
+- http://ccmenu.org/
+- https://www.mozilla.org/en-GB/firefox/new/
+- http://www.gimp.org/
+- http://www.google.com/chrome/
+- http://iterm2.com/
 - https://github.com/codler/Battery-Time-Remaining
-- http://interealtime.com/redscreen-advanced-screen-dimming-for-mac-os-x/ (it seems to be deleted, try with http://web.archive.org/web/*/http://interealtime.com/RedScreen/RedScreen.dmg)
 - http://www.macupdate.com/app/mac/45273/did-i-click
+- https://justgetflux.com/
 
 ### TODO
 
