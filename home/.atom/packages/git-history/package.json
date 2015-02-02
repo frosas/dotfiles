@@ -1,11 +1,14 @@
 {
   "name": "git-history",
   "main": "./lib/git-history",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "View previous versions of any file known to git.",
   "activationEvents": [
     "git-history:show-file-history"
   ],
+  "scripts": {
+    "test": "apm test"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jakesankey/git-history"
@@ -23,12 +26,10 @@
     "url": "https://github.com/jakesankey/git-history/issues"
   },
   "homepage": "https://github.com/jakesankey/git-history",
-  "_id": "git-history@1.2.0",
-  "dist": {
-    "shasum": "de4719b59db0fa36d49788fa629c61b645815224"
-  },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115022-81349-ywk5og/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115022-81349-ywk5og/package.tgz",
+  "_id": "git-history@2.0.0",
+  "_shasum": "5145504a4aaf0b02b742f58db0b7e01698a50704",
+  "_resolved": "file:../d-115031-57524-1ly8xvw/package.tgz",
+  "_from": "../d-115031-57524-1ly8xvw/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
