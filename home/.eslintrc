@@ -26,6 +26,7 @@
         "curly": 0,
         "eqeqeq": 0,
         "no-use-before-define": "nofunc",
-        "no-new": 0
+        "no-new": 0,
+        "no-path-concat": 0
     }
 }
