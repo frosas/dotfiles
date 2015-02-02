@@ -23,6 +23,7 @@
       "minimap"
       "emmet"
       "atomatigit"
+      "auto-update-packages"
     ]
     themes: [
       "atom-dark-ui"
