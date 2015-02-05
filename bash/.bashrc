@@ -44,6 +44,7 @@ alias gla="gl --all"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
 alias cd="cd -P"
+alias t="trash"
 
 # Ruby
 # See http://askubuntu.com/questions/502305/bundle-install-permissions-denied
