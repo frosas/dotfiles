@@ -18,3 +18,8 @@
     '<script>':
         'prefix': 'script'
         'body': '<script>\n\t$1\n</script>$2'
+        
+'.source.js':
+    'Node require()':
+        'prefix': 'require'
+        'body': 'var $1 = require(\'$1\');'
