@@ -19,7 +19,6 @@
     sp = stash pop
     ss = stash show -v 
     sl = stash list
-    dirty-files = ! cd ./$GIT_PREFIX && git status -s | awk '{print $2}'
     untracked-files = ls-files -o --exclude-standard
     pretty-log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit
     ap = add -p

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+cd ./$GIT_PREFIX
+git status -s "$@" | sed 's/^.. //'
