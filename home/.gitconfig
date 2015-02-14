@@ -10,7 +10,7 @@
 [push]
 	default = simple
 [alias]
-    ci = commit
+    ci = commit -v
     co = checkout
     b = branch
     fetch-all = fetch --all --prune
