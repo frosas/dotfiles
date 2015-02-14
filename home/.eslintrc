@@ -6,6 +6,7 @@
         "consistent-return": 0,
         "no-console": 0,
         "no-alert": 0,
+        "no-path-concat": 0,
         
         // Don't be too picky about the style
         "no-trailing-spaces": 0,
