@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# From http://www.hacksparrow.com/node-js-https-ssl-certificate.html
+
+set -ex
+
+openssl genrsa -out ssl-key.pem 2048
+openssl req -new -key ssl-key.pem -out ssl-cert-request.csr
+openssl x509 -req -in ssl-cert-request.csr -signkey ssl-key.pem -out ssl-cert.pem
