@@ -1,0 +1,81 @@
+{
+  "name": "project-colorize",
+  "main": "./lib/project-colorize",
+  "version": "0.1.0",
+  "description": "Color the tab bar background to differentiate between different open projects in Atom.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonporritt/project-colorize"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "geopattern": "*"
+  },
+  "readme": "# project-colorize package\n\nColorizes the area behind the tabs based on the project directory. Uses [btmills' implementation of geopattern](https://github.com/btmills/geopattern) for extra awesome.\n\n![Example of tab bar coloring](https://raw.githubusercontent.com/jasonporritt/project-colorize/master/example.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/jasonporritt/project-colorize/issues"
+  },
+  "homepage": "https://github.com/jasonporritt/project-colorize",
+  "_id": "project-colorize@0.1.0",
+  "_shasum": "86f84d43f74a2767222694c38de309684d1586fe",
+  "_resolved": "file:../d-115114-66255-yan5jy/package.tgz",
+  "_from": "../d-115114-66255-yan5jy/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "geopattern",
+        "version": "1.2.3",
+        "path": "node_modules/geopattern/geopattern.js"
+      },
+      {
+        "name": "extend",
+        "version": "1.2.1",
+        "path": "node_modules/geopattern/node_modules/extend/index.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/project-colorize.coffee"
+      ],
+      ".js": [
+        "node_modules/geopattern/geopattern.js",
+        "node_modules/geopattern/lib/color.js",
+        "node_modules/geopattern/lib/pattern.js",
+        "node_modules/geopattern/lib/sha1.js",
+        "node_modules/geopattern/lib/svg.js",
+        "node_modules/geopattern/lib/xml.js",
+        "node_modules/geopattern/node_modules/extend/index.js"
+      ],
+      ".json": [
+        "node_modules/geopattern/node_modules/extend/package.json",
+        "node_modules/geopattern/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          ""
+        ],
+        "dependencies": {
+          "geopattern": "*"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/geopattern",
+          "node_modules/geopattern/lib"
+        ],
+        "dependencies": {
+          "extend": "~1.2.1"
+        }
+      }
+    ]
+  }
+}

@@ -9,21 +9,21 @@
     userId: "ba44e3beb28ecd4cac067ffa00fb25caece41ae8"
   editor:
     fontFamily: "Ubuntu Mono"
-    fontSize: 14
     showIndentGuide: true
     tabLength: 4
     invisibles: {}
+    fontSize: 14
   core:
     disabledPackages: [
       "jsonpp"
       "atom-lint"
-      "vim-mode"
       "linter-jshint"
       "spell-check"
       "minimap"
       "emmet"
       "atomatigit"
       "auto-update-packages"
+      "deprecation-cop"
     ]
     themes: [
       "atom-dark-ui"
@@ -47,7 +47,7 @@
     ]
   "autoclose-html":
     closeOnEndOfOpeningTag: true
-    forceInline: "div, span, title, h1, h2, h3, h4, h5, h6"
+    forceInline: "div, span, title, h1, h2, h3, h4, h5, h6, p"
   autocomplete:
     includeCompletionsFromAllBuffers: true
   "tree-view":
@@ -79,6 +79,7 @@
     statusBar: "None"
   "vim-mode":
     startInInsertMode: true
+    useSmartcaseForSearch: true
   "git-diff":
     showIconsInEditorGutter: true
   emmet: {}

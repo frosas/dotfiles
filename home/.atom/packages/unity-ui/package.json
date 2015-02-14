@@ -1,0 +1,39 @@
+{
+  "name": "unity-ui",
+  "theme": "ui",
+  "version": "1.0.7",
+  "main": "./lib/unity-ui",
+  "private": false,
+  "description": "An Atom theme for a more native experience on OS X.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orderedlist/unity-ui"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "readme": "# Unity UI\n\nAn Atom theme for a more native experience on OS X\n\n### If you're using Yosemite\n\n![Yosemite](https://cloud.githubusercontent.com/assets/1680/4297616/d0653174-3e0f-11e4-9cdf-9bc61ad0d8a2.png)\n\n### If you're using Mavericks\n\n![The Pretty](https://cloud.githubusercontent.com/assets/1680/2325779/23814d3c-a3da-11e3-9ad7-7ec2a3ccf0e0.png)\n\n## Install\n\nFrom the command line:\n\n```bash\n$ apm install unity-ui\n```\n\nAlternatively, open Atom Preferences, select Themes > Search for `unity`,\nthen Install.\n\nActivate the theme by selecting the Themes section of Preferences.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/orderedlist/unity-ui/issues"
+  },
+  "homepage": "https://github.com/orderedlist/unity-ui",
+  "_id": "unity-ui@1.0.7",
+  "_shasum": "773a1a6f5dc4d59e3e68afcac03c440e6f6af838",
+  "_resolved": "file:../d-115114-66209-rn3eea/package.tgz",
+  "_from": "../d-115114-66209-rn3eea/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/unity-ui.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

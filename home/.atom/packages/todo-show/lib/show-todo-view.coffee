@@ -9,11 +9,15 @@
 vm = require 'vm'  #needed for the Content Security Policy errors when executing JS from my template view
 Q = require 'q'
 path = require 'path'
-{$, $$$, Point, EditorView, ScrollView} = require 'atom'
+{Point} = require 'atom'
+{$$$, TextEditorView, ScrollView} = require 'atom-space-pen-views'
+$ = require 'jquery'
 {allowUnsafeEval, allowUnsafeNewFunction} = require 'loophole' #needed for the Content Security Policy errors when executing JS from my template view
 # {File} = require 'pathwatcher'
 fs = require 'fs-plus'
 _ = require 'underscore'
+slash = require 'slash'
+ignore = require 'ignore'
 
 
 module.exports =
@@ -49,7 +53,7 @@ class ShowTodoView extends ScrollView
   getTitle: ->
     "Todo-show Results" #just put this title in there
 
-  getUri: ->
+  getURI: ->
     "todolist-preview://#{@getPath()}"
 
   getPath: ->
@@ -134,18 +138,19 @@ class ShowTodoView extends ScrollView
     #abort if there's no valid pattern
     return false unless regexObj
 
+    # handle ignores from settings
+    ignoresFromSettings = atom.config.get('todo-show.ignoreThesePaths')
+    hasIgnores = ignoresFromSettings.length > 0
+    ignoreRules = ignore({ ignore:ignoresFromSettings });
+
     # console.log('pattern', pattern)
     # console.log('regexObj', regexObj)
-    return atom.project.scan regexObj, (e) ->
+    return atom.workspace.scan regexObj, (e) ->
       # Check against ignored paths
       include = true
-      ignoreFromSettings = atom.config.get('todo-show.ignoreThesePaths')
-
-      for ignorePath in ignoreFromSettings
-        ignoredPath = atom.project.getPath() + ignorePath
-
-        if e.filePath.substring(0, ignoredPath.length) == ignoredPath
-          include = false
+      pathToTest = slash(e.filePath.substring(atom.project.getPath().length))
+      if (hasIgnores && ignoreRules.filter([pathToTest]).length == 0)
+        include = false
 
       if include
         # loop through the results in the file, strip out 'todo:', and allow an optional space after todo:
@@ -233,13 +238,13 @@ class ShowTodoView extends ScrollView
 
   # events that handle showing of todos
   handleEvents: ->
-    @subscribe atom.syntax, 'grammar-added grammar-updated', _.debounce((=> @renderTodos()), 250)
-    @subscribe this, 'core:move-up', => @scrollUp()
-    @subscribe this, 'core:move-down', => @scrollDown()
+    # @subscribe atom.grammars, 'grammar-added grammar-updated', _.debounce((=> @renderTodos()), 250)
+    # @subscribe this, 'core:move-up', => @scrollUp()
+    # @subscribe this, 'core:move-down', => @scrollDown()
     # fixME: probably not necessary. Can Likely be removed.
     # @subscribe @file, 'contents-changed', =>
     #   @renderTodos()
-    #   pane = atom.workspace.paneForUri(@getUri())
+    #   pane = atom.workspace.paneForUri(@getURI())
     #   if pane? and pane isnt atom.workspace.getActivePane()
     #     pane.activateItem(this)
 
