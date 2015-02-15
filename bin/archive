@@ -3,9 +3,9 @@
 set -e # Exit on errors
 
 FILE="$1"
-DESTINATION="$HOME/Dropbox/Arxivat/`date +%Y`/`basename $FILE`.zip"
+DESTINATION="$HOME/Dropbox/Arxivat/$(date +%Y)/$(basename "$FILE").zip"
 
-mkdir -p "`dirname $DESTINATION`"
+mkdir -p "$(dirname "$DESTINATION")"
 zip -r "$DESTINATION" "$FILE"
 echo "Archived to $DESTINATION"
 trash "$FILE"
