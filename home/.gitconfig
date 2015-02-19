@@ -28,3 +28,5 @@
     web = instaweb -d webrick
     c = clean -df
     h = help
+    r = rebase
+    a = add
