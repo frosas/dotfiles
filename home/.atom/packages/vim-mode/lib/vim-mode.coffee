@@ -11,14 +11,16 @@ module.exports =
     useSmartcaseForSearch:
       type: 'boolean'
       default: false
+    wrapLeftRightMotion:
+      type: 'boolean'
+      default: false
 
   activate: (state) ->
     @disposables = new CompositeDisposable
     globalVimState = new GlobalVimState
-    statusBarManager = new StatusBarManager
+    @statusBarManager = new StatusBarManager
     vimStates = new WeakMap
 
-    @disposables.add statusBarManager.initialize()
     @disposables.add atom.workspace.observeTextEditors (editor) =>
       return if editor.mini
 
@@ -27,7 +29,7 @@ module.exports =
       if not vimStates.get(editor)
         vimState = new VimState(
           element,
-          statusBarManager,
+          @statusBarManager,
           globalVimState
         )
 
@@ -38,3 +40,9 @@ module.exports =
 
   deactivate: ->
     @disposables.dispose()
+
+  consumeStatusBar: (statusBar) ->
+    @statusBarManager.initialize(statusBar)
+    @statusBarManager.attach()
+    @disposables.add new Disposable =>
+      @statusBarManager.detach()
