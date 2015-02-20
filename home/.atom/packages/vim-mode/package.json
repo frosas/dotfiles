@@ -1,7 +1,7 @@
 {
   "name": "vim-mode",
   "main": "./lib/vim-mode",
-  "version": "0.32.0",
+  "version": "0.33.0",
   "description": "Add vim modal control",
   "license": "MIT",
   "private": true,
@@ -29,10 +29,10 @@
     "url": "https://github.com/atom/vim-mode/issues"
   },
   "homepage": "https://github.com/atom/vim-mode",
-  "_id": "vim-mode@0.32.0",
-  "_shasum": "371eb9b063164acd7209d5f98545791b8db348e5",
-  "_resolved": "file:../d-115119-36890-16aesqa/package.tgz",
-  "_from": "../d-115119-36890-16aesqa/package.tgz",
+  "_id": "vim-mode@0.33.0",
+  "_shasum": "455f6c8b21e64ff8b22cfcbc7da68467e8a9e630",
+  "_resolved": "file:../d-115120-80241-x23dei/package.tgz",
+  "_from": "../d-115120-80241-x23dei/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -124,6 +124,7 @@
         "lib/panes.coffee",
         "lib/prefixes.coffee",
         "lib/scroll.coffee",
+        "lib/settings.coffee",
         "lib/status-bar-manager.coffee",
         "lib/text-objects.coffee",
         "lib/utils.coffee",
