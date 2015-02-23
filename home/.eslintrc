@@ -6,7 +6,8 @@
         "consistent-return": 0,
         "no-console": 0,
         "no-alert": 0,
-        "no-path-concat": 0,
+        "dot-notation": [2, {"allowKeywords": false}], // IE8+ support
+        "indent": 2, // 4 spaces
         
         // Don't be too picky about the style
         "no-trailing-spaces": 0,
