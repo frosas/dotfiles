@@ -24,6 +24,7 @@
       "atomatigit"
       "auto-update-packages"
       "deprecation-cop"
+      "vim-mode"
     ]
     themes: [
       "atom-dark-ui"
