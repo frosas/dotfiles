@@ -382,13 +382,15 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>516 110 924 485 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-587 937 1018 1403 -587 900 2560 1440 </string>
+	<string>58 2 1382 876 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>-587 937 1018 1403 -587 900 2560 1440 </string>
+	<string>-587 900 1024 1440 -587 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>58 0 1382 878 0 0 1440 878 </string>
+	<string>-587 900 1024 1440 -587 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>-1120 922 1024 1396 -1120 900 2560 1418 </string>
+	<string>-587 922 1024 1418 -587 900 2560 1440 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>58 0 1382 878 0 0 1440 878 </string>
 	<key>NeverWarnAboutShortLivedSessions_895496E5-9F49-4699-BE85-016853DB80AF</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1127,6 +1129,8 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteFromClipboard</key>
@@ -1183,7 +1187,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-01-07T18:38:29Z</date>
+	<date>2015-02-20T11:21:51Z</date>
 	<key>SUSkippedVersion</key>
 	<string>2.0.0.20141103</string>
 	<key>SavePasteHistory</key>
