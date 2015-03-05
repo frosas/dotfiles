@@ -1,7 +1,7 @@
 {
   "name": "vim-mode",
   "main": "./lib/vim-mode",
-  "version": "0.34.0",
+  "version": "0.35.0",
   "description": "Add vim modal control",
   "license": "MIT",
   "private": true,
@@ -37,10 +37,10 @@
     "url": "https://github.com/atom/vim-mode/issues"
   },
   "homepage": "https://github.com/atom/vim-mode",
-  "_id": "vim-mode@0.34.0",
-  "_shasum": "8192036014498ae7941ab69a94267ea3e737d691",
-  "_resolved": "file:../d-115127-84889-at7bol/package.tgz",
-  "_from": "../d-115127-84889-at7bol/package.tgz",
+  "_id": "vim-mode@0.35.0",
+  "_shasum": "3cc8ced9cd2a083e45a9484652a31ace2648ca63",
+  "_resolved": "file:../d-11525-22755-ip4svd/package.tgz",
+  "_from": "../d-11525-22755-ip4svd/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
