@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationEvents": [],
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "eslint": "^0.15.0",
+    "eslint": "^0.16.0",
     "resolve": "^1.1.5"
   },
   "readme": "linter-eslint\n=========================\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [eslint](http://eslint.org). It will be used with files that have the “JavaScript” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Plugin installation\n```\n$ apm install linter-eslint\n```\n\nlinter-eslint will look for a version of eslint local to your project and use it if it's available. If none is found it will fall back to the version it ships with.\n\nLets say you depend on a specific version of eslint, maybe it has unreleased features, maybe it's just newer than what linter-eslint ships with. If `your-project/node_modules/eslint` exists linter-eslint will try to use that.\n\n## Settings\nYou can configure linter-eslint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu) or in Preferences:\n\n```\n'linter-eslint':\n  'eslintRulesDir': 'mydir'\n  'disableWhenNoEslintrcFileInPath': true  \n```\n\nThe `eslintRulesDir` is relative to the working directory (project root).\n`disableWhenNoEslintrcFileInPath` allows disabling linter-eslint when there is no `.eslintrc` file in the path.\n\n\n## Contributing\nIf you would like to contribute enhancements or fixes, please do the following:\n\n1. Fork the plugin repository.\n1. Hack on a separate topic branch created from the latest `master`.\n1. Commit and push the topic branch.\n1. Make a pull request.\n1. welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n- Indent is 2 spaces.\n- Code should pass coffeelint linter.\n- Vertical whitespace helps readability, don’t be afraid to use it.\n\nThank you for helping out!\n\n## Donation\n[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)\n",
@@ -23,51 +23,56 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@0.4.1",
-  "_shasum": "a1b4204665617146134107fd9395e13647ac3f71",
-  "_resolved": "file:../d-115124-56412-1vkdplv/package.tgz",
-  "_from": "../d-115124-56412-1vkdplv/package.tgz",
+  "_id": "linter-eslint@0.4.2",
+  "_shasum": "584c954a2689d36183965317e36afd420e58e65b",
+  "_resolved": "file:../d-115211-3765-10encgd/package.tgz",
+  "_from": "../d-115211-3765-10encgd/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "eslint",
-        "version": "0.15.0",
+        "version": "0.16.2",
         "path": "node_modules/eslint/lib/api.js"
       },
       {
         "name": "chalk",
-        "version": "0.5.1",
+        "version": "1.0.0",
         "path": "node_modules/eslint/node_modules/chalk/index.js"
       },
       {
         "name": "ansi-styles",
-        "version": "1.1.0",
+        "version": "2.0.1",
         "path": "node_modules/eslint/node_modules/chalk/node_modules/ansi-styles/index.js"
       },
       {
         "name": "has-ansi",
-        "version": "0.1.0",
+        "version": "1.0.3",
         "path": "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/index.js"
       },
       {
         "name": "ansi-regex",
-        "version": "0.2.1",
+        "version": "1.1.1",
         "path": "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js"
       },
       {
+        "name": "get-stdin",
+        "version": "4.0.1",
+        "path": "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/get-stdin/index.js"
+      },
+      {
         "name": "strip-ansi",
-        "version": "0.3.0",
+        "version": "2.0.1",
         "path": "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/index.js"
       },
       {
         "name": "ansi-regex",
-        "version": "0.2.1",
+        "version": "1.1.1",
         "path": "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js"
       },
       {
         "name": "supports-color",
-        "version": "0.2.0",
+        "version": "1.3.0",
         "path": "node_modules/eslint/node_modules/chalk/node_modules/supports-color/index.js"
       },
       {
@@ -107,12 +112,12 @@
       },
       {
         "name": "debug",
-        "version": "2.1.1",
+        "version": "2.1.2",
         "path": "node_modules/eslint/node_modules/debug/node.js"
       },
       {
         "name": "ms",
-        "version": "0.6.2",
+        "version": "0.7.0",
         "path": "node_modules/eslint/node_modules/debug/node_modules/ms/index.js"
       },
       {
@@ -137,7 +142,7 @@
       },
       {
         "name": "escope",
-        "version": "2.0.4",
+        "version": "2.0.6",
         "path": "node_modules/eslint/node_modules/escope/escope.js"
       },
       {
@@ -232,17 +237,17 @@
       },
       {
         "name": "espree",
-        "version": "1.9.1",
+        "version": "1.11.0",
         "path": "node_modules/eslint/node_modules/espree/espree.js"
       },
       {
         "name": "estraverse",
-        "version": "1.9.1",
+        "version": "2.0.0",
         "path": "node_modules/eslint/node_modules/estraverse/estraverse.js"
       },
       {
         "name": "estraverse-fb",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "path": "node_modules/eslint/node_modules/estraverse-fb/estraverse-fb.js"
       },
       {
@@ -277,7 +282,7 @@
       },
       {
         "name": "minimatch",
-        "version": "2.0.1",
+        "version": "2.0.3",
         "path": "node_modules/eslint/node_modules/minimatch/minimatch.js"
       },
       {
@@ -377,6 +382,7 @@
         "node_modules/eslint/conf/eslint.json",
         "node_modules/eslint/node_modules/chalk/node_modules/ansi-styles/package.json",
         "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/get-stdin/package.json",
         "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/package.json",
         "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json",
         "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/package.json",
@@ -486,6 +492,7 @@
         "node_modules/eslint/lib/rules/block-scoped-var.js",
         "node_modules/eslint/lib/rules/brace-style.js",
         "node_modules/eslint/lib/rules/camelcase.js",
+        "node_modules/eslint/lib/rules/comma-dangle.js",
         "node_modules/eslint/lib/rules/comma-spacing.js",
         "node_modules/eslint/lib/rules/comma-style.js",
         "node_modules/eslint/lib/rules/complexity.js",
@@ -524,6 +531,7 @@
         "node_modules/eslint/lib/rules/no-debugger.js",
         "node_modules/eslint/lib/rules/no-delete-var.js",
         "node_modules/eslint/lib/rules/no-div-regex.js",
+        "node_modules/eslint/lib/rules/no-dupe-args.js",
         "node_modules/eslint/lib/rules/no-dupe-keys.js",
         "node_modules/eslint/lib/rules/no-else-return.js",
         "node_modules/eslint/lib/rules/no-empty-class.js",
@@ -609,6 +617,7 @@
         "node_modules/eslint/lib/rules/quote-props.js",
         "node_modules/eslint/lib/rules/quotes.js",
         "node_modules/eslint/lib/rules/radix.js",
+        "node_modules/eslint/lib/rules/semi-spacing.js",
         "node_modules/eslint/lib/rules/semi.js",
         "node_modules/eslint/lib/rules/sort-vars.js",
         "node_modules/eslint/lib/rules/space-after-function-name.js",
@@ -639,6 +648,7 @@
         "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/cli.js",
         "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/index.js",
         "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/get-stdin/index.js",
         "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/cli.js",
         "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/index.js",
         "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js",
@@ -1525,6 +1535,7 @@
         "node_modules/eslint/node_modules/espree/espree.js",
         "node_modules/eslint/node_modules/espree/lib/ast-node-factory.js",
         "node_modules/eslint/node_modules/espree/lib/ast-node-types.js",
+        "node_modules/eslint/node_modules/espree/lib/comment-attachment.js",
         "node_modules/eslint/node_modules/espree/lib/features.js",
         "node_modules/eslint/node_modules/espree/lib/messages.js",
         "node_modules/eslint/node_modules/espree/lib/string-map.js",
@@ -1532,6 +1543,7 @@
         "node_modules/eslint/node_modules/espree/lib/token-info.js",
         "node_modules/eslint/node_modules/espree/lib/xhtml-entities.js",
         "node_modules/eslint/node_modules/estraverse/estraverse.js",
+        "node_modules/eslint/node_modules/estraverse/gulpfile.js",
         "node_modules/eslint/node_modules/estraverse-fb/estraverse-fb.js",
         "node_modules/eslint/node_modules/estraverse-fb/keys.js",
         "node_modules/eslint/node_modules/estraverse-fb/test.js",
@@ -2039,7 +2051,7 @@
           "lib"
         ],
         "dependencies": {
-          "eslint": "^0.15.0",
+          "eslint": "^0.16.0",
           "resolve": "^1.1.5"
         }
       },
@@ -2054,15 +2066,15 @@
           "node_modules/eslint"
         ],
         "dependencies": {
-          "chalk": "~0.5.1",
+          "chalk": "^1.0.0",
           "concat-stream": "^1.4.6",
           "debug": "^2.1.1",
           "doctrine": "^0.6.2",
           "escape-string-regexp": "^1.0.2",
-          "escope": "^2.0.4",
-          "espree": "^1.9.1",
-          "estraverse": "^1.9.1",
-          "estraverse-fb": "^1.3.0",
+          "escope": "2.0.6",
+          "espree": "^1.11.0",
+          "estraverse": "^2.0.0",
+          "estraverse-fb": "^1.3.1",
           "globals": "^6.1.0",
           "js-yaml": "^3.2.5",
           "minimatch": "^2.0.1",
@@ -2080,11 +2092,11 @@
           "node_modules/eslint/node_modules/chalk"
         ],
         "dependencies": {
-          "ansi-styles": "^1.1.0",
-          "escape-string-regexp": "^1.0.0",
-          "has-ansi": "^0.1.0",
-          "strip-ansi": "^0.3.0",
-          "supports-color": "^0.2.0"
+          "ansi-styles": "^2.0.1",
+          "escape-string-regexp": "^1.0.2",
+          "has-ansi": "^1.0.3",
+          "strip-ansi": "^2.0.1",
+          "supports-color": "^1.3.0"
         }
       },
       {
@@ -2092,7 +2104,8 @@
           "node_modules/eslint/node_modules/chalk/node_modules/has-ansi"
         ],
         "dependencies": {
-          "ansi-regex": "^0.2.0"
+          "ansi-regex": "^1.1.0",
+          "get-stdin": "^4.0.1"
         }
       },
       {
@@ -2100,7 +2113,7 @@
           "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi"
         ],
         "dependencies": {
-          "ansi-regex": "^0.2.1"
+          "ansi-regex": "^1.0.0"
         }
       },
       {
@@ -2132,7 +2145,7 @@
           "node_modules/eslint/node_modules/debug"
         ],
         "dependencies": {
-          "ms": "0.6.2"
+          "ms": "0.7.0"
         }
       },
       {

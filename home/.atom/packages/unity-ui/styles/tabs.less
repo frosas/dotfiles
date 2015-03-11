@@ -20,6 +20,7 @@
     position:relative;
     border-left:1px solid #b7b5b7;
     display:table-cell;
+    background:@tab-background-color;
 
     &:first-child {
       border-left:none;
@@ -34,12 +35,16 @@
       height: 12px;
       width: 12px;
     }
+
+    &:hover {
+      background:#bcbcbc;
+    }
   }
 
   .tab.active,
   .tab:hover.active {
     color:#202020;
-    background: linear-gradient(@tab-background-color-active, #D6D5D6);
+    background:@tab-background-color-active;
     border-width:1px 0 1px 1px;
     border-top-color:#B5B4B5;
     border-left-color:#B7B6B7;
@@ -68,8 +73,10 @@
     width:16px;
     right:auto;
     position:absolute;
-    display:none;
+    opacity:0;
     border-radius:2px;
+    display:none;
+    transition:opacity 0.2s ease-in-out, background 0.2s ease-in-out;
 
     &:before {
       content:'✕';
@@ -81,18 +88,28 @@
     }
 
     &:hover {
-      background:rgb(194, 194, 194);
+      background:rgba(0,0,0,0.1);
+    }
+  }
+
+  &:hover .tab {
+    transition:background 0.2s linear;
+
+    .close-icon {
+      display:block;
     }
   }
 
   .tab.modified:not(:hover) .close-icon {
-    display:block;
+    opacity:1;
     top: 8px;
     left: 8px;
+    display:inline-block;
+
   }
 
   .tab:hover .close-icon {
-    display:block;
+    opacity:1;
   }
 
   .is-blurred & {
@@ -102,6 +119,7 @@
       border-right-color:#ADADAD;
       border-left-color:#ADADAD;
       color:#727272;
+      background:#ECECEC;
     }
 
     .tab.active,
