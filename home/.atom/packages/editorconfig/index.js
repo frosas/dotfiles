@@ -10,7 +10,7 @@ function init(editor) {
 		return;
 	}
 
-	var file = editor.getUri();
+	var file = editor.getURI();
 
 	if (!file) {
 		return;
@@ -21,17 +21,19 @@ function init(editor) {
 			return;
 		}
 
-		if (config.indent_style === 'space') {
-			editor.setSoftTabs(true);
+		var isTab = config.indent_style === 'tab' || !editor.softTabs;
 
-			if (config.indent_size) {
-				editor.setTabLength(config.indent_size);
-			}
-		} else if (config.indent_style === 'tab') {
+		if (isTab) {
 			editor.setSoftTabs(false);
 
 			if (config.tab_width) {
 				editor.setTabLength(config.tab_width);
+			}
+		} else {
+			editor.setSoftTabs(true);
+
+			if (config.indent_size) {
+				editor.setTabLength(config.indent_size);
 			}
 		}
 
@@ -44,5 +46,5 @@ function init(editor) {
 }
 
 plugin.activate = function () {
-	atom.workspace.eachEditor(init);
+	atom.workspace.observeTextEditors(init);
 };

@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationEvents": [],
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -23,10 +23,10 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@0.4.2",
-  "_shasum": "584c954a2689d36183965317e36afd420e58e65b",
-  "_resolved": "file:../d-115211-3765-10encgd/package.tgz",
-  "_from": "../d-115211-3765-10encgd/package.tgz",
+  "_id": "linter-eslint@0.4.3",
+  "_shasum": "7326965e313d526e0b443259b1ad9a26f12c35d4",
+  "_resolved": "file:../d-115219-99037-9vch60/package.tgz",
+  "_from": "../d-115219-99037-9vch60/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -72,7 +72,7 @@
       },
       {
         "name": "supports-color",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "path": "node_modules/eslint/node_modules/chalk/node_modules/supports-color/index.js"
       },
       {
@@ -112,7 +112,7 @@
       },
       {
         "name": "debug",
-        "version": "2.1.2",
+        "version": "2.1.3",
         "path": "node_modules/eslint/node_modules/debug/node.js"
       },
       {
@@ -237,7 +237,7 @@
       },
       {
         "name": "espree",
-        "version": "1.11.0",
+        "version": "1.12.0",
         "path": "node_modules/eslint/node_modules/espree/espree.js"
       },
       {
@@ -252,7 +252,7 @@
       },
       {
         "name": "globals",
-        "version": "6.2.0",
+        "version": "6.3.0",
         "path": "node_modules/eslint/node_modules/globals/index.js"
       },
       {
@@ -282,7 +282,7 @@
       },
       {
         "name": "minimatch",
-        "version": "2.0.3",
+        "version": "2.0.4",
         "path": "node_modules/eslint/node_modules/minimatch/minimatch.js"
       },
       {
@@ -372,7 +372,7 @@
       },
       {
         "name": "resolve",
-        "version": "1.1.5",
+        "version": "1.1.6",
         "path": "node_modules/resolve/index.js"
       }
     ],
@@ -1979,7 +1979,6 @@
         "node_modules/eslint/node_modules/js-yaml/node_modules/esprima/bin/esparse.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/esprima/bin/esvalidate.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/esprima/esprima.js",
-        "node_modules/eslint/node_modules/minimatch/benchmark.js",
         "node_modules/eslint/node_modules/minimatch/browser.js",
         "node_modules/eslint/node_modules/minimatch/minimatch.js",
         "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/example.js",
@@ -2696,8 +2695,7 @@
       },
       {
         "paths": [
-          "node_modules/eslint/node_modules/minimatch",
-          "node_modules/eslint/node_modules/minimatch/test"
+          "node_modules/eslint/node_modules/minimatch"
         ],
         "dependencies": {
           "brace-expansion": "^1.0.0"
