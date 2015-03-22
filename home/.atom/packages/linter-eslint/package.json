@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationEvents": [],
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "eslint": "^0.16.0",
+    "eslint": "^0.17.1",
     "resolve": "^1.1.5"
   },
   "readme": "linter-eslint\n=========================\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [eslint](http://eslint.org). It will be used with files that have the “JavaScript” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Plugin installation\n```\n$ apm install linter-eslint\n```\n\nlinter-eslint will look for a version of eslint local to your project and use it if it's available. If none is found it will fall back to the version it ships with.\n\nLets say you depend on a specific version of eslint, maybe it has unreleased features, maybe it's just newer than what linter-eslint ships with. If `your-project/node_modules/eslint` exists linter-eslint will try to use that.\n\n## Settings\nYou can configure linter-eslint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu) or in Preferences:\n\n```\n'linter-eslint':\n  'eslintRulesDir': 'mydir'\n  'disableWhenNoEslintrcFileInPath': true  \n```\n\nThe `eslintRulesDir` is relative to the working directory (project root).\n`disableWhenNoEslintrcFileInPath` allows disabling linter-eslint when there is no `.eslintrc` file in the path.\n\n\n## Contributing\nIf you would like to contribute enhancements or fixes, please do the following:\n\n1. Fork the plugin repository.\n1. Hack on a separate topic branch created from the latest `master`.\n1. Commit and push the topic branch.\n1. Make a pull request.\n1. welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n- Indent is 2 spaces.\n- Code should pass coffeelint linter.\n- Vertical whitespace helps readability, don’t be afraid to use it.\n\nThank you for helping out!\n\n## Donation\n[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)\n",
@@ -23,16 +23,16 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@0.4.3",
-  "_shasum": "7326965e313d526e0b443259b1ad9a26f12c35d4",
-  "_resolved": "file:../d-115219-99037-9vch60/package.tgz",
-  "_from": "../d-115219-99037-9vch60/package.tgz",
+  "_id": "linter-eslint@0.4.4",
+  "_shasum": "4fc76d712cdf064b51cf49270f5495623ac7ef3b",
+  "_resolved": "file:../d-115222-13149-12mpbqe/package.tgz",
+  "_from": "../d-115222-13149-12mpbqe/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "eslint",
-        "version": "0.16.2",
+        "version": "0.17.1",
         "path": "node_modules/eslint/lib/api.js"
       },
       {
@@ -237,7 +237,7 @@
       },
       {
         "name": "espree",
-        "version": "1.12.0",
+        "version": "1.12.2",
         "path": "node_modules/eslint/node_modules/espree/espree.js"
       },
       {
@@ -262,12 +262,12 @@
       },
       {
         "name": "argparse",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/index.js"
       },
       {
         "name": "lodash",
-        "version": "3.2.0",
+        "version": "3.5.0",
         "path": "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/index.js"
       },
       {
@@ -505,6 +505,7 @@
         "node_modules/eslint/lib/rules/eqeqeq.js",
         "node_modules/eslint/lib/rules/func-names.js",
         "node_modules/eslint/lib/rules/func-style.js",
+        "node_modules/eslint/lib/rules/generator-star-spacing.js",
         "node_modules/eslint/lib/rules/generator-star.js",
         "node_modules/eslint/lib/rules/global-strict.js",
         "node_modules/eslint/lib/rules/guard-for-in.js",
@@ -533,6 +534,7 @@
         "node_modules/eslint/lib/rules/no-div-regex.js",
         "node_modules/eslint/lib/rules/no-dupe-args.js",
         "node_modules/eslint/lib/rules/no-dupe-keys.js",
+        "node_modules/eslint/lib/rules/no-duplicate-case.js",
         "node_modules/eslint/lib/rules/no-else-return.js",
         "node_modules/eslint/lib/rules/no-empty-class.js",
         "node_modules/eslint/lib/rules/no-empty-label.js",
@@ -1715,6 +1717,8 @@
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/collection/some.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/collection/sortBy.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/collection/sortByAll.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/collection/sortByOrder.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/collection/sum.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/collection/where.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/collection.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/date/now.js",
@@ -1789,7 +1793,9 @@
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseInvoke.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseIsEqual.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseIsEqualDeep.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseIsFunction.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseIsMatch.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseLodash.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseMap.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseMatches.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseMatchesProperty.js",
@@ -1803,6 +1809,7 @@
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseSlice.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseSome.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseSortBy.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseSortByOrder.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseToString.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseUniq.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/baseValues.js",
@@ -1817,13 +1824,14 @@
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/charsLeftIndex.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/charsRightIndex.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/compareAscending.js",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/compareMultipleAscending.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/compareMultiple.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/composeArgs.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/composeArgsRight.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createAggregator.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createAssigner.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createBindWrapper.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createCache.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createComposer.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createCompounder.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createCtorWrapper.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/internal/createExtremum.js",
@@ -1903,6 +1911,12 @@
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/lang/toArray.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/lang/toPlainObject.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/lang.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/math/add.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/math/max.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/math/min.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/math/sum.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/math.js",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/number/inRange.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/number/random.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/number.js",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/object/assign.js",
@@ -2050,7 +2064,7 @@
           "lib"
         ],
         "dependencies": {
-          "eslint": "^0.16.0",
+          "eslint": "^0.17.1",
           "resolve": "^1.1.5"
         }
       },
@@ -2071,7 +2085,7 @@
           "doctrine": "^0.6.2",
           "escape-string-regexp": "^1.0.2",
           "escope": "2.0.6",
-          "espree": "^1.11.0",
+          "espree": "^1.12.0",
           "estraverse": "^2.0.0",
           "estraverse-fb": "^1.3.1",
           "globals": "^6.1.0",
@@ -2689,7 +2703,7 @@
           "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/lib/help"
         ],
         "dependencies": {
-          "lodash": "~3.2",
+          "lodash": ">= 3.2.0 < 4.0.0",
           "sprintf-js": "~1.0.2"
         }
       },
