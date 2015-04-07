@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationEvents": [],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Linter plugin for JavaScript, using jshint",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "jshint": "~2.5.0"
+    "jshint": "^2.6.3"
   },
   "readme": "linter-jshint\n=========================\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [jshint](http://www.jshint.com/docs/). It will be used with files that have the “JS” or “HTML” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Plugin installation\n```\n$ apm install linter-jshint\n```\n\n## Settings\nYou can configure linter-jshint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):\n```\n'linter-jshint':\n  'jshintExecutablePath': null #jshint path. run 'which jshint' to find the path\n```\n\n## Contributing\nIf you would like to contribute enhancements or fixes, please do the following:\n\n1. Fork the plugin repository.\n1. Hack on a separate topic branch created from the latest `master`.\n1. Commit and push the topic branch.\n1. Make a pull request.\n1. welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n- Indent is 2 spaces.\n- Code should pass coffeelint linter.\n- Vertical whitespace helps readability, don’t be afraid to use it.\n\nThank you for helping out!\n\n## Donation\n[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)\n",
   "readmeFilename": "README.md",
@@ -22,23 +22,21 @@
     "url": "https://github.com/AtomLinter/linter-jshint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-jshint",
-  "_id": "linter-jshint@0.1.0",
-  "dist": {
-    "shasum": "a32ba329cb3d21b797d17ebc5fb78cb9c39a93c6"
-  },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141027-59483-ciedqp/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1141027-59483-ciedqp/package.tgz",
+  "_id": "linter-jshint@0.1.1",
+  "_shasum": "f58e52457afaeb94d6c6aef79370182678cde80f",
+  "_resolved": "file:../d-11537-35447-1g536jq/package.tgz",
+  "_from": "../d-11537-35447-1g536jq/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "jshint",
-        "version": "2.5.10",
+        "version": "2.6.3",
         "path": "node_modules/jshint/src/jshint.js"
       },
       {
         "name": "cli",
-        "version": "0.6.5",
+        "version": "0.6.6",
         "path": "node_modules/jshint/node_modules/cli/cli.js"
       },
       {
@@ -88,7 +86,7 @@
       },
       {
         "name": "domelementtype",
-        "version": "1.1.3",
+        "version": "1.3.0",
         "path": "node_modules/jshint/node_modules/htmlparser2/node_modules/domelementtype/index.js"
       },
       {
@@ -98,8 +96,23 @@
       },
       {
         "name": "domutils",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "path": "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/index.js"
+      },
+      {
+        "name": "dom-serializer",
+        "version": "0.1.0",
+        "path": "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/index.js"
+      },
+      {
+        "name": "domelementtype",
+        "version": "1.1.3",
+        "path": "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/domelementtype/index.js"
+      },
+      {
+        "name": "entities",
+        "version": "1.1.1",
+        "path": "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/index.js"
       },
       {
         "name": "entities",
@@ -195,6 +208,8 @@
         "node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js",
         "node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/bench.js",
         "node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js",
+        "node_modules/jshint/node_modules/cli/progress.js",
+        "node_modules/jshint/node_modules/cli/spinner.js",
         "node_modules/jshint/node_modules/console-browserify/index.js",
         "node_modules/jshint/node_modules/console-browserify/node_modules/date-now/index.js",
         "node_modules/jshint/node_modules/console-browserify/node_modules/date-now/seed.js",
@@ -219,6 +234,12 @@
         "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/lib/querying.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/lib/stringify.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/lib/traversal.js",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/index.js",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/domelementtype/index.js",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/index.js",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/lib/decode.js",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/lib/decode_codepoint.js",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/lib/encode.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/entities/index.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/entities/lib/decode.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/entities/lib/decode_codepoint.js",
@@ -283,12 +304,15 @@
         "node_modules/jshint/src/jshint.js",
         "node_modules/jshint/src/lex.js",
         "node_modules/jshint/src/messages.js",
+        "node_modules/jshint/src/name-stack.js",
+        "node_modules/jshint/src/options.js",
         "node_modules/jshint/src/platforms/rhino.js",
         "node_modules/jshint/src/reg.js",
         "node_modules/jshint/src/reporters/checkstyle.js",
         "node_modules/jshint/src/reporters/default.js",
         "node_modules/jshint/src/reporters/jslint_xml.js",
         "node_modules/jshint/src/reporters/non_error.js",
+        "node_modules/jshint/src/reporters/unix.js",
         "node_modules/jshint/src/state.js",
         "node_modules/jshint/src/style.js",
         "node_modules/jshint/src/vars.js"
@@ -307,6 +331,13 @@
         "node_modules/jshint/node_modules/exit/package.json",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/domelementtype/package.json",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/domhandler/package.json",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/domelementtype/package.json",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/maps/decode.json",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/maps/entities.json",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/maps/legacy.json",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/maps/xml.json",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/node_modules/entities/package.json",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer/package.json",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/package.json",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/entities/maps/decode.json",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/entities/maps/entities.json",
@@ -338,7 +369,7 @@
           ""
         ],
         "dependencies": {
-          "jshint": "~2.5.0"
+          "jshint": "^2.6.3"
         }
       },
       {
@@ -438,7 +469,17 @@
           "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/test/tests"
         ],
         "dependencies": {
+          "dom-serializer": "0",
           "domelementtype": "1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/node_modules/dom-serializer"
+        ],
+        "dependencies": {
+          "domelementtype": "~1.1.1",
+          "entities": "~1.1.1"
         }
       },
       {
