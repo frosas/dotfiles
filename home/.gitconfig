@@ -22,7 +22,7 @@
     ss = stash show -v 
     sl = stash list
     untracked-files = ls-files -o --exclude-standard
-    pretty-log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit
+    pretty-log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset'
     ap = add -p
     cp = checkout -p
     p = pull --ff-only
