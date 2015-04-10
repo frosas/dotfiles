@@ -9,6 +9,8 @@
 	user = frosas
 [push]
 	default = simple
+[rebase]
+    autosquash = true
 [alias]
     ci = commit -v
     co = checkout
