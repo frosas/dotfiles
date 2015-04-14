@@ -1,7 +1,7 @@
 {
   "main": "./index.coffee",
   "name": "pretty-json",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Format JSON",
   "keywords": [
     "JSON",
@@ -26,12 +26,10 @@
     "url": "https://github.com/federomero/pretty-json/issues"
   },
   "homepage": "https://github.com/federomero/pretty-json",
-  "_id": "pretty-json@0.3.2",
-  "dist": {
-    "shasum": "457222cabe3c727bcb36b5b41778a3d8d8b17483"
-  },
-  "_resolved": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115019-87620-itgu3b/package.tgz",
-  "_from": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-115019-87620-itgu3b/package.tgz",
+  "_id": "pretty-json@0.3.3",
+  "_shasum": "88074951e573d4951b23e24d7590c24c4f840dfa",
+  "_resolved": "file:../d-115314-32766-10akajt/package.tgz",
+  "_from": "../d-115314-32766-10akajt/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
