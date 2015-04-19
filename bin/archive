@@ -1,11 +1,13 @@
 #!/bin/bash
 
-set -e # Exit on errors
+# TODO Archive the path relative to ~/Dropbox
 
-FILE="$1"
-DESTINATION="$HOME/Dropbox/Arxivat/$(date +%Y)/$(basename "$FILE").zip"
+set -e
+
+SOURCE="$1"
+DESTINATION="$HOME/Dropbox/Archived/$(date +%Y)/$(basename "$SOURCE").zip"
 
 mkdir -p "$(dirname "$DESTINATION")"
-zip -r "$DESTINATION" "$FILE"
+zip -r "$DESTINATION" "$SOURCE"
 echo "Archived to $DESTINATION"
-trash "$FILE"
+trash "$SOURCE"
