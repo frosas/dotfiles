@@ -12,6 +12,7 @@
     showIndentGuide: true
     tabLength: 4
     invisibles: {}
+    fontSize: 14
   core:
     disabledPackages: [
       "jsonpp"
