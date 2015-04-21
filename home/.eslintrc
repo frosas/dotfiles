@@ -8,6 +8,7 @@
         "no-alert": 0,
         "dot-notation": [2, {"allowKeywords": false}], // IE8+ support
         "indent": 2, // 4 spaces
+        "no-loop-func": 0,
         
         // Don't be too picky about the style
         "no-trailing-spaces": 0,
