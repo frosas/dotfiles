@@ -25,6 +25,11 @@
       "auto-update-packages"
       "deprecation-cop"
       "vim-mode"
+      "todo-show"
+      "git-history"
+      "git-log"
+      "php-twig"
+      "project-colorize"
     ]
     themes: [
       "one-dark-ui"
@@ -86,3 +91,6 @@
   emmet: {}
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
+  "unity-ui":
+    colorStatusIndicatorsInTreeView: true
+    showIcons: true
