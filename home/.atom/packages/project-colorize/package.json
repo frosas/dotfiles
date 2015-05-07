@@ -1,7 +1,7 @@
 {
   "name": "project-colorize",
   "main": "./lib/project-colorize",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Color the tab bar background to differentiate between different open projects in Atom.",
   "repository": {
     "type": "git",
@@ -20,10 +20,10 @@
     "url": "https://github.com/jasonporritt/project-colorize/issues"
   },
   "homepage": "https://github.com/jasonporritt/project-colorize",
-  "_id": "project-colorize@0.1.0",
-  "_shasum": "86f84d43f74a2767222694c38de309684d1586fe",
-  "_resolved": "file:../d-115114-66255-yan5jy/package.tgz",
-  "_from": "../d-115114-66255-yan5jy/package.tgz",
+  "_id": "project-colorize@0.2.0",
+  "_shasum": "57ea86d60228f7473d64da9bf7f26216fbdb280b",
+  "_resolved": "file:../d-11547-3465-1t57vro/package.tgz",
+  "_from": "../d-11547-3465-1t57vro/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

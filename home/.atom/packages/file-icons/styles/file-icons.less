@@ -28,7 +28,10 @@
 
 @{pane-tab-selector}, .icon-file-text {
 
-  &:before { .text-icon; }
+  &:before {
+    .text-icon;
+    font-style: normal !important;
+  }
 
   // Checklist icon
   &[data-name$="TODO"]:before { .checklist-icon; .medium-yellow; }
@@ -242,8 +245,8 @@
   &[data-name$=".swift"]:before   { .swift-icon; .medium-green; }
 
   ///D lang icon
-  &[data-name$=".d"]:before     { .cpp-icon; .medium-blue; }
-  &[data-name$=".di"]:before     { .cpp-icon; .medium-blue; }
+  &[data-name$=".d"]:before     { .dlang-icon; .medium-red; }
+  &[data-name$=".di"]:before    { .dlang-icon; .medium-red; }
 
   &[data-name$=".cs"]:before   { .csharp-icon; .medium-blue; }
   &[data-name$=".vb"]:before   { .code-icon; .medium-blue;   }

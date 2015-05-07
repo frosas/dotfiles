@@ -1,9 +1,9 @@
 {
   "name": "linter-htmlhint",
   "linter-package": true,
-  "activationEvents": [],
+  "activationCommands": {},
   "main": "./lib/init",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "description": "Linter plugin for HTML, using htmlhint",
   "repository": {
     "type": "git",
@@ -22,10 +22,10 @@
     "url": "https://github.com/AtomLinter/linter-htmlhint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-htmlhint",
-  "_id": "linter-htmlhint@0.0.13",
-  "_shasum": "e09b19c5d2663c61ab69fbb61ade1667e3ff4ba1",
-  "_resolved": "file:../d-115320-78869-1gpl7mc/package.tgz",
-  "_from": "../d-115320-78869-1gpl7mc/package.tgz",
+  "_id": "linter-htmlhint@0.0.15",
+  "_shasum": "09e761794504ad78a215fa6b3e6cc203291d6a4f",
+  "_resolved": "file:../d-11547-3460-hyr4mb/package.tgz",
+  "_from": "../d-11547-3460-hyr4mb/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -81,7 +81,7 @@
       },
       {
         "name": "lru-cache",
-        "version": "2.6.1",
+        "version": "2.6.2",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
       },
       {
@@ -176,7 +176,7 @@
       },
       {
         "name": "lru-cache",
-        "version": "2.6.1",
+        "version": "2.6.2",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
       },
       {
@@ -252,6 +252,8 @@
         "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/inherits/inherits_browser.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/inherits/test.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/minimatch.js",
+        "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/bar.js",
+        "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/foo.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/bench.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js",
@@ -310,6 +312,8 @@
         "node_modules/htmlhint/node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/transform.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/writable.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/minimatch.js",
+        "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/lru-cache/bar.js",
+        "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/lru-cache/foo.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/sigmund/bench.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/sigmund/sigmund.js",
