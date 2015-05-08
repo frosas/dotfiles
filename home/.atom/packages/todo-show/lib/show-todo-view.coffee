@@ -9,11 +9,10 @@
 vm = require 'vm'  #needed for the Content Security Policy errors when executing JS from my template view
 Q = require 'q'
 path = require 'path'
-{Point} = require 'atom'
+{Disposable, Point} = require 'atom'
 {$$$, TextEditorView, ScrollView} = require 'atom-space-pen-views'
 $ = require 'jquery'
 {allowUnsafeEval, allowUnsafeNewFunction} = require 'loophole' #needed for the Content Security Policy errors when executing JS from my template view
-# {File} = require 'pathwatcher'
 fs = require 'fs-plus'
 _ = require 'underscore'
 slash = require 'slash'
@@ -35,9 +34,7 @@ class ShowTodoView extends ScrollView
   @content: ->
     @div class: 'show-todo-preview native-key-bindings', tabindex: -1
 
-
   initialize: (serializeState) ->
-    # atom.workspaceView.command "show-todo:toggle", => @toggle()
     # Add the view click handler that goes to the marker (todo, fixme, whatnot)
     this.on 'click', '.file_url a',  (e) => # handle click here
       link = e.target
@@ -59,6 +56,9 @@ class ShowTodoView extends ScrollView
   getPath: ->
     # @file.getPath()
 
+  onDidChangeTitle: -> new Disposable()
+  onDidChangeModified: -> new Disposable()
+
   resolveImagePaths: (html) =>
     html = $(html)
     imgList = html.find("img")
@@ -73,33 +73,23 @@ class ShowTodoView extends ScrollView
 
   # currently broken. FIXME: Remove or replace
   resolveJSPaths: (html) =>
-    # console.log('INISDE RESOLVE')
     html = $(html)
-
 
     # scrList = html.find("#mainScript")
     scrList = [html[5]]
-
-    # console.log('html', html)
-    # console.log('hi')
-    # console.log('srcList', scrList)
 
     for scrElement in scrList
       js = $(scrElement)
       src = js.attr('src')
       # continue if src.match /^(https?:\/\/)/
       js.attr('src', path.resolve(path.dirname(@getPath()), src))
-      # console.log 'js', js
     html
 
   showLoading: ->
     @html $$$ ->
       @div class: 'markdown-spinner', 'Loading Todos...'
 
-
-
-
-  #get the regexes to look for from the settings
+  # Get the regexes to look for from settings
   # @FIXME: Add proper comments
   # @param settingsRegexes {array} - An array of regexes from settings.
   buildRegexLookups: (settingsRegexes) ->
@@ -116,42 +106,39 @@ class ShowTodoView extends ScrollView
 
     return regexes
 
-  # Pass in '/FIXME:(.+$)/g ' and returns a proper RegExp obj
+  # Pass in string and returns a proper RegExp object
   makeRegexObj: (regexStr) ->
     # extract the regex pattern
     pattern = regexStr.match(/\/(.+)\//)?[1] #extract anything between the slashes
     # extract the flags (after the last slash)
     flags = regexStr.match(/\/(\w+$)/)?[1] #extract any words after the last slash. Flags are optional
 
-    #abort if there's no valid pattern
+    # abort if there's no valid pattern
     return false unless pattern
 
     return new RegExp(pattern, flags)
 
-  #@TODO: Actually figure out how promises work.
-  # scan the project for the regex that is passed
+  # Scan the project for the regex that is passed
   # returns a promise that the project scan generates
   # @TODO: Improve the param name. Confusing
   fetchRegexItem: (lookupObj) ->
     regexObj = @makeRegexObj(lookupObj.regex)
 
-    #abort if there's no valid pattern
+    # abort if there's no valid pattern
     return false unless regexObj
 
     # handle ignores from settings
     ignoresFromSettings = atom.config.get('todo-show.ignoreThesePaths')
-    hasIgnores = ignoresFromSettings.length > 0
+    hasIgnores = ignoresFromSettings?.length > 0
     ignoreRules = ignore({ ignore:ignoresFromSettings });
-
-    # console.log('pattern', pattern)
-    # console.log('regexObj', regexObj)
+    
     return atom.workspace.scan regexObj, (e) ->
-      # Check against ignored paths
+      # check against ignored paths
       include = true
-      pathToTest = slash(e.filePath.substring(atom.project.getPath().length))
+      pathToTest = slash(e.filePath.substring(atom.project.getPaths()[0].length))
       if (hasIgnores && ignoreRules.filter([pathToTest]).length == 0)
         include = false
-
+        
       if include
         # loop through the results in the file, strip out 'todo:', and allow an optional space after todo:
         # regExMatch.matchText = regExMatch.matchText.match(regexObj)[1] for regExMatch in e.matches
@@ -159,23 +146,22 @@ class ShowTodoView extends ScrollView
           # strip out the regex token from the found phrase (todo, fixme, etc)
           # FIXME: I have no idea why this requires a stupid while loop. Figure it out and/or fix it.
           while (match = regexObj.exec(regExMatch.matchText))
-            regExMatch.matchText = match[1]
+            regExMatch.matchText = match[1].trim()
 
         lookupObj.results.push(e) # add it to the array of results for this regex
 
   renderTodos: ->
     @showLoading()
 
-    #fetch the reges from the settings
+    # fetch the reges from the settings
     regexes = @buildRegexLookups(atom.config.get('todo-show.findTheseRegexes'))
 
-    #@FIXME: abstract this into a separate, testable function?
+    # @FIXME: abstract this into a separate, testable function?
     promises = []
     for regexObj in regexes
-      #scan the project for each regex, and get a promise in return
-      promise = @fetchRegexItem(regexObj)  #inspect -> {state: 'pending'}
-      promises.push(promise) #create array of promises so we can listen for completion
-
+      # scan the project for each regex, and get a promise in return
+      promise = @fetchRegexItem(regexObj)
+      promises.push(promise) # create array of promises so we can listen for completion
 
     # fire callback when ALL project scans are done
     Q.all(promises).then () =>
@@ -193,15 +179,15 @@ class ShowTodoView extends ScrollView
       if ( fs.isFileSync(templ_path) )
         template = fs.readFileSync(templ_path, {encoding: "utf8"})
 
-      #FIXME: Add better error handling if the template fails to load
+      # FIXME: Add better error handling if the template fails to load
       compiled = dust.compile(template, "todo-template")
 
-      #is this step necessary? Appears to be...
+      # is this step necessary? Appears to be...
       dust.loadSource(compiled)
 
       # content & filters
       context = {
-        #make the path to the result relative
+        # make the path to the result relative
         "filterPath": (chunk, context, bodies) =>
           return chunk.tap((data) =>
 
@@ -209,7 +195,7 @@ class ShowTodoView extends ScrollView
             return atom.project.relativize(data);
           ).render(bodies.block, context).untap();
         ,
-        "results": regexes #FIXME: fix the sort order in the results
+        "results": regexes # FIXME: fix the sort order in the results
         # "todo_items": todoArray,
         # "fixme_items": fixmeArray,
         # "changed_items": changedArray,
@@ -235,8 +221,7 @@ class ShowTodoView extends ScrollView
 
       # vm.evalInThisContext("doSomething()");
 
-
-  # events that handle showing of todos
+  # Events that handle showing of todos
   handleEvents: ->
     # @subscribe atom.grammars, 'grammar-added grammar-updated', _.debounce((=> @renderTodos()), 250)
     # @subscribe this, 'core:move-up', => @scrollUp()
@@ -249,33 +234,20 @@ class ShowTodoView extends ScrollView
     #     pane.activateItem(this)
 
 
-  # open a new window, and load the file that we need.
+  # Open a new window, and load the file that we need.
   # we call this from the results view. This will open the result file in the left pane.
   openPath: (filePath, cursorCoords) ->
     return unless filePath
 
-    #if there's no workspace, create a workspace... Doesn't appear to be necessary?
-    # console.log('workspace', atom.workspace)
-
-    atom.workspaceView.open(filePath, split: 'left', {@allowActiveEditorChange}).done =>
+    atom.workspace.open(filePath, split: 'left').done =>
       @moveCursorTo(cursorCoords)
 
-  # taken directly from atom/fuzzy-finder
+  # Open document and move cursor to positon
   moveCursorTo: (cursorCoords) ->
-    lineNumber = parseInt(cursorCoords[0]) #take the regex start char [0], [1]
+    lineNumber = parseInt(cursorCoords[0])
     charNumber = parseInt(cursorCoords[1])
-    # return unless lineNumber >= 0
 
-    if editorView = atom.workspaceView.getActiveView()
+    if textEditor = atom.workspace.getActiveTextEditor()
       position = [lineNumber, charNumber]
-      editorView.scrollToBufferPosition(position, center: true)
-      editorView.editor.setCursorBufferPosition(position)
-      # editorView.editor.moveCursorToFirstCharacterOfLine()
-
-  # toggle: ->
-  #   @renderTodos()
-  #   console.log "ShowTodoView was toggled!"
-    # if @hasParent()
-    #   @detach()
-    # else
-    #   atom.workspaceView.append(this)
+      textEditor.setCursorBufferPosition(position, autoscroll: false)
+      textEditor.scrollToCursorPosition(center: true)
