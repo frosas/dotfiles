@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationCommands": [],
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -24,10 +24,10 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@0.5.4",
-  "_shasum": "873bccb6c6defb1cfd3b0944d626d4afa1afa3a4",
-  "_resolved": "file:../d-115411-26429-tujcty/package.tgz",
-  "_from": "../d-115411-26429-tujcty/package.tgz",
+  "_id": "linter-eslint@0.5.5",
+  "_shasum": "1584350c1ba0a56611fe0d6b4b99d38b4c12a00f",
+  "_resolved": "file:../d-115412-56197-1l35kg7/package.tgz",
+  "_from": "../d-115412-56197-1l35kg7/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -248,7 +248,7 @@
       },
       {
         "name": "inquirer",
-        "version": "0.8.3",
+        "version": "0.8.4",
         "path": "node_modules/eslint/node_modules/inquirer/lib/inquirer.js"
       },
       {
