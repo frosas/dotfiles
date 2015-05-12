@@ -22,7 +22,6 @@
         "no-multi-spaces": 0,
         "comma-spacing": 0,
         "yoda": 0,
-        "no-unused-expressions": 0,
         
         // Re-consider later
         "strict": 0,
