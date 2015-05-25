@@ -2,153 +2,129 @@
 # Pane magic happens in show-todo.coffee.
 # Markup is in template/show-todo-template.html
 # Styling is in the stylesheets folder.
-#
-# FIXME: Realizing this is some pretty nasty code. This should really, REALLY be cleaned up. Testing should help.
-# Also, having a greater understanding of Atom should help.
 
-vm = require 'vm'  #needed for the Content Security Policy errors when executing JS from my template view
-Q = require 'q'
 path = require 'path'
-{Disposable, Point} = require 'atom'
-{$$$, TextEditorView, ScrollView} = require 'atom-space-pen-views'
-$ = require 'jquery'
-{allowUnsafeEval, allowUnsafeNewFunction} = require 'loophole' #needed for the Content Security Policy errors when executing JS from my template view
 fs = require 'fs-plus'
-_ = require 'underscore'
+{Emitter, Disposable, CompositeDisposable, Point} = require 'atom'
+{$$$, ScrollView} = require 'atom-space-pen-views'
+
+Q = require 'q'
 slash = require 'slash'
 ignore = require 'ignore'
 
-
 module.exports =
 class ShowTodoView extends ScrollView
-  atom.deserializers.add(this)
-
-  @deserialize: ({filePath}) ->
-    new ShowTodoView(filePath)
-
-  constructor: (filePath) ->
-    super
-    # @file = new File(filePath)
-    @handleEvents()
-
   @content: ->
     @div class: 'show-todo-preview native-key-bindings', tabindex: -1
 
-  initialize: (serializeState) ->
-    # Add the view click handler that goes to the marker (todo, fixme, whatnot)
-    this.on 'click', '.file_url a',  (e) => # handle click here
-      link = e.target
-      @openPath(link.dataset.uri, link.dataset.coords.split(','));
+  constructor: ({@filePath}) ->
+    super
+    @handleEvents()
+    @emitter = new Emitter
+    @disposables = new CompositeDisposable
 
-  # Returns an object that can be retrieved when package is activated
-  serialize: ->
-
-  # Tear down any state and detach
   destroy: ->
     @detach()
+    @disposables.dispose()
 
   getTitle: ->
-    "Todo-show Results" #just put this title in there
+    "Todo-Show Results"
 
   getURI: ->
     "todolist-preview://#{@getPath()}"
 
   getPath: ->
-    # @file.getPath()
+    "TODOs"
+
+  getProjectPath: ->
+    atom.project.getPaths()[0]
 
   onDidChangeTitle: -> new Disposable()
   onDidChangeModified: -> new Disposable()
 
-  resolveImagePaths: (html) =>
-    html = $(html)
-    imgList = html.find("img")
-
-    for imgElement in imgList
-      img = $(imgElement)
-      src = img.attr('src')
-      continue if src.match /^(https?:\/\/)/
-      img.attr('src', path.resolve(path.dirname(@getPath()), src))
-
-    html
-
-  # currently broken. FIXME: Remove or replace
-  resolveJSPaths: (html) =>
-    html = $(html)
-
-    # scrList = html.find("#mainScript")
-    scrList = [html[5]]
-
-    for scrElement in scrList
-      js = $(scrElement)
-      src = js.attr('src')
-      # continue if src.match /^(https?:\/\/)/
-      js.attr('src', path.resolve(path.dirname(@getPath()), src))
-    html
-
   showLoading: ->
+    @loading = true
     @html $$$ ->
       @div class: 'markdown-spinner', 'Loading Todos...'
 
-  # Get the regexes to look for from settings
-  # @FIXME: Add proper comments
-  # @param settingsRegexes {array} - An array of regexes from settings.
+  showTodos: (regexes) ->
+    @html $$$ ->
+      @div class: 'todo-action-items pull-right', =>
+        @a class: 'todo-save-as', =>
+          @span class: 'icon icon-cloud-download'
+        @a class: 'todo-refresh', =>
+          @span class: 'icon icon-sync'
+
+      for regex in regexes
+        @section =>
+          @h1 =>
+            @span regex.title + ' '
+            @span class: 'regex', regex.regex
+          @table =>
+            for result in regex.results
+              for match in result.matches
+                @tr =>
+                  @td match.matchText
+                  @td =>
+                    relativePath = atom.project.relativize(result.filePath)
+                    @a class: 'todo-url', 'data-uri': result.filePath, 'data-coords': match.range, relativePath
+
+    @loading = false
+
+  # Get regexes to look for from settings
   buildRegexLookups: (settingsRegexes) ->
-    regexes = [] #[{title, regex, results}]
-
-    for regex, i in settingsRegexes
-      match = {
-        'title': regex
-        'regex': settingsRegexes[i+1]
-        'results': []
-      }
-      _i = _i+1    #_ overrides the one that coffeescript actually creates. Seems hackish. FIXME: maybe just use modulus
-      regexes.push(match)
-
-    return regexes
+    for regex, i in settingsRegexes by 2
+      'title': regex
+      'regex': settingsRegexes[i+1]
+      'results': []
 
   # Pass in string and returns a proper RegExp object
   makeRegexObj: (regexStr) ->
-    # extract the regex pattern
-    pattern = regexStr.match(/\/(.+)\//)?[1] #extract anything between the slashes
-    # extract the flags (after the last slash)
-    flags = regexStr.match(/\/(\w+$)/)?[1] #extract any words after the last slash. Flags are optional
+    # Extract the regex pattern (anything between the slashes)
+    pattern = regexStr.match(/\/(.+)\//)?[1]
+    # Extract the flags (after last slash)
+    flags = regexStr.match(/\/(\w+$)/)?[1]
 
-    # abort if there's no valid pattern
     return false unless pattern
+    new RegExp(pattern, flags)
 
-    return new RegExp(pattern, flags)
+  # Scan project for the lookup that is passed
+  # returns a promise that the scan generates
+  fetchRegexItem: (regexLookup) ->
+    maxLength = 120
 
-  # Scan the project for the regex that is passed
-  # returns a promise that the project scan generates
-  # @TODO: Improve the param name. Confusing
-  fetchRegexItem: (lookupObj) ->
-    regexObj = @makeRegexObj(lookupObj.regex)
-
-    # abort if there's no valid pattern
+    regexObj = @makeRegexObj(regexLookup.regex)
     return false unless regexObj
 
-    # handle ignores from settings
+    # Handle ignores from settings
     ignoresFromSettings = atom.config.get('todo-show.ignoreThesePaths')
     hasIgnores = ignoresFromSettings?.length > 0
-    ignoreRules = ignore({ ignore:ignoresFromSettings });
-    
-    return atom.workspace.scan regexObj, (e) ->
-      # check against ignored paths
-      include = true
-      pathToTest = slash(e.filePath.substring(atom.project.getPaths()[0].length))
-      if (hasIgnores && ignoreRules.filter([pathToTest]).length == 0)
-        include = false
-        
-      if include
-        # loop through the results in the file, strip out 'todo:', and allow an optional space after todo:
-        # regExMatch.matchText = regExMatch.matchText.match(regexObj)[1] for regExMatch in e.matches
-        for regExMatch in e.matches
-          # strip out the regex token from the found phrase (todo, fixme, etc)
-          # FIXME: I have no idea why this requires a stupid while loop. Figure it out and/or fix it.
-          while (match = regexObj.exec(regExMatch.matchText))
-            regExMatch.matchText = match[1].trim()
+    ignoreRules = ignore({ ignore:ignoresFromSettings })
 
-        lookupObj.results.push(e) # add it to the array of results for this regex
+    return atom.workspace.scan regexObj, (e) ->
+      # Check against ignored paths
+      pathToTest = slash(e.filePath.substring(atom.project.getPaths()[0].length))
+      return if (hasIgnores && ignoreRules.filter([pathToTest]).length == 0)
+
+      # Loop through the workspace file results
+      for regExMatch in e.matches
+        matchText = regExMatch.matchText
+
+        # Strip out the regex token from the found annotation
+        # not all objects will have an exec match
+        while (match = regexObj.exec(matchText))
+          matchText = match.pop()
+
+        # Strip common block comment endings and whitespaces
+        matchText = matchText.replace(/(\*\/|-->|#>|-}|\]\])\s*$/, '').trim()
+
+        # Truncate long match strings
+        if matchText.length >= maxLength
+          matchText = matchText.substring(0, maxLength - 3) + '...'
+
+        regExMatch.matchText = matchText
+
+      regexLookup.results.push(e)
 
   renderTodos: ->
     @showLoading()
@@ -165,74 +141,24 @@ class ShowTodoView extends ScrollView
 
     # fire callback when ALL project scans are done
     Q.all(promises).then () =>
+      @showTodos(@regexes = regexes)
 
-      # wasn't able to load 'dust' properly for some reason
-      dust = require('dust.js') #templating engine
-
-      # template = hogan.compile("Hello {name}!");
-
-      # team = ['jamis', 'adam', 'johnson']
-
-      # load up the template
-      # path.resolve __dirname, '../template/show-todo-template.html'
-      templ_path = path.resolve(__dirname, '../template/show-todo-template.html')
-      if ( fs.isFileSync(templ_path) )
-        template = fs.readFileSync(templ_path, {encoding: "utf8"})
-
-      # FIXME: Add better error handling if the template fails to load
-      compiled = dust.compile(template, "todo-template")
-
-      # is this step necessary? Appears to be...
-      dust.loadSource(compiled)
-
-      # content & filters
-      context = {
-        # make the path to the result relative
-        "filterPath": (chunk, context, bodies) =>
-          return chunk.tap((data) =>
-
-            # make it relative
-            return atom.project.relativize(data);
-          ).render(bodies.block, context).untap();
-        ,
-        "results": regexes # FIXME: fix the sort order in the results
-        # "todo_items": todoArray,
-        # "fixme_items": fixmeArray,
-        # "changed_items": changedArray,
-        # "todo_items_length": todo_total_length,
-        # "fixme_items_length": fixme_total_length,
-        # "changed_items_length": changed_total_length
-      }
-
-      # console.log('VM', vm);
-      # vm.evalInThisContext(console.log('hi something in vm'));
-
-      # render the template
-      # doSomething: ->
-
-      dust.render "todo-template", context, (err, out) =>
-        # console.log 'err', err
-        # console.log('content to be rendered', out);
-        # allowUnsafeEval  ->
-        # console.log('hi ho')
-        # out = @resolveJSPaths out #resolve the relative JS paths for external <script> in view
-        @html(out)
-        # @html 'hi'
-
-      # vm.evalInThisContext("doSomething()");
-
-  # Events that handle showing of todos
   handleEvents: ->
-    # @subscribe atom.grammars, 'grammar-added grammar-updated', _.debounce((=> @renderTodos()), 250)
-    # @subscribe this, 'core:move-up', => @scrollUp()
-    # @subscribe this, 'core:move-down', => @scrollDown()
-    # fixME: probably not necessary. Can Likely be removed.
-    # @subscribe @file, 'contents-changed', =>
-    #   @renderTodos()
-    #   pane = atom.workspace.paneForUri(@getURI())
-    #   if pane? and pane isnt atom.workspace.getActivePane()
-    #     pane.activateItem(this)
+    atom.commands.add @element,
+      'core:save-as': (event) =>
+        event.stopPropagation()
+        @saveAs()
+      'core:refresh': (event) =>
+        event.stopPropagation()
+        @renderTodos()
 
+    @on 'click', '.todo-url',  (e) =>
+      link = e.target
+      @openPath(link.dataset.uri, link.dataset.coords.split(','))
+    @on 'click', '.todo-save-as', =>
+      @saveAs()
+    @on 'click', '.todo-refresh', =>
+      @renderTodos()
 
   # Open a new window, and load the file that we need.
   # we call this from the results view. This will open the result file in the left pane.
@@ -251,3 +177,29 @@ class ShowTodoView extends ScrollView
       position = [lineNumber, charNumber]
       textEditor.setCursorBufferPosition(position, autoscroll: false)
       textEditor.scrollToCursorPosition(center: true)
+
+  getMarkdown: ->
+    @regexes.map((regex) ->
+      return unless regex.results.length
+
+      out = '\n## ' + regex.title + '\n\n'
+
+      regex.results?.map((result) ->
+        result.matches?.map((match) ->
+          out += '- ' + match.matchText
+          out += ' _(' + atom.project.relativize(result.filePath) + ')_\n'
+        )
+      )
+      out
+    ).join("")
+
+  saveAs: ->
+    return if @loading
+
+    filePath = path.parse(@getPath()).name + '.txt'
+    if @getProjectPath()
+      filePath = path.join(@getProjectPath(), filePath)
+
+    if outputFilePath = atom.showSaveDialogSync(filePath)
+      fs.writeFileSync(outputFilePath, @getMarkdown())
+      atom.workspace.open(outputFilePath)

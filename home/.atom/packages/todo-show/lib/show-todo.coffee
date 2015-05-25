@@ -2,16 +2,11 @@
 # 1) Defines Regex defaults
 # 2) Instantiates the commands, the panes, and then calls showTodoView.renderTodos()
 
-querystring = require 'querystring'
 url = require 'url'
-fs = require 'fs-plus'
 
 ShowTodoView = require './show-todo-view'
 
-
 module.exports =
-  showTodoView: null
-  
   config:
     # title, regex, title, regex...
     findTheseRegexes:
@@ -38,43 +33,40 @@ module.exports =
       ]
       items:
         type: 'string'
+    # split direction to open list
+    openListInDirection:
+      type: 'string'
+      default: 'right'
+      enum: ['up', 'right', 'down', 'left', 'ontop']
 
-  activate: (state) ->
+  activate: ->
     atom.commands.add 'atom-workspace', 'todo-show:find-in-project': =>
       @show()
-    # @showTodoView = new ShowTodoView(state.showTodoViewState)
 
-    # register the todolist URI. Which will then open our custom view
+    # register the todolist URI, which will then open our custom view
     atom.workspace.addOpener (uriToOpen) ->
-      # console.log('REGISTER OPENER CALLED222', uriToOpen)
-      {protocol, pathname} = url.parse(uriToOpen)
-      pathname = querystring.unescape(pathname) if pathname
+      {protocol, host, pathname} = url.parse(uriToOpen)
+      pathname = decodeURI(pathname) if pathname
       return unless protocol is 'todolist-preview:'
-      # console.log('REGISTER OPENER CALLED444', uriToOpen)
-      new ShowTodoView(pathname)
-
-  deactivate: ->
-    @showTodoView?.destroy()
-
-  serialize: ->
-    showTodoViewState: @showTodoView?.serialize()
+      new ShowTodoView(filePath: pathname)
 
   show: ->
-    previousActivePane = atom.workspace.getActivePane()
     uri = "todolist-preview://TODOs"
+    prevPane = atom.workspace.getActivePane()
     pane = atom.workspace.paneForItem(@showTodoView)
-    
+    direction = atom.config.get('todo-show.openListInDirection')
+
     if pane
       pane.destroyItem(@showTodoView)
       # ignore core.destroyEmptyPanes and close empty pane
       pane.destroy() if pane.getItems().length is 0
-    else
-      atom.workspace.open(uri, split: 'right', searchAllPanes: true).done (textEditorView) =>
-        @showTodoView = textEditorView;
+      return
 
-        # TODO: we could require it in, and use a similar pattern as the other one...
-        
-        arguments[0].innerHTML = "WE HAVE LIFTOFF"
-        if @showTodoView instanceof ShowTodoView
-          @showTodoView.renderTodos() #do the initial render
-        previousActivePane.activate()
+    if direction == 'down'
+      prevPane.splitDown() if prevPane.parent.orientation != 'vertical'
+    else if direction == 'up'
+      prevPane.splitUp() if prevPane.parent.orientation != 'vertical'
+
+    atom.workspace.open(uri, split: direction).done (@showTodoView) =>
+      @showTodoView.renderTodos() if @showTodoView instanceof ShowTodoView
+      prevPane.activate()

@@ -3,6 +3,7 @@ Linter = require "#{linterPath}/lib/linter"
 findFile = require "#{linterPath}/lib/util"
 resolve = require('resolve').sync
 {allowUnsafeNewFunction} = require 'loophole'
+{exec} = require 'child_process'
 
 path = require "path"
 fs = require "fs"
@@ -16,6 +17,15 @@ class LinterESLint extends Linter
 
   linterName: 'eslint'
 
+  _findGlobalNpmDir: () ->
+    exec 'npm config get prefix', (code, stdout, stderr) =>
+      if not stderr
+        cleanPath = stdout.replace(/[\n\r\t]/g, '')
+        dir = path.join(cleanPath, 'lib', 'node_modules')
+        fs.exists dir, (exists) =>
+          if exists
+            @npmPath = dir
+
   _requireEsLint: (filePath) ->
     @localEslint = false
     try
@@ -25,11 +35,19 @@ class LinterESLint extends Linter
       eslint = require(eslintPath)
       @localEslint = true
       return eslint
+    catch
+      if @useGlobalEslint
+        try
+          eslintPath = resolve('eslint', {
+            basedir: @npmPath
+          })
+          eslint = require(eslintPath)
+          @localEslint = true
+          return eslint
     # Fall back to the version packaged in linter-eslint
     return require('eslint')
 
   lintFile: (filePath, callback) ->
-
     filename = path.basename filePath
     origPath = path.join @cwd, filename
     options = {}
@@ -38,7 +56,7 @@ class LinterESLint extends Linter
     eslintrc = findFile(origPath, '.eslintrc')
 
     if not eslintrc and @disableWhenNoEslintrcFileInPath
-      return
+      return callback([])
 
     rulesDir = findFile(@cwd, [@rulesDir], false, 0) if @rulesDir
 
@@ -78,11 +96,12 @@ class LinterESLint extends Linter
           engine = new CLIEngine(options)
         else
           # we have `eslint@0.21`+
+          basePath = if @useGlobalEslint then @npmPath else origPath
           config.plugins.forEach (pluginName) ->
             npmPluginName = 'eslint-plugin-' + pluginName
             try
               pluginPath = resolve(npmPluginName, {
-                basedir: path.dirname(origPath)
+                basedir: path.dirname(basePath)
               })
               pluginObject = require(pluginPath)
               engine.addPlugin(npmPluginName, pluginObject)
@@ -93,9 +112,6 @@ class LinterESLint extends Linter
         Object.keys(config.rules).forEach (key) ->
           delete config.rules[key] if isPluginRule.test(key)
 
-    # wrap `eslint()` into `allowUnsafeNewFunction`
-    # https://discuss.atom.io/t/--template-causes-unsafe-eval-error/9310
-    # https://github.com/babel/babel/blob/master/src/acorn/src/identifier.js#L46
     result = []
     if notFoundPlugins.length
       result.push({
@@ -106,6 +122,9 @@ class LinterESLint extends Linter
         in your project (linter-eslint)"
       })
     else
+      # wrap `eslint()` into `allowUnsafeNewFunction`
+      # https://discuss.atom.io/t/--template-causes-unsafe-eval-error/9310
+      # https://github.com/babel/babel/blob/master/src/acorn/src/identifier.js#L46
       allowUnsafeNewFunction =>
         result = linter.verify @editor.getText(), config
 
@@ -150,6 +169,11 @@ class LinterESLint extends Linter
 
     atom.config.observe 'linter-eslint.disableWhenNoEslintrcFileInPath', (skipNonEslint) =>
       @disableWhenNoEslintrcFileInPath = skipNonEslint
+
+    atom.config.observe 'linter-eslint.useGlobalEslint', (useGlobal) =>
+      @useGlobalEslint = useGlobal
+      if @useGlobalEslint
+        @_findGlobalNpmDir()
 
   destroy: ->
     @rulesDirListener.dispose()

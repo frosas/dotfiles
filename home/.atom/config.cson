@@ -11,7 +11,8 @@
     fontFamily: "Ubuntu Mono"
     showIndentGuide: true
     tabLength: 4
-    invisibles: {}
+    invisibles:
+      {}
     fontSize: 14
   core:
     disabledPackages: [
@@ -98,7 +99,8 @@
     useSmartcaseForSearch: true
   "git-diff":
     showIconsInEditorGutter: true
-  emmet: {}
+  emmet:
+    {}
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
   "unity-ui":
