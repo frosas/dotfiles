@@ -106,3 +106,5 @@
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true
+  "atom-fuzzy-grep":
+    detectGitProjectAndUseGitGrep: false
