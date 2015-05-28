@@ -28,9 +28,9 @@
       "vim-mode"
       "todo-show"
       "git-history"
-      "git-log"
       "php-twig"
       "project-colorize"
+      "git-log"
     ]
     themes: [
       "one-dark-ui"
