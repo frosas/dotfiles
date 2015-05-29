@@ -1,7 +1,7 @@
 {
   "name": "git-history",
   "main": "./lib/git-history",
-  "version": "2.6.0",
+  "version": "3.0.0",
   "description": "View previous versions of any file known to git.",
   "activationCommands": {
     "atom-workspace": [
@@ -20,18 +20,19 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "atom-space-pen-views": "^2.0.3"
+    "atom-space-pen-views": "^2.0.3",
+    "diff": "^1.4.0"
   },
-  "readme": "# Git History Package for Atom [![Build Status](http://img.shields.io/travis/jakesankey/git-history.svg?style=flat)](https://travis-ci.org/jakesankey/git-history)\n\nView previous versions of any file known to git.\n\n`apm install git-history`\n\n![](https://raw.githubusercontent.com/jakesankey/git-history/master/resources/screenshot.gif)\n",
+  "readme": "# Git History Package for Atom [![Build Status](http://img.shields.io/travis/jakesankey/git-history.svg?style=flat)](https://travis-ci.org/jakesankey/git-history)\n\nView previous versions of any file known to git. By default, the plugin will now show a diff with the selected version. This can be disabled in the settings.\n\n`apm install git-history`\n\n![](https://raw.githubusercontent.com/jakesankey/git-history/master/resources/screenshot.gif)\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/jakesankey/git-history/issues"
   },
   "homepage": "https://github.com/jakesankey/git-history",
-  "_id": "git-history@2.6.0",
-  "_shasum": "2b2561eb10995aea25c7db00b57e451535c6840f",
-  "_resolved": "file:../d-115414-87756-1p6axup/package.tgz",
-  "_from": "../d-115414-87756-1p6axup/package.tgz",
+  "_id": "git-history@3.0.0",
+  "_shasum": "db3afa1ed799c92f22ff85b1f56bbf1e9a806dfd",
+  "_resolved": "file:../d-115429-85522-dayd0f/package.tgz",
+  "_from": "../d-115429-85522-dayd0f/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -72,7 +73,7 @@
       },
       {
         "name": "fs-plus",
-        "version": "2.8.0",
+        "version": "2.8.1",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/coffeestack/node_modules/fs-plus/lib/fs-plus.js"
       },
       {
@@ -154,6 +155,11 @@
         "name": "underscore",
         "version": "1.6.0",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/underscore.js"
+      },
+      {
+        "name": "diff",
+        "version": "1.4.0",
+        "path": "node_modules/diff/diff.js"
       }
     ],
     "extensions": {
@@ -186,6 +192,7 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/package.json",
         "node_modules/atom-space-pen-views/node_modules/space-pen/package.json",
         "node_modules/atom-space-pen-views/package.json",
+        "node_modules/diff/package.json",
         "package.json"
       ],
       ".coffee": [
@@ -744,7 +751,8 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/wrap.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/lib/underscore-plus.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/underscore.js"
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/underscore-plus/node_modules/underscore/underscore.js",
+        "node_modules/diff/diff.js"
       ]
     },
     "folders": [
@@ -755,7 +763,8 @@
           "spec"
         ],
         "dependencies": {
-          "atom-space-pen-views": "^2.0.3"
+          "atom-space-pen-views": "^2.0.3",
+          "diff": "^1.4.0"
         }
       },
       {
