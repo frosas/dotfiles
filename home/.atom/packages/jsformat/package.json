@@ -1,7 +1,7 @@
 {
   "name": "jsformat",
   "main": "./lib/format",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "private": true,
   "description": "javascript formatting for the atom text editor",
   "keywords": [
@@ -30,10 +30,10 @@
     "url": "https://github.com/jdc0589/jsformat-atom/issues"
   },
   "homepage": "https://github.com/jdc0589/jsformat-atom",
-  "_id": "jsformat@0.8.1",
-  "_shasum": "d7366ed5b4dde1c2fde5e4e72ba5758d44f67703",
-  "_resolved": "file:../d-115425-58551-16ma73d/package.tgz",
-  "_from": "../d-115425-58551-16ma73d/package.tgz",
+  "_id": "jsformat@0.9.0",
+  "_shasum": "538a731461d7d74ebea0440a97c3c071f24c7f5f",
+  "_resolved": "file:../d-11552-19303-1slkuuf/package.tgz",
+  "_from": "../d-11552-19303-1slkuuf/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -274,7 +274,7 @@
       },
       {
         "name": "js-beautify",
-        "version": "1.5.5",
+        "version": "1.5.6",
         "path": "node_modules/js-beautify/js/index.js"
       },
       {
@@ -309,7 +309,7 @@
       },
       {
         "name": "abbrev",
-        "version": "1.0.6",
+        "version": "1.0.7",
         "path": "node_modules/js-beautify/node_modules/nopt/node_modules/abbrev/abbrev.js"
       }
     ],

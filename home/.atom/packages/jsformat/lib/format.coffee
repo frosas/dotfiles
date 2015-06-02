@@ -29,7 +29,7 @@ module.exports =
 
     grammar = editor.getGrammar().name
 
-    if (!(grammar is 'JSON' or grammar is 'JavaScript'))
+    if (!(grammar is 'JSON' or /JavaScript/.test(grammar)))
       @displayUnsupportedLanguageNotification(grammar)
     else if (atom.config.get('jsformat.ignore_files').indexOf(editor.getTitle()) != -1)
       return
@@ -150,7 +150,7 @@ module.exports =
 
   displayUnsupportedLanguageNotification: (language) ->
     notification = new FileTypeNotSupportedView(language)
-    atom.workspaceView.append(notification)
+    atom.views.getView(atom.workspace).append(notification)
     destroyer = () ->
       notification.detach()
 
