@@ -20,7 +20,6 @@
       "atom-lint"
       "linter-jshint"
       "spell-check"
-      "minimap"
       "emmet"
       "atomatigit"
       "auto-update-packages"
@@ -32,6 +31,7 @@
       "project-colorize"
       "git-log"
       "auto-detect-indentation"
+      "minimap"
     ]
     themes: [
       "one-dark-ui"
@@ -109,3 +109,5 @@
     showIcons: true
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
+  minimap:
+    {}
