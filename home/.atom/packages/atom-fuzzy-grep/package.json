@@ -1,8 +1,13 @@
 {
   "name": "atom-fuzzy-grep",
   "main": "./lib/atom-fuzzy-grep",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Fuzzy grep project using ag, ack, grep or git-grep",
+  "activationCommands": {
+    "atom-workspace": [
+      "fuzzy-grep:toggle"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/geksilla/atom-fuzzy-grep"
@@ -21,10 +26,10 @@
     "url": "https://github.com/geksilla/atom-fuzzy-grep/issues"
   },
   "homepage": "https://github.com/geksilla/atom-fuzzy-grep",
-  "_id": "atom-fuzzy-grep@0.2.0",
-  "_shasum": "53468a9fdf9501c4fc32ef52642c039afc8b54df",
-  "_resolved": "file:../d-115427-29197-lvuyrs/package.tgz",
-  "_from": "../d-115427-29197-lvuyrs/package.tgz",
+  "_id": "atom-fuzzy-grep@0.3.0",
+  "_shasum": "5a866e6fd88062ea679e57c089fa69f8c422c092",
+  "_resolved": "file:../d-115510-39524-18f4q91/package.tgz",
+  "_from": "../d-115510-39524-18f4q91/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -90,7 +95,7 @@
       },
       {
         "name": "amdefine",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "path": "node_modules/space-pen/node_modules/grim/node_modules/coffeestack/node_modules/source-map/node_modules/amdefine/amdefine.js"
       },
       {

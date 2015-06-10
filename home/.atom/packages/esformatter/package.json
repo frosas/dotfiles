@@ -1,6 +1,6 @@
 {
   "name": "esformatter",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Beautify JavaScript",
   "license": "MIT",
   "repository": {
@@ -9,8 +9,10 @@
   },
   "private": true,
   "activationCommands": {
-    "atom-workspace": "core:save",
-    "atom-text-editor": "esformatter"
+    "atom-workspace": [
+      "core:save",
+      "esformatter"
+    ]
   },
   "author": {
     "name": "Sindre Sorhus",
@@ -43,10 +45,10 @@
     "url": "https://github.com/sindresorhus/atom-esformatter/issues"
   },
   "homepage": "https://github.com/sindresorhus/atom-esformatter",
-  "_id": "esformatter@1.6.1",
-  "_shasum": "af101a3c45535279a40359f4212f7abc85e984b1",
-  "_resolved": "file:../d-115429-56902-18fpest/package.tgz",
-  "_from": "../d-115429-56902-18fpest/package.tgz",
+  "_id": "esformatter@1.6.2",
+  "_shasum": "5bf3bd5180a74d36eb718c6458f81e6f391b036f",
+  "_resolved": "file:../d-115510-39531-182uzhl/package.tgz",
+  "_from": "../d-115510-39531-182uzhl/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -232,7 +234,7 @@
       },
       {
         "name": "semver",
-        "version": "4.3.4",
+        "version": "4.3.6",
         "path": "node_modules/esformatter/node_modules/rocambole-linebreak/node_modules/semver/semver.js"
       },
       {
@@ -322,7 +324,7 @@
       },
       {
         "name": "esformatter-literal-notation",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "path": "node_modules/esformatter-literal-notation/index.js"
       },
       {
@@ -342,7 +344,7 @@
       },
       {
         "name": "esformatter-parseint",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "path": "node_modules/esformatter-parseint/index.js"
       },
       {
@@ -362,7 +364,7 @@
       },
       {
         "name": "esformatter-quotes",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/esformatter-quotes/index.js"
       },
       {

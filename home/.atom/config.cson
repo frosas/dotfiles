@@ -103,7 +103,7 @@
   emmet:
     {}
   "linter-eslint":
-    disableWhenNoEslintrcFileInPath: true
+    {}
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true

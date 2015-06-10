@@ -28,6 +28,9 @@ class GrepView extends SelectListView
   getFilterQuery: -> ''
 
   viewForItem: ({filePath, line, content, error})->
+    if error
+      @setError error
+      return
     $$ ->
       @li class: 'two-lines', =>
         fileBasePath = path.basename filePath
@@ -70,11 +73,9 @@ class GrepView extends SelectListView
 
   getProjectPath: ->
     editor = atom.workspace.getActiveTextEditor()
-    if editor && editor.buffer.file
-    # TODO not sure if this a proper way
-      atom.project.getPaths().filter((item)->
-        editor.buffer.file.path.startsWith item
-      )[0]
+    return unless editor
+    if editor.getPath()
+      atom.project.relativizePath(editor.getPath())[0]
     else
       atom.project.getPaths()[0]
 
