@@ -11,8 +11,7 @@
     fontFamily: "Ubuntu Mono"
     showIndentGuide: true
     tabLength: 4
-    invisibles:
-      {}
+    invisibles: {}
     fontSize: 14
   core:
     disabledPackages: [
@@ -100,14 +99,11 @@
     useSmartcaseForSearch: true
   "git-diff":
     showIconsInEditorGutter: true
-  emmet:
-    {}
-  "linter-eslint":
-    {}
+  emmet: {}
+  "linter-eslint": {}
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
-  minimap:
-    {}
+  minimap: {}
