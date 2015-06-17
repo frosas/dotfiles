@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationCommands": [],
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "atom": ">0.50.0"
   },
   "dependencies": {
-    "eslint": "^0.21.0",
+    "eslint": "^0.23.0",
     "loophole": "^1.0.0",
     "resolve": "^1.1.5"
   },
@@ -24,16 +24,16 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@0.5.8",
-  "_shasum": "3216f432a2e86bf25c4e9711ffafabeef04f6d13",
-  "_resolved": "file:../d-115425-58568-1k2mm8n/package.tgz",
-  "_from": "../d-115425-58568-1k2mm8n/package.tgz",
+  "_id": "linter-eslint@0.5.9",
+  "_shasum": "e01842e5f66a7cd8fe482622a83061549154792a",
+  "_resolved": "file:../d-115517-72388-1qlfdfv/package.tgz",
+  "_from": "../d-115517-72388-1qlfdfv/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "eslint",
-        "version": "0.21.2",
+        "version": "0.23.0",
         "path": "node_modules/eslint/lib/api.js"
       },
       {
@@ -78,7 +78,7 @@
       },
       {
         "name": "concat-stream",
-        "version": "1.4.8",
+        "version": "1.5.0",
         "path": "node_modules/eslint/node_modules/concat-stream/index.js"
       },
       {
@@ -88,7 +88,7 @@
       },
       {
         "name": "readable-stream",
-        "version": "1.1.13",
+        "version": "2.0.0",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/readable.js"
       },
       {
@@ -102,9 +102,19 @@
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/index.js"
       },
       {
+        "name": "process-nextick-args",
+        "version": "1.0.1",
+        "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/index.js"
+      },
+      {
         "name": "string_decoder",
         "version": "0.10.31",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/index.js"
+      },
+      {
+        "name": "util-deprecate",
+        "version": "1.0.1",
+        "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/node.js"
       },
       {
         "name": "typedarray",
@@ -143,7 +153,7 @@
       },
       {
         "name": "escope",
-        "version": "3.0.1",
+        "version": "3.1.0",
         "path": "node_modules/eslint/node_modules/escope/lib/index.js"
       },
       {
@@ -228,7 +238,7 @@
       },
       {
         "name": "espree",
-        "version": "2.0.2",
+        "version": "2.0.3",
         "path": "node_modules/eslint/node_modules/espree/espree.js"
       },
       {
@@ -243,7 +253,7 @@
       },
       {
         "name": "globals",
-        "version": "6.4.1",
+        "version": "8.0.0",
         "path": "node_modules/eslint/node_modules/globals/index.js"
       },
       {
@@ -268,7 +278,7 @@
       },
       {
         "name": "lodash",
-        "version": "3.9.2",
+        "version": "3.9.3",
         "path": "node_modules/eslint/node_modules/inquirer/node_modules/lodash/index.js"
       },
       {
@@ -288,13 +298,43 @@
       },
       {
         "name": "rx",
-        "version": "2.5.2",
+        "version": "2.5.3",
         "path": "node_modules/eslint/node_modules/inquirer/node_modules/rx/index.js"
       },
       {
         "name": "through",
         "version": "2.3.7",
         "path": "node_modules/eslint/node_modules/inquirer/node_modules/through/index.js"
+      },
+      {
+        "name": "is-my-json-valid",
+        "version": "2.12.0",
+        "path": "node_modules/eslint/node_modules/is-my-json-valid/index.js"
+      },
+      {
+        "name": "generate-function",
+        "version": "2.0.0",
+        "path": "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-function/index.js"
+      },
+      {
+        "name": "generate-object-property",
+        "version": "1.2.0",
+        "path": "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/index.js"
+      },
+      {
+        "name": "is-property",
+        "version": "1.0.2",
+        "path": "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/is-property.js"
+      },
+      {
+        "name": "jsonpointer",
+        "version": "1.1.0",
+        "path": "node_modules/eslint/node_modules/is-my-json-valid/node_modules/jsonpointer/jsonpointer.js"
+      },
+      {
+        "name": "xtend",
+        "version": "4.0.0",
+        "path": "node_modules/eslint/node_modules/is-my-json-valid/node_modules/xtend/immutable.js"
       },
       {
         "name": "js-yaml",
@@ -308,7 +348,7 @@
       },
       {
         "name": "lodash",
-        "version": "3.9.2",
+        "version": "3.9.3",
         "path": "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/index.js"
       },
       {
@@ -353,7 +393,7 @@
       },
       {
         "name": "object-assign",
-        "version": "2.0.0",
+        "version": "2.1.1",
         "path": "node_modules/eslint/node_modules/object-assign/index.js"
       },
       {
@@ -443,7 +483,9 @@
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/package.json",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/component.json",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/package.json",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/package.json",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/package.json",
         "node_modules/eslint/node_modules/concat-stream/node_modules/typedarray/package.json",
         "node_modules/eslint/node_modules/concat-stream/package.json",
@@ -493,6 +535,12 @@
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/package.json",
         "node_modules/eslint/node_modules/inquirer/node_modules/through/package.json",
         "node_modules/eslint/node_modules/inquirer/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-function/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/jsonpointer/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/xtend/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/package.json",
         "node_modules/eslint/node_modules/js-yaml/bower.json",
         "node_modules/eslint/node_modules/js-yaml/examples/dumper.json",
         "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/package.json",
@@ -539,6 +587,7 @@
         "node_modules/eslint/lib/cli-engine.js",
         "node_modules/eslint/lib/cli.js",
         "node_modules/eslint/lib/config-initializer.js",
+        "node_modules/eslint/lib/config-validator.js",
         "node_modules/eslint/lib/config.js",
         "node_modules/eslint/lib/eslint.js",
         "node_modules/eslint/lib/file-finder.js",
@@ -552,6 +601,7 @@
         "node_modules/eslint/lib/load-rules.js",
         "node_modules/eslint/lib/options.js",
         "node_modules/eslint/lib/rule-context.js",
+        "node_modules/eslint/lib/rules/accessor-pairs.js",
         "node_modules/eslint/lib/rules/block-scoped-var.js",
         "node_modules/eslint/lib/rules/brace-style.js",
         "node_modules/eslint/lib/rules/camelcase.js",
@@ -559,6 +609,7 @@
         "node_modules/eslint/lib/rules/comma-spacing.js",
         "node_modules/eslint/lib/rules/comma-style.js",
         "node_modules/eslint/lib/rules/complexity.js",
+        "node_modules/eslint/lib/rules/computed-property-spacing.js",
         "node_modules/eslint/lib/rules/consistent-return.js",
         "node_modules/eslint/lib/rules/consistent-this.js",
         "node_modules/eslint/lib/rules/curly.js",
@@ -577,6 +628,7 @@
         "node_modules/eslint/lib/rules/indent.js",
         "node_modules/eslint/lib/rules/key-spacing.js",
         "node_modules/eslint/lib/rules/linebreak-style.js",
+        "node_modules/eslint/lib/rules/lines-around-comment.js",
         "node_modules/eslint/lib/rules/max-depth.js",
         "node_modules/eslint/lib/rules/max-len.js",
         "node_modules/eslint/lib/rules/max-nested-callbacks.js",
@@ -603,6 +655,7 @@
         "node_modules/eslint/lib/rules/no-dupe-keys.js",
         "node_modules/eslint/lib/rules/no-duplicate-case.js",
         "node_modules/eslint/lib/rules/no-else-return.js",
+        "node_modules/eslint/lib/rules/no-empty-character-class.js",
         "node_modules/eslint/lib/rules/no-empty-class.js",
         "node_modules/eslint/lib/rules/no-empty-label.js",
         "node_modules/eslint/lib/rules/no-empty.js",
@@ -682,11 +735,13 @@
         "node_modules/eslint/lib/rules/no-warning-comments.js",
         "node_modules/eslint/lib/rules/no-with.js",
         "node_modules/eslint/lib/rules/no-wrap-func.js",
+        "node_modules/eslint/lib/rules/object-curly-spacing.js",
         "node_modules/eslint/lib/rules/object-shorthand.js",
         "node_modules/eslint/lib/rules/one-var.js",
         "node_modules/eslint/lib/rules/operator-assignment.js",
         "node_modules/eslint/lib/rules/operator-linebreak.js",
         "node_modules/eslint/lib/rules/padded-blocks.js",
+        "node_modules/eslint/lib/rules/prefer-const.js",
         "node_modules/eslint/lib/rules/quote-props.js",
         "node_modules/eslint/lib/rules/quotes.js",
         "node_modules/eslint/lib/rules/radix.js",
@@ -703,6 +758,7 @@
         "node_modules/eslint/lib/rules/space-infix-ops.js",
         "node_modules/eslint/lib/rules/space-return-throw-case.js",
         "node_modules/eslint/lib/rules/space-unary-ops.js",
+        "node_modules/eslint/lib/rules/spaced-comment.js",
         "node_modules/eslint/lib/rules/spaced-line-comment.js",
         "node_modules/eslint/lib/rules/strict.js",
         "node_modules/eslint/lib/rules/use-isnan.js",
@@ -742,7 +798,11 @@
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/util.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/build/build.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/index.js",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/test.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/index.js",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/browser.js",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/node.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/passthrough.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/readable.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/transform.js",
@@ -2142,7 +2202,6 @@
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/disposables/refcountdisposable.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/disposables/scheduleddisposable.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/enumerable.js",
-        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/enumerator.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/headers/aggregatesheader.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/headers/asyncheader.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/headers/asyncintro.js",
@@ -2385,13 +2444,18 @@
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/observer-lite.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/observer.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/observablebase.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/observerbase.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/combinelatest.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/concat.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/distinctuntilchanged.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/empty.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/filter.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/finally.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/from.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/fromarray.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/fromarrayobservable.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/frompromise.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/ignoreelements.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/just.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/map.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/mergeall.js",
@@ -2403,10 +2467,14 @@
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/reduce.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/repeat.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/scan.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/skip.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/switch.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/take.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/takeuntil.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/tap.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/throw.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/toarray.js",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/perf/operators/zip.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/scheduledobserver.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/subjects/anonymoussubject.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/subjects/asyncsubject.js",
@@ -2424,6 +2492,21 @@
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/testing/subscription.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/rx/src/core/testing/testscheduler.js",
         "node_modules/eslint/node_modules/inquirer/node_modules/through/index.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/example.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/formats.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/index.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-function/example.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-function/index.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-function/test.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/index.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/is-property.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/test.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/jsonpointer/jsonpointer.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/jsonpointer/test.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/xtend/immutable.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/xtend/mutable.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/xtend/test.js",
+        "node_modules/eslint/node_modules/is-my-json-valid/require.js",
         "node_modules/eslint/node_modules/js-yaml/bin/js-yaml.js",
         "node_modules/eslint/node_modules/js-yaml/dist/js-yaml.js",
         "node_modules/eslint/node_modules/js-yaml/examples/custom_types.js",
@@ -2978,7 +3061,7 @@
           "lib"
         ],
         "dependencies": {
-          "eslint": "^0.21.0",
+          "eslint": "^0.23.0",
           "loophole": "^1.0.0",
           "resolve": "^1.1.5"
         }
@@ -2999,12 +3082,13 @@
           "debug": "^2.1.1",
           "doctrine": "^0.6.2",
           "escape-string-regexp": "^1.0.2",
-          "escope": "^3.0.1",
+          "escope": "^3.1.0",
           "espree": "^2.0.1",
           "estraverse": "^2.0.0",
           "estraverse-fb": "^1.3.1",
-          "globals": "^6.1.0",
+          "globals": "^8.0.0",
           "inquirer": "^0.8.2",
+          "is-my-json-valid": "^2.10.0",
           "js-yaml": "^3.2.5",
           "minimatch": "^2.0.1",
           "mkdirp": "^0.5.0",
@@ -3048,14 +3132,12 @@
       },
       {
         "paths": [
-          "node_modules/eslint/node_modules/concat-stream",
-          "node_modules/eslint/node_modules/concat-stream/test",
-          "node_modules/eslint/node_modules/concat-stream/test/server"
+          "node_modules/eslint/node_modules/concat-stream"
         ],
         "dependencies": {
           "inherits": "~2.0.1",
           "typedarray": "~0.0.5",
-          "readable-stream": "~1.1.9"
+          "readable-stream": "~2.0.0"
         }
       },
       {
@@ -3065,9 +3147,11 @@
         ],
         "dependencies": {
           "core-util-is": "~1.0.0",
+          "process-nextick-args": "~1.0.0",
+          "inherits": "~2.0.1",
           "isarray": "0.0.1",
           "string_decoder": "~0.10.x",
-          "inherits": "~2.0.1"
+          "util-deprecate": "~1.0.1"
         }
       },
       {
@@ -3612,6 +3696,28 @@
         ],
         "dependencies": {
           "ansi-regex": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/eslint/node_modules/is-my-json-valid",
+          "node_modules/eslint/node_modules/is-my-json-valid/test/fixtures",
+          "node_modules/eslint/node_modules/is-my-json-valid/test/json-schema-draft4",
+          "node_modules/eslint/node_modules/is-my-json-valid/test"
+        ],
+        "dependencies": {
+          "generate-function": "^2.0.0",
+          "generate-object-property": "^1.1.0",
+          "jsonpointer": "^1.1.0",
+          "xtend": "^4.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property"
+        ],
+        "dependencies": {
+          "is-property": "^1.0.0"
         }
       },
       {

@@ -30,7 +30,6 @@
       "project-colorize"
       "git-log"
       "auto-detect-indentation"
-      "minimap"
     ]
     themes: [
       "one-dark-ui"
