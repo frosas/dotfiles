@@ -3,7 +3,7 @@
   "main": "./lib/init",
   "linter-package": true,
   "activationCommands": [],
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -24,10 +24,10 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@0.5.9",
-  "_shasum": "e01842e5f66a7cd8fe482622a83061549154792a",
-  "_resolved": "file:../d-115517-72388-1qlfdfv/package.tgz",
-  "_from": "../d-115517-72388-1qlfdfv/package.tgz",
+  "_id": "linter-eslint@0.5.10",
+  "_shasum": "a5a4f6a165ae7e7bb9fce5f3633a77e98ba44b15",
+  "_resolved": "file:../d-115523-40615-1f944md/package.tgz",
+  "_from": "../d-115523-40615-1f944md/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -88,7 +88,7 @@
       },
       {
         "name": "readable-stream",
-        "version": "2.0.0",
+        "version": "2.0.1",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/readable.js"
       },
       {
@@ -253,7 +253,7 @@
       },
       {
         "name": "globals",
-        "version": "8.0.0",
+        "version": "8.1.0",
         "path": "node_modules/eslint/node_modules/globals/index.js"
       },
       {
@@ -3147,9 +3147,9 @@
         ],
         "dependencies": {
           "core-util-is": "~1.0.0",
-          "process-nextick-args": "~1.0.0",
           "inherits": "~2.0.1",
           "isarray": "0.0.1",
+          "process-nextick-args": "~1.0.0",
           "string_decoder": "~0.10.x",
           "util-deprecate": "~1.0.1"
         }

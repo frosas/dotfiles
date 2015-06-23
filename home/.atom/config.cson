@@ -30,6 +30,7 @@
       "project-colorize"
       "git-log"
       "auto-detect-indentation"
+      "minimap"
     ]
     themes: [
       "one-dark-ui"
@@ -91,15 +92,16 @@
   jsformat:
     format_on_save: false
   linter:
-    showGutters: false
     statusBar: "None"
+    showGutters: false
   "vim-mode":
     startInInsertMode: true
     useSmartcaseForSearch: true
   "git-diff":
     showIconsInEditorGutter: true
   emmet: {}
-  "linter-eslint": {}
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true
