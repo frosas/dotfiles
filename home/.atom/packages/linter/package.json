@@ -4,7 +4,7 @@
   "author": {
     "name": "AtomLinter"
   },
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A Base Linter with Cow Powers",
   "repository": {
     "type": "git",
@@ -37,21 +37,37 @@
     }
   },
   "dependencies": {
+    "temp": "^0.8.3",
     "xregexp": "^2.0.0"
   },
-  "readme": "Linter-Plus\n==========\n\nLinter-Plus is a base Linter Provider for Atom. It allows packages to consume an extremely easy to use API and lint files like a piece of cake.\nThis package was inspired from AtomLinter.\n\n#### Installation\n\n```sh\napm install linter-plus\n```\n\n#### Registering a Linter\n\nHave a look at [Linter-API](https://github.com/AtomLinter/linter-plus/wiki/Linter-API) in the wiki.\n\n#### Development\n\nBe sure to respect code style from `coffeelint.json` and `.eslintrc`, use `$ npm run lint` for checking (Install globaly coffeelint && eslint `$ npm i -g eslint coffeelint`).\n\n#### License\nThis project is licensed under the terms of MIT License. See the License file for more info.\n",
+  "readme": "# Linter\n\n> Lint your code with ease in [Atom Editor](http://atom.io)\n>\n> The idea is to stop the linter plugins war, by providing a top level API for linters to parse and display errors in the Atom editor.\n\n![Preview](http://g.recordit.co/13RfmirPz2.gif)\n\n## How to / Installation\n\nInstall package through Atom or use CLI:\n\n* `$ apm install linter`\n\n## Availables linters\n\n[Full linters list](http://atomlinter.github.io/)\n\n## API Documentation\n\n[Linter API wiki](https://github.com/AtomLinter/Linter/wiki/Linter-API)\n\n## Contribute\n\nStick to imposed codestyle:\n\n* `$ npm i -g coffeelint eslint`\n* `$ npm run lint`\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/AtomLinter/Linter/issues"
   },
   "homepage": "https://github.com/AtomLinter/Linter",
-  "_id": "linter@1.0.0",
-  "_shasum": "e79d2f9295da770efd8ecceeca6d20728e2a375f",
-  "_resolved": "file:../d-115523-40612-v8tnjy/package.tgz",
-  "_from": "../d-115523-40612-v8tnjy/package.tgz",
+  "_id": "linter@1.0.2",
+  "_shasum": "6620a4d3cc4c8d650108c9d31b92591d60198476",
+  "_resolved": "file:../d-115524-87778-1506ber/package.tgz",
+  "_from": "../d-115524-87778-1506ber/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
+      {
+        "name": "temp",
+        "version": "0.8.3",
+        "path": "node_modules/temp/lib/temp.js"
+      },
+      {
+        "name": "os-tmpdir",
+        "version": "1.0.1",
+        "path": "node_modules/temp/node_modules/os-tmpdir/index.js"
+      },
+      {
+        "name": "rimraf",
+        "version": "2.2.8",
+        "path": "node_modules/temp/node_modules/rimraf/rimraf.js"
+      },
       {
         "name": "xregexp",
         "version": "2.0.0",
@@ -61,10 +77,14 @@
     "extensions": {
       ".json": [
         "coffeelint.json",
+        "node_modules/temp/node_modules/os-tmpdir/package.json",
+        "node_modules/temp/node_modules/rimraf/package.json",
+        "node_modules/temp/package.json",
         "node_modules/xregexp/package.json",
         "package.json"
       ],
       ".coffee": [
+        "lib/commands.coffee",
         "lib/editor-linter.coffee",
         "lib/helpers.coffee",
         "lib/legacy.coffee",
@@ -79,6 +99,15 @@
       ".js": [
         "lib/views/bottom-status.js",
         "lib/views/bottom-tab.js",
+        "node_modules/temp/examples/grepcount.js",
+        "node_modules/temp/examples/pdfcreator.js",
+        "node_modules/temp/lib/temp.js",
+        "node_modules/temp/no_cleanup.js",
+        "node_modules/temp/no_cleanup_on_exit.js",
+        "node_modules/temp/no_cleanup_on_exit.spec.js",
+        "node_modules/temp/node_modules/os-tmpdir/index.js",
+        "node_modules/temp/node_modules/rimraf/bin.js",
+        "node_modules/temp/node_modules/rimraf/rimraf.js",
         "node_modules/xregexp/xregexp-all.js"
       ]
     },
@@ -87,10 +116,24 @@
         "paths": [
           "",
           "lib",
-          "lib/views"
+          "lib/views",
+          "spec"
         ],
         "dependencies": {
+          "temp": "^0.8.3",
           "xregexp": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/temp/examples",
+          "node_modules/temp/lib",
+          "node_modules/temp",
+          "node_modules/temp/test"
+        ],
+        "dependencies": {
+          "os-tmpdir": "^1.0.0",
+          "rimraf": "~2.2.6"
         }
       }
     ]
