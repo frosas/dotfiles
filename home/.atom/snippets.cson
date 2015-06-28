@@ -18,6 +18,9 @@
     '<script>':
         'prefix': 'script'
         'body': '<script>\n\t$1\n</script>$2'
+    '<script src>':
+        'prefix': 'scriptsrc'
+        'body': '<script src="$1"></script>'
         
 '.source.js':
     'Node require()':
