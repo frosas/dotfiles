@@ -1,35 +1,29 @@
-'use strict';
-var Subscriber = require('emissary').Subscriber;
-var editorconfig = require('editorconfig');
-var plugin = module.exports;
-
-Subscriber.extend(plugin);
+'use babel';
+import editorconfig from 'editorconfig';
 
 function init(editor) {
 	if (!editor) {
 		return;
 	}
 
-	var file = editor.getURI();
+	const file = editor.getURI();
 
 	if (!file) {
 		return;
 	}
 
-	editorconfig.parse(file).then(function (config) {
+	editorconfig.parse(file).then(config => {
 		if (Object.keys(config).length === 0) {
 			return;
 		}
 
-		var isTab = config.indent_style === 'tab' || !editor.softTabs;
-
-		if (isTab) {
+		if (config.indent_style === 'tab') {
 			editor.setSoftTabs(false);
 
 			if (config.tab_width) {
 				editor.setTabLength(config.tab_width);
 			}
-		} else {
+		} else if (config.indent_style === 'space') {
 			editor.setSoftTabs(true);
 
 			if (config.indent_size) {
@@ -45,6 +39,6 @@ function init(editor) {
 	});
 }
 
-plugin.activate = function () {
+export let activate = () => {
 	atom.workspace.observeTextEditors(init);
 };

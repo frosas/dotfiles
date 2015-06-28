@@ -1,6 +1,6 @@
 {
   "name": "esformatter",
-  "version": "1.6.2",
+  "version": "1.7.1",
   "description": "Beautify JavaScript",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,7 @@
     "url": "sindresorhus.com"
   },
   "engines": {
-    "atom": ">=0.190.0"
+    "atom": ">=1.0.0"
   },
   "keywords": [
     "javascript",
@@ -32,29 +32,31 @@
   "dependencies": {
     "esformatter": "^0.7.0",
     "esformatter-braces": "^1.0.0",
+    "esformatter-collapse-objects": "^0.4.1",
     "esformatter-dot-notation": "^1.1.0",
+    "esformatter-jsx": "^1.3.0",
     "esformatter-literal-notation": "^1.0.0",
     "esformatter-parseint": "^1.0.1",
     "esformatter-quotes": "^1.0.0",
     "esformatter-semicolons": "^1.0.3",
-    "esformatter-var-each": "^1.0.0"
+    "esformatter-var-each": "^2.0.1"
   },
-  "readme": "# esformatter\n\n[Atom package](https://atom.io/packages/esformatter)\n\n> Beautify JavaScript using [esformatter](https://github.com/millermedeiros/esformatter)\n\n<img src=\"https://cloud.githubusercontent.com/assets/170270/4490970/2333d93a-4a33-11e4-9954-dffea0c5f528.gif\" width=\"311\">\n\n*Issues with the output should be reported on the esformatter [issue tracker](https://github.com/millermedeiros/esformatter/issues).*\n\n\n## Install\n\n```sh\n$ apm install esformatter\n```\n\nOr Settings → Packages → Search for `esformatter`\n\n\n## Usage\n\nOpen the Command Palette, and type `esformatter`.\n\nCan also be run on just a selection. For example the code in a `<script>` tag.\n\nThere's a `Format On Save` option in the Settings.\n\n\n## [Config](https://github.com/millermedeiros/esformatter#configuration)\n\nSome [plugins](https://github.com/sindresorhus/atom-esformatter/blob/7ff87d550b880d14840bbee6d6c4cbfbb1b57016/package.json#L22-L28) are bundled. *PR welcome for more.*\n\nJust add the ones you want to your config file:\n\n```json\n{\n\t\"plugins\": [\n\t\t\"esformatter-braces\"\n\t]\n}\n```\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+  "readme": "# esformatter\n\n[Atom package](https://atom.io/packages/esformatter)\n\n> Beautify JavaScript using [esformatter](https://github.com/millermedeiros/esformatter)\n\n<img src=\"https://cloud.githubusercontent.com/assets/170270/4490970/2333d93a-4a33-11e4-9954-dffea0c5f528.gif\" width=\"311\">\n\n*Issues with the output should be reported on the esformatter [issue tracker](https://github.com/millermedeiros/esformatter/issues).*\n\n\n## Install\n\n```\n$ apm install esformatter\n```\n\nOr Settings → Install → Search for `esformatter`\n\n\n## Usage\n\nOpen the Command Palette, and type `esformatter`.\n\nCan also be run on just a selection. For example the code in a `<script>` tag.\n\nThere's a `Format On Save` option in the Settings.\n\n\n## [Config](https://github.com/millermedeiros/esformatter#configuration)\n\nSome [plugins](https://github.com/sindresorhus/atom-esformatter/blob/7ff87d550b880d14840bbee6d6c4cbfbb1b57016/package.json#L22-L28) are bundled. *PR welcome for more.*\n\nJust add the ones you want to your config file:\n\n```json\n{\n\t\"plugins\": [\n\t\t\"esformatter-braces\"\n\t]\n}\n```\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
   "readmeFilename": "readme.md",
   "bugs": {
     "url": "https://github.com/sindresorhus/atom-esformatter/issues"
   },
   "homepage": "https://github.com/sindresorhus/atom-esformatter",
-  "_id": "esformatter@1.6.2",
-  "_shasum": "5bf3bd5180a74d36eb718c6458f81e6f391b036f",
-  "_resolved": "file:../d-115510-39531-182uzhl/package.tgz",
-  "_from": "../d-115510-39531-182uzhl/package.tgz",
+  "_id": "esformatter@1.7.1",
+  "_shasum": "1e3cf69469192738ba40ec515c886be43422fdef",
+  "_resolved": "file:../d-115528-83281-89ihar/package.tgz",
+  "_from": "../d-115528-83281-89ihar/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "esformatter",
-        "version": "0.7.0",
+        "version": "0.7.1",
         "path": "node_modules/esformatter/lib/esformatter.js"
       },
       {
@@ -84,7 +86,7 @@
       },
       {
         "name": "glob",
-        "version": "5.0.10",
+        "version": "5.0.12",
         "path": "node_modules/esformatter/node_modules/glob/glob.js"
       },
       {
@@ -154,7 +156,7 @@
       },
       {
         "name": "npm-path",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/esformatter/node_modules/npm-run/node_modules/npm-path/index.js"
       },
       {
@@ -199,7 +201,7 @@
       },
       {
         "name": "esprima",
-        "version": "2.2.0",
+        "version": "2.4.0",
         "path": "node_modules/esformatter/node_modules/rocambole/node_modules/esprima/esprima.js"
       },
       {
@@ -288,6 +290,16 @@
         "path": "node_modules/esformatter/node_modules/supports-color/index.js"
       },
       {
+        "name": "user-home",
+        "version": "2.0.0",
+        "path": "node_modules/esformatter/node_modules/user-home/index.js"
+      },
+      {
+        "name": "os-homedir",
+        "version": "1.0.0",
+        "path": "node_modules/esformatter/node_modules/user-home/node_modules/os-homedir/index.js"
+      },
+      {
         "name": "esformatter-braces",
         "version": "1.2.1",
         "path": "node_modules/esformatter-braces/index.js"
@@ -296,6 +308,71 @@
         "name": "rocambole-token",
         "version": "1.2.1",
         "path": "node_modules/esformatter-braces/node_modules/rocambole-token/index.js"
+      },
+      {
+        "name": "esformatter-collapse-objects",
+        "version": "0.4.1",
+        "path": "node_modules/esformatter-collapse-objects/index.js"
+      },
+      {
+        "name": "defaults-deep",
+        "version": "0.2.2",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/index.js"
+      },
+      {
+        "name": "for-own",
+        "version": "0.1.3",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/for-own/index.js"
+      },
+      {
+        "name": "for-in",
+        "version": "0.1.4",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/for-own/node_modules/for-in/index.js"
+      },
+      {
+        "name": "is-plain-object",
+        "version": "2.0.1",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/is-plain-object/index.js"
+      },
+      {
+        "name": "isobject",
+        "version": "1.0.0",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/is-plain-object/node_modules/isobject/index.js"
+      },
+      {
+        "name": "rocambole",
+        "version": "0.5.1",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/rocambole/rocambole.js"
+      },
+      {
+        "name": "esprima",
+        "version": "2.4.0",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/rocambole/node_modules/esprima/esprima.js"
+      },
+      {
+        "name": "rocambole-token",
+        "version": "1.2.1",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/index.js"
+      },
+      {
+        "name": "rocambole-whitespace",
+        "version": "1.0.0",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/rocambole-whitespace.js"
+      },
+      {
+        "name": "debug",
+        "version": "2.2.0",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/node.js"
+      },
+      {
+        "name": "ms",
+        "version": "0.7.1",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/node_modules/ms/index.js"
+      },
+      {
+        "name": "repeat-string",
+        "version": "1.5.2",
+        "path": "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/repeat-string/index.js"
       },
       {
         "name": "esformatter-dot-notation",
@@ -309,7 +386,7 @@
       },
       {
         "name": "esprima",
-        "version": "2.2.0",
+        "version": "2.4.0",
         "path": "node_modules/esformatter-dot-notation/node_modules/rocambole/node_modules/esprima/esprima.js"
       },
       {
@@ -321,6 +398,66 @@
         "name": "unquoted-property-validator",
         "version": "1.0.0",
         "path": "node_modules/esformatter-dot-notation/node_modules/unquoted-property-validator/index.js"
+      },
+      {
+        "name": "esformatter-jsx",
+        "version": "1.3.0",
+        "path": "node_modules/esformatter-jsx/index.js"
+      },
+      {
+        "name": "extend",
+        "version": "2.0.1",
+        "path": "node_modules/esformatter-jsx/node_modules/extend/index.js"
+      },
+      {
+        "name": "falafel-espree",
+        "version": "1.1.0",
+        "path": "node_modules/esformatter-jsx/node_modules/falafel-espree/index.js"
+      },
+      {
+        "name": "espree",
+        "version": "2.0.4",
+        "path": "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/espree.js"
+      },
+      {
+        "name": "js-beautify",
+        "version": "1.5.10",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/js/index.js"
+      },
+      {
+        "name": "config-chain",
+        "version": "1.1.9",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/index.js"
+      },
+      {
+        "name": "ini",
+        "version": "1.3.4",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/node_modules/ini/ini.js"
+      },
+      {
+        "name": "proto-list",
+        "version": "1.2.4",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/node_modules/proto-list/proto-list.js"
+      },
+      {
+        "name": "mkdirp",
+        "version": "0.5.1",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/index.js"
+      },
+      {
+        "name": "minimist",
+        "version": "0.0.8",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/node_modules/minimist/index.js"
+      },
+      {
+        "name": "nopt",
+        "version": "3.0.3",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/lib/nopt.js"
+      },
+      {
+        "name": "abbrev",
+        "version": "1.0.7",
+        "path": "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/node_modules/abbrev/abbrev.js"
       },
       {
         "name": "esformatter-literal-notation",
@@ -374,7 +511,7 @@
       },
       {
         "name": "esformatter-var-each",
-        "version": "1.0.0",
+        "version": "2.0.1",
         "path": "node_modules/esformatter-var-each/lib/esformatter-var-each.js"
       },
       {
@@ -386,6 +523,11 @@
         "name": "esprima",
         "version": "1.0.4",
         "path": "node_modules/esformatter-var-each/node_modules/rocambole/node_modules/esprima/esprima.js"
+      },
+      {
+        "name": "rocambole-token",
+        "version": "1.2.1",
+        "path": "node_modules/esformatter-var-each/node_modules/rocambole-token/index.js"
       }
     ],
     "extensions": {
@@ -1025,6 +1167,7 @@
         "node_modules/esformatter/node_modules/rocambole/node_modules/esprima/bin/esparse.js",
         "node_modules/esformatter/node_modules/rocambole/node_modules/esprima/bin/esvalidate.js",
         "node_modules/esformatter/node_modules/rocambole/node_modules/esprima/esprima.js",
+        "node_modules/esformatter/node_modules/rocambole/node_modules/esprima/unit-tests.js",
         "node_modules/esformatter/node_modules/rocambole/rocambole.js",
         "node_modules/esformatter/node_modules/rocambole-indent/node_modules/debug/browser.js",
         "node_modules/esformatter/node_modules/rocambole-indent/node_modules/debug/debug.js",
@@ -1062,6 +1205,8 @@
         "node_modules/esformatter/node_modules/strip-json-comments/strip-json-comments.js",
         "node_modules/esformatter/node_modules/supports-color/cli.js",
         "node_modules/esformatter/node_modules/supports-color/index.js",
+        "node_modules/esformatter/node_modules/user-home/index.js",
+        "node_modules/esformatter/node_modules/user-home/node_modules/os-homedir/index.js",
         "node_modules/esformatter-braces/index.js",
         "node_modules/esformatter-braces/node_modules/rocambole-token/find.js",
         "node_modules/esformatter-braces/node_modules/rocambole-token/index.js",
@@ -1069,10 +1214,34 @@
         "node_modules/esformatter-braces/node_modules/rocambole-token/is.js",
         "node_modules/esformatter-braces/node_modules/rocambole-token/makeCheck.js",
         "node_modules/esformatter-braces/node_modules/rocambole-token/remove.js",
+        "node_modules/esformatter-collapse-objects/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/for-own/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/for-own/node_modules/for-in/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/is-plain-object/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/is-plain-object/node_modules/isobject/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole/node_modules/esprima/bin/esparse.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole/node_modules/esprima/bin/esvalidate.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole/node_modules/esprima/esprima.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole/node_modules/esprima/unit-tests.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole/rocambole.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/find.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/insert.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/is.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/makeCheck.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/remove.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/browser.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/debug.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/node.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/node_modules/ms/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/repeat-string/index.js",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/rocambole-whitespace.js",
         "node_modules/esformatter-dot-notation/index.js",
         "node_modules/esformatter-dot-notation/node_modules/rocambole/node_modules/esprima/bin/esparse.js",
         "node_modules/esformatter-dot-notation/node_modules/rocambole/node_modules/esprima/bin/esvalidate.js",
         "node_modules/esformatter-dot-notation/node_modules/rocambole/node_modules/esprima/esprima.js",
+        "node_modules/esformatter-dot-notation/node_modules/rocambole/node_modules/esprima/unit-tests.js",
         "node_modules/esformatter-dot-notation/node_modules/rocambole/rocambole.js",
         "node_modules/esformatter-dot-notation/node_modules/rocambole-token/find.js",
         "node_modules/esformatter-dot-notation/node_modules/rocambole-token/index.js",
@@ -1082,6 +1251,49 @@
         "node_modules/esformatter-dot-notation/node_modules/rocambole-token/remove.js",
         "node_modules/esformatter-dot-notation/node_modules/unquoted-property-validator/index.js",
         "node_modules/esformatter-dot-notation/node_modules/unquoted-property-validator/lib/unquoted-property-validator.js",
+        "node_modules/esformatter-jsx/index.js",
+        "node_modules/esformatter-jsx/node_modules/extend/index.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/example/array.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/example/keyword.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/example/prompt.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/index.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/bin/esparse.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/bin/esvalidate.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/espree.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/ast-node-factory.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/ast-node-types.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/comment-attachment.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/features.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/messages.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/string-map.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/syntax.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/token-info.js",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/lib/xhtml-entities.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/bin/css-beautify.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/bin/html-beautify.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/bin/js-beautify.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/index.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/beautify-css.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/beautify-html.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/beautify.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/cli.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/unpackers/javascriptobfuscator_unpacker.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/unpackers/myobfuscate_unpacker.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/unpackers/p_a_c_k_e_r_unpacker.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/unpackers/urlencode_unpacker.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/index.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/node_modules/ini/ini.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/node_modules/proto-list/proto-list.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/bin/cmd.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/examples/pow.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/index.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/node_modules/minimist/example/parse.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/node_modules/minimist/index.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/bin/nopt.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/examples/my-program.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/lib/nopt.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/node_modules/abbrev/abbrev.js",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/node_modules/abbrev/test.js",
         "node_modules/esformatter-literal-notation/index.js",
         "node_modules/esformatter-literal-notation/node_modules/rocambole/node_modules/esprima/bin/esparse.js",
         "node_modules/esformatter-literal-notation/node_modules/rocambole/node_modules/esprima/bin/esvalidate.js",
@@ -1113,6 +1325,12 @@
         "node_modules/esformatter-var-each/node_modules/rocambole/node_modules/esprima/bin/esvalidate.js",
         "node_modules/esformatter-var-each/node_modules/rocambole/node_modules/esprima/esprima.js",
         "node_modules/esformatter-var-each/node_modules/rocambole/rocambole.js",
+        "node_modules/esformatter-var-each/node_modules/rocambole-token/find.js",
+        "node_modules/esformatter-var-each/node_modules/rocambole-token/index.js",
+        "node_modules/esformatter-var-each/node_modules/rocambole-token/insert.js",
+        "node_modules/esformatter-var-each/node_modules/rocambole-token/is.js",
+        "node_modules/esformatter-var-each/node_modules/rocambole-token/makeCheck.js",
+        "node_modules/esformatter-var-each/node_modules/rocambole-token/remove.js",
         "test.js"
       ],
       ".json": [
@@ -1171,14 +1389,47 @@
         "node_modules/esformatter/node_modules/stdin/package.json",
         "node_modules/esformatter/node_modules/strip-json-comments/package.json",
         "node_modules/esformatter/node_modules/supports-color/package.json",
+        "node_modules/esformatter/node_modules/user-home/node_modules/os-homedir/package.json",
+        "node_modules/esformatter/node_modules/user-home/package.json",
         "node_modules/esformatter/package.json",
         "node_modules/esformatter-braces/node_modules/rocambole-token/package.json",
         "node_modules/esformatter-braces/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/for-own/node_modules/for-in/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/for-own/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/is-plain-object/node_modules/isobject/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/is-plain-object/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole/node_modules/esprima/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-token/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/bower.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/component.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/node_modules/ms/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/repeat-string/package.json",
+        "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/package.json",
+        "node_modules/esformatter-collapse-objects/package.json",
         "node_modules/esformatter-dot-notation/node_modules/rocambole/node_modules/esprima/package.json",
         "node_modules/esformatter-dot-notation/node_modules/rocambole/package.json",
         "node_modules/esformatter-dot-notation/node_modules/rocambole-token/package.json",
         "node_modules/esformatter-dot-notation/node_modules/unquoted-property-validator/package.json",
         "node_modules/esformatter-dot-notation/package.json",
+        "node_modules/esformatter-jsx/node_modules/extend/.jscs.json",
+        "node_modules/esformatter-jsx/node_modules/extend/component.json",
+        "node_modules/esformatter-jsx/node_modules/extend/package.json",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/node_modules/espree/package.json",
+        "node_modules/esformatter-jsx/node_modules/falafel-espree/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/bower.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/js/config/defaults.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/node_modules/ini/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/node_modules/proto-list/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/node_modules/minimist/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/node_modules/abbrev/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/package.json",
+        "node_modules/esformatter-jsx/node_modules/js-beautify/package.json",
+        "node_modules/esformatter-jsx/package.json",
         "node_modules/esformatter-literal-notation/node_modules/rocambole/node_modules/esprima/package.json",
         "node_modules/esformatter-literal-notation/node_modules/rocambole/package.json",
         "node_modules/esformatter-literal-notation/node_modules/rocambole-token/package.json",
@@ -1191,6 +1442,7 @@
         "node_modules/esformatter-semicolons/package.json",
         "node_modules/esformatter-var-each/node_modules/rocambole/node_modules/esprima/package.json",
         "node_modules/esformatter-var-each/node_modules/rocambole/package.json",
+        "node_modules/esformatter-var-each/node_modules/rocambole-token/package.json",
         "node_modules/esformatter-var-each/package.json",
         "package.json"
       ],
@@ -1206,12 +1458,14 @@
         "dependencies": {
           "esformatter": "^0.7.0",
           "esformatter-braces": "^1.0.0",
+          "esformatter-collapse-objects": "^0.4.1",
           "esformatter-dot-notation": "^1.1.0",
+          "esformatter-jsx": "^1.3.0",
           "esformatter-literal-notation": "^1.0.0",
           "esformatter-parseint": "^1.0.1",
           "esformatter-quotes": "^1.0.0",
           "esformatter-semicolons": "^1.0.3",
-          "esformatter-var-each": "^1.0.0"
+          "esformatter-var-each": "^2.0.1"
         }
       },
       {
@@ -1252,7 +1506,8 @@
           "semver": "~2.2.1",
           "stdin": "*",
           "strip-json-comments": "~0.1.1",
-          "supports-color": "^1.3.1"
+          "supports-color": "^1.3.1",
+          "user-home": "^2.0.0"
         }
       },
       {
@@ -1332,7 +1587,7 @@
           "node_modules/esformatter/node_modules/npm-run/node_modules/npm-path/test"
         ],
         "dependencies": {
-          "which": "^1.0.5"
+          "which": "^1.1.1"
         }
       },
       {
@@ -1427,10 +1682,85 @@
       },
       {
         "paths": [
+          "node_modules/esformatter/node_modules/user-home"
+        ],
+        "dependencies": {
+          "os-homedir": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
           "node_modules/esformatter-braces"
         ],
         "dependencies": {
           "rocambole-token": "^1.2.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-collapse-objects",
+          "node_modules/esformatter-collapse-objects/test/compare/arrays",
+          "node_modules/esformatter-collapse-objects/test/compare/objects",
+          "node_modules/esformatter-collapse-objects/test"
+        ],
+        "dependencies": {
+          "defaults-deep": "^0.2.1",
+          "rocambole": "^0.5.1",
+          "rocambole-token": "^1.2.1",
+          "rocambole-whitespace": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-collapse-objects/node_modules/defaults-deep"
+        ],
+        "dependencies": {
+          "for-own": "^0.1.3",
+          "is-plain-object": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/for-own"
+        ],
+        "dependencies": {
+          "for-in": "^0.1.4"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-collapse-objects/node_modules/defaults-deep/node_modules/is-plain-object"
+        ],
+        "dependencies": {
+          "isobject": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-collapse-objects/node_modules/rocambole",
+          "node_modules/esformatter-collapse-objects/node_modules/rocambole/test/files",
+          "node_modules/esformatter-collapse-objects/node_modules/rocambole/test"
+        ],
+        "dependencies": {
+          "esprima": "^2.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace"
+        ],
+        "dependencies": {
+          "debug": "^2.1.3",
+          "repeat-string": "^1.5.0",
+          "rocambole-token": "^1.2.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-collapse-objects/node_modules/rocambole-whitespace/node_modules/debug"
+        ],
+        "dependencies": {
+          "ms": "0.7.1"
         }
       },
       {
@@ -1451,6 +1781,79 @@
         ],
         "dependencies": {
           "esprima": "^2.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-jsx"
+        ],
+        "dependencies": {
+          "extend": "^2.0.1",
+          "falafel-espree": "^1.1.0",
+          "js-beautify": "^1.5.6"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-jsx/node_modules/falafel-espree/example",
+          "node_modules/esformatter-jsx/node_modules/falafel-espree",
+          "node_modules/esformatter-jsx/node_modules/falafel-espree/test",
+          "node_modules/esformatter-jsx/node_modules/falafel-espree/test/bin"
+        ],
+        "dependencies": {
+          "espree": "^2.0.3"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-jsx/node_modules/js-beautify",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/js/bin",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/js/config",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/js",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/js/lib/unpackers",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/js/test",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/js/test/resources",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/test/data",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/test"
+        ],
+        "dependencies": {
+          "config-chain": "~1.1.5",
+          "mkdirp": "~0.5.0",
+          "nopt": "~3.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/config-chain/test"
+        ],
+        "dependencies": {
+          "proto-list": "~1.2.1",
+          "ini": "1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/bin",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/examples",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/mkdirp/test"
+        ],
+        "dependencies": {
+          "minimist": "0.0.8"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/bin",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/examples",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/lib",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt",
+          "node_modules/esformatter-jsx/node_modules/js-beautify/node_modules/nopt/test"
+        ],
+        "dependencies": {
+          "abbrev": "1"
         }
       },
       {
@@ -1501,7 +1904,8 @@
           "node_modules/esformatter-var-each/test/test-files"
         ],
         "dependencies": {
-          "rocambole": "~0.3.6"
+          "rocambole": "~0.3.6",
+          "rocambole-token": "~1.2.1"
         }
       },
       {
