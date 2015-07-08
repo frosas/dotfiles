@@ -8,6 +8,7 @@ module.exports =
 class GrepView extends SelectListView
   minFilterLength: null
   runner: null
+  lastSearch: ''
 
   initialize: ->
     super
@@ -15,13 +16,17 @@ class GrepView extends SelectListView
       @grepProject()
 
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
-    window.myCoolPanel = @panel
     @addClass 'atom-fuzzy-grep'
     @runner = new Runner
+    @setupConfigs()
+
+  setupConfigs: ->
     atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', =>
       @minFilterLength = atom.config.get 'atom-fuzzy-grep.minSymbolsToStartSearch'
     atom.config.observe 'atom-fuzzy-grep.maxCandidates', =>
       @maxItems = atom.config.get 'atom-fuzzy-grep.maxCandidates'
+    atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', =>
+      @preserveLastSearch = atom.config.get('atom-fuzzy-grep.preserveLastSearch') is true
 
   getFilterKey: ->
 
@@ -38,7 +43,8 @@ class GrepView extends SelectListView
         @div content, class: 'secondary-line'
 
   confirmed: (item)->
-    @openFile item.filePath, item.line, item.column
+    @lastSearch = @filterEditorView.getText()
+    @openFile item.fullPath, item.line, item.column
     @cancelled()
 
   openFile: (filePath, line, column)->
@@ -72,12 +78,13 @@ class GrepView extends SelectListView
     @runner?.destroy()
 
   getProjectPath: ->
+    homeDir = process.env.HOME
     editor = atom.workspace.getActiveTextEditor()
-    return unless editor
+    return atom.project.getPaths()[0] || homeDir unless editor
     if editor.getPath()
       atom.project.relativizePath(editor.getPath())[0]
     else
-      atom.project.getPaths()[0]
+      atom.project.getPaths()[0] || homeDir
 
   setSelection: ->
     editor = atom.workspace.getActiveTextEditor()
@@ -92,6 +99,11 @@ class GrepView extends SelectListView
       @panel?.show()
     else
       @storeFocusedElement()
+      @filterEditorView.setText(@lastSearch || '') if @preserveLastSearch
       @panel.show()
       @focusFilterEditor()
       @setSelection()
+
+  toggleLastSearch: ->
+    @toggle()
+    @filterEditorView.setText(@lastSearch || '')

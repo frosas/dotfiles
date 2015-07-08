@@ -15,15 +15,20 @@ module.exports =
         @useGitGrep = atom.config.get 'atom-fuzzy-grep.detectGitProjectAndUseGitGrep'
 
     run: (@search, @rootPath, callback)->
+      listItems = []
       if @useGitGrep and @isGitRepo()
-        @commandString = 'git grep --no-color -n -e'
+        @commandString = atom.config.get 'atom-fuzzy-grep.gitGrepCommandString'
         @columnArg = false
       [command, args...] = @commandString.split(/\s/)
       args.push @search
       options = cwd: @rootPath
 
       stdout = (output)=>
-        @parseOutput(output, callback)
+        if listItems.length > atom.config.get('atom-fuzzy-grep.maxCandidates')
+          @destroy()
+          return
+        listItems = listItems.concat(@parseOutput(output))
+        callback(listItems)
       stderr = (error)->
         callback([error: error])
       exit = ->
@@ -39,10 +44,11 @@ module.exports =
         content = content.join ':'
         items.push
           filePath: path
+          fullPath: @rootPath + '/' + path
           line: line-1
           column: @getColumn content
           content: content.replace(contentRegexp, '')
-      callback items
+      items
 
     getColumn: (content)->
       if @columnArg

@@ -12,7 +12,6 @@
     showIndentGuide: true
     tabLength: 4
     invisibles: {}
-    fontSize: 14
   core:
     disabledPackages: [
       "jsonpp"
@@ -94,6 +93,9 @@
   linter:
     statusBar: "None"
     showGutters: false
+    showErrorPanel: false
+    showErrorTabFile: false
+    showErrorTabProject: false
   "vim-mode":
     startInInsertMode: true
     useSmartcaseForSearch: true
@@ -102,6 +104,7 @@
   emmet: {}
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
+    showRuleIdInMessage: true
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true

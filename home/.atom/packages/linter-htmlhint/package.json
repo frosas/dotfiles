@@ -2,7 +2,7 @@
   "name": "linter-htmlhint",
   "linter-package": true,
   "main": "./lib/init",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Linter plugin for HTML, using htmlhint",
   "repository": {
     "type": "git",
@@ -21,10 +21,10 @@
     "url": "https://github.com/AtomLinter/linter-htmlhint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-htmlhint",
-  "_id": "linter-htmlhint@0.0.16",
-  "_shasum": "5213073a7ae19c9eafb1dccee40469439c34c70d",
-  "_resolved": "file:../d-115425-58573-2l4ufh/package.tgz",
-  "_from": "../d-115425-58573-2l4ufh/package.tgz",
+  "_id": "linter-htmlhint@0.0.17",
+  "_shasum": "0190dc1ed517f58f01818fa1932b772228528d69",
+  "_resolved": "file:../d-11568-16787-8u7xt2/package.tgz",
+  "_from": "../d-11568-16787-8u7xt2/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -80,7 +80,7 @@
       },
       {
         "name": "lru-cache",
-        "version": "2.6.4",
+        "version": "2.6.5",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
       },
       {
@@ -105,7 +105,7 @@
       },
       {
         "name": "htmlparser2",
-        "version": "3.8.2",
+        "version": "3.8.3",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/htmlparser2/lib/index.js"
       },
       {
@@ -175,7 +175,7 @@
       },
       {
         "name": "lru-cache",
-        "version": "2.6.4",
+        "version": "2.6.5",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
       },
       {
