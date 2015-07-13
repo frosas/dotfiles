@@ -32,7 +32,7 @@ class LinterViews
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem (paneItem) =>
       isTextEditor = paneItem?.getPath?
       @bottomContainer.setVisibility(isTextEditor)
-      @panel.visibility = @panel.visibility and isTextEditor
+      @panel.panelVisibility = atom.config.get('linter.showErrorPanel') and isTextEditor
     @subscriptions.add @linter.onDidChangeMessages =>
       @render()
     @subscriptions.add @bottomContainer.onDidChangeTab =>
@@ -46,6 +46,7 @@ class LinterViews
     @renderPanelMessages()
     @renderPanelMarkers()
     @renderBubble()
+    @renderCount()
 
   renderBubble: (point) ->
     @removeBubble()
@@ -111,8 +112,9 @@ class LinterViews
     @messagesLine = @linter.messages.getActiveFileMessagesForActiveRow()
     if @ignoredMessageTypes.length
       @messagesLine = @messagesLine.filter (message) => @ignoredMessageTypes.indexOf(message.type) is -1
-    @renderCount()
-    @renderPanelMessages() if render
+    if render
+      @renderCount()
+      @renderPanelMessages()
 
   attachBottom: (statusBar) ->
     @bottomBar = statusBar.addLeftTile

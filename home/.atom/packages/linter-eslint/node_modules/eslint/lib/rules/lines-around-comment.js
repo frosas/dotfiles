@@ -1,7 +1,9 @@
 /**
  * @fileoverview Enforces empty lines around comments.
  * @author Jamund Ferguson
+ * @copyright 2015 Mathieu M-Gosselin. All rights reserved.
  * @copyright 2015 Jamund Ferguson. All rights reserved.
+ * @copyright 2015 Gyandeep Singh. All rights reserved.
  */
 "use strict";
 
@@ -97,7 +99,8 @@ module.exports = function(context) {
         if (ancestors.length) {
             parent = ancestors.pop();
         }
-        return parent && (parent.type === "BlockStatement" || parent.body.type === "BlockStatement") &&
+
+        return parent && (parent.type === "ClassBody" || parent.type === "BlockStatement" || (parent.body && parent.body.type === "BlockStatement")) &&
                 node.loc.start.line - parent.loc.start.line === 1;
     }
 
@@ -113,7 +116,8 @@ module.exports = function(context) {
         if (ancestors.length) {
             parent = ancestors.pop();
         }
-        return parent && (parent.type === "BlockStatement" || parent.body.type === "BlockStatement") &&
+
+        return parent && (parent.type === "ClassBody" || parent.type === "BlockStatement" || (parent.body && parent.body.type === "BlockStatement")) &&
                 parent.loc.end.line - node.loc.end.line === 1;
     }
 
