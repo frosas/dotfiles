@@ -2,7 +2,9 @@
 
 import path from 'path'
 import which from 'npm-which'
-import {exec, findFile} from 'atom-linter'
+import {findFile} from 'atom-linter'
+import {BufferedNodeProcess} from 'atom'
+import resolveAsync from 'resolve'
 
 export default {
   config: {
@@ -45,11 +47,26 @@ export default {
       ],
       scope: 'file',
       lintOnFly: atom.config.get('linter-eslint.lintOnEdit'),
-      lint: ::this.lint
+      lint: this.lint.bind(this)
     }
   },
 
   findESLint(cwd) {
+    function tryLocal(eslint) {
+      if (!eslint) {
+        return new Promise(resolve => {
+          resolveAsync('eslint/package.json', {basedir: cwd}, (err, eslintPath) => {
+            if (err) {
+              // keep whatever the previous value was null/undefined
+              resolve(eslint)
+            }
+            return path.join(path.dirname(eslintPath), 'bin/eslint')
+          })
+        })
+      }
+      return eslint
+    }
+
     return new Promise(resolve => {
       // Return cached copy of binary path
       if (this.binary) return resolve(this.binary)
@@ -62,7 +79,7 @@ export default {
         this.binary = eslint
         return resolve(eslint)
       })
-    })
+    }).then(tryLocal)
   },
 
   findProjectPath(filePath) {
@@ -74,13 +91,33 @@ export default {
     return result
   },
 
+  exec(command, args, options) {
+    return new Promise(resolve => {
+      return new BufferedNodeProcess({
+        command,
+        args,
+        options,
+        stdout: (output) => resolve(output),
+        stderr: (error) => {
+          console.warn('[Linter-ESLint] error with cmd')
+          console.warn(error)
+
+          return atom.notifications
+            .addError(
+              '`[Linter-ESLint]` Error with `eslint` command, open console for more informations',
+              {dismissable: true}
+            )
+        }
+      })
+    })
+  },
+
   async lint(TextEditor) {
     let params = []
     const filePath = TextEditor.getPath()
 
     const defaultParams = [
-      '--format', path.join(__dirname, '..', 'node_modules', 'eslint-json', 'json.js'),
-      '--stdin'
+      '--format', path.join(__dirname, '..', 'node_modules', 'eslint-json', 'json.js')
     ]
 
     // Add `--rulesdir` param if specified in options
@@ -102,21 +139,28 @@ export default {
     // We didn't find ESLint binary
     // warn the user we are falling back on packaged one
     if (!eslint) {
-      atom.notifications
-        .addWarning('`[Linter-ESLint]` Local/Global ESLint binary not found. Fallback to packaged one. Set binary in preferences.', {dismissable: true})
+      if (!this.binaryNotif) {
+        atom.notifications
+          .addWarning(
+            '`[Linter-ESLint]` Local/Global ESLint binary not found. Fallback to packaged one. Set binary in preferences.',
+            {dismissable: true}
+          )
+        // Show the notification only once
+        this.binaryNotif = true
+      }
       eslint = path.resolve(__dirname, '..', 'node_modules', '.bin', 'eslint')
       cwd = __dirname
     }
 
     // Remove `cwd` from filePath
-    params.push('--stdin-filename', filePath.replace(cwd + path.sep, ''))
     if (config) params = [...params, '--config', config.replace(cwd + path.sep, '')]
 
     // Push default params after added additional ones
     params = [...params, ...defaultParams]
+    params = [...params, filePath.replace(cwd + path.sep, '')]
 
     // Exec the CLI with correct params
-    const output = await exec(eslint, params, {stdin: TextEditor.getText(), cwd})
+    const output = await this.exec(eslint, params, {cwd})
 
     let results
     let messages
@@ -127,12 +171,6 @@ export default {
       console.warn(`eslint binary: ${eslint}`)
       console.warn(`params: ${params.join(' ')}`)
       console.warn(`cwd: ${cwd}`)
-
-      messages = [{
-        line: 1,
-        severity: 2,
-        message: '[Linter-ESLint] no output provided by eslint, open console for more informations'
-      }]
     } else {
       // Parse the ouput, take the needed stuff
       try {
@@ -141,12 +179,6 @@ export default {
       } catch (error) {
         console.warn('[Linter-ESLint] error while parsing ouput:')
         console.warn(output)
-
-        messages = [{
-          line: 1,
-          severity: 2,
-          message: '[Linter-ESLint] error while parsing output, open console for more informations'
-        }]
       }
     }
 
