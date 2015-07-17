@@ -111,3 +111,4 @@
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
   minimap: {}
+  "fuzzy-finder": {}

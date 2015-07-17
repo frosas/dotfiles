@@ -1,7 +1,8 @@
 {
   "name": "linter-eslint",
   "main": "./lib/linter-eslint",
-  "version": "2.4.3",
+  "activationCommands": [],
+  "version": "3.0.0",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -11,15 +12,10 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "scripts": {
-    "lint": "eslint lib"
-  },
   "dependencies": {
-    "atom-linter": "^1.0.2",
     "eslint": "^0.24.0",
-    "eslint-json": "^1.0.0",
-    "npm-which": "^2.0.0",
-    "resolve": "^1.1.6"
+    "loophole": "^1.0.0",
+    "resolve": "^1.1.5"
   },
   "providedServices": {
     "linter": {
@@ -28,27 +24,19 @@
       }
     }
   },
-  "devDependencies": {
-    "babel-eslint": "^3.1.23"
-  },
-  "readme": "# linter-eslint\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [eslint](http://eslint.org). It will be used with files that have the “JavaScript” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Package installation\n\n* `$ apm install linter-eslint`\n\n`linter-eslint` will look for a version of `eslint` local to your project and use it if it's available. It can fallback to global system `eslint` or specified one into preferences. If none is found it will fall back to the version it ships with.\n\nLets say you depend on a specific version of `eslint`, maybe it has unreleased features, maybe it's just newer than what linter-eslint ships with. If `your-project/node_modules/eslint` exists `linter-eslint` will be used.\n\n## Use with plugins\n\nYou have two options:\n\n* Install localy to your project `eslint` and the plugin\n  * `$ npm i --save-dev eslint [eslint-plugins]`\n\n\n* Install globaly `eslint` and plugins\n  * `$ npm i -g eslint [eslint-plugins]`\n  * (Optional) Set `Eslint Path` in preferences with `$ which eslint`\n\n## Settings\n\nYou can configure linter-eslint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu) or in Preferences:\n\n```coffee\n'linter-eslint':\n  'eslintRulesDir': '~/extra-rules-dir'\n  'disableWhenNoEslintrcFileInPath': true\n  'showRuleIdInMessage': true\n  'eslintPath': '~/eslint'\n```\n\n* `eslintRulesDir` (use a full path)\n* `disableWhenNoEslintrcFileInPath` allows disabling linter-eslint when there is no `.eslintrc` found in project\n* `showRuleIdInMessage`\n  * `true` will append the `eslint` ruleId to warning/error messages\n\n\n## Contributing\n\nIf you would like to contribute enhancements or fixes, please do the following:\n\n* Fork the plugin repository\n* Hack on a separate topic branch created from the latest `master`\n* Commit and push the topic branch\n* Make a pull request\n* Welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n* Indent is 2 spaces\n* Run `$ npm run lint` to check the code style\n* Vertical whitespace helps readability, don’t be afraid to use it\n\nThank you for helping out!\n",
+  "readme": "# linter-eslint\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [eslint](http://eslint.org). It will be used with files that have the “JavaScript” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Package installation\n\n* `$ apm install linter-eslint`\n\n`linter-eslint` will look for a version of `eslint` local to your project and use it if it's available. If none is found it will fall back to the version it ships with.\n\nLets say you depend on a specific version of `eslint`, maybe it has unreleased features, maybe it's just newer than what linter-eslint ships with. If `your-project/node_modules/eslint` exists `linter-eslint` will be used.\n\n## Use with plugins\n\nYou have two options:\n\n* Install localy to your project `eslint` and the plugin\n  * `$ npm i --save-dev eslint [eslint-plugins]`\n\n\n* Install globaly `eslint` and plugins\n  * `$ npm i -g eslint [eslint-plugins]`\n  * Activate `Use Global Eslint` package option\n  * (Optional) Set `Global Node Path` with `$ npm config get prefix`\n\n## Settings\n\nYou can configure linter-eslint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu) or in Preferences:\n\n```coffee\n'linter-eslint':\n  'eslintRulesDir': 'mydir'\n  'disableWhenNoEslintrcFileInPath': true\n  'useGlobalEslint': true\n  'showRuleIdInMessage': true\n  'globalNodePath': '/Users/foo/.nvm/versions/io.js/v2.3.1'\n```\n\n* `eslintRulesDir` is relative to the working directory (project root)\n* `disableWhenNoEslintrcFileInPath` allows disabling linter-eslint when there is no `.eslintrc` found in project\n* `useGlobalEslint` allows using globally installed eslint and plugins for it\n* `showRuleIdInMessage`\n  * `true` will append the `eslint` ruleId to warning/error messages\n\n\n## Contributing\n\nIf you would like to contribute enhancements or fixes, please do the following:\n\n* Fork the plugin repository\n* Hack on a separate topic branch created from the latest `master`\n* Commit and push the topic branch\n* Make a pull request\n* Welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n* Indent is 2 spaces\n* Code should pass `coffeelint` linter\n* Vertical whitespace helps readability, don’t be afraid to use it\n\nThank you for helping out!\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint",
-  "_id": "linter-eslint@2.4.3",
-  "_shasum": "bece800c41251db52dd653ce65cdd74465156d31",
-  "_resolved": "file:../d-115614-22493-dyrn6y/package.tgz",
-  "_from": "../d-115614-22493-dyrn6y/package.tgz",
+  "_id": "linter-eslint@3.0.0",
+  "_shasum": "2f8232856f2e3d4bd00c3b09c8a671c8268b8fe9",
+  "_resolved": "file:../d-115617-97623-17nhw02/package.tgz",
+  "_from": "../d-115617-97623-17nhw02/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
-      {
-        "name": "xregexp",
-        "version": "2.0.0",
-        "path": "node_modules/atom-linter/node_modules/xregexp/xregexp-all.js"
-      },
       {
         "name": "eslint",
         "version": "0.24.1",
@@ -101,7 +89,7 @@
       },
       {
         "name": "readable-stream",
-        "version": "2.0.1",
+        "version": "2.0.2",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/readable.js"
       },
       {
@@ -116,7 +104,7 @@
       },
       {
         "name": "process-nextick-args",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/index.js"
       },
       {
@@ -251,7 +239,7 @@
       },
       {
         "name": "espree",
-        "version": "2.1.0",
+        "version": "2.2.2",
         "path": "node_modules/eslint/node_modules/espree/espree.js"
       },
       {
@@ -470,44 +458,9 @@
         "path": "node_modules/eslint/node_modules/xml-escape/index.js"
       },
       {
-        "name": "eslint-json",
+        "name": "loophole",
         "version": "1.0.0",
-        "path": "node_modules/eslint-json/index.js"
-      },
-      {
-        "name": "npm-which",
-        "version": "2.0.0",
-        "path": "node_modules/npm-which/index.js"
-      },
-      {
-        "name": "commander",
-        "version": "2.8.1",
-        "path": "node_modules/npm-which/node_modules/commander/index.js"
-      },
-      {
-        "name": "graceful-readlink",
-        "version": "1.0.1",
-        "path": "node_modules/npm-which/node_modules/commander/node_modules/graceful-readlink/index.js"
-      },
-      {
-        "name": "npm-path",
-        "version": "1.0.2",
-        "path": "node_modules/npm-which/node_modules/npm-path/index.js"
-      },
-      {
-        "name": "which",
-        "version": "1.1.1",
-        "path": "node_modules/npm-which/node_modules/which/which.js"
-      },
-      {
-        "name": "is-absolute",
-        "version": "0.1.7",
-        "path": "node_modules/npm-which/node_modules/which/node_modules/is-absolute/index.js"
-      },
-      {
-        "name": "is-relative",
-        "version": "0.1.3",
-        "path": "node_modules/npm-which/node_modules/which/node_modules/is-absolute/node_modules/is-relative/index.js"
+        "path": "node_modules/loophole/lib/loophole.js"
       },
       {
         "name": "resolve",
@@ -516,9 +469,117 @@
       }
     ],
     "extensions": {
+      ".json": [
+        "coffeelint.json",
+        "node_modules/eslint/conf/eslint.json",
+        "node_modules/eslint/node_modules/chalk/node_modules/ansi-styles/package.json",
+        "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/package.json",
+        "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/package.json",
+        "node_modules/eslint/node_modules/chalk/node_modules/supports-color/package.json",
+        "node_modules/eslint/node_modules/chalk/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/inherits/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/component.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/package.json",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/typedarray/package.json",
+        "node_modules/eslint/node_modules/concat-stream/package.json",
+        "node_modules/eslint/node_modules/debug/bower.json",
+        "node_modules/eslint/node_modules/debug/component.json",
+        "node_modules/eslint/node_modules/debug/node_modules/ms/package.json",
+        "node_modules/eslint/node_modules/debug/package.json",
+        "node_modules/eslint/node_modules/doctrine/coverage/coverage-final.json",
+        "node_modules/eslint/node_modules/doctrine/eslint.json",
+        "node_modules/eslint/node_modules/doctrine/node_modules/esutils/package.json",
+        "node_modules/eslint/node_modules/doctrine/node_modules/isarray/component.json",
+        "node_modules/eslint/node_modules/doctrine/node_modules/isarray/package.json",
+        "node_modules/eslint/node_modules/doctrine/package.json",
+        "node_modules/eslint/node_modules/escape-string-regexp/package.json",
+        "node_modules/eslint/node_modules/escope/bower.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/d/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/node_modules/es6-symbol/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-iterator/node_modules/es6-symbol/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-iterator/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-set/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-symbol/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/event-emitter/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/d/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es6-iterator/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es6-symbol/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/esrecurse/package.json",
+        "node_modules/eslint/node_modules/escope/node_modules/estraverse/package.json",
+        "node_modules/eslint/node_modules/escope/package.json",
+        "node_modules/eslint/node_modules/espree/package.json",
+        "node_modules/eslint/node_modules/estraverse/package.json",
+        "node_modules/eslint/node_modules/estraverse-fb/package.json",
+        "node_modules/eslint/node_modules/globals/globals.json",
+        "node_modules/eslint/node_modules/globals/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/ansi-regex/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/cli-width/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/figures/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/lodash/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/readline2/node_modules/mute-stream/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/readline2/node_modules/strip-ansi/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/readline2/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/bower.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/component.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/rx/package.json",
+        "node_modules/eslint/node_modules/inquirer/node_modules/through/package.json",
+        "node_modules/eslint/node_modules/inquirer/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-function/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/jsonpointer/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/xtend/package.json",
+        "node_modules/eslint/node_modules/is-my-json-valid/package.json",
+        "node_modules/eslint/node_modules/js-yaml/bower.json",
+        "node_modules/eslint/node_modules/js-yaml/examples/dumper.json",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/package.json",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/sprintf-js/bower.json",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/sprintf-js/package.json",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/package.json",
+        "node_modules/eslint/node_modules/js-yaml/node_modules/esprima/package.json",
+        "node_modules/eslint/node_modules/js-yaml/package.json",
+        "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json",
+        "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json",
+        "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/package.json",
+        "node_modules/eslint/node_modules/minimatch/package.json",
+        "node_modules/eslint/node_modules/mkdirp/node_modules/minimist/package.json",
+        "node_modules/eslint/node_modules/mkdirp/package.json",
+        "node_modules/eslint/node_modules/object-assign/package.json",
+        "node_modules/eslint/node_modules/optionator/node_modules/deep-is/package.json",
+        "node_modules/eslint/node_modules/optionator/node_modules/fast-levenshtein/bower.json",
+        "node_modules/eslint/node_modules/optionator/node_modules/fast-levenshtein/package.json",
+        "node_modules/eslint/node_modules/optionator/node_modules/levn/package.json",
+        "node_modules/eslint/node_modules/optionator/node_modules/prelude-ls/package.json",
+        "node_modules/eslint/node_modules/optionator/node_modules/type-check/package.json",
+        "node_modules/eslint/node_modules/optionator/node_modules/wordwrap/package.json",
+        "node_modules/eslint/node_modules/optionator/package.json",
+        "node_modules/eslint/node_modules/path-is-absolute/package.json",
+        "node_modules/eslint/node_modules/strip-json-comments/package.json",
+        "node_modules/eslint/node_modules/text-table/package.json",
+        "node_modules/eslint/node_modules/user-home/package.json",
+        "node_modules/eslint/node_modules/xml-escape/package.json",
+        "node_modules/eslint/package.json",
+        "node_modules/loophole/package.json",
+        "node_modules/resolve/lib/core.json",
+        "node_modules/resolve/package.json",
+        "package.json"
+      ],
+      ".coffee": [
+        "lib/linter-eslint.coffee",
+        "node_modules/eslint/node_modules/escope/node_modules/esrecurse/gulpfile.coffee"
+      ],
       ".js": [
-        "lib/linter-eslint.js",
-        "node_modules/atom-linter/node_modules/xregexp/xregexp-all.js",
         "node_modules/eslint/bin/eslint.js",
         "node_modules/eslint/conf/environments.js",
         "node_modules/eslint/lib/api.js",
@@ -3005,16 +3066,7 @@
         "node_modules/eslint/node_modules/user-home/index.js",
         "node_modules/eslint/node_modules/xml-escape/index.js",
         "node_modules/eslint/node_modules/xml-escape/test.js",
-        "node_modules/eslint-json/index.js",
-        "node_modules/eslint-json/json.js",
-        "node_modules/npm-which/bin/npm-which.js",
-        "node_modules/npm-which/index.js",
-        "node_modules/npm-which/node_modules/commander/index.js",
-        "node_modules/npm-which/node_modules/commander/node_modules/graceful-readlink/index.js",
-        "node_modules/npm-which/node_modules/npm-path/index.js",
-        "node_modules/npm-which/node_modules/which/node_modules/is-absolute/index.js",
-        "node_modules/npm-which/node_modules/which/node_modules/is-absolute/node_modules/is-relative/index.js",
-        "node_modules/npm-which/node_modules/which/which.js",
+        "node_modules/loophole/lib/loophole.js",
         "node_modules/resolve/example/async.js",
         "node_modules/resolve/example/sync.js",
         "node_modules/resolve/index.js",
@@ -3023,138 +3075,18 @@
         "node_modules/resolve/lib/core.js",
         "node_modules/resolve/lib/node-modules-paths.js",
         "node_modules/resolve/lib/sync.js"
-      ],
-      ".coffee": [
-        "node_modules/atom-linter/lib/helpers.coffee",
-        "node_modules/eslint/node_modules/escope/node_modules/esrecurse/gulpfile.coffee"
-      ],
-      ".json": [
-        "node_modules/atom-linter/node_modules/xregexp/package.json",
-        "node_modules/atom-linter/package.json",
-        "node_modules/eslint/conf/eslint.json",
-        "node_modules/eslint/node_modules/chalk/node_modules/ansi-styles/package.json",
-        "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json",
-        "node_modules/eslint/node_modules/chalk/node_modules/has-ansi/package.json",
-        "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json",
-        "node_modules/eslint/node_modules/chalk/node_modules/strip-ansi/package.json",
-        "node_modules/eslint/node_modules/chalk/node_modules/supports-color/package.json",
-        "node_modules/eslint/node_modules/chalk/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/inherits/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/component.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/package.json",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/typedarray/package.json",
-        "node_modules/eslint/node_modules/concat-stream/package.json",
-        "node_modules/eslint/node_modules/debug/bower.json",
-        "node_modules/eslint/node_modules/debug/component.json",
-        "node_modules/eslint/node_modules/debug/node_modules/ms/package.json",
-        "node_modules/eslint/node_modules/debug/package.json",
-        "node_modules/eslint/node_modules/doctrine/coverage/coverage-final.json",
-        "node_modules/eslint/node_modules/doctrine/eslint.json",
-        "node_modules/eslint/node_modules/doctrine/node_modules/esutils/package.json",
-        "node_modules/eslint/node_modules/doctrine/node_modules/isarray/component.json",
-        "node_modules/eslint/node_modules/doctrine/node_modules/isarray/package.json",
-        "node_modules/eslint/node_modules/doctrine/package.json",
-        "node_modules/eslint/node_modules/escape-string-regexp/package.json",
-        "node_modules/eslint/node_modules/escope/bower.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/d/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/node_modules/es6-symbol/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-iterator/node_modules/es6-symbol/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-iterator/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-set/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es6-symbol/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/event-emitter/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-map/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/d/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es6-iterator/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es6-symbol/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/esrecurse/package.json",
-        "node_modules/eslint/node_modules/escope/node_modules/estraverse/package.json",
-        "node_modules/eslint/node_modules/escope/package.json",
-        "node_modules/eslint/node_modules/espree/package.json",
-        "node_modules/eslint/node_modules/estraverse/package.json",
-        "node_modules/eslint/node_modules/estraverse-fb/package.json",
-        "node_modules/eslint/node_modules/globals/globals.json",
-        "node_modules/eslint/node_modules/globals/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/ansi-regex/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/cli-width/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/figures/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/lodash/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/readline2/node_modules/mute-stream/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/readline2/node_modules/strip-ansi/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/readline2/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/rx/bower.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/rx/component.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/rx/package.json",
-        "node_modules/eslint/node_modules/inquirer/node_modules/through/package.json",
-        "node_modules/eslint/node_modules/inquirer/package.json",
-        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-function/package.json",
-        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/package.json",
-        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/generate-object-property/package.json",
-        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/jsonpointer/package.json",
-        "node_modules/eslint/node_modules/is-my-json-valid/node_modules/xtend/package.json",
-        "node_modules/eslint/node_modules/is-my-json-valid/package.json",
-        "node_modules/eslint/node_modules/js-yaml/bower.json",
-        "node_modules/eslint/node_modules/js-yaml/examples/dumper.json",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/lodash/package.json",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/sprintf-js/bower.json",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/node_modules/sprintf-js/package.json",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/package.json",
-        "node_modules/eslint/node_modules/js-yaml/node_modules/esprima/package.json",
-        "node_modules/eslint/node_modules/js-yaml/package.json",
-        "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json",
-        "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json",
-        "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/package.json",
-        "node_modules/eslint/node_modules/minimatch/package.json",
-        "node_modules/eslint/node_modules/mkdirp/node_modules/minimist/package.json",
-        "node_modules/eslint/node_modules/mkdirp/package.json",
-        "node_modules/eslint/node_modules/object-assign/package.json",
-        "node_modules/eslint/node_modules/optionator/node_modules/deep-is/package.json",
-        "node_modules/eslint/node_modules/optionator/node_modules/fast-levenshtein/bower.json",
-        "node_modules/eslint/node_modules/optionator/node_modules/fast-levenshtein/package.json",
-        "node_modules/eslint/node_modules/optionator/node_modules/levn/package.json",
-        "node_modules/eslint/node_modules/optionator/node_modules/prelude-ls/package.json",
-        "node_modules/eslint/node_modules/optionator/node_modules/type-check/package.json",
-        "node_modules/eslint/node_modules/optionator/node_modules/wordwrap/package.json",
-        "node_modules/eslint/node_modules/optionator/package.json",
-        "node_modules/eslint/node_modules/path-is-absolute/package.json",
-        "node_modules/eslint/node_modules/strip-json-comments/package.json",
-        "node_modules/eslint/node_modules/text-table/package.json",
-        "node_modules/eslint/node_modules/user-home/package.json",
-        "node_modules/eslint/node_modules/xml-escape/package.json",
-        "node_modules/eslint/package.json",
-        "node_modules/eslint-json/package.json",
-        "node_modules/npm-which/node_modules/commander/node_modules/graceful-readlink/package.json",
-        "node_modules/npm-which/node_modules/commander/package.json",
-        "node_modules/npm-which/node_modules/npm-path/package.json",
-        "node_modules/npm-which/node_modules/which/node_modules/is-absolute/node_modules/is-relative/package.json",
-        "node_modules/npm-which/node_modules/which/node_modules/is-absolute/package.json",
-        "node_modules/npm-which/node_modules/which/package.json",
-        "node_modules/npm-which/package.json",
-        "node_modules/resolve/lib/core.json",
-        "node_modules/resolve/package.json",
-        "package.json"
       ]
     },
     "folders": [
       {
         "paths": [
-          "lib",
-          ""
+          "",
+          "lib"
         ],
         "dependencies": {
-          "atom-linter": "^1.0.2",
           "eslint": "^0.24.0",
-          "eslint-json": "^1.0.0",
-          "npm-which": "^2.0.0",
-          "resolve": "^1.1.6"
+          "loophole": "^1.0.0",
+          "resolve": "^1.1.5"
         }
       },
       {
@@ -3903,52 +3835,6 @@
         ],
         "dependencies": {
           "prelude-ls": "~1.1.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/npm-which/bin",
-          "node_modules/npm-which",
-          "node_modules/npm-which/test"
-        ],
-        "dependencies": {
-          "commander": "^2.2.0",
-          "npm-path": "^1.0.0",
-          "which": "^1.0.5"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/npm-which/node_modules/commander"
-        ],
-        "dependencies": {
-          "graceful-readlink": ">= 1.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/npm-which/node_modules/npm-path",
-          "node_modules/npm-which/node_modules/npm-path/test"
-        ],
-        "dependencies": {
-          "which": "^1.1.1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/npm-which/node_modules/which",
-          "node_modules/npm-which/node_modules/which/test"
-        ],
-        "dependencies": {
-          "is-absolute": "^0.1.7"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/npm-which/node_modules/which/node_modules/is-absolute"
-        ],
-        "dependencies": {
-          "is-relative": "^0.1.0"
         }
       }
     ]
