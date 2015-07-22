@@ -12,6 +12,7 @@
     showIndentGuide: true
     tabLength: 4
     invisibles: {}
+    showInvisibles: true
   core:
     disabledPackages: [
       "jsonpp"
@@ -30,10 +31,6 @@
       "git-log"
       "auto-detect-indentation"
       "minimap"
-    ]
-    themes: [
-      "one-dark-ui"
-      "one-dark-syntax"
     ]
     audioBeep: false
   "spell-check":

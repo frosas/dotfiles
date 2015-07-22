@@ -2,15 +2,13 @@ path = require 'path'
 {sync} = require 'resolve'
 {execSync} = require 'child_process'
 {statSync} = require 'fs'
+{findFile} = require 'atom-linter'
 {CompositeDisposable} = require 'atom'
 {allowUnsafeNewFunction} = require 'loophole'
 
 linterPackage = atom.packages.getLoadedPackage 'linter'
 unless linterPackage
   return atom.notifications.addError 'Linter should be installed first, `apm install linter`', dismissable: true
-
-linterPath = linterPackage.path
-findFile = require "#{linterPath}/lib/util"
 
 module.exports =
   config:
@@ -24,7 +22,7 @@ module.exports =
     useGlobalEslint:
       type: 'boolean'
       default: false
-      description: 'Use globaly installed `eslint`'
+      description: 'Use globally installed `eslint`'
     showRuleIdInMessage:
       type: 'boolean'
       default: true
@@ -59,7 +57,7 @@ module.exports =
         onlyConfig = atom.config.get 'linter-eslint.disableWhenNoEslintrcFileInPath'
         eslintConfig = findFile filePath, '.eslintrc'
 
-        return [] if onlyConfig and !eslintConfig
+        return [] if onlyConfig and not eslintConfig
 
         # find nearest .eslintignore
         options = {}
@@ -77,7 +75,7 @@ module.exports =
             if statSync(rulesDir).isDirectory()
               options.rulePaths = [rulesDir]
           catch error
-            console.warn '[Linter-ESLint] ESlint rules direcotory does not exist in your fs'
+            console.warn '[Linter-ESLint] ESlint rules directory does not exist in your fs'
             console.warn error.message
 
         # `linter` and `CLIEngine` comes from `eslint` module
@@ -184,8 +182,7 @@ module.exports =
   requireESLint: (filePath) ->
     @localEslint = false
     try
-      eslintPath = sync 'eslint', {basedir: path.dirname(filePath)}
-      eslint = require eslintPath
+      eslint = @requireLocalESLint filePath
       @localEslint = true
       return eslint
     catch error
@@ -200,13 +197,25 @@ module.exports =
         console.warn error
 
         atom.notifications.addError '
-          [Linter-ESLint] `eslint` binary not found localy, falling back to packaged one.
+          [Linter-ESLint] `eslint` binary not found locally, falling back to packaged one.
           Plugins won\'t be loaded and linting will possibly not work.
-          (Try `Use Global ESLint` option, or install localy `eslint` to your project.)',
+          (Try `Use Global ESLint` option, or install locally `eslint` to your project.)',
           {dismissable: true}
 
     # Fall back to the version packaged in linter-eslint
     return require('eslint')
+
+  requireLocalESLint: (filePath) ->
+    # Traverse up the directory hierarchy until the root
+    currentPath = filePath
+    until currentPath is path.dirname currentPath
+      currentPath = path.dirname currentPath
+      try
+        eslintPath = sync 'eslint', {basedir: currentPath}
+      catch
+        continue
+      return require eslintPath
+    throw new Error "Could not find `eslint` locally installed in #{ path.dirname filePath } or any parent directories"
 
   findGlobalNPMdir: ->
     try
