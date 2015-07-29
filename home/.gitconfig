@@ -32,3 +32,5 @@
     h = help
     r = rebase
     a = add
+[hub]
+	host = ewegithub.sb.karmalab.net
