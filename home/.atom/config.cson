@@ -31,6 +31,7 @@
       "git-log"
       "auto-detect-indentation"
       "minimap"
+      "whitespace"
     ]
     audioBeep: false
   "spell-check":
@@ -81,10 +82,7 @@
     intervalMinutes: 60
   "autocomplete-plus":
     includeCompletionsFromAllBuffers: true
-  whitespace:
-    removeTrailingWhitespace: false
-    ignoreWhitespaceOnCurrentLine: false
-    ensureSingleTrailingNewline: false
+  whitespace: {}
   jsformat:
     format_on_save: false
   linter:
