@@ -189,18 +189,21 @@ module.exports =
       if @useGlobalEslint
         try
           eslintPath = sync 'eslint', {basedir: @npmPath}
-          eslint = require eslintPath
+          eslint = allowUnsafeNewFunction -> require eslintPath
           @localEslint = true
           return eslint
       else
-        console.warn '[Linter-ESLint] local `eslint` not found'
-        console.warn error
+        unless @warnNotFound
+          console.warn '[Linter-ESLint] local `eslint` not found'
+          console.warn error
 
-        atom.notifications.addError '
-          [Linter-ESLint] `eslint` binary not found locally, falling back to packaged one.
-          Plugins won\'t be loaded and linting will possibly not work.
-          (Try `Use Global ESLint` option, or install locally `eslint` to your project.)',
-          {dismissable: true}
+          atom.notifications.addError '
+            [Linter-ESLint] `eslint` binary not found locally, falling back to packaged one.
+            Plugins won\'t be loaded and linting will possibly not work.
+            (Try `Use Global ESLint` option, or install locally `eslint` to your project.)',
+            {dismissable: true}
+
+          @warnNotFound = true
 
     # Fall back to the version packaged in linter-eslint
     return require('eslint')
@@ -214,7 +217,7 @@ module.exports =
         eslintPath = sync 'eslint', {basedir: currentPath}
       catch
         continue
-      return require eslintPath
+      return allowUnsafeNewFunction -> require eslintPath
     throw new Error "Could not find `eslint` locally installed in #{ path.dirname filePath } or any parent directories"
 
   findGlobalNPMdir: ->

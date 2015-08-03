@@ -1,6 +1,6 @@
 {
   "name": "atom-handlebars",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Handlebars support in Atom",
   "engines": {
     "atom": "*",
@@ -30,12 +30,12 @@
     "email": "jackson@sneagan.com",
     "url": "http://sneagan.com/"
   },
-  "readme": "# Handlebars support in Atom\n\nAdds syntax highlighting and snippets to Handlebars files in Atom.\n\n## Install\n\n```bash\n$ apm install atom-handlebars\n```\n\nOr Settings ➔ Packages ➔ Search for `atom-handlebars`\n\n## Snippets\n\n- `each` ⇥\n- `list` ⇥\n- `if` ⇥\n- `ifelse` ⇥\n- `unless` ⇥\n- `unelse` ⇥\n- `else` ⇥\n- `with` ⇥\n- `log` ⇥\n- `dbg` ⇥\n- `escape` ⇥\n\n## Contributions\n\nContributions are greatly appreciated. Please fork this repository and open a pull request to add snippets, make grammar tweaks, etc.\n",
+  "readme": "# Handlebars support in Atom\n\nAdds syntax highlighting and snippets to Handlebars files in Atom.\n\n## Install\n\n```bash\n$ apm install atom-handlebars\n```\n\nOr Settings ➔ Packages ➔ Search for `atom-handlebars`\n\n## Snippets\n\n- `each` ⇥\n- `eachas` ⇥\n- `eachin` ⇥\n- `get` ⇥\n- `list` ⇥\n- `if` ⇥\n- `ifelse` ⇥\n- `unless` ⇥\n- `unelse` ⇥\n- `else` ⇥\n- `with` ⇥\n- `log` ⇥\n- `dbg` ⇥\n- `escape` ⇥\n\n## Contributions\n\nContributions are greatly appreciated. Please fork this repository and open a pull request to add snippets, make grammar tweaks, etc.\n",
   "readmeFilename": "README.md",
-  "_id": "atom-handlebars@1.0.0",
-  "_shasum": "1c24d15adb7430432f3ff0b6036c84cf9c5f334f",
-  "_resolved": "file:../d-115530-45724-v1casq/package.tgz",
-  "_from": "../d-115530-45724-v1casq/package.tgz",
+  "_id": "atom-handlebars@1.1.0",
+  "_shasum": "567c14de047fbac783f13461fc8b58790c1d70cf",
+  "_resolved": "file:../d-11573-86652-1sf5pw5/package.tgz",
+  "_from": "../d-11573-86652-1sf5pw5/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],
