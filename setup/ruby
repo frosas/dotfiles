@@ -2,5 +2,7 @@
 
 set -ex
 
-brew install ruby
+curl -sSL https://get.rvm.io | bash -s -- stable --ruby --ignore-dotfiles
+
+# TODO Will fail if not executed in a new shell. `source ~/.bashrc`?
 gem install bundle
