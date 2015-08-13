@@ -7,6 +7,7 @@ settings = require './settings'
 Operators = require './operators/index'
 Prefixes = require './prefixes'
 Motions = require './motions/index'
+InsertMode = require './insert-mode'
 
 TextObjects = require './text-objects'
 Utils = require './utils'
@@ -37,6 +38,9 @@ class VimState
       else
         @activateVisualMode('characterwise') if @mode is 'normal'
     , 100)
+
+    @subscriptions.add @editor.onDidChangeCursorPosition ({cursor}) => @ensureCursorIsWithinLine(cursor)
+    @subscriptions.add @editor.onDidAddCursor @ensureCursorIsWithinLine
 
     @editorElement.classList.add("vim-mode")
     @setupNormalMode()
@@ -73,12 +77,14 @@ class VimState
       'undo': (e) => @undo(e)
       'replace-mode-backspace': => @replaceModeUndo()
       'insert-mode-put': (e) => @insertRegister(@registerName(e))
+      'copy-from-line-above': => InsertMode.copyCharacterFromAbove(@editor, this)
+      'copy-from-line-below': => InsertMode.copyCharacterFromBelow(@editor, this)
 
     @registerOperationCommands
       'activate-insert-mode': => new Operators.Insert(@editor, this)
       'activate-replace-mode': => new Operators.ReplaceMode(@editor, this)
-      'substitute': => new Operators.Substitute(@editor, this)
-      'substitute-line': => new Operators.SubstituteLine(@editor, this)
+      'substitute': => [new Operators.Change(@editor, this), new Motions.MoveRight(@editor, this)]
+      'substitute-line': => [new Operators.Change(@editor, this), new Motions.MoveToRelativeLine(@editor, this)]
       'insert-after': => new Operators.InsertAfter(@editor, this)
       'insert-after-end-of-line': => new Operators.InsertAfterEndOfLine(@editor, this)
       'insert-at-beginning-of-line': => new Operators.InsertAtBeginningOfLine(@editor, this)
@@ -174,8 +180,8 @@ class VimState
       'find-backwards': (e) => new Motions.Find(@editor, this).reverse()
       'till': (e) => new Motions.Till(@editor, this)
       'till-backwards': (e) => new Motions.Till(@editor, this).reverse()
-      'repeat-find': (e) => @currentFind.repeat() if @currentFind?
-      'repeat-find-reverse': (e) => @currentFind.repeat(reverse: true) if @currentFind?
+      'repeat-find': (e) => new @globalVimState.currentFind.constructor(@editor, this, repeated: true) if @globalVimState.currentFind
+      'repeat-find-reverse': (e) => new @globalVimState.currentFind.constructor(@editor, this, repeated: true, reverse: true) if @globalVimState.currentFind
       'replace': (e) => new Operators.Replace(@editor, this)
       'search': (e) => new Motions.Search(@editor, this)
       'reverse-search': (e) => (new Motions.Search(@editor, this)).reversed()
@@ -209,28 +215,33 @@ class VimState
   # it.
   pushOperations: (operations) ->
     return unless operations?
-    operations = [operations] unless _.isArray(operations)
+    try
+      @processing = true
+      operations = [operations] unless _.isArray(operations)
 
-    for operation in operations
-      # Motions in visual mode perform their selections.
-      if @mode is 'visual' and (operation instanceof Motions.Motion or operation instanceof TextObjects.TextObject)
-        operation.execute = operation.select
+      for operation in operations
+        # Motions in visual mode perform their selections.
+        if @mode is 'visual' and (operation instanceof Motions.Motion or operation instanceof TextObjects.TextObject)
+          operation.execute = operation.select
 
-      # if we have started an operation that responds to canComposeWith check if it can compose
-      # with the operation we're going to push onto the stack
-      if (topOp = @topOperation())? and topOp.canComposeWith? and not topOp.canComposeWith(operation)
-        @resetNormalMode()
-        @emitter.emit('failed-to-compose')
-        break
+        # if we have started an operation that responds to canComposeWith check if it can compose
+        # with the operation we're going to push onto the stack
+        if (topOp = @topOperation())? and topOp.canComposeWith? and not topOp.canComposeWith(operation)
+          @resetNormalMode()
+          @emitter.emit('failed-to-compose')
+          break
 
-      @opStack.push(operation)
+        @opStack.push(operation)
 
-      # If we've received an operator in visual mode, mark the current
-      # selection as the motion to operate on.
-      if @mode is 'visual' and operation instanceof Operators.Operator
-        @opStack.push(new Motions.CurrentSelection(@editor, this))
+        # If we've received an operator in visual mode, mark the current
+        # selection as the motion to operate on.
+        if @mode is 'visual' and operation instanceof Operators.Operator
+          @opStack.push(new Motions.CurrentSelection(@editor, this))
 
-      @processOpStack()
+        @processOpStack()
+    finally
+      @processing = false
+      @ensureCursorIsWithinLine(cursor) for cursor in @editor.getCursors()
 
   onDidFailToCompose: (fn) ->
     @emitter.on('failed-to-compose', fn)
@@ -419,7 +430,6 @@ class VimState
 
   activateReplaceMode: ->
     @activateInsertMode('replace')
-    @replaceModeCheckpoint = null
     @replaceModeCounter = 0
     @editorElement.classList.add('replace-mode')
     @subscriptions.add @replaceModeListener = @editor.onWillInsertText @replaceModeInsertHandler
@@ -428,20 +438,20 @@ class VimState
   replaceModeInsertHandler: (event) =>
     chars = event.text?.split('') or []
     selections = @editor.getSelections()
-    @replaceModeCheckpoint = @editor.createCheckpoint()
     for char in chars
       continue if char is '\n'
       for selection in selections
-        # Delete next character
         selection.delete() unless selection.cursor.isAtEndOfLine()
+    return
 
   replaceModeUndoHandler: (event) =>
-    @editor.groupChangesSinceCheckpoint(@replaceModeCheckpoint) if @replaceModeCheckpoint?
     @replaceModeCounter++
 
   replaceModeUndo: ->
     if @replaceModeCounter > 0
       @editor.undo()
+      @editor.undo()
+      @editor.moveLeft()
       @replaceModeCounter--
 
   setInsertionCheckpoint: ->
@@ -539,7 +549,7 @@ class VimState
   activateOperatorPendingMode: ->
     @deactivateInsertMode()
     @mode = 'operator-pending'
-    @submodule = null
+    @submode = null
     @changeModeClass('operator-pending-mode')
 
     @updateStatusBar()
@@ -596,8 +606,8 @@ class VimState
         @pushOperations(new Prefixes.Repeat(num))
 
   reverseSelections: ->
+    reversed = not @editor.getLastSelection().isReversed()
     for selection in @editor.getSelections()
-      reversed = not selection.isReversed()
       selection.setBufferRange(selection.getBufferRange(), {reversed})
 
   # Private: Figure out whether or not we are in a repeat sequence or we just
@@ -650,6 +660,16 @@ class VimState
   insertRegister: (name) ->
     text = @getRegister(name)?.text
     @editor.insertText(text) if text?
+
+  ensureCursorIsWithinLine: (cursor) =>
+    return if @processing or @mode isnt 'normal'
+
+    {goalColumn} = cursor
+    if cursor.isAtEndOfLine() and not cursor.isAtBeginningOfLine()
+      @processing = true # to ignore the cursor change (and recursion) caused by the next line
+      cursor.moveLeft()
+      @processing = false
+    cursor.goalColumn = goalColumn
 
 # This uses private APIs and may break if TextBuffer is refactored.
 # Package authors - copy and paste this code at your own risk.

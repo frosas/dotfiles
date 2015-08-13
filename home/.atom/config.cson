@@ -24,7 +24,6 @@
       "auto-update-packages"
       "deprecation-cop"
       "todo-show"
-      "git-history"
       "php-twig"
       "project-colorize"
       "git-log"

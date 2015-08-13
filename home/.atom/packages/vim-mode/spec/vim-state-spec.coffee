@@ -86,12 +86,18 @@ describe "VimState", ->
         expect(editor.getCursors().length).toBe 1
 
     describe "the v keybinding", ->
-      beforeEach -> keydown('v')
+      beforeEach ->
+        editor.setText("012345\nabcdef")
+        editor.setCursorScreenPosition([0, 0])
+        keydown('v')
 
       it "puts the editor into visual characterwise mode", ->
         expect(editorElement.classList.contains('visual-mode')).toBe(true)
         expect(vimState.submode).toEqual 'characterwise'
         expect(editorElement.classList.contains('normal-mode')).toBe(false)
+
+      it "selects the current character", ->
+        expect(editor.getLastSelection().getText()).toEqual '0'
 
     describe "the V keybinding", ->
       beforeEach ->
@@ -154,8 +160,7 @@ describe "VimState", ->
     describe "with content", ->
       beforeEach -> editor.setText("012345\n\nabcdef")
 
-      # FIXME: See atom/vim-mode#2
-      xdescribe "on a line with content", ->
+      describe "on a line with content", ->
         beforeEach -> editor.setCursorScreenPosition([0, 6])
 
         it "does not allow the cursor to be placed on the \n character", ->
@@ -312,7 +317,6 @@ describe "VimState", ->
         expect(editor.getSelectedText()).toBe("t")
 
         keydown("l")
-        keydown("l")
         expect(editor.getSelectedText()).toBe("tw")
 
     describe "operators", ->
@@ -358,6 +362,34 @@ describe "VimState", ->
         expect(editor.getCursorBufferPositions()).toEqual([
           [0, 4]
           [0, 8]
+        ])
+
+      it "harmonizes selection directions", ->
+        editor.setCursorBufferPosition([0, 0])
+        keydown("e")
+        keydown("e")
+        editor.addCursorAtBufferPosition([0, Infinity])
+        keydown("h")
+        keydown("h")
+
+        expect(editor.getSelectedBufferRanges()).toEqual([
+          [[0, 0], [0, 5]],
+          [[0, 11], [0, 13]]
+        ])
+        expect(editor.getCursorBufferPositions()).toEqual([
+          [0, 5]
+          [0, 11]
+        ])
+
+        keydown("o")
+
+        expect(editor.getSelectedBufferRanges()).toEqual([
+          [[0, 0], [0, 5]],
+          [[0, 11], [0, 13]]
+        ])
+        expect(editor.getCursorBufferPositions()).toEqual([
+          [0, 5]
+          [0, 13]
         ])
 
     describe "activate visualmode witin visualmode", ->

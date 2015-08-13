@@ -590,16 +590,45 @@ describe "Operators", ->
       editor.setText("12345\nabcde\nABCDE")
 
     describe "when followed by a c", ->
-      it "deletes the current line and enters insert mode", ->
-        editor.setCursorScreenPosition([1, 1])
+      describe "with autoindent", ->
+        beforeEach ->
+          editor.setText("12345\n  abcde\nABCDE")
+          editor.setCursorScreenPosition([1, 1])
+          spyOn(editor, 'shouldAutoIndent').andReturn(true)
+          spyOn(editor, 'autoIndentBufferRow').andCallFake (line) ->
+            editor.indent()
+          spyOn(editor.languageMode, 'suggestedIndentForLineAtBufferRow').andCallFake -> 1
 
-        keydown('c')
-        keydown('c')
+        it "deletes the current line and enters insert mode", ->
+          editor.setCursorScreenPosition([1, 1])
 
-        expect(editor.getText()).toBe "12345\n\nABCDE"
-        expect(editor.getCursorScreenPosition()).toEqual [1, 0]
-        expect(editorElement.classList.contains('normal-mode')).toBe(false)
-        expect(editorElement.classList.contains('insert-mode')).toBe(true)
+          keydown('c')
+          keydown('c')
+
+          expect(editor.getText()).toBe "12345\n  \nABCDE"
+          expect(editor.getCursorScreenPosition()).toEqual [1, 2]
+          expect(editorElement.classList.contains('normal-mode')).toBe(false)
+          expect(editorElement.classList.contains('insert-mode')).toBe(true)
+
+        it "is repeatable", ->
+          keydown('c')
+          keydown('c')
+          editor.insertText("abc")
+          keydown 'escape'
+          expect(editor.getText()).toBe "12345\n  abc\nABCDE"
+          editor.setCursorScreenPosition([2, 3])
+          keydown '.'
+          expect(editor.getText()).toBe "12345\n  abc\n  abc\n"
+
+        it "is undoable", ->
+          keydown('c')
+          keydown('c')
+          editor.insertText("abc")
+          keydown 'escape'
+          expect(editor.getText()).toBe "12345\n  abc\nABCDE"
+          keydown 'u'
+          expect(editor.getText()).toBe "12345\n  abcde\nABCDE"
+          expect(editor.getSelectedText()).toBe ''
 
       describe "when the cursor is on the last line", ->
         it "deletes the line's content and enters insert mode on the last line", ->
@@ -621,7 +650,7 @@ describe "Operators", ->
           keydown('c')
           keydown('c')
 
-          expect(editor.getText()).toBe "\n"
+          expect(editor.getText()).toBe ""
           expect(editor.getCursorScreenPosition()).toEqual [0, 0]
           expect(editorElement.classList.contains('normal-mode')).toBe(false)
           expect(editorElement.classList.contains('insert-mode')).toBe(true)
@@ -701,6 +730,130 @@ describe "Operators", ->
           keydown('G', shift: true)
           keydown('escape')
           expect(editor.getText()).toBe("12345\n\nABCDE")
+
+    describe "in visual mode", ->
+      beforeEach ->
+        editor.setText "123456789\nabcde\nfghijklmnopq\nuvwxyz"
+        editor.setCursorScreenPosition [1, 1]
+
+      describe "with characterwise selection on a single line", ->
+        it "repeats with .", ->
+          keydown 'v'
+          keydown '2'
+          keydown 'l'
+          keydown 'c'
+          editor.insertText "ab"
+          keydown 'escape'
+          expect(editor.getText()).toBe "123456789\naabe\nfghijklmnopq\nuvwxyz"
+
+          editor.setCursorScreenPosition [0, 1]
+          keydown '.'
+          expect(editor.getText()).toBe "1ab56789\naabe\nfghijklmnopq\nuvwxyz"
+
+        it "repeats shortened with . near the end of the line", ->
+          editor.setCursorScreenPosition [0, 2]
+          keydown 'v'
+          keydown '4'
+          keydown 'l'
+          keydown 'c'
+          editor.insertText "ab"
+          keydown 'escape'
+          expect(editor.getText()).toBe "12ab89\nabcde\nfghijklmnopq\nuvwxyz"
+
+          editor.setCursorScreenPosition [1, 3]
+          keydown '.'
+          expect(editor.getText()).toBe "12ab89\nabcab\nfghijklmnopq\nuvwxyz"
+
+        it "repeats shortened with . near the end of the line regardless of whether motion wrapping is enabled", ->
+          atom.config.set('vim-mode.wrapLeftRightMotion', true)
+          editor.setCursorScreenPosition [0, 2]
+          keydown 'v'
+          keydown '4'
+          keydown 'l'
+          keydown 'c'
+          editor.insertText "ab"
+          keydown 'escape'
+          expect(editor.getText()).toBe "12ab89\nabcde\nfghijklmnopq\nuvwxyz"
+
+          editor.setCursorScreenPosition [1, 3]
+          keydown '.'
+          # this differs from VIM, which would eat the \n before fghij...
+          expect(editor.getText()).toBe "12ab89\nabcab\nfghijklmnopq\nuvwxyz"
+
+      describe "is repeatable with characterwise selection over multiple lines", ->
+        it "repeats with .", ->
+          keydown 'v'
+          keydown 'j'
+          keydown '3'
+          keydown 'l'
+          keydown 'c'
+          editor.insertText "x"
+          keydown 'escape'
+          expect(editor.getText()).toBe "123456789\naxklmnopq\nuvwxyz"
+
+          editor.setCursorScreenPosition [0, 1]
+          keydown '.'
+          expect(editor.getText()).toBe "1xnopq\nuvwxyz"
+
+        it "repeats shortened with . near the end of the line", ->
+          # this behaviour is unlike VIM, see #737
+          keydown 'v'
+          keydown 'j'
+          keydown '6'
+          keydown 'l'
+          keydown 'c'
+          editor.insertText "x"
+          keydown 'escape'
+          expect(editor.getText()).toBe "123456789\naxnopq\nuvwxyz"
+
+          editor.setCursorScreenPosition [0, 1]
+          keydown '.'
+          expect(editor.getText()).toBe "1x\nuvwxyz"
+
+      describe "is repeatable with linewise selection", ->
+        describe "with one line selected", ->
+          it "repeats with .", ->
+            keydown 'V', shift: true
+            keydown 'c'
+            editor.insertText "x"
+            keydown 'escape'
+            expect(editor.getText()).toBe "123456789\nx\nfghijklmnopq\nuvwxyz"
+
+            editor.setCursorScreenPosition [0, 7]
+            keydown '.'
+            expect(editor.getText()).toBe "x\nx\nfghijklmnopq\nuvwxyz"
+
+            editor.setCursorScreenPosition [2, 0]
+            keydown '.'
+            expect(editor.getText()).toBe "x\nx\nx\nuvwxyz"
+
+        describe "with multiple lines selected", ->
+          it "repeats with .", ->
+            keydown 'V', shift: true
+            keydown 'j'
+            keydown 'c'
+            editor.insertText "x"
+            keydown 'escape'
+            expect(editor.getText()).toBe "123456789\nx\nuvwxyz"
+
+            editor.setCursorScreenPosition [0, 7]
+            keydown '.'
+            expect(editor.getText()).toBe "x\nuvwxyz"
+
+          it "repeats shortened with . near the end of the file", ->
+            keydown 'V', shift: true
+            keydown 'j'
+            keydown 'c'
+            editor.insertText "x"
+            keydown 'escape'
+            expect(editor.getText()).toBe "123456789\nx\nuvwxyz"
+
+            editor.setCursorScreenPosition [1, 7]
+            keydown '.'
+            expect(editor.getText()).toBe "123456789\nx\n"
+
+      xdescribe "is repeatable with block selection", ->
+        # there is no block selection yet
 
   describe "the C keybinding", ->
     beforeEach ->
@@ -1298,24 +1451,38 @@ describe "Operators", ->
           it "outdents all three lines", ->
             expect(editor.getText()).toBe "12345\nabcde\nABCDE"
 
-    describe "in visual mode", ->
+    describe "in visual mode linewise", ->
       beforeEach ->
         editor.setCursorScreenPosition([0, 0])
         keydown('v', shift: true)
-        keydown('>')
+        keydown('j')
 
-      it "indents the current line and exits visual mode", ->
-        expect(editorElement.classList.contains('normal-mode')).toBe(true)
-        expect(editor.getText()).toBe "  12345\nabcde\nABCDE"
-        expect(editor.getSelectedBufferRanges()).toEqual [ [[0, 2], [0, 2]] ]
+      describe "single indent multiple lines", ->
+        beforeEach ->
+          keydown('>')
 
-      it "allows repeating the operation", ->
-        keydown(".")
-        expect(editor.getText()).toBe "    12345\nabcde\nABCDE"
+        it "indents both lines once and exits visual mode", ->
+          expect(editorElement.classList.contains('normal-mode')).toBe(true)
+          expect(editor.getText()).toBe "  12345\n  abcde\nABCDE"
+          expect(editor.getSelectedBufferRanges()).toEqual [ [[0, 2], [0, 2]] ]
+
+        it "allows repeating the operation", ->
+          keydown('.')
+          expect(editor.getText()).toBe "    12345\n    abcde\nABCDE"
+
+      describe "multiple indent multiple lines", ->
+        beforeEach ->
+          keydown('2')
+          keydown('>')
+
+        it "indents both lines twice and exits visual mode", ->
+          expect(editorElement.classList.contains('normal-mode')).toBe(true)
+          expect(editor.getText()).toBe "    12345\n    abcde\nABCDE"
+          expect(editor.getSelectedBufferRanges()).toEqual [ [[0, 4], [0, 4]] ]
 
   describe "the < keybinding", ->
     beforeEach ->
-      editor.setText("  12345\n  abcde\nABCDE")
+      editor.setText("    12345\n    abcde\nABCDE")
       editor.setCursorScreenPosition([0, 0])
 
     describe "when followed by a <", ->
@@ -1323,9 +1490,9 @@ describe "Operators", ->
         keydown('<')
         keydown('<')
 
-      it "indents the current line", ->
-        expect(editor.getText()).toBe "12345\n  abcde\nABCDE"
-        expect(editor.getCursorScreenPosition()).toEqual [0, 0]
+      it "outdents the current line", ->
+        expect(editor.getText()).toBe "  12345\n    abcde\nABCDE"
+        expect(editor.getCursorScreenPosition()).toEqual [0, 2]
 
     describe "when followed by a repeating <", ->
       beforeEach ->
@@ -1333,25 +1500,43 @@ describe "Operators", ->
         keydown('<')
         keydown('<')
 
-      it "indents multiple lines at once", ->
-        expect(editor.getText()).toBe "12345\nabcde\nABCDE"
-        expect(editor.getCursorScreenPosition()).toEqual [0, 0]
+      it "outdents multiple lines at once", ->
+        expect(editor.getText()).toBe "  12345\n  abcde\nABCDE"
+        expect(editor.getCursorScreenPosition()).toEqual [0, 2]
 
       describe "undo behavior", ->
         beforeEach -> keydown('u')
 
         it "indents both lines", ->
-          expect(editor.getText()).toBe "  12345\n  abcde\nABCDE"
+          expect(editor.getText()).toBe "    12345\n    abcde\nABCDE"
 
-    describe "in visual mode", ->
+    describe "in visual mode linewise", ->
       beforeEach ->
         keydown('v', shift: true)
-        keydown('<')
+        keydown('j')
 
-      it "indents the current line and exits visual mode", ->
-        expect(editorElement.classList.contains('normal-mode')).toBe(true)
-        expect(editor.getText()).toBe "12345\n  abcde\nABCDE"
-        expect(editor.getSelectedBufferRanges()).toEqual [ [[0, 0], [0, 0]] ]
+      describe "single outdent multiple lines", ->
+        beforeEach ->
+          keydown('<')
+
+        it "outdents the current line and exits visual mode", ->
+          expect(editorElement.classList.contains('normal-mode')).toBe(true)
+          expect(editor.getText()).toBe "  12345\n  abcde\nABCDE"
+          expect(editor.getSelectedBufferRanges()).toEqual [ [[0, 2], [0, 2]] ]
+
+        it "allows repeating the operation", ->
+          keydown('.')
+          expect(editor.getText()).toBe "12345\nabcde\nABCDE"
+
+      describe "multiple outdent multiple lines", ->
+        beforeEach ->
+          keydown('2')
+          keydown('<')
+
+        it "outdents both lines twice and exits visual mode", ->
+          expect(editorElement.classList.contains('normal-mode')).toBe(true)
+          expect(editor.getText()).toBe "12345\nabcde\nABCDE"
+          expect(editor.getSelectedBufferRanges()).toEqual [ [[0, 0], [0, 0]] ]
 
   describe "the = keybinding", ->
     oldGrammar = []
@@ -1831,9 +2016,11 @@ describe "Operators", ->
       keydown 'backspace', raw: true
 
       expect(editor.getText()).toBe "12foo345\n67890"
+      expect(editor.getSelectedText()).toBe ""
 
       keydown 'backspace', raw: true
       expect(editor.getText()).toBe "12foo345\n67890"
+      expect(editor.getSelectedText()).toBe ""
 
     it "can be repeated", ->
       keydown "R", shift: true

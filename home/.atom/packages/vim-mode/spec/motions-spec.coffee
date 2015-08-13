@@ -19,7 +19,8 @@ describe "Motions", ->
     helpers.keydown(key, options)
 
   normalModeInputKeydown = (key, opts = {}) ->
-    editor.normalModeInputView.editorElement.getModel().setText(key)
+    theEditor = opts.editor or editor
+    theEditor.normalModeInputView.editorElement.getModel().setText(key)
 
   submitNormalModeInputText = (text) ->
     inputEditor = editor.normalModeInputView.editorElement
@@ -144,30 +145,21 @@ describe "Motions", ->
         keydown('w')
         expect(editor.getCursorScreenPosition()).toEqual [2, 0]
 
-        # FIXME: The definition of Cursor#getEndOfCurrentWordBufferPosition,
-        # means that the end of the word can't be the current cursor
-        # position (even though it is when your cursor is on a new line).
-        #
-        # Therefore it picks the end of the next word here (which is [3,3])
-        # to start looking for the next word, which is also the end of the
-        # buffer so the cursor never advances.
-        #
-        # See atom/vim-mode#3
         keydown('w')
         expect(editor.getCursorScreenPosition()).toEqual [3, 0]
 
         keydown('w')
-        expect(editor.getCursorScreenPosition()).toEqual [3, 3]
+        expect(editor.getCursorScreenPosition()).toEqual [3, 2]
 
-        # After cursor gets to the EOF, it should stay there.
+        # When the cursor gets to the EOF, it should stay there.
         keydown('w')
-        expect(editor.getCursorScreenPosition()).toEqual [3, 3]
+        expect(editor.getCursorScreenPosition()).toEqual [3, 2]
 
       it "moves the cursor to the end of the word if last word in file", ->
         editor.setText("abc")
         editor.setCursorScreenPosition([0, 0])
         keydown('w')
-        expect(editor.getCursorScreenPosition()).toEqual([0, 3])
+        expect(editor.getCursorScreenPosition()).toEqual([0, 2])
 
     describe "as a selection", ->
       describe "within a word", ->
@@ -463,7 +455,7 @@ describe "Motions", ->
         editor.setCursorScreenPosition([1, 10])
         keydown('y')
         keydown('B', shift: true)
-        expect(vimState.getRegister('"').text).toBe 'xyz-123'
+        expect(vimState.getRegister('"').text).toBe 'xyz-12' # because cursor is on the `3`
 
       it "doesn't go past the beginning of the file", ->
         editor.setCursorScreenPosition([0, 0])
@@ -965,7 +957,7 @@ describe "Motions", ->
       beforeEach -> keydown('G', shift: true)
 
       it "moves the cursor to the last line after whitespace", ->
-        expect(editor.getCursorScreenPosition()).toEqual [3, 1]
+        expect(editor.getCursorScreenPosition()).toEqual [3, 0]
 
     describe "as a repeated motion", ->
       beforeEach ->
@@ -996,6 +988,10 @@ describe "Motions", ->
 
       editor.setText("abc\ndef\nabc\ndef\n")
       editor.setCursorBufferPosition([0, 0])
+
+      # clear search history
+      vimState.globalVimState.searchHistory = []
+      vimState.globalVimState.currentSearch = {}
 
     describe "as a motion", ->
       it "moves the cursor to the specified search pattern", ->
@@ -1100,9 +1096,14 @@ describe "Motions", ->
 
       describe "repeating", ->
         it "does nothing with no search history", ->
-          # This tests that no exception is raised
+          editor.setCursorBufferPosition([0, 0])
           keydown('n')
+          expect(editor.getCursorBufferPosition()).toEqual [0, 0]
+          editor.setCursorBufferPosition([1, 1])
+          keydown('n')
+          expect(editor.getCursorBufferPosition()).toEqual [1, 1]
 
+      describe "repeating with search history", ->
         beforeEach ->
           keydown('/')
           submitNormalModeInputText 'def'
@@ -1253,14 +1254,9 @@ describe "Motions", ->
 
         it "doesn't move cursor unless next match has exact word ending", ->
           editor.setText("abc\n@def\nabc\n@def1\n")
-          # FIXME: I suspect there is a bug laying around
-          # Cursor#getEndOfCurrentWordBufferPosition, this function
-          # is returning '@' as a word, instead of returning the whole
-          # word '@def', this behavior is avoided in this test, when we
-          # execute the '*' command when cursor is on character after '@'
-          # (in this particular example, the 'd' char)
           editor.setCursorBufferPosition([1, 1])
           keydown("*")
+          # this is because of the default isKeyword value of vim-mode that includes @
           expect(editor.getCursorBufferPosition()).toEqual [1, 0]
 
         # FIXME: This behavior is different from the one found in
@@ -1603,6 +1599,24 @@ describe "Motions", ->
       normalModeInputKeydown('b')
       expect(editor.getText()).toBe 'bcabcabcabc\n'
 
+  describe 'the v keybinding', ->
+    beforeEach ->
+      editor.setText("01\n002\n0003\n00004\n000005\n")
+      editor.setCursorScreenPosition([1, 1])
+
+    it "selects down a line", ->
+      keydown('v')
+      keydown('j')
+      keydown('j')
+      expect(editor.getSelectedText()).toBe "02\n0003\n00"
+      expect(editor.getSelectedBufferRange().isSingleLine()).toBeFalsy()
+
+    it "selects right", ->
+      keydown('v')
+      keydown('l')
+      expect(editor.getSelectedText()).toBe "02"
+      expect(editor.getSelectedBufferRange().isSingleLine()).toBeTruthy()
+
   describe 'the V keybinding', ->
     beforeEach ->
       editor.setText("01\n002\n0003\n00004\n000005\n")
@@ -1610,9 +1624,11 @@ describe "Motions", ->
 
     it "selects down a line", ->
       keydown('V', shift: true)
+      expect(editor.getSelectedBufferRange().isSingleLine()).toBeFalsy()
       keydown('j')
       keydown('j')
       expect(editor.getSelectedText()).toBe "002\n0003\n00004\n"
+      expect(editor.getSelectedBufferRange().isSingleLine()).toBeFalsy()
 
     it "selects up a line", ->
       keydown('V', shift: true)
@@ -1734,6 +1750,38 @@ describe "Motions", ->
       keydown('2')
       keydown(',')
       expect(editor.getCursorScreenPosition()).toEqual [0, 2]
+
+    it "shares the most recent find/till command with other editors", ->
+      helpers.getEditorElement (otherEditorElement) ->
+        otherEditor = otherEditorElement.getModel()
+
+        editor.setText("a baz bar\n")
+        editor.setCursorScreenPosition([0, 0])
+
+        otherEditor.setText("foo bar baz")
+        otherEditor.setCursorScreenPosition([0, 0])
+
+        # by default keyDown and such go in the usual editor
+        keydown('f')
+        normalModeInputKeydown('b')
+        expect(editor.getCursorScreenPosition()).toEqual [0, 2]
+        expect(otherEditor.getCursorScreenPosition()).toEqual [0, 0]
+
+        # replay same find in the other editor
+        keydown(';', element: otherEditorElement)
+        expect(editor.getCursorScreenPosition()).toEqual [0, 2]
+        expect(otherEditor.getCursorScreenPosition()).toEqual [0, 4]
+
+        # do a till in the other editor
+        keydown('t', element: otherEditorElement)
+        normalModeInputKeydown('r', editor: otherEditor)
+        expect(editor.getCursorScreenPosition()).toEqual [0, 2]
+        expect(otherEditor.getCursorScreenPosition()).toEqual [0, 5]
+
+        # and replay in the normal editor
+        keydown(';')
+        expect(editor.getCursorScreenPosition()).toEqual [0, 7]
+        expect(otherEditor.getCursorScreenPosition()).toEqual [0, 5]
 
   describe 'the % motion', ->
     beforeEach ->

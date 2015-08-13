@@ -1,3 +1,4 @@
+Motions = require '../motions/index'
 {Operator, Delete} = require './general-operators'
 _ = require 'underscore-plus'
 settings = require '../settings'
@@ -18,7 +19,7 @@ class Insert extends Operator
   execute: ->
     if @typingCompleted
       return unless @typedText? and @typedText.length > 0
-      @editor.insertText(@typedText, normalizeLineEndings: true)
+      @editor.insertText(@typedText, normalizeLineEndings: true, autoIndent: true)
       for cursor in @editor.getCursors()
         cursor.moveLeft() unless cursor.isAtBeginningOfLine()
     else
@@ -116,58 +117,18 @@ class Change extends Insert
 
     if _.contains(@motion.select(count, excludeWhitespace: true), true)
       @setTextRegister(@register, @editor.getSelectedText())
-      if @motion.isLinewise?()
-        @editor.insertNewline()
-        @editor.moveLeft()
+      if @motion.isLinewise?() and not @typingCompleted
+        for selection in @editor.getSelections()
+          if selection.getBufferRange().end.row is 0
+            selection.deleteSelectedText()
+          else
+            selection.insertText("\n", autoIndent: true)
+          selection.cursor.moveLeft()
       else
         for selection in @editor.getSelections()
           selection.deleteSelectedText()
 
     return super if @typingCompleted
-
-    @vimState.activateInsertMode()
-    @typingCompleted = true
-
-class Substitute extends Insert
-  register: null
-
-  constructor: (@editor, @vimState) ->
-    @register = settings.defaultRegister()
-
-  execute: (count=1) ->
-    @vimState.setInsertionCheckpoint() unless @typingCompleted
-    _.times count, =>
-      @editor.selectRight()
-    @setTextRegister(@register, @editor.getSelectedText())
-    @editor.delete()
-
-    if @typingCompleted
-      @typedText = @typedText.trimLeft()
-      return super
-
-    @vimState.activateInsertMode()
-    @typingCompleted = true
-
-class SubstituteLine extends Insert
-  register: null
-
-  constructor: (@editor, @vimState) ->
-    @register = settings.defaultRegister()
-
-  execute: (count=1) ->
-    @vimState.setInsertionCheckpoint() unless @typingCompleted
-    @editor.moveToBeginningOfLine()
-    _.times count, =>
-      @editor.selectToEndOfLine()
-      @editor.selectRight()
-    @setTextRegister(@register, @editor.getSelectedText())
-    @editor.delete()
-    @editor.insertNewlineAbove()
-    @editor.getLastCursor().skipLeadingWhitespace()
-
-    if @typingCompleted
-      @typedText = @typedText.trimLeft()
-      return super
 
     @vimState.activateInsertMode()
     @typingCompleted = true
@@ -246,7 +207,5 @@ module.exports = {
   InsertAboveWithNewline,
   InsertBelowWithNewline,
   ReplaceMode,
-  Change,
-  Substitute,
-  SubstituteLine
+  Change
 }
