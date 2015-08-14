@@ -16,6 +16,7 @@
     co = checkout
     b = branch
     fetch-all = fetch --all --prune
+    m = merge
     merge-upstream = merge --ff-only @{u}
     s = stash save -u
     sp = stash pop
