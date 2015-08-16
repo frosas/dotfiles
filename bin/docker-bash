@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+CONTAINER=${1:-$(docker-last-id)}
+docker exec -it $CONTAINER bash
