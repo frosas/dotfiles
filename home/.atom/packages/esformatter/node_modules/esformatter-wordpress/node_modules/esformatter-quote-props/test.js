@@ -54,7 +54,8 @@ mocha.describe('quote props plugin', function() {
 		// Given.
 		var codeStr = "var t = {\
 			'subject': subject,\
-			data: null\
+			data: null,\
+            777: true\
 		};";
 
 		// When.
@@ -63,7 +64,8 @@ mocha.describe('quote props plugin', function() {
 		// Then.
 		assert.equal(formattedCode, 'var t = {\n' +
 			'  subject: subject,\n' +
-			'  data: null\n' +
+			'  data: null,\n' +
+            '  777: true\n' +
 		'};');
 	});
 });

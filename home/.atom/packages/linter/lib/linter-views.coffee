@@ -28,6 +28,7 @@ class LinterViews
       @classifyMessages(@messages)
       @renderPanelMarkers({added: @messages, removed: @messages})
       @renderBubble()
+      @renderCount()
       @panel.refresh(@state.scope)
     @subscriptions.add @bottomContainer.onDidChangeTab =>
       atom.config.set('linter.showErrorPanel', true)
@@ -88,7 +89,9 @@ class LinterViews
     bubble.id = 'linter-inline'
     bubble.appendChild Message.fromMessage(message)
     if message.trace then message.trace.forEach (trace) ->
-      bubble.appendChild Message.fromMessage(trace, 'Project')
+      element = Message.fromMessage(trace)
+      bubble.appendChild element
+      element.updateVisibility('Project')
     bubble
 
   renderCount: ->

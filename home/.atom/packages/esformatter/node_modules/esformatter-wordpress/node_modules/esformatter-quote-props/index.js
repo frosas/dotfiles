@@ -12,8 +12,16 @@ function isQuotedProperty(node) {
 	return node.type === 'Literal' && node.parent.type === 'Property' && node.parent.key === node;
 }
 
+function ensureString(value) {
+    if (Object.prototype.toString.call(value) !== '[object String]') {
+        return value.toString();
+    }
+
+    return value;
+}
+
 function isSafeToUnquote(node) {
-	var results = unquotedValidator(node.value);
+	var results = unquotedValidator(ensureString(node.value));
 
 	return results.needsQuotes === false;
 }

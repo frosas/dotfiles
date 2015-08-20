@@ -580,6 +580,7 @@ function scanPunctuator() {
     // The ... operator (spread, restParams, JSX, etc.)
     if (extra.ecmaFeatures.spread ||
         extra.ecmaFeatures.restParams ||
+        extra.ecmaFeatures.experimentalObjectRestSpread ||
         (extra.ecmaFeatures.jsx && state.inJSXSpreadAttribute)
     ) {
         if (ch1 === "." && ch2 === "." && ch3 === ".") {
@@ -2069,7 +2070,7 @@ function throwError(token, messageFormat) {
         error = new Error("Line " + token.lineNumber + ": " + msg);
         error.index = token.range[0];
         error.lineNumber = token.lineNumber;
-        error.column = token.range[0] - lineStart + 1;
+        error.column = token.range[0] - token.lineStart + 1;
     } else {
         error = new Error("Line " + lineNumber + ": " + msg);
         error.index = index;
@@ -2464,6 +2465,7 @@ function parseObjectProperty() {
         allowShorthand = extra.ecmaFeatures.objectLiteralShorthandProperties,
         allowGenerators = extra.ecmaFeatures.generators,
         allowDestructuring = extra.ecmaFeatures.destructuring,
+        allowSpread = extra.ecmaFeatures.experimentalObjectRestSpread,
         marker = markerCreate();
 
     token = lookahead;
@@ -2612,6 +2614,12 @@ function parseObjectProperty() {
         );
     }
 
+    // object spread property
+    if (allowSpread && match("...")) {
+        lex();
+        return markerApply(marker, astNodeFactory.createExperimentalSpreadProperty(parseAssignmentExpression()));
+    }
+
     // only possibility in this branch is a shorthand generator
     if (token.type === Token.EOF || token.type === Token.Punctuator) {
         if (!allowGenerators || !match("*") || !allowMethod) {
@@ -2696,7 +2704,7 @@ function parseObjectInitialiser() {
 
         property = parseObjectProperty();
 
-        if (!property.computed) {
+        if (!property.computed && property.type.indexOf("Experimental") === -1) {
 
             name = getFieldName(property.key);
             propertyFn = (property.kind === "get") ? PropertyKind.Get : PropertyKind.Set;
@@ -3301,7 +3309,7 @@ function reinterpretAsCoverFormalsList(expressions) {
                 throwError({}, Messages.UnexpectedToken, ".");
             }
 
-            reinterpretAsDestructuredParameter(options, param.argument);
+            validateParam(options, param.argument, param.argument.name);
             param.type = astNodeTypes.RestElement;
             params.push(param);
         } else if (param.type === astNodeTypes.RestElement) {
@@ -3312,6 +3320,17 @@ function reinterpretAsCoverFormalsList(expressions) {
             // TODO: Find a less hacky way of doing this
             param.type = astNodeTypes.AssignmentPattern;
             delete param.operator;
+
+            if (param.right.type === astNodeTypes.YieldExpression) {
+                if (param.right.argument) {
+                    throwUnexpected(lookahead);
+                }
+
+                param.right.type = astNodeTypes.Identifier;
+                param.right.name = "yield";
+                delete param.right.argument;
+                delete param.right.delegate;
+            }
 
             params.push(param);
             validateParam(options, param.left, param.left.name);
@@ -3337,9 +3356,14 @@ function reinterpretAsCoverFormalsList(expressions) {
 
 function parseArrowFunctionExpression(options, marker) {
     var previousStrict, body;
+    var arrowStart = lineNumber;
 
     expect("=>");
     previousStrict = strict;
+
+    if (lineNumber > arrowStart) {
+        throwError({}, Messages.UnexpectedToken, "=>");
+    }
 
     body = parseConciseBody();
 
@@ -3364,7 +3388,8 @@ function parseArrowFunctionExpression(options, marker) {
 
 function reinterpretAsAssignmentBindingPattern(expr) {
     var i, len, property, element,
-        allowDestructuring = extra.ecmaFeatures.destructuring;
+        allowDestructuring = extra.ecmaFeatures.destructuring,
+        allowRest = extra.ecmaFeatures.experimentalObjectRestSpread;
 
     if (!allowDestructuring) {
         throwUnexpected(lex());
@@ -3374,6 +3399,18 @@ function reinterpretAsAssignmentBindingPattern(expr) {
         expr.type = astNodeTypes.ObjectPattern;
         for (i = 0, len = expr.properties.length; i < len; i += 1) {
             property = expr.properties[i];
+
+            if (allowRest && property.type === astNodeTypes.ExperimentalSpreadProperty) {
+
+                // only allow identifiers
+                if (property.argument.type !== astNodeTypes.Identifier) {
+                    throwErrorTolerant({}, "Invalid object rest.");
+                }
+
+                property.type = astNodeTypes.ExperimentalRestProperty;
+                return;
+            }
+
             if (property.kind !== "init") {
                 throwErrorTolerant({}, Messages.InvalidLHSInAssignment);
             }
@@ -3488,7 +3525,6 @@ function parseAssignmentExpression() {
     if (match("=>") &&
             (state.parenthesisCount === oldParenthesisCount ||
             state.parenthesisCount === (oldParenthesisCount + 1))) {
-
         if (node.type === astNodeTypes.Identifier) {
             params = reinterpretAsCoverFormalsList([ node ]);
         } else if (node.type === astNodeTypes.AssignmentExpression ||
@@ -3503,6 +3539,7 @@ function parseAssignmentExpression() {
         }
 
         if (params) {
+            state.parenthesisCount--;
             return parseArrowFunctionExpression(params, marker);
         }
     }
@@ -4366,7 +4403,7 @@ function parseFunctionSourceElements() {
     oldInIteration = state.inIteration;
     oldInSwitch = state.inSwitch;
     oldInFunctionBody = state.inFunctionBody;
-    oldParenthesisCount = state.parenthesizedCount;
+    oldParenthesisCount = state.parenthesisCount;
 
     state.labelSet = new StringMap();
     state.inIteration = false;
@@ -4394,7 +4431,7 @@ function parseFunctionSourceElements() {
     state.inIteration = oldInIteration;
     state.inSwitch = oldInSwitch;
     state.inFunctionBody = oldInFunctionBody;
-    state.parenthesizedCount = oldParenthesisCount;
+    state.parenthesisCount = oldParenthesisCount;
 
     return markerApply(marker, astNodeFactory.createBlockStatement(sourceElements));
 }
@@ -4739,7 +4776,7 @@ function parseExportNamedDeclaration() {
         do {
             isExportFromIdentifier = isExportFromIdentifier || matchKeyword("default");
             specifiers.push(parseExportSpecifier());
-        } while (match(",") && lex());
+        } while (match(",") && lex() && !match("}"));
     }
     expect("}");
 
@@ -4869,7 +4906,7 @@ function parseNamedImports() {
     if (!match("}")) {
         do {
             specifiers.push(parseImportSpecifier());
-        } while (match(",") && lex());
+        } while (match(",") && lex() && !match("}"));
     }
     expect("}");
     return specifiers;

@@ -98,6 +98,7 @@
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
     showRuleIdInMessage: true
+    useGlobalEslint: true
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true
