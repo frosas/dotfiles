@@ -26,9 +26,7 @@
       "todo-show"
       "php-twig"
       "project-colorize"
-      "git-log"
       "auto-detect-indentation"
-      "minimap"
       "whitespace"
     ]
     audioBeep: false
@@ -104,5 +102,11 @@
     showIcons: true
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
-  minimap: {}
+  minimap:
+    plugins:
+      "git-diff": true
+      "find-and-replace": true
+      linter: true
+      codeglance: true
+      "minimap-autohide": true
   "fuzzy-finder": {}

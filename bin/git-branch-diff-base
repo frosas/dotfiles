@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Diffs up to the common ancestor 
-
-REFERENCE_BRANCH=${1:-"origin/master"}; shift
-BRANCH=${1:-"HEAD"}; shift
-git diff $(git merge-base $BRANCH $REFERENCE_BRANCH)..$BRANCH "$@"
