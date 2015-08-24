@@ -20,7 +20,7 @@ function init(editor) {
 			return;
 		}
 
-		const indentStyle = config.indent_style || editor.getSoftTabs() ? 'space' : 'tab';
+		const indentStyle = config.indent_style || (editor.getSoftTabs() ? 'space' : 'tab');
 
 		if (indentStyle === 'tab') {
 			editor.setSoftTabs(false);
@@ -44,6 +44,6 @@ function init(editor) {
 	});
 }
 
-export let activate = () => {
+export const activate = () => {
 	atom.workspace.observeTextEditors(init);
 };
