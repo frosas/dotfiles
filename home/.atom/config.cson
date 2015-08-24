@@ -27,7 +27,6 @@
       "php-twig"
       "project-colorize"
       "auto-detect-indentation"
-      "whitespace"
     ]
     audioBeep: false
   "spell-check":
@@ -87,9 +86,10 @@
     showErrorPanel: false
     showErrorTabFile: false
     showErrorTabProject: false
+    statusIconScope: "File"
   "vim-mode":
-    startInInsertMode: true
     useSmartcaseForSearch: true
+    useClipboardAsDefaultRegister: true
   "git-diff":
     showIconsInEditorGutter: true
   emmet: {}
