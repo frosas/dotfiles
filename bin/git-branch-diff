@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# TODO How to obtain it automatically?
+BRANCH=${1:-"HEAD"}
+PARENT_BRANCH=${2:-"origin/master"}
+
+git diff $PARENT_BRANCH...$BRANCH
