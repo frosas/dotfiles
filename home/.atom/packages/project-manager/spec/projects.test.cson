@@ -1,0 +1,28 @@
+'Test01':
+  'title': 'Test01'
+  'paths': [
+    '/Users/'
+  ]
+  'settings':
+    'tree-view':
+      'showOnRightSide': true
+    'fuzzy-finder':
+      'ignoredNames': [
+        'test1'
+        'test2'
+        'test3'
+      ]
+'Test02':
+  'title': 'Test02'
+  'paths': [
+    '/Users/'
+  ]
+  'settings':
+    '*':
+      editor:
+        tabLength: 2
+        preferredLineLength: 80
+    '.source.coffee':
+      editor:
+        tabLength: 4
+        preferredLineLength: 100

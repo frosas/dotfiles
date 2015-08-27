@@ -1,0 +1,15 @@
+"DCTK JS":
+  title: "DCTK JS"
+  paths: [
+    "/Users/frosasbosque/src/uitoolkit/datacapture/src/main/resources/datacapture/js"
+  ]
+"Global Controls":
+  title: "Global Controls"
+  paths: [
+    "/Users/frosasbosque/src/globalcontrols-service"
+  ]
+"Expweb (trunk)":
+  title: "Expweb (trunk)"
+  paths: [
+    "/Users/frosasbosque/src/expweb/trunk"
+  ]

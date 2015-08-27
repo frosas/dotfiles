@@ -18,15 +18,14 @@
       "jsonpp"
       "atom-lint"
       "linter-jshint"
-      "spell-check"
       "emmet"
       "atomatigit"
       "auto-update-packages"
-      "deprecation-cop"
       "todo-show"
       "php-twig"
       "project-colorize"
       "auto-detect-indentation"
+      "symbols-view"
     ]
     audioBeep: false
   "spell-check":
@@ -90,14 +89,12 @@
     statusIconScope: "File"
   "vim-mode":
     useSmartcaseForSearch: true
-    useClipboardAsDefaultRegister: true
   "git-diff":
     showIconsInEditorGutter: true
   emmet: {}
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
     showRuleIdInMessage: true
-    useGlobalEslint: true
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true

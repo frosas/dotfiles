@@ -21,11 +21,11 @@
     '<script src>':
         'prefix': 'scriptsrc'
         'body': '<script src="$1"></script>'
-        
+
 '.source.js':
     'Node require()':
         'prefix': 'require'
         'body': 'var $1$2 = require(\'$1\');'
     'function() {…}':
         'prefix': 'f'
-        'body': 'function ($1) {$2}$3'
+        'body': 'function($1) {$2}$3'
