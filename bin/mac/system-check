@@ -1,11 +1,28 @@
 #!/bin/bash
 
-set -xe
+string_repeat () {
+    string="$1"
+    times="$2"
+    for i in $(seq $times); do echo -n "$string"; done
+}
 
+title () {
+    char="-"
+    max_length=80
+    output="$char$char$char $1 "
+    output="$output$(string_repeat $char $((max_length - ${#output})))"
+    echo
+    echo $output
+    echo
+}
+
+title "Homebrew"
 brew update >/dev/null
 brew doctor # We update first to avoid the "Your Homebrew is outdated" warning
-brew outdated # Update with `brew upgrade`
+brew outdated || echo "Update with \`brew upgrade\`"
 
-npm outdated -g --depth 0 # Update with `npm update -g`
+title "npm"
+npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
 
+title "App Store"
 softwareupdate -l
