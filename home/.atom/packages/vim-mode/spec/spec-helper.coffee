@@ -9,6 +9,7 @@ beforeEach ->
   atom.workspace ||= {}
   statusBarManager = null
   globalVimState = null
+  spyOn(atom, 'beep')
 
 getEditorElement = (callback) ->
   textEditor = null
@@ -27,6 +28,9 @@ getEditorElement = (callback) ->
 
     element.addEventListener "keydown", (e) ->
       atom.keymaps.handleKeyboardEvent(e)
+
+    # mock parent element for the text editor
+    document.createElement('html').appendChild(atom.views.getView(textEditor))
 
     callback(element)
 

@@ -18,9 +18,11 @@
       "jsonpp"
       "atom-lint"
       "linter-jshint"
+      "spell-check"
       "emmet"
       "atomatigit"
       "auto-update-packages"
+      "deprecation-cop"
       "todo-show"
       "php-twig"
       "project-colorize"
@@ -108,4 +110,3 @@
       codeglance: true
       "minimap-autohide": true
   "fuzzy-finder": {}
-  "merge-conflicts": {}

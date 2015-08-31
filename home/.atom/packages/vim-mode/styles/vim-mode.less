@@ -13,6 +13,18 @@
   padding-left: 10px;
 }
 
+.vim-hidden-normal-mode-input {
+  height: 0px !important;
+  width: 0px !important;
+  overflow: hidden !important;
+  border: none !important;
+  padding: 0 !important;
+  display: block !important;
+  position: fixed !important;
+  top: -10px !important;
+  left: -10px !important;
+}
+
 .block-cursor(@visibility: visible) {
   border: 0;
   background-color: @syntax-cursor-color;
@@ -123,4 +135,12 @@ atom-text-editor.vim-mode.operator-pending-mode.is-focused
       .low-block-cursor(hidden);
     }
   }
+}
+
+.search-input atom-text-editor[mini]::before {
+  content: '/';
+}
+
+.reverse-search-input atom-text-editor[mini]::before {
+  content: '?';
 }
