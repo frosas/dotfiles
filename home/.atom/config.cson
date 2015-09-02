@@ -102,6 +102,7 @@
     showIcons: true
   "atom-fuzzy-grep":
     detectGitProjectAndUseGitGrep: false
+    grepCommandString: "/usr/local/bin/ag"
   minimap:
     plugins:
       "git-diff": true
