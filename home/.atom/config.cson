@@ -24,12 +24,14 @@
       "auto-update-packages"
       "deprecation-cop"
       "todo-show"
-      "php-twig"
-      "project-colorize"
       "auto-detect-indentation"
       "symbols-view"
     ]
     audioBeep: false
+    themes: [
+      "atom-dark-ui"
+      "one-dark-syntax"
+    ]
   "spell-check":
     grammars: [
       "source.gfm"
@@ -111,3 +113,8 @@
       codeglance: true
       "minimap-autohide": true
   "fuzzy-finder": {}
+  "minimap-codeglance":
+    numberOfLines: 10
+    showLineNumbers: false
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
