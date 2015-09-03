@@ -11,6 +11,3 @@
 
 # PhpStorm
 .idea
-
-# https://atom.io/packages/atom-ctags
-.tags*
