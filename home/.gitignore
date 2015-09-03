@@ -5,9 +5,12 @@
 .DS_Store
 
 # Eclipse
-.settings
-.buildpath
-.project
+# .settings
+# .buildpath
+# .project
 
 # PhpStorm
 .idea
+
+# https://atom.io/packages/atom-ctags
+.tags*
