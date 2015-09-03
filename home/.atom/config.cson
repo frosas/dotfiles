@@ -8,11 +8,14 @@
   metrics:
     userId: "ba44e3beb28ecd4cac067ffa00fb25caece41ae8"
   editor:
-    fontFamily: "Ubuntu Mono"
+    fontFamily: "Hack"
     showIndentGuide: true
     tabLength: 4
     invisibles: {}
     showInvisibles: true
+    fontSize: 12
+    softWrapAtPreferredLineLength: true
+    undoGroupingInterval: 100
   core:
     disabledPackages: [
       "jsonpp"
