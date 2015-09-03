@@ -344,9 +344,7 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 4</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Documents</string>
-	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{712, 448}</string>
+	<string>~/projects/dotfiles/iterm</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -370,29 +368,18 @@
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
-	<key>NSToolbar Configuration Terminal Toolbar</key>
-	<dict>
-		<key>TB Display Mode</key>
-		<integer>1</integer>
-		<key>TB Icon Size Mode</key>
-		<integer>1</integer>
-		<key>TB Is Shown</key>
-		<integer>0</integer>
-		<key>TB Size Mode</key>
-		<integer>1</integer>
-	</dict>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>769 110 445 186 0 0 1280 777 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>516 110 924 485 0 0 1440 877 </string>
+	<string>269 110 924 485 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 26 1440 851 0 0 1440 877 </string>
+	<string>0 4 1280 773 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 4 1440 873 0 0 1440 877 </string>
+	<string>0 3 1207 774 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>-587 903 1018 1437 -587 900 2560 1440 </string>
+	<string>54 0 1226 777 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>0 18 1438 859 0 0 1440 877 </string>
-	<key>NSWindow Frame iTerm Window 4</key>
-	<string>53 0 1387 877 0 0 1440 877 </string>
+	<string>54 22 1226 755 0 0 1280 777 </string>
 	<key>NeverWarnAboutShortLivedSessions_895496E5-9F49-4699-BE85-016853DB80AF</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -948,7 +935,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 12</string>
+			<string>Hack 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1131,9 +1118,9 @@
 		</dict>
 	</array>
 	<key>NoSyncTimeOfLastPromo</key>
-	<real>453219623.58028102</real>
+	<real>453245541.41385001</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>462374454.13345897</real>
+	<real>462934142.103625</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1182,7 +1169,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/frosasbosque/src/dotfiles/iterm</string>
+	<string>/Users/frosas/projects/dotfiles/iterm</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -1191,8 +1178,6 @@
 	<integer>8</integer>
 	<key>RightOption</key>
 	<integer>3</integer>
-	<key>SUAutomaticallyUpdate</key>
-	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>
@@ -1200,9 +1185,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-08-29T11:13:23Z</date>
-	<key>SUSkippedVersion</key>
-	<string>2.0.0.20141103</string>
+	<date>2015-09-03T00:48:58Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
