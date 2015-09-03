@@ -8,7 +8,7 @@
   metrics:
     userId: "ba44e3beb28ecd4cac067ffa00fb25caece41ae8"
   editor:
-    fontFamily: "Inconsolata-g"
+    fontFamily: "Hack"
     showIndentGuide: true
     tabLength: 4
     invisibles: {}
