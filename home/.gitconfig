@@ -33,5 +33,6 @@
     h = help
     r = rebase
     a = add
+    wip = ! git a . && git ci -m WIP
 [hub]
 	host = ewegithub.sb.karmalab.net
