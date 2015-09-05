@@ -11,13 +11,15 @@ CYAN=$(tput setaf 6)
 WHITE=$(tput setaf 7)
 DARK_GRAY=$(tput setaf 8)
 
-function git_ps1 {
+declare -a on_prompt
+
+git_ps1 () {
     if [ `type -t __git_ps1` ]; then
         __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s"
     fi
 }
 
-function prompt_command {
+prompt_command () {
     LAST_EXIT_CODE=$?
     if [[ $LAST_EXIT_CODE != 0 ]]; then
         echo "${RED}✖ $DARK_GRAY($LAST_EXIT_CODE)$RESET"
@@ -35,10 +37,8 @@ function prompt_command {
     PS1_USER=$([[ "frosas frosasbosque" =~ `whoami` ]] || echo " \[$DARK_GRAY\]\u in")
     PS1="\[$RESET\]\n$PS1_USER\[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]»\[$RESET\] "
 
-    # Name the iTerm tab with the current directory
-    echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007"
-
-    (history -n & history -a &) # See [1]
+    # For anything else we may want to do at every command
+    for callback in "${on_prompt[@]}"; do $callback; done
 }
 
 PROMPT_COMMAND=prompt_command

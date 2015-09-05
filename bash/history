@@ -1,0 +1,15 @@
+# vim: set filetype=bash
+
+# http://briancarper.net/blog/248/ 
+# https://news.ycombinator.com/item?id=10162189
+
+# Note: use `history -n` to update the history from another terminal
+
+shopt -s histappend # Append instead of overwriting
+HISTSIZE="∞"
+HISTCONTROL=erasedups # Experimental
+
+update_history () {
+    (history -a &) # "append history lines from this session to the history file"
+}
+on_prompt=("${on_prompt[@]}" update_history)
