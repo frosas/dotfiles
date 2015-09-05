@@ -12,7 +12,6 @@
     showIndentGuide: true
     tabLength: 4
     invisibles: {}
-    showInvisibles: true
     fontSize: 12
     softWrapAtPreferredLineLength: true
     undoGroupingInterval: 100
