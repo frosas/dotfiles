@@ -10,15 +10,14 @@
   editor:
     fontFamily: "Hack"
     showIndentGuide: true
-    tabLength: 4
     invisibles: {}
     fontSize: 12
     softWrapAtPreferredLineLength: true
     undoGroupingInterval: 100
+    tabLength: 4
   core:
     disabledPackages: [
       "spell-check"
-      "auto-detect-indentation"
     ]
     audioBeep: false
     themes: [
@@ -90,8 +89,8 @@
     showIconsInEditorGutter: true
   emmet: {}
   "linter-eslint":
-    disableWhenNoEslintrcFileInPath: true
     showRuleIdInMessage: true
+    disableWhenNoEslintrcFileInPath: true
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true

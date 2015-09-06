@@ -29,3 +29,6 @@
     'function() {…}':
         'prefix': 'f'
         'body': 'function($1) {$3}$2'
+    '… => …':
+        'prefix': 'fa' # "Fat arrow"
+        'body': '$1 => $2'
