@@ -34,5 +34,6 @@
     r = rebase
     a = add
     wip = ! git a . && git ci -m WIP
+    amend = commit --amend --allow-empty -v
 [hub]
 	host = ewegithub.sb.karmalab.net
