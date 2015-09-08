@@ -11,6 +11,11 @@ function init(editor) {
 
 	const file = editor.getURI();
 
+	const lineEndings = {
+		crlf: '\r\n',
+		lf: '\n'
+	};
+
 	if (!file) {
 		return;
 	}
@@ -34,6 +39,13 @@ function init(editor) {
 			if (config.indent_size) {
 				editor.setTabLength(config.indent_size);
 			}
+		}
+
+		if (config.end_of_line && config.end_of_line in lineEndings) {
+			const preferredLineEnding = lineEndings[config.end_of_line];
+			const buffer = editor.getBuffer();
+			buffer.setPreferredLineEnding(preferredLineEnding);
+			buffer.setText(buffer.getText().replace(/\r?\n/g, preferredLineEnding));
 		}
 
 		if (config.charset) {

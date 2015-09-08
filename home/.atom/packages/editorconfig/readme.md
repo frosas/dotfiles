@@ -25,6 +25,7 @@ See the EditorConfig [documentation](http://editorconfig.org).
 - indent_style
 - indent_size
 - charset *(supported values: `latin1`, `utf-8`, `utf-16be`, `utf-16le`)*
+- end_of_line *(supported values: `lf`, `crlf`)*
 
 
 ## Features
@@ -42,7 +43,7 @@ root = true
 [*]
 indent_style = space
 indent_size = 4
-end_of_line = lf # doesn't work yet
+end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true # doesn't work yet
 insert_final_newline = true # doesn't work yet
