@@ -1,23 +1,26 @@
 {
   "name": "fixmyjs",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Automagically fix JSHint lint warnings",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sindresorhus/atom-fixmyjs"
+    "url": "git+https://github.com/sindresorhus/atom-fixmyjs.git"
   },
   "private": true,
-  "activationCommands": {
-    "atom-workspace": "FixMyJS"
-  },
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
+  "activationCommands": {
+    "atom-workspace": "FixMyJS"
+  },
   "engines": {
-    "atom": ">=0.190.0"
+    "atom": ">=1.0.11"
+  },
+  "scripts": {
+    "test": "xo"
   },
   "keywords": [
     "javascript",
@@ -30,16 +33,28 @@
     "fixmyjs": "^1.0.2",
     "jshint": "^2.5.6"
   },
-  "readme": "# fixmyjs\n\n[Atom package](https://atom.io/packages/fixmyjs)\n\n> Automagically fix JSHint lint warnings using [fixmyjs](https://github.com/jshint/fixmyjs)\n\n<img src=\"https://cloud.githubusercontent.com/assets/170270/4474662/ceab387a-4962-11e4-99ab-17dd5c44847c.gif\" width=\"399\">\n\n*Issues with the output should be reported on the fixmyjs [issue tracker](https://github.com/jshint/fixmyjs/issues).*\n\n\n## Install\n\n```sh\n$ apm install fixmyjs\n```\n\nOr Settings → Packages → Search for `fixmyjs`\n\n\n## Usage\n\nOpen the Command Palette, and type `fixmyjs`.\n\nCan also be run on just a selection. For example the code in a `<script>` tag.\n\n\n## Legacy mode\n\nBy default, this plugin uses the FixMyJS `legacy` mode. This option uses the last stable version of the module which uses JSHint to detect errors in your code and fix them.\n\nIt does not include all of the fixes the current version of FixMyJS exposes, but does do a much better job of preserving source formatting. Legacy mode can be disabled in the Settings.\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
+  "devDependencies": {
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true,
+    "globals": [
+      "atom"
+    ],
+    "ignores": [
+      "fixture*"
+    ]
+  },
+  "readme": "# fixmyjs\n\n> Automagically fix JSHint lint warnings using [fixmyjs](https://github.com/jshint/fixmyjs)\n\n<img src=\"https://cloud.githubusercontent.com/assets/170270/4474662/ceab387a-4962-11e4-99ab-17dd5c44847c.gif\" width=\"399\">\n\n*Issues with the output should be reported on the fixmyjs [issue tracker](https://github.com/jshint/fixmyjs/issues).*\n\n\n## Install\n\n```\n$ apm install fixmyjs\n```\n\nOr, Settings → Install → Search for `fixmyjs`\n\n\n## Usage\n\nOpen the Command Palette and type `fixmyjs`.\n\nCan also be run on just a selection. For example the code in a `<script>` tag.\n\n\n## Legacy mode\n\nBy default, this plugin uses the FixMyJS `legacy` mode. This option uses the last stable version of the module which uses JSHint to detect errors in your code and fix them.\n\nIt does not include all of the fixes the current version of FixMyJS exposes, but does do a much better job of preserving source formatting. Legacy mode can be switched off in the settings.\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
   "readmeFilename": "readme.md",
   "bugs": {
     "url": "https://github.com/sindresorhus/atom-fixmyjs/issues"
   },
-  "homepage": "https://github.com/sindresorhus/atom-fixmyjs",
-  "_id": "fixmyjs@1.3.3",
-  "_shasum": "4b02ca433213551f315dec81e13065bb0dcf9f1e",
-  "_resolved": "file:../d-115510-39535-15n5hdg/package.tgz",
-  "_from": "../d-115510-39535-15n5hdg/package.tgz",
+  "homepage": "https://github.com/sindresorhus/atom-fixmyjs#readme",
+  "_id": "fixmyjs@1.3.4",
+  "_shasum": "ca2e3edfeea76d0fb8d3b1ec64dd8860ee6151e8",
+  "_resolved": "file:../d-115810-46974-lcohai/package.tgz",
+  "_from": "../d-115810-46974-lcohai/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -70,7 +85,7 @@
       },
       {
         "name": "lru-cache",
-        "version": "2.6.4",
+        "version": "2.6.5",
         "path": "node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
       },
       {
@@ -165,7 +180,7 @@
       },
       {
         "name": "minimatch",
-        "version": "2.0.8",
+        "version": "2.0.10",
         "path": "node_modules/jshint/node_modules/minimatch/minimatch.js"
       },
       {
@@ -190,12 +205,14 @@
       },
       {
         "name": "strip-json-comments",
-        "version": "1.0.2",
+        "version": "1.0.4",
         "path": "node_modules/jshint/node_modules/strip-json-comments/strip-json-comments.js"
       }
     ],
     "extensions": {
       ".js": [
+        "fixture-legacy.js",
+        "fixture.js",
         "index.js",
         "node_modules/jshint/data/ascii-identifier-data.js",
         "node_modules/jshint/data/non-ascii-identifier-part-only.js",
@@ -729,9 +746,7 @@
         "node_modules/jshint/src/reporters/unix.js",
         "node_modules/jshint/src/state.js",
         "node_modules/jshint/src/style.js",
-        "node_modules/jshint/src/vars.js",
-        "test-legacy.js",
-        "test.js"
+        "node_modules/jshint/src/vars.js"
       ],
       ".coffee": [
         "node_modules/jshint/node_modules/cli/examples/static.coffee"
