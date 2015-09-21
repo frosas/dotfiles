@@ -21,7 +21,7 @@
         'body': 'function($1) {$2}$3'
     '… => …':
         'prefix': 'fa' # "Fat arrow"
-        'body': '$1 => $2'
+        'body': '$1 => {$2}$3'
     'constructor(…) {…}':
         'prefix': 'constructor ' # Atom acts wierd with just 'constructor'
         'body': 'constructor($1) {$2}'

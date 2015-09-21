@@ -13,3 +13,8 @@
   paths: [
     "/Users/frosasbosque/src/expweb/trunk"
   ]
+"siteanalytics(expweb)":
+  title: "Site Analytics (Expweb)"
+  paths: [
+    "/Users/frosasbosque/src/expweb/trunk/content/static_content/default/default/scripts/site-analytics"
+  ]
