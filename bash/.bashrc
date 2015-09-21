@@ -40,11 +40,11 @@ fi
 alias g="git" # See completion for `g` above
 alias gs="git status --short"
 alias gd="git-uncommitted-diff"
-alias gl="git pretty-log"
+alias gl="git l ."
+alias gla="git l --all ."
 alias gb="git branches-by-date"
 alias gbl="git-branch-log"
 alias gbd="git-branch-diff"
-alias gla="gl --all"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
 alias cd="cd -P"

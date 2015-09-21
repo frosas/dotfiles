@@ -16,6 +16,8 @@
     co = checkout
     b = branch
     fetch-all = fetch --all --prune
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset'
+    # la = (see git-la file)
     m = merge
     merge-upstream = merge --ff-only @{u}
     s = stash save -u
@@ -23,7 +25,6 @@
     ss = stash show -v 
     sl = stash list
     untracked-files = ls-files -o --exclude-standard
-    pretty-log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset'
     ap = add -p
     cp = checkout -p
     p = pull --ff-only
