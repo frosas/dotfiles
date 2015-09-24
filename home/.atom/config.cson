@@ -110,3 +110,5 @@
     showLineNumbers: false
   "atom-ctags":
     autoBuildTagsWhenActive: true
+  "atom-beautify":
+    _analyticsUserId: "4a06949d-cca0-4957-b8b7-18a5ac006998"
