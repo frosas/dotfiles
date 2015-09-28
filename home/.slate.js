@@ -119,21 +119,26 @@ var layoutAll = function() {
     runAppOperationsByNames(['iTerm', 'Terminal'], (function() {
         switch (screenCount) {
             case 1: return operations.maximize();
-            case 2:
-            case 3:
-                return [
-                    slate.operation('throw', {screen: getScreen('external-0')}),
-                    operations.toLeft()
-                ];
+            case 2: return [
+                slate.operation('throw', {screen: getScreen('external-0')}),
+                operations.toLeft()
+            ];
+            case 3: return [
+                slate.operation('throw', {screen: getScreen('external-1')}),
+                operations.toLeft()
+            ];
         }
     })());
 
     runAppOperationsByNames(['Google Chrome', 'Firefox', 'Safari', 'SourceTree'], (function() {
         switch (screenCount) {
             case 1: return operations.maximize();
-            case 2:
-            case 3: return [
+            case 2: return [
                 slate.operation('throw', {screen: getScreen('external-0')}),
+                operations.toRight()
+            ];
+            case 3: return [
+                slate.operation('throw', {screen: getScreen('external-1')}),
                 operations.toRight()
             ];
         }
@@ -147,16 +152,14 @@ var layoutAll = function() {
     runAppOperationsByNames(['HipChat'], (function() {
         switch (screenCount) {
             case 1:
-            case 2:
-                return [
-                    slate.operation('throw', {screen: getScreen('main')}),
-                    operations.maximize()
-                ];
-            case 3:
-                return [
-                    slate.operation('throw', {screen: getScreen('external-1')}),
-                    operations.toTop()
-                ];
+            case 2:return [
+                slate.operation('throw', {screen: getScreen('main')}),
+                operations.maximize()
+            ];
+            case 3: return [
+                slate.operation('throw', {screen: getScreen('external-0')}),
+                operations.toRight()
+            ];
         }
     })());
 
@@ -170,8 +173,8 @@ var layoutAll = function() {
                 ];
             case 3:
                 return [
-                    slate.operation('throw', {screen: getScreen('external-1')}),
-                    operations.toBottom()
+                    slate.operation('throw', {screen: getScreen('external-0')}),
+                    operations.toLeft()
                 ];
         }
     })());
