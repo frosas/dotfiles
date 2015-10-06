@@ -41,9 +41,9 @@ Enable "Load preferences from a custom folder" and point to `iterm` directory.
 - http://www.gimp.org/
 - http://www.google.com/chrome/
 - http://iterm2.com/
-- https://github.com/codler/Battery-Time-Remaining
 - http://www.macupdate.com/app/mac/45273/did-i-click
 - https://justgetflux.com/
+- https://bjango.com/mac/istatmenus/
 
 ### TODO
 
