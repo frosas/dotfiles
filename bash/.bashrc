@@ -40,8 +40,8 @@ fi
 alias g="git" # See completion for `g` above
 alias gs="git status --short"
 alias gd="git-uncommitted-diff"
-alias gl="git l ."
-alias gla="git l --all ."
+alias gl="git l"
+alias gla="git l --all"
 alias gb="git branches-by-date"
 alias gbl="git-branch-log"
 alias gbd="git-branch-diff"
