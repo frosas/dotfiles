@@ -1,3 +1,4 @@
 '.source.thrift':
   'editor':
+    'commentStart': '// '
     'foldEndPattern': '^\\s*\\}'

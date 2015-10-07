@@ -18,6 +18,7 @@
   core:
     disabledPackages: [
       "spell-check"
+      "whitespace"
     ]
     audioBeep: false
     themes: [

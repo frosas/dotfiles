@@ -1,10 +1,10 @@
 {
   "name": "language-thrift",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Syntax highlighting and snippets for Thrift files.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidcelis/language-thrift"
+    "url": "git+https://github.com/davidcelis/language-thrift.git"
   },
   "license": "MIT",
   "engines": {
@@ -16,11 +16,11 @@
   "bugs": {
     "url": "https://github.com/davidcelis/language-thrift/issues"
   },
-  "homepage": "https://github.com/davidcelis/language-thrift",
-  "_id": "language-thrift@1.0.1",
-  "_shasum": "fccea39fb33d1be9a760db41ee5f9b38b5104a82",
-  "_resolved": "file:../d-11573-85337-1vy08qb/package.tgz",
-  "_from": "../d-11573-85337-1vy08qb/package.tgz",
+  "homepage": "https://github.com/davidcelis/language-thrift#readme",
+  "_id": "language-thrift@1.0.2",
+  "_shasum": "bef52cd3f2c8f27aeb08d85f16965af83732efd1",
+  "_resolved": "file:../d-11597-16607-meulyz/package.tgz",
+  "_from": "../d-11597-16607-meulyz/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],

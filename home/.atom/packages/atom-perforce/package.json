@@ -1,0 +1,195 @@
+{
+  "name": "atom-perforce",
+  "main": "./main.js",
+  "version": "1.5.3",
+  "description": "Perforce integration for Atom, using node-perforce",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattsawyer77/atom-perforce.git"
+  },
+  "engines": {
+    "atom": ">=1.0.0"
+  },
+  "author": {
+    "name": "Matt Sawyer",
+    "email": "matt.sawyer@gmail.com",
+    "url": "http://about.me/mattsawyer"
+  },
+  "dependencies": {
+    "jquery": "2.1.3",
+    "node-perforce": "0.0.16",
+    "q": "1.4.1"
+  },
+  "keywords": [
+    "perforce",
+    "p4",
+    "vcs",
+    "source",
+    "control"
+  ],
+  "readme": "# atom-perforce\nPerforce integration for the Atom editor.\n\nThis package is pretty new. Issue reports and PRs are welcome.\n\n**Features:**\n\n* command to p4 edit the current file\n* command to p4 add the current file\n* command to p4 sync\n* command to p4 revert\n* command to load all files currently opened (as in p4 opened) in the workspace\n* automatically show diff marks when the file is opened/saved\n* automatically show the name of the p4 client/workspace in the status bar\n* tree item decoration based on whether file is opened, etc.\n* automatic open (edit/add) and automatic revert\n\n**Usage:**\n\n1. install the Perforce CLI utilities or P4V (which should come with the CLI utilities)\n2. ensure at least one of the following is true:\n    * you have installed the p4 command in its default location\n    * the `p4` command's location is in your PATH environment variable\n    * you have set that location in the atom-perforce settings\n3. ensure that you can login to perforce via CLI and execute p4 commands from your project's directory, as the plugin does not (yet?) attempt to manage perforce authentication\n4. use Atom's command palette (`shift+cmd+p` or `shift+ctrl+p`) then type either \"perforce\" or \"p4\" to see and execute available commands and/or use the keymappings\n\n**TODO:**\n\n* tree context menu actions\n* view p4 diff output in a new buffer\n* when multiple pending changelists are open in the current project, present a menu for which one to open a file in\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/mattsawyer77/atom-perforce/issues"
+  },
+  "homepage": "https://github.com/mattsawyer77/atom-perforce#readme",
+  "_id": "atom-perforce@1.5.3",
+  "_shasum": "f155ee5c5c3bec49f9a1688e3d7bee53b9c84797",
+  "_resolved": "file:../d-115830-27995-17tsjqn/package.tgz",
+  "_from": "../d-115830-27995-17tsjqn/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "jquery",
+        "version": "2.1.3",
+        "path": "node_modules/jquery/dist/jquery.js"
+      },
+      {
+        "name": "node-perforce",
+        "version": "0.0.16",
+        "path": "node_modules/node-perforce/index.js"
+      },
+      {
+        "name": "string",
+        "version": "2.2.0",
+        "path": "node_modules/node-perforce/node_modules/string/lib/string.js"
+      },
+      {
+        "name": "q",
+        "version": "1.4.1",
+        "path": "node_modules/q/q.js"
+      }
+    ],
+    "extensions": {
+      ".js": [
+        "lib/atom-perforce.js",
+        "lib/environment.js",
+        "main.js",
+        "node_modules/jquery/dist/cdn/jquery-2.1.3.js",
+        "node_modules/jquery/dist/cdn/jquery-2.1.3.min.js",
+        "node_modules/jquery/dist/jquery.js",
+        "node_modules/jquery/dist/jquery.min.js",
+        "node_modules/jquery/src/ajax/jsonp.js",
+        "node_modules/jquery/src/ajax/load.js",
+        "node_modules/jquery/src/ajax/parseJSON.js",
+        "node_modules/jquery/src/ajax/parseXML.js",
+        "node_modules/jquery/src/ajax/script.js",
+        "node_modules/jquery/src/ajax/var/nonce.js",
+        "node_modules/jquery/src/ajax/var/rquery.js",
+        "node_modules/jquery/src/ajax/xhr.js",
+        "node_modules/jquery/src/ajax.js",
+        "node_modules/jquery/src/attributes/attr.js",
+        "node_modules/jquery/src/attributes/classes.js",
+        "node_modules/jquery/src/attributes/prop.js",
+        "node_modules/jquery/src/attributes/support.js",
+        "node_modules/jquery/src/attributes/val.js",
+        "node_modules/jquery/src/attributes.js",
+        "node_modules/jquery/src/callbacks.js",
+        "node_modules/jquery/src/core/access.js",
+        "node_modules/jquery/src/core/init.js",
+        "node_modules/jquery/src/core/parseHTML.js",
+        "node_modules/jquery/src/core/ready.js",
+        "node_modules/jquery/src/core/var/rsingleTag.js",
+        "node_modules/jquery/src/core.js",
+        "node_modules/jquery/src/css/addGetHookIf.js",
+        "node_modules/jquery/src/css/curCSS.js",
+        "node_modules/jquery/src/css/defaultDisplay.js",
+        "node_modules/jquery/src/css/hiddenVisibleSelectors.js",
+        "node_modules/jquery/src/css/support.js",
+        "node_modules/jquery/src/css/swap.js",
+        "node_modules/jquery/src/css/var/cssExpand.js",
+        "node_modules/jquery/src/css/var/getStyles.js",
+        "node_modules/jquery/src/css/var/isHidden.js",
+        "node_modules/jquery/src/css/var/rmargin.js",
+        "node_modules/jquery/src/css/var/rnumnonpx.js",
+        "node_modules/jquery/src/css.js",
+        "node_modules/jquery/src/data/Data.js",
+        "node_modules/jquery/src/data/accepts.js",
+        "node_modules/jquery/src/data/var/data_priv.js",
+        "node_modules/jquery/src/data/var/data_user.js",
+        "node_modules/jquery/src/data.js",
+        "node_modules/jquery/src/deferred.js",
+        "node_modules/jquery/src/deprecated.js",
+        "node_modules/jquery/src/dimensions.js",
+        "node_modules/jquery/src/effects/Tween.js",
+        "node_modules/jquery/src/effects/animatedSelector.js",
+        "node_modules/jquery/src/effects.js",
+        "node_modules/jquery/src/event/ajax.js",
+        "node_modules/jquery/src/event/alias.js",
+        "node_modules/jquery/src/event/support.js",
+        "node_modules/jquery/src/event.js",
+        "node_modules/jquery/src/exports/amd.js",
+        "node_modules/jquery/src/exports/global.js",
+        "node_modules/jquery/src/intro.js",
+        "node_modules/jquery/src/jquery.js",
+        "node_modules/jquery/src/manipulation/_evalUrl.js",
+        "node_modules/jquery/src/manipulation/support.js",
+        "node_modules/jquery/src/manipulation/var/rcheckableType.js",
+        "node_modules/jquery/src/manipulation.js",
+        "node_modules/jquery/src/offset.js",
+        "node_modules/jquery/src/outro.js",
+        "node_modules/jquery/src/queue/delay.js",
+        "node_modules/jquery/src/queue.js",
+        "node_modules/jquery/src/selector-native.js",
+        "node_modules/jquery/src/selector-sizzle.js",
+        "node_modules/jquery/src/selector.js",
+        "node_modules/jquery/src/serialize.js",
+        "node_modules/jquery/src/sizzle/dist/sizzle.js",
+        "node_modules/jquery/src/sizzle/dist/sizzle.min.js",
+        "node_modules/jquery/src/traversing/findFilter.js",
+        "node_modules/jquery/src/traversing/var/rneedsContext.js",
+        "node_modules/jquery/src/traversing.js",
+        "node_modules/jquery/src/var/arr.js",
+        "node_modules/jquery/src/var/class2type.js",
+        "node_modules/jquery/src/var/concat.js",
+        "node_modules/jquery/src/var/hasOwn.js",
+        "node_modules/jquery/src/var/indexOf.js",
+        "node_modules/jquery/src/var/pnum.js",
+        "node_modules/jquery/src/var/push.js",
+        "node_modules/jquery/src/var/rnotwhite.js",
+        "node_modules/jquery/src/var/slice.js",
+        "node_modules/jquery/src/var/strundefined.js",
+        "node_modules/jquery/src/var/support.js",
+        "node_modules/jquery/src/var/toString.js",
+        "node_modules/jquery/src/wrap.js",
+        "node_modules/node-perforce/index.js",
+        "node_modules/node-perforce/node_modules/string/lib/string.js",
+        "node_modules/node-perforce/node_modules/string/lib/string.min.js",
+        "node_modules/node-perforce/p4options.js",
+        "node_modules/q/q.js",
+        "node_modules/q/queue.js"
+      ],
+      ".json": [
+        "node_modules/jquery/bower.json",
+        "node_modules/jquery/package.json",
+        "node_modules/node-perforce/node_modules/string/package.json",
+        "node_modules/node-perforce/package.json",
+        "node_modules/q/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          "",
+          "settings"
+        ],
+        "dependencies": {
+          "jquery": "2.1.3",
+          "node-perforce": "0.0.16",
+          "q": "1.4.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/node-perforce"
+        ],
+        "dependencies": {
+          "string": "^2.2.0"
+        }
+      }
+    ]
+  }
+}
