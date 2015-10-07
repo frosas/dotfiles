@@ -4,4 +4,4 @@
 BRANCH=${1:-"HEAD"}
 PARENT_BRANCH=${2:-"origin/master"}
 
-git pretty-log $PARENT_BRANCH...$BRANCH --right-only
+git l $PARENT_BRANCH...$BRANCH --right-only
