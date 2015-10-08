@@ -149,7 +149,7 @@ var layoutAll = function() {
         operations.maximize()
     ]);
 
-    runAppOperationsByNames(['P4V'], (function() {
+    runAppOperationsByNames(['P4V', 'HipChat'], (function() {
         switch (screenCount) {
             case 1:
             case 2:return [
@@ -163,7 +163,7 @@ var layoutAll = function() {
         }
     })());
 
-    runAppOperationsByNames(['Spotify', 'HipChat'], (function() {
+    runAppOperationsByNames(['Spotify'], (function() {
         switch (screenCount) {
             case 1:
             case 2:
