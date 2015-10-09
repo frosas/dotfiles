@@ -2,7 +2,7 @@
   "name": "linter-eslint",
   "main": "./lib/linter-eslint",
   "activationCommands": [],
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -35,18 +35,13 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint#readme",
-  "_id": "linter-eslint@3.1.0",
-  "_shasum": "46fcd271ae904a53d753c2e315f62801b1513b22",
-  "_resolved": "file:../d-11597-16607-1xo5pka/package.tgz",
-  "_from": "../d-11597-16607-1xo5pka/package.tgz",
+  "_id": "linter-eslint@3.1.1",
+  "_shasum": "529401bd05fb1011c2dc99f6f8f8717ff6ef1b61",
+  "_resolved": "file:../d-115910-64820-yt8joj/package.tgz",
+  "_from": "../d-115910-64820-yt8joj/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
-      {
-        "name": "atom-linter",
-        "version": "2.0.5",
-        "path": "node_modules/atom-linter/lib/helpers.coffee"
-      },
       {
         "name": "xregexp",
         "version": "3.0.0",
@@ -134,7 +129,7 @@
       },
       {
         "name": "util-deprecate",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/node.js"
       },
       {

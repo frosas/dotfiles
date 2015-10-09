@@ -110,20 +110,20 @@ module.exports =
                 .map ({message, line, severity, ruleId, column}) ->
 
                   indentLevel = TextEditor.indentationForBufferRow line - 1
-                  startCol = column or TextEditor.getTabLength() * indentLevel
+                  startCol = (column or TextEditor.getTabLength() * indentLevel) - 1
                   endOfLine = TextEditor.getBuffer().lineLengthForRow line - 1
                   range = [[line - 1, startCol], [line - 1, endOfLine]]
 
                   if showRuleId
                     {
-                      type: if severity is 1 then 'warning' else 'error'
+                      type: if severity is 1 then 'Warning' else 'Error'
                       html: '<span class="badge badge-flexible">' + ruleId + '</span> ' + message
                       filePath: filePath
                       range: range
                     }
                   else
                     {
-                      type: if severity is 1 then 'warning' else 'error'
+                      type: if severity is 1 then 'Warning' else 'Error'
                       text: message
                       filePath: filePath
                       range: range
@@ -138,7 +138,7 @@ module.exports =
 
             [
               {
-                type: 'error'
+                type: 'Error'
                 text: 'error while linting file, open the console for more information'
                 file: filePath
                 range: [[0, 0], [0, 0]]
