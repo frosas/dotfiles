@@ -382,17 +382,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>920 105 445 264 0 0 1440 877 </string>
+	<string>432 1167 445 402 -587 900 2560 1440 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>516 110 924 485 0 0 1440 877 </string>
+	<string>0 392 924 485 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 4 1440 873 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 4 1440 873 0 0 1440 877 </string>
+	<string>750 900 1024 1440 750 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>-587 903 1018 1437 -587 900 2560 1440 </string>
+	<string>750 903 1018 1437 750 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>0 18 1438 859 0 0 1440 877 </string>
+	<string>0 4 1440 873 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
 	<string>53 0 1387 877 0 0 1440 877 </string>
 	<key>NeverWarnAboutShortLivedSessions_895496E5-9F49-4699-BE85-016853DB80AF</key>
@@ -1111,6 +1111,14 @@
 					<key>regex</key>
 					<string>Started Jetty Server</string>
 				</dict>
+				<dict>
+					<key>action</key>
+					<string>HighlightTrigger</string>
+					<key>parameter</key>
+					<integer>1001</integer>
+					<key>regex</key>
+					<string>^\++ [^ ]+.*</string>
+				</dict>
 			</array>
 			<key>Unlimited Scrollback</key>
 			<true/>
@@ -1135,7 +1143,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>453219623.58028102</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>462898903.80267102</real>
+	<real>466059642.537485</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1198,11 +1206,11 @@
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>http://iterm2.com/appcasts/testing.xml</string>
+	<string>https://iterm2.com/appcasts/testing.xml</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-09-02T15:01:41Z</date>
+	<date>2015-10-08T21:12:59Z</date>
 	<key>SUSkippedVersion</key>
 	<string>2.0.0.20141103</string>
 	<key>SavePasteHistory</key>
@@ -1250,6 +1258,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.1.1</string>
+	<string>2.1.4</string>
 </dict>
 </plist>
