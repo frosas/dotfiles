@@ -1,4 +1,4 @@
-# vim: set filetype=bash
+#!/bin/bash
 
 RESET=$(tput sgr0)
 BLACK=$(tput setaf 0)
