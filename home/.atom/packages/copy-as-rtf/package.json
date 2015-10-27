@@ -1,0 +1,384 @@
+{
+  "name": "copy-as-rtf",
+  "main": "./lib/copy-as-rtf",
+  "version": "0.8.0",
+  "description": "A package to export highlighted code as RTF",
+  "activationCommands": {
+    "atom-workspace": [
+      "copy-as-rtf:copy"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasmazza/copy-as-rtf.git"
+  },
+  "license": "Apache 2.0",
+  "engines": {
+    "atom": ">0.176.0"
+  },
+  "dependencies": {
+    "pygmentize-bundled": "2.2.0",
+    "copy-paste": "*"
+  },
+  "readme": "# Copy as RTF\n\nA package to export highlighted code as RTF,\ninspired by the [SublimeHighlight](https://github.com/n1k0/SublimeHighlight) package.\n\n## Available keymaps\n\n* __⌘+⌥+R__ copies the current file/selection as RTF into your clipboard.\n\n## Available Options\n\n* __fontface__, defaults to `Monaco`.\n* __style__, defaults to `Tango`.\n* __fontsize__, defaults to `16`.\n\nCopyright (c) 2014 Lucas Mazza.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/lucasmazza/copy-as-rtf/issues"
+  },
+  "homepage": "https://github.com/lucasmazza/copy-as-rtf#readme",
+  "_id": "copy-as-rtf@0.8.0",
+  "_shasum": "92a62a44df75cfcad3b1f65e9b92169c41c1f150",
+  "_resolved": "file:../d-115919-6750-11j073b/package.tgz",
+  "_from": "../d-115919-6750-11j073b/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "copy-paste",
+        "version": "1.1.3",
+        "path": "node_modules/copy-paste/index.js"
+      },
+      {
+        "name": "execSync",
+        "version": "1.0.2",
+        "path": "node_modules/copy-paste/node_modules/execSync/index.js"
+      },
+      {
+        "name": "temp",
+        "version": "0.5.1",
+        "path": "node_modules/copy-paste/node_modules/execSync/node_modules/temp/lib/temp.js"
+      },
+      {
+        "name": "rimraf",
+        "version": "2.1.4",
+        "path": "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf/rimraf.js"
+      },
+      {
+        "name": "graceful-fs",
+        "version": "1.2.3",
+        "path": "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf/node_modules/graceful-fs/graceful-fs.js"
+      },
+      {
+        "name": "iconv-lite",
+        "version": "0.4.13",
+        "path": "node_modules/copy-paste/node_modules/iconv-lite/lib/index.js"
+      },
+      {
+        "name": "pygmentize-bundled",
+        "version": "2.2.0",
+        "path": "node_modules/pygmentize-bundled/index.js"
+      },
+      {
+        "name": "bl",
+        "version": "0.4.2",
+        "path": "node_modules/pygmentize-bundled/node_modules/bl/bl.js"
+      },
+      {
+        "name": "mkdirp",
+        "version": "0.3.5",
+        "path": "node_modules/pygmentize-bundled/node_modules/mkdirp/index.js"
+      },
+      {
+        "name": "readable-stream",
+        "version": "1.0.33",
+        "path": "node_modules/pygmentize-bundled/node_modules/readable-stream/readable.js"
+      },
+      {
+        "name": "core-util-is",
+        "version": "1.0.1",
+        "path": "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/core-util-is/lib/util.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "isarray",
+        "version": "0.0.1",
+        "path": "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/isarray/index.js"
+      },
+      {
+        "name": "string_decoder",
+        "version": "0.10.31",
+        "path": "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/string_decoder/index.js"
+      },
+      {
+        "name": "through2",
+        "version": "0.2.3",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/through2.js"
+      },
+      {
+        "name": "readable-stream",
+        "version": "1.1.13",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/readable.js"
+      },
+      {
+        "name": "core-util-is",
+        "version": "1.0.1",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/lib/util.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "isarray",
+        "version": "0.0.1",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/isarray/index.js"
+      },
+      {
+        "name": "string_decoder",
+        "version": "0.10.31",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/index.js"
+      },
+      {
+        "name": "xtend",
+        "version": "2.1.2",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/index.js"
+      },
+      {
+        "name": "object-keys",
+        "version": "0.4.0",
+        "path": "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/node_modules/object-keys/index.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/copy-as-rtf.coffee",
+        "lib/grammar-mapping.coffee"
+      ],
+      ".js": [
+        "node_modules/copy-paste/index.js",
+        "node_modules/copy-paste/node_modules/execSync/index.js",
+        "node_modules/copy-paste/node_modules/execSync/install.js",
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/examples/grepcount.js",
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/examples/pdfcreator.js",
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/lib/temp.js",
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf/node_modules/graceful-fs/graceful-fs.js",
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf/rimraf.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/dbcs-codec.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/dbcs-data.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/index.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/internal.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/sbcs-codec.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/sbcs-data-generated.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/sbcs-data.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/utf16.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/utf7.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/lib/bom-handling.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/lib/extend-node.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/lib/index.js",
+        "node_modules/copy-paste/node_modules/iconv-lite/lib/streams.js",
+        "node_modules/copy-paste/platform/darwin.js",
+        "node_modules/copy-paste/platform/linux.js",
+        "node_modules/copy-paste/platform/win32.js",
+        "node_modules/pygmentize-bundled/index.js",
+        "node_modules/pygmentize-bundled/node_modules/bl/bl.js",
+        "node_modules/pygmentize-bundled/node_modules/bl/test.js",
+        "node_modules/pygmentize-bundled/node_modules/mkdirp/examples/pow.js",
+        "node_modules/pygmentize-bundled/node_modules/mkdirp/index.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/duplex.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/lib/_stream_duplex.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/lib/_stream_passthrough.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/lib/_stream_readable.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/lib/_stream_transform.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/lib/_stream_writable.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/core-util-is/util.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/inherits/inherits.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/inherits/inherits_browser.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/inherits/test.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/isarray/build/build.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/string_decoder/index.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/passthrough.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/readable.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/transform.js",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/writable.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/duplex.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/lib/_stream_duplex.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/lib/_stream_passthrough.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/lib/_stream_readable.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/lib/_stream_transform.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/lib/_stream_writable.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/util.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/inherits/inherits.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/inherits/inherits_browser.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/inherits/test.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/isarray/build/build.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/index.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/passthrough.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/readable.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/transform.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/writable.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/has-keys.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/index.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/mutable.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/node_modules/object-keys/foreach.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/node_modules/object-keys/index.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/node_modules/object-keys/isArguments.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/node_modules/object-keys/shim.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/test.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/test.js",
+        "node_modules/pygmentize-bundled/node_modules/through2/through2.js",
+        "node_modules/pygmentize-bundled/test.js"
+      ],
+      ".json": [
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf/node_modules/graceful-fs/package.json",
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf/package.json",
+        "node_modules/copy-paste/node_modules/execSync/node_modules/temp/package.json",
+        "node_modules/copy-paste/node_modules/execSync/package.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/big5-added.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/cp936.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/cp949.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/cp950.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/eucjp.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/gbk-added.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/encodings/tables/shiftjis.json",
+        "node_modules/copy-paste/node_modules/iconv-lite/package.json",
+        "node_modules/copy-paste/package.json",
+        "node_modules/pygmentize-bundled/node_modules/bl/package.json",
+        "node_modules/pygmentize-bundled/node_modules/mkdirp/package.json",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/core-util-is/package.json",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/inherits/package.json",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/isarray/component.json",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/pygmentize-bundled/node_modules/readable-stream/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/core-util-is/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/inherits/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/isarray/component.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/node_modules/object-keys/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend/package.json",
+        "node_modules/pygmentize-bundled/node_modules/through2/package.json",
+        "node_modules/pygmentize-bundled/package.json",
+        "package.json"
+      ],
+      ".node": [
+        "node_modules/copy-paste/node_modules/execSync/win32/v0.10/shell.node",
+        "node_modules/copy-paste/node_modules/execSync/win32/v0.8/shell.node"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          ""
+        ],
+        "dependencies": {
+          "pygmentize-bundled": "2.2.0",
+          "copy-paste": "*"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/copy-paste",
+          "node_modules/copy-paste/platform"
+        ],
+        "dependencies": {
+          "iconv-lite": "^0.4.8",
+          "execSync": "~1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/copy-paste/node_modules/execSync",
+          "node_modules/copy-paste/node_modules/execSync/test",
+          "node_modules/copy-paste/node_modules/execSync/win32/v0.10",
+          "node_modules/copy-paste/node_modules/execSync/win32/v0.8"
+        ],
+        "dependencies": {
+          "temp": "~0.5.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/copy-paste/node_modules/execSync/node_modules/temp/examples",
+          "node_modules/copy-paste/node_modules/execSync/node_modules/temp/lib",
+          "node_modules/copy-paste/node_modules/execSync/node_modules/temp",
+          "node_modules/copy-paste/node_modules/execSync/node_modules/temp/test"
+        ],
+        "dependencies": {
+          "rimraf": "~2.1.4"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf",
+          "node_modules/copy-paste/node_modules/execSync/node_modules/temp/node_modules/rimraf/test"
+        ],
+        "dependencies": {
+          "graceful-fs": "~1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/pygmentize-bundled"
+        ],
+        "dependencies": {
+          "mkdirp": "~0.3.5",
+          "readable-stream": "~1.0.17",
+          "bl": "~0.4.1",
+          "through2": "~0.2.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/pygmentize-bundled/node_modules/bl"
+        ],
+        "dependencies": {
+          "readable-stream": "~1.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/pygmentize-bundled/node_modules/readable-stream",
+          "node_modules/pygmentize-bundled/node_modules/readable-stream/lib"
+        ],
+        "dependencies": {
+          "core-util-is": "~1.0.0",
+          "isarray": "0.0.1",
+          "string_decoder": "~0.10.x",
+          "inherits": "~2.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/pygmentize-bundled/node_modules/through2"
+        ],
+        "dependencies": {
+          "readable-stream": "~1.1.9",
+          "xtend": "~2.1.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream",
+          "node_modules/pygmentize-bundled/node_modules/through2/node_modules/readable-stream/lib"
+        ],
+        "dependencies": {
+          "core-util-is": "~1.0.0",
+          "isarray": "0.0.1",
+          "string_decoder": "~0.10.x",
+          "inherits": "~2.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/pygmentize-bundled/node_modules/through2/node_modules/xtend"
+        ],
+        "dependencies": {
+          "object-keys": "~0.4.0"
+        }
+      }
+    ]
+  }
+}
