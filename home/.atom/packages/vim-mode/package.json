@@ -1,7 +1,7 @@
 {
   "name": "vim-mode",
   "main": "./lib/vim-mode",
-  "version": "0.61.0",
+  "version": "0.62.0",
   "description": "Add vim modal control",
   "license": "MIT",
   "private": true,
@@ -41,10 +41,10 @@
     "url": "https://github.com/atom/vim-mode/issues"
   },
   "homepage": "https://github.com/atom/vim-mode#readme",
-  "_id": "vim-mode@0.61.0",
-  "_shasum": "37ea892d6056b8edee0a01d34441773601735be1",
-  "_resolved": "file:../d-115910-64828-1vmm1x1/package.tgz",
-  "_from": "../d-115910-64828-1vmm1x1/package.tgz",
+  "_id": "vim-mode@0.62.0",
+  "_shasum": "c281abb220a2f40adaac1362512f99149a7685d8",
+  "_resolved": "file:../d-115929-59986-qwcaqq/package.tgz",
+  "_from": "../d-115929-59986-qwcaqq/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -85,7 +85,7 @@
       },
       {
         "name": "es6-symbol",
-        "version": "3.0.0",
+        "version": "3.0.1",
         "path": "node_modules/event-kit/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/node_modules/es6-symbol/index.js"
       },
       {
@@ -110,7 +110,7 @@
       },
       {
         "name": "grim",
-        "version": "1.4.2",
+        "version": "1.5.0",
         "path": "node_modules/grim/lib/grim.js"
       },
       {
@@ -140,7 +140,7 @@
       },
       {
         "name": "es6-symbol",
-        "version": "3.0.0",
+        "version": "3.0.1",
         "path": "node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/node_modules/es6-symbol/index.js"
       },
       {
@@ -1348,7 +1348,7 @@
         ],
         "dependencies": {
           "d": "~0.1.1",
-          "es5-ext": "~0.10.7"
+          "es5-ext": "~0.10.8"
         }
       },
       {
@@ -1606,7 +1606,7 @@
         ],
         "dependencies": {
           "d": "~0.1.1",
-          "es5-ext": "~0.10.7"
+          "es5-ext": "~0.10.8"
         }
       },
       {
