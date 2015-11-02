@@ -35,6 +35,7 @@
     r = rebase
     a = add
     wip = ! git a . && git ci -m WIP
+    wip-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-wip-$(date "+%s")"
     amend = commit --amend --allow-empty -v
 [hub]
 	host = ewegithub.sb.karmalab.net
