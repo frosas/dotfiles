@@ -2,7 +2,7 @@
   "name": "linter-eslint",
   "main": "./lib/linter-eslint",
   "activationCommands": [],
-  "version": "3.2.1",
+  "version": "4.0.0",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -36,10 +36,10 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint#readme",
-  "_id": "linter-eslint@3.2.1",
-  "_shasum": "690f85afa7e21dec8fe4fc9114c91b76819f3a95",
-  "_resolved": "file:../d-115930-81142-2a4cwp/package.tgz",
-  "_from": "../d-115930-81142-2a4cwp/package.tgz",
+  "_id": "linter-eslint@4.0.0",
+  "_shasum": "30d7b533b820ba6ac9740aaf72018490e31070f6",
+  "_resolved": "file:../d-115102-23099-1qu18l5/package.tgz",
+  "_from": "../d-115102-23099-1qu18l5/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -65,7 +65,7 @@
       },
       {
         "name": "eslint",
-        "version": "1.7.3",
+        "version": "1.8.0",
         "path": "node_modules/eslint/lib/api.js"
       },
       {
@@ -115,7 +115,7 @@
       },
       {
         "name": "readable-stream",
-        "version": "2.0.3",
+        "version": "2.0.4",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/readable.js"
       },
       {
@@ -290,7 +290,7 @@
       },
       {
         "name": "flat-cache",
-        "version": "1.0.9",
+        "version": "1.0.10",
         "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/cache.js"
       },
       {
@@ -1363,10 +1363,12 @@
         "node_modules/eslint/lib/formatters/unix.js",
         "node_modules/eslint/lib/ignored-paths.js",
         "node_modules/eslint/lib/load-rules.js",
+        "node_modules/eslint/lib/logging.js",
         "node_modules/eslint/lib/options.js",
         "node_modules/eslint/lib/rule-context.js",
         "node_modules/eslint/lib/rules/accessor-pairs.js",
         "node_modules/eslint/lib/rules/array-bracket-spacing.js",
+        "node_modules/eslint/lib/rules/arrow-body-style.js",
         "node_modules/eslint/lib/rules/arrow-parens.js",
         "node_modules/eslint/lib/rules/arrow-spacing.js",
         "node_modules/eslint/lib/rules/block-scoped-var.js",
@@ -1412,6 +1414,7 @@
         "node_modules/eslint/lib/rules/newline-after-var.js",
         "node_modules/eslint/lib/rules/no-alert.js",
         "node_modules/eslint/lib/rules/no-array-constructor.js",
+        "node_modules/eslint/lib/rules/no-arrow-condition.js",
         "node_modules/eslint/lib/rules/no-bitwise.js",
         "node_modules/eslint/lib/rules/no-caller.js",
         "node_modules/eslint/lib/rules/no-catch-shadow.js",
