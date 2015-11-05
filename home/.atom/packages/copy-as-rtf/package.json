@@ -1,7 +1,7 @@
 {
   "name": "copy-as-rtf",
   "main": "./lib/copy-as-rtf",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A package to export highlighted code as RTF",
   "activationCommands": {
     "atom-workspace": [
@@ -26,10 +26,10 @@
     "url": "https://github.com/lucasmazza/copy-as-rtf/issues"
   },
   "homepage": "https://github.com/lucasmazza/copy-as-rtf#readme",
-  "_id": "copy-as-rtf@0.8.0",
-  "_shasum": "92a62a44df75cfcad3b1f65e9b92169c41c1f150",
-  "_resolved": "file:../d-115919-6750-11j073b/package.tgz",
-  "_from": "../d-115919-6750-11j073b/package.tgz",
+  "_id": "copy-as-rtf@0.8.1",
+  "_shasum": "7277d7ad06ee8f714ce5f0432ce6d074ad2eedf6",
+  "_resolved": "file:../d-115105-5191-1orwvmg/package.tgz",
+  "_from": "../d-115105-5191-1orwvmg/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
