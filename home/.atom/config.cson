@@ -19,7 +19,6 @@
     disabledPackages: [
       "spell-check"
       "whitespace"
-      "atom-perforce"
     ]
     audioBeep: false
     themes: [

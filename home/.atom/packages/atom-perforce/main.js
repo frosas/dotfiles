@@ -1,69 +1,80 @@
 'use strict';
 
-var path = require('path'),
-    environment = require('./lib/environment'),
-    settings = require('./settings/settings'),
+var settings = require('./settings/settings'),
     atomPerforce = require('./lib/atom-perforce'),
     CompositeDisposable = require('atom').CompositeDisposable,
     commandsSetup = false,
     reactivateCommands = ['autoAdd', 'autoEdit', 'autoRevert'],
     observers;
 
-function setupEnvironment() {
-    return environment.loadVarsFromEnvironment([
-        'PATH',
-        'P4CONFIG',
-        'P4DIFF',
-        'P4IGNORE',
-        'P4MERGE',
-        'P4PORT',
-        'P4USER',
-        'PAGER',
-        'PATH'
-    ])
-    .catch(function(err) {
-        console.error('could not load environment variables:', err);
-    })
-    .finally(function() {
-        var pathElements,
-            defaultPath = atom.config.get('atom-perforce.defaultP4Location');
-
-        // make sure the default p4 location is in the path
-        pathElements = process.env.PATH.split(path.delimiter);
-        if(pathElements.indexOf(defaultPath) === -1) {
-            pathElements.unshift(defaultPath);
-            process.env.PATH = pathElements.join(path.delimiter);
-        }
-    });
-}
-
+// TODO: if Atom ever publishes an event for monitoring DOM changes, use that instead
+// OR refactor this into its own service
 function setupObservers() {
-    var observer = new CompositeDisposable(),
-        treeObserver = new MutationObserver(function treeChanged(/*mutations, observer*/) {
-            atomPerforce.markOpenFiles();
-        }),
-        treeObserverOptions = {
+    var mutationObserverOptions = {
             subtree: true,
             childList: true,
             attributes: false
         },
+        leftPanelObserver,
+        treeObserver,
         destroyWatch;
 
-    // monitor the tree for changes (collapsing/expanding)
-    // TODO: if Atom ever publishes an event for this, use that instead
-    treeObserver.observe(document.querySelector('.tool-panel'), treeObserverOptions);
+    function getToolPanel() {
+        return document.querySelector('.tool-panel');
+    }
 
-    // make this work like an Atom observer
-    treeObserver.dispose = treeObserver.disconnect;
+    function watchToolPanel() {
+        // monitor the tree for changes (collapsing/expanding)
+        treeObserver.observe(getToolPanel(), mutationObserverOptions);
 
-    observer.add(atom.workspace.observeTextEditors(function(editor) {
+        // make this work like an Atom observer
+        treeObserver.dispose = treeObserver.disconnect;
+    }
+
+    // cleanup any observers before (re)observing
+    deactivate();
+    observers = new CompositeDisposable();
+
+    treeObserver = new MutationObserver(function treeChanged(mutations/*, observer*/) {
+        // we only care if some nodes were added, not removed
+        if(mutations.some(function(mutation) {
+            return mutation.addedNodes && mutation.addedNodes.length > 0;
+        })) {
+            atomPerforce.markOpenFiles();
+        }
+    });
+
+    observers.add(treeObserver);
+
+    // wait for the tool-panel to exist
+    if(getToolPanel()) {
+        watchToolPanel();
+    }
+    else {
+        // setup observer for the left panel
+        leftPanelObserver = new MutationObserver(function leftPanelChanged(/*mutations, observer*/) {
+            if(getToolPanel()) {
+                // stop waiting for the left panel to exist
+                leftPanelObserver.disconnect();
+                // watch for mutations within the panel
+                watchToolPanel();
+            }
+        });
+
+        leftPanelObserver.observe(document.querySelector('atom-panel-container.left'), mutationObserverOptions);
+    }
+
+    observers.add(atom.workspace.observeTextEditors(function(editor) {
         // mark changes on save
         var saveObserver = editor.buffer.onDidSave(function(file) {
             if(atom.config.get('atom-perforce').autoAdd) {
                 atomPerforce.fileIsTracked(editor.getPath())
                 .then(function(fileinfo) {
                     if(fileinfo === false) {
-                        atomPerforce.add(file.path);
+                        atomPerforce.add(file.path)
+                        .then(function() {
+                            return atomPerforce.markOpenFiles();
+                        });
                     }
                 });
             }
@@ -73,9 +84,9 @@ function setupObservers() {
             });
         });
 
-        editor.onDidDestroy(function() {
+        observers.add(editor.onDidDestroy(function() {
             saveObserver.dispose();
-        });
+        }));
 
         // mark changes on initial load
         if(editor.getPath()) {
@@ -91,7 +102,10 @@ function setupObservers() {
                     if(fileinfo && !fileinfo.action) {
                         watchBufferChanges = editor.buffer.onDidChange(function onDidChange() {
                             watchBufferChanges.dispose();
-                            atomPerforce.edit(editor.getPath(), false);
+                            atomPerforce.edit(editor.getPath(), false)
+                            .then(function() {
+                                atomPerforce.markOpenFiles();
+                            });
                         });
                     }
                 });
@@ -109,22 +123,27 @@ function setupObservers() {
                         .then(function(changes) {
                             if(!(changes && changes.length)) {
                                 // revert the file without confirmation
-                                atomPerforce.revert(editor.getPath(), false);
+                                atomPerforce.revert(editor.getPath(), false)
+                                .then(function() {
+                                    atomPerforce.markOpenFiles();
+                                });
                             }
                         });
                     }
                 });
             }
         });
+
+        observers.add(destroyWatch);
     }));
 
-    observer.add(atom.workspace.observeActivePaneItem(function() {
+    observers.add(atom.workspace.observeActivePaneItem(function() {
         atomPerforce.showClientName();
     }));
 
-    observer.add(atom.config.onDidChange('atom-perforce.defaultP4Location', setupEnvironment));
+    observers.add(atom.config.onDidChange('atom-perforce.defaultP4Location', atomPerforce.setupEnvironment));
     reactivateCommands.forEach(function(command) {
-        observer.add(atom.config.onDidChange('atom-perforce.' + command, reactivate));
+        observers.add(atom.config.onDidChange('atom-perforce.' + command, reactivate));
     });
 
     atomPerforce.markOpenFiles();
@@ -138,8 +157,15 @@ function stateChangeWrapper(fn) {
         // execute a promise-returning function
         return fn.apply(this, args)
         // then unconditionally mark the open files
-        .finally(atomPerforce.markOpenFiles);
+        .finally(atomPerforce.showDiffMarks);
     };
+}
+
+function revertReset() {
+    deactivate();
+    return atomPerforce.revert().finally(function() {
+            return setupObservers();
+        });
 }
 
 function setupCommands() {
@@ -148,7 +174,7 @@ function setupCommands() {
             atom.commands.add('atom-workspace', prefix + ':edit', stateChangeWrapper(atomPerforce.edit));
             atom.commands.add('atom-workspace', prefix + ':add', stateChangeWrapper(atomPerforce.add));
             atom.commands.add('atom-workspace', prefix + ':sync', stateChangeWrapper(atomPerforce.sync));
-            atom.commands.add('atom-workspace', prefix + ':revert', stateChangeWrapper(atomPerforce.revert));
+            atom.commands.add('atom-workspace', prefix + ':revert', stateChangeWrapper(revertReset));
             atom.commands.add('atom-workspace', prefix + ':load-opened-files', stateChangeWrapper(atomPerforce.loadAllOpenFiles));
         });
         commandsSetup = true;
@@ -156,11 +182,8 @@ function setupCommands() {
 }
 
 function activate(/*state*/) {
-    return setupEnvironment()
-    .then(function() {
-        observers = setupObservers();
-        return setupCommands();
-    });
+    observers = setupObservers();
+    return setupCommands();
 }
 
 function deactivate() {

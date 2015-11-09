@@ -1,15 +1,40 @@
 'use strict';
 
-var path = require('path'),
+var atomPerforce = module, // sugary alias
+    path = require('path'),
     p4 = require('node-perforce'),
     Q = require('q'),
     $ = require('jquery'),
+    environment = require('./environment'),
     clientStatusBarElement = $('<div/>')
         .addClass('git-branch inline-block')
         .append('<span class="icon icon-git-branch"></span>')
         .append('<span class="branch-label"></span>'),
     changeHunkDescriptorRegex = /^[\d,]+(\w)(\d+)(,)?(\d+)?$/,
-    clientStatusBarTile;
+    envVarsToExtract = [
+        'P4CONFIG',
+        'P4IGNORE',
+        'P4PORT',
+        'P4USER',
+        'P4TICKETS'
+    ],
+    clientStatusBarTile,
+    environmentReady;
+
+function execP4Command(command, options) {
+    var p4Fn = p4[command];
+    if(p4Fn && p4Fn.call) {
+        return Q.when(environmentReady || atomPerforce.exports.setupEnvironment())
+        .then(function(p4Env) {
+            var defaultOptions = { env: p4Env };
+
+            return Q.nfcall(p4Fn, $.extend(true, {}, defaultOptions, options));
+        });
+    }
+    else {
+        throw new Error('unknown node-perforce method: ' + command);
+    }
+}
 
 function setStatusClient(p4ClientName) {
     var statusBar = document.querySelector('status-bar'),
@@ -86,7 +111,30 @@ function transformClientPathToLocalPath(clientPath, p4Info) {
     }
 }
 
-module.exports = {
+atomPerforce.exports = {
+    /**
+     * setup the perforce environment by using environment.js
+     * to extract environment variables and optionally overriding the PATH
+     * if the user has specified a custom p4 executable path.
+     * this is called lazily when the 1st perforce command is attempted,
+     * or when the default p4 executable setting is altered
+     * @return {object} promise for when the environment is setup
+     */
+    setupEnvironment: function setupEnvironment() {
+        var pathElements,
+            defaultPath = atom.config.get('atom-perforce.defaultP4Location');
+
+        environmentReady = environment.extractVarsFromEnvironment(envVarsToExtract);
+
+        // make sure the default p4 location is in the path
+        pathElements = process.env.PATH.split(path.delimiter);
+        if(pathElements.indexOf(defaultPath) === -1) {
+            pathElements.unshift(defaultPath);
+            process.env.PATH = pathElements.join(path.delimiter);
+        }
+        return environmentReady;
+    },
+
     /**
      * p4 edit a file
      * @return {object} promise for completion of p4 edit
@@ -101,10 +149,10 @@ module.exports = {
             openedBufferFilename = path.basename(editor.getPath());
 
             // call p4 info to make sure perforce is available
-            return Q.nfcall(p4.info, { cwd: openedBufferFilePath })
+            return execP4Command('info', { cwd: openedBufferFilePath })
             .then(function(p4Info) {
                 if(!p4Info['clientUnknown.']) {
-                    return Q.nfcall(p4.edit, { cwd: openedBufferFilePath, files: [openedBufferFilename] })
+                    return execP4Command('edit', { cwd: openedBufferFilePath, files: [openedBufferFilename] })
                     .then(function(result) {
                         // p4 edit returns a 0 exit code even if the file is already opened
                         if((/currently opened/).test(result)) {
@@ -150,10 +198,10 @@ module.exports = {
             openedBufferFilename = path.basename(editor.getPath());
 
             // call p4 info to make sure perforce is available
-            return Q.nfcall(p4.info, { cwd: openedBufferFilePath })
+            return execP4Command('info', { cwd: openedBufferFilePath })
             .then(function(p4Info) {
                 if(!p4Info['clientUnknown.']) {
-                return Q.nfcall(p4.add, { cwd: openedBufferFilePath, files: [openedBufferFilename] })
+                return execP4Command('add', { cwd: openedBufferFilePath, files: [openedBufferFilename] })
                 .then(function(result) {
                     // for some unfortunate reason, p4 add <existing file> returns a 0 exit code
                     if((/can't add existing file/).test(result)) {
@@ -236,7 +284,7 @@ module.exports = {
             }
 
             // do p4 resolve -n to check if files need to be resolved post-sync
-            return Q.nfcall(p4.resolve, { cwd: dir, files: ['-n ./...'] })
+            return execP4Command('resolve', { cwd: dir, files: ['-n ./...'] })
             .then(handleResolveResult)
             .catch(function(err) {
                 handleResolveResult(err.message);
@@ -254,9 +302,9 @@ module.exports = {
 
                 promises.push(synced);
                 // call p4 info to make sure perforce is available
-                Q.nfcall(p4.info, { cwd: dir })
+                execP4Command('info', { cwd: dir })
                 .then(function() {
-                    return Q.nfcall(p4.sync, { cwd: dir, files: ['./...'] });
+                    return execP4Command('sync', { cwd: dir, files: ['./...'] });
                 })
                 .then(function() {
                     successDirectories.push(dir);
@@ -306,25 +354,30 @@ module.exports = {
             filepath;
 
         confirm = confirm !== false; // default to true
-        filename = (filename && filename.target) ? editor.getPath() : filename;
+        filename = filename ? filename : editor.getPath();
         filepath = path.dirname(filename);
 
         function executeRevert() {
             // call p4 info to make sure perforce is available
-            return Q.nfcall(p4.info, { cwd: filepath })
+            return execP4Command('info', { cwd: filepath })
             .then(function() {
-                return Q.nfcall(p4.revert, {
+                return execP4Command('revert', {
                     cwd: filepath,
                     files: [path.basename(filename)]
                 });
             })
             .then(function(result) {
+                if(editor && editor.buffer) {
+                    editor.buffer.reload();
+                }
                 atom.notifications.addSuccess('Perforce: file reverted', { detail: result });
                 console.log('p4 revert completed');
+                deferred.resolve(true);
             })
             .catch(function(err) {
                 atom.notifications.addError('Perforce: revert failed', { detail: err.message, dismissable: true});
                 console.error('could not p4 revert', err);
+                deferred.reject(err);
             });
         }
 
@@ -367,8 +420,7 @@ module.exports = {
     getChanges: function getChanges(editor) {
         var deferred = Q.defer(),
             openedBufferFilePath,
-            openedBufferFilename,
-            originalP4DIFF = process.env.P4DIFF;
+            openedBufferFilename;
 
         editor = editor || atom.workspace.getActivePaneItem();
 
@@ -377,14 +429,13 @@ module.exports = {
             openedBufferFilename = path.basename(editor.getPath());
 
             // call p4 info to make sure perforce is available
-            Q.nfcall(p4.info, { cwd: openedBufferFilePath })
+            execP4Command('info', { cwd: openedBufferFilePath })
             .then(function() {
-                if(process.env.P4DIFF) {
-                    // prevent any custom diff tools from overriding the default p4 diff command
-                    delete process.env.P4DIFF;
-                }
                 // call p4 diff on the file
-                return Q.nfcall(p4.diff, { cwd: openedBufferFilePath, files: [openedBufferFilename] })
+                return execP4Command('diff', {
+                    cwd: openedBufferFilePath,
+                    files: [openedBufferFilename]
+                })
                 .then(function(result) {
                     console.log(result);
                     deferred.resolve(processDiff(result));
@@ -397,13 +448,10 @@ module.exports = {
                     else {
                         deferred.resolve([]);
                     }
-                })
-                .finally(function() {
-                    process.env.P4DIFF = originalP4DIFF;
                 });
             })
             .catch(function(err) {
-                console.err(err);
+                console.error(err);
                 deferred.reject(err);
             });
         }
@@ -477,7 +525,7 @@ module.exports = {
 
         if(dir) {
             // call p4 info to make sure perforce is available
-            Q.nfcall(p4.info, { cwd: dir })
+            execP4Command('info', { cwd: dir })
             .then(function(p4Info) {
                 if(p4Info['clientUnknown.']) {
                     setStatusClient(false);
@@ -521,10 +569,10 @@ module.exports = {
                 promises.push(deferred.promise);
 
                 // call p4 info to make sure perforce is available
-                Q.when(p4Info || Q.nfcall(p4.info, { cwd: projectRoot.path }))
+                Q.when(p4Info || execP4Command('info', { cwd: projectRoot.path }))
                 .then(function(p4InfoResult) {
                     p4Info = p4InfoResult;
-                    return Q.nfcall(p4.opened, { files: ['./...'], cwd: projectRoot.path });
+                    return execP4Command('opened', { files: ['./...'], cwd: projectRoot.path });
                 })
                 .then(function(p4Opened) {
                     deferred.resolve(p4Opened
@@ -563,7 +611,7 @@ module.exports = {
      * load all files currently opened for add/edit into buffers
      */
     loadAllOpenFiles: function loadAllOpenFiles() {
-        return module.exports.getOpenedFiles()
+        return atomPerforce.exports.getOpenedFiles()
         .then(function(p4OpenedFiles) {
             var editors = atom.workspace.getTextEditors();
 
@@ -593,7 +641,7 @@ module.exports = {
      * (see getOpenedFiles return value)
      */
     markOpenFiles: function markOpenFiles(openedFiles) {
-        Q.when(openedFiles || module.exports.getOpenedFiles())
+        Q.when(openedFiles || atomPerforce.exports.getOpenedFiles())
         .then(function(p4OpenedFiles) {
             // clear all markers first
             var elements = document.querySelectorAll('.perforce.status-modified, .perforce.status-added');
@@ -646,9 +694,9 @@ module.exports = {
     fileIsTracked: function fileIsTracked(filepath) {
         var deferred = Q.defer();
 
-        Q.nfcall(p4.info, { cwd: path.dirname(filepath) })
+        execP4Command('info', { cwd: path.dirname(filepath) })
         .then(function() {
-            return Q.nfcall(p4.fstat, {
+            return execP4Command('fstat', {
                 cwd: path.dirname(filepath),
                 files: [path.basename(filepath)]
             });
