@@ -19,6 +19,7 @@
     disabledPackages: [
       "spell-check"
       "whitespace"
+      "atom-perforce"
     ]
     audioBeep: false
     themes: [
@@ -115,3 +116,7 @@
   "atom-beautify":
     _analyticsUserId: "4a06949d-cca0-4957-b8b7-18a5ac006998"
   "copy-as-rtf": {}
+  "atom-perforce":
+    autoEdit: true
+    autoRevert: true
+    autoAdd: true
