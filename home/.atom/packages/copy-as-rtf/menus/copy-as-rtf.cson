@@ -1,9 +1,0 @@
-# See https://atom.io/docs/latest/creating-a-package#menus for more details
-'menu': [
-  {
-    'label': 'Packages'
-    'submenu': [
-      { 'label': 'Copy as RTF', 'command': 'copy-as-rtf:copy' }
-    ]
-  }
-]
