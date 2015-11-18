@@ -1,12 +1,48 @@
 # Change Log
 
-## [v1.6.2](https://github.com/mattsawyer77/atom-perforce/tree/v1.6.2)
+## [v1.6.6](https://github.com/mattsawyer77/atom-perforce/tree/v1.6.6)
 
-[Full Changelog](https://github.com/mattsawyer77/atom-perforce/compare/v1.6.1...v1.6.2)
+[Full Changelog](https://github.com/mattsawyer77/atom-perforce/compare/v1.6.5...v1.6.6)
 
 **Fixed bugs:**
 
-- add P4PASSWD to list of environment variables that are extracted [\#34](https://github.com/mattsawyer77/atom-perforce/issues/34)
+- No commands working after 1.6.0 when P4-related environment variables are not set [\#34](https://github.com/mattsawyer77/atom-perforce/issues/34)
+
+**Merged pull requests:**
+
+- Fixes \#34 [\#38](https://github.com/mattsawyer77/atom-perforce/pull/38) ([mdouglass](https://github.com/mdouglass))
+
+## [v1.6.5](https://github.com/mattsawyer77/atom-perforce/tree/v1.6.5) (2015-11-16)
+[Full Changelog](https://github.com/mattsawyer77/atom-perforce/compare/v1.6.4...v1.6.5)
+
+**Merged pull requests:**
+
+- Fix not in client v3 [\#37](https://github.com/mattsawyer77/atom-perforce/pull/37) ([unional](https://github.com/unional))
+
+## [v1.6.4](https://github.com/mattsawyer77/atom-perforce/tree/v1.6.4) (2015-11-16)
+[Full Changelog](https://github.com/mattsawyer77/atom-perforce/compare/v1.6.3...v1.6.4)
+
+**Merged pull requests:**
+
+- Fix not in client v2 \(use p4Info.currentDirectory\) [\#36](https://github.com/mattsawyer77/atom-perforce/pull/36) ([unional](https://github.com/unional))
+
+## [v1.6.3](https://github.com/mattsawyer77/atom-perforce/tree/v1.6.3) (2015-11-13)
+[Full Changelog](https://github.com/mattsawyer77/atom-perforce/compare/v1.6.2...v1.6.3)
+
+**Fixed bugs:**
+
+- auto revert setting inadvertently reverts integrated/merged files [\#19](https://github.com/mattsawyer77/atom-perforce/issues/19)
+
+**Closed issues:**
+
+- Incorrectly invoke windows file handling when not in p4 repo [\#33](https://github.com/mattsawyer77/atom-perforce/issues/33)
+
+**Merged pull requests:**
+
+- Add checks when file is not under the client workspace [\#35](https://github.com/mattsawyer77/atom-perforce/pull/35) ([unional](https://github.com/unional))
+
+## [v1.6.2](https://github.com/mattsawyer77/atom-perforce/tree/v1.6.2) (2015-11-10)
+[Full Changelog](https://github.com/mattsawyer77/atom-perforce/compare/v1.6.1...v1.6.2)
 
 ## [v1.6.1](https://github.com/mattsawyer77/atom-perforce/tree/v1.6.1) (2015-11-09)
 [Full Changelog](https://github.com/mattsawyer77/atom-perforce/compare/v1.6.0...v1.6.1)
