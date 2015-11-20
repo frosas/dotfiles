@@ -1,4 +1,10 @@
-### Upcoming
+### v5.2.1
+
+* Support local and absolute paths for eslintRulesDir
+* Handle messages with no line properly
+* Interpolate environment variables in the provided path for the eslint config file
+
+### v5.2.0
 
 * Fix a bug where column would be incorrect sometimes
 * Respawn the worker if it crashes

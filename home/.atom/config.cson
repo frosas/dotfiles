@@ -11,10 +11,10 @@
     fontFamily: "Hack"
     showIndentGuide: true
     invisibles: {}
-    fontSize: 12
     softWrapAtPreferredLineLength: true
     undoGroupingInterval: 100
     tabLength: 4
+    fontSize: 13
   core:
     disabledPackages: [
       "spell-check"
