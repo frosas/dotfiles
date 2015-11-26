@@ -1,7 +1,7 @@
 {
   "name": "atom-perforce",
   "main": "./main.js",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "description": "Perforce integration for Atom, using node-perforce",
   "repository": {
     "type": "git",
@@ -33,10 +33,10 @@
     "url": "https://github.com/mattsawyer77/atom-perforce/issues"
   },
   "homepage": "https://github.com/mattsawyer77/atom-perforce#readme",
-  "_id": "atom-perforce@1.6.6",
-  "_shasum": "a04209c839eaee5fd67ea98c2c4f018a56eded3a",
-  "_resolved": "file:../d-1151018-23661-108chtg/package.tgz",
-  "_from": "../d-1151018-23661-108chtg/package.tgz",
+  "_id": "atom-perforce@1.6.7",
+  "_shasum": "e3e825cf764bd4bb729b84dc59452e46392dcbae",
+  "_resolved": "file:../d-1151026-89126-p9a3zy/package.tgz",
+  "_from": "../d-1151026-89126-p9a3zy/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

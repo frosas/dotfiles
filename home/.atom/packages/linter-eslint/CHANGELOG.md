@@ -1,3 +1,18 @@
+### v5.2.4
+
+* Update dependencies to bring in some bug fixes
+
+### v5.2.3
+
+* Fix a typo introduced by last release
+
+### v5.2.2
+
+* Allow ignoring the `.eslintignore` file
+* Add `disableWhenNoEslintConfig` config (`true` by default) to only disable the linter if no ESLint config is found in a `package.json`
+or `.eslintrc` file.  This replaces the `disableWhenNoEslintrcFileInPath` config.
+* Add support for ESlint configuration file formats `.eslintrc.js`, `.eslintrc.yaml`, `.eslintrc.yml`, and `.eslintrc.json`
+
 ### v5.2.1
 
 * Support local and absolute paths for eslintRulesDir

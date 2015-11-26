@@ -112,7 +112,7 @@ module.exports = optionator({
         },
         {
             option: "ignore-pattern",
-            type: "String",
+            type: "[String]",
             description: "Pattern of files to ignore (in addition to those in .eslintignore)"
         },
         {
@@ -198,6 +198,12 @@ module.exports = optionator({
             alias: "v",
             type: "Boolean",
             description: "Outputs the version number"
+        },
+        {
+            option: "inline-config",
+            type: "Boolean",
+            default: "true",
+            description: "Allow comments to change eslint config/rules"
         }
     ]
 });

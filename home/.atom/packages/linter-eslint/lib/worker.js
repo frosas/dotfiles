@@ -11,19 +11,28 @@ const resolveEnv = require('resolve-env')
 const Communication = new CP()
 
 let eslintPath = null
-let eslintPathLocal = Path.join(FS.realpathSync(Path.join(__dirname, '..')), 'node_modules', 'eslint')
+const eslintPathLocal = Path.join(FS.realpathSync(Path.join(__dirname, '..')), 'node_modules', 'eslint')
 let eslint = null
 let prefixPath = null
 
-function find(startDir, name) {
-  let filePath
+function find(startDir, names) {
+  let localNames;
+  if (typeof names === 'string') {
+    localNames = [names]
+  } else {
+    localNames = names
+  }
   const chunks = startDir.split(Path.sep)
   while (chunks.length) {
-    filePath = Path.join(chunks.join(Path.sep), name)
-    try {
-      FS.accessSync(filePath, FS.R_OK)
-      return filePath
-    } catch (_) { }
+    const currentDirectory = Path.join(chunks.join(Path.sep))
+    for (let index = 0; index < localNames.length; index++) {
+      const filePath = Path.join(currentDirectory, localNames[index])
+      try {
+        FS.accessSync(filePath, FS.R_OK)
+        return filePath
+      } catch (_) { }
+    }
+
     chunks.pop()
   }
   return null
@@ -32,17 +41,25 @@ function find(startDir, name) {
 Communication.on('JOB', function(job) {
   const params = job.Message
   let configFile = null
+  let configInPackage = false
   global.__LINTER_RESPONSE = []
 
-  configFile = find(params.fileDir, '.eslintrc')
-  if (params.canDisable && configFile === null) {
+  configFile = find(params.fileDir, ['eslintrc.js', '.eslintrc.yaml', '.eslintrc.yml', '.eslintrc.json', '.eslintrc'])
+  if (!configFile) {
+    const packagePath = find(params.fileDir, 'package.json')
+    if (packagePath) {
+      configInPackage = Boolean(require(packagePath).eslintConfig)
+    }
+  }
+  if (params.canDisable && !configFile && !configInPackage) {
     job.Response = []
     return
   } else if (params.configFile) {
     configFile = params.configFile
   }
 
-  let modulesPath = find(params.fileDir, 'node_modules')
+  const modulesPath = find(params.fileDir, 'node_modules')
+  const eslintignoreDir = Path.dirname(find(params.fileDir, '.eslintignore'))
   let eslintNewPath = null
   if (modulesPath) {
     process.env.NODE_PATH = modulesPath
@@ -85,6 +102,7 @@ Communication.on('JOB', function(job) {
   }
 
   job.Response = new Promise(function(resolve) {
+    const filePath = (eslintignoreDir) ? Path.relative(eslintignoreDir, params.filePath) : params.filePath
     const argv = [
       process.execPath,
       eslintPath,
@@ -100,9 +118,12 @@ Communication.on('JOB', function(job) {
       argv.push('--rulesdir', rulesDir)
     }
     if (configFile !== null) {
-      argv.push('--config', configFile)
+      argv.push('--config', resolveEnv(configFile))
     }
-    argv.push('--stdin-filename', params.filePath)
+    if (params.disableIgnores) {
+      argv.push('--no-ignore')
+    }
+    argv.push('--stdin-filename', filePath)
     process.argv = argv
     eslint.execute(process.argv, params.contents)
     resolve(global.__LINTER_RESPONSE)

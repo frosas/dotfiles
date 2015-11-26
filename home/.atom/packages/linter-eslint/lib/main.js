@@ -25,8 +25,8 @@ export default {
       type: 'boolean',
       default: true
     },
-    disableWhenNoEslintrcFileInPath: {
-      title: 'Disable when no .eslintrc is found',
+    disableWhenNoEslintConfig: {
+      title: 'Disable when no ESLint config is found (in package.json or .eslintrc)',
       type: 'boolean',
       default: true
     },
@@ -47,6 +47,11 @@ export default {
       description: 'Specify a directory for ESLint to load rules from',
       type: 'string',
       default: ''
+    },
+    disableEslintIgnore: {
+      title: 'Disable using .eslintignore files',
+      type: 'boolean',
+      default: false
     }
   },
   activate: function() {
@@ -118,23 +123,33 @@ export default {
       scope: 'file',
       lintOnFly: true,
       lint: textEditor => {
+        const text = textEditor.getText()
+        if (text.length === 0) {
+          return Promise.resolve([]);
+        }
         const filePath = textEditor.getPath()
         const fileDir = Path.dirname(filePath)
         const showRule = atom.config.get('linter-eslint.showRuleIdInMessage')
 
         if (this.worker === null) {
-          return []
+          return Promise.resolve([{
+            filePath: filePath,
+            type: 'Info',
+            text: 'Worker not initialized yet, please try again shortly.',
+            range: Helpers.rangeFromLineNumber(textEditor, 0)
+          }]);
         }
 
         return this.worker.request('JOB', {
           fileDir: fileDir,
           filePath: filePath,
-          contents: textEditor.getText(),
+          contents: text,
           global: atom.config.get('linter-eslint.useGlobalEslint'),
-          canDisable: atom.config.get('linter-eslint.disableWhenNoEslintrcFileInPath'),
+          canDisable: atom.config.get('linter-eslint.disableWhenNoEslintConfig'),
           nodePath: atom.config.get('linter-eslint.globalNodePath'),
           rulesDir: atom.config.get('linter-eslint.eslintRulesDir'),
-          configFile: atom.config.get('linter-eslint.eslintrcPath')
+          configFile: atom.config.get('linter-eslint.eslintrcPath'),
+          disableIgnores: atom.config.get('linter-eslint.disableEslintIgnore')
         }).then(function(response) {
           if (response.length === 1 && response[0].message === 'File ignored because of your .eslintignore file. Use --no-ignore to override.') {
             return []
