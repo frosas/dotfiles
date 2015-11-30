@@ -29,7 +29,6 @@
     cp = checkout -p
     p = pull --ff-only
     remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)'
-    web = instaweb -d webrick
     c = clean -df
     h = help
     r = rebase
