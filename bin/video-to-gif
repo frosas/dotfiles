@@ -8,5 +8,5 @@ source="$1"
 source_palette="/tmp/$source-palette.png"
 common_filter="fps=10,scale=-1:-1"
 
-ffmpeg -i "$source" -vf "$common_filter:flags=lanczos,palettegen" -y "$source_palette"
-ffmpeg -i "$source" -i "$source_palette" -filter_complex "$common_filter:flags=lanczos[x];[x][1:v]paletteuse" "$source.gif"
+ffmpeg -i "$source" -vf "$common_filter,palettegen" -y "$source_palette"
+ffmpeg -i "$source" -i "$source_palette" -filter_complex "$common_filter,paletteuse" "$source.gif"
