@@ -2,6 +2,7 @@
 
 var atomPerforce = module, // sugary alias
     path = require('path'),
+    os = require('os'),
     p4 = require('node-perforce'),
     Q = require('q'),
     $ = require('jquery'),
@@ -22,6 +23,14 @@ var atomPerforce = module, // sugary alias
     ],
     clientStatusBarTile,
     environmentReady;
+
+function escapePathSpaces(filepath) {
+    if(os.platform() === 'win32') {
+        return filepath.replace(/ /g, '^ ');
+    } else {
+        return filepath.replace(/ /g, '\\ ');
+    }
+}
 
 function execP4Command(command, options) {
     var p4Fn = p4[command];
@@ -154,7 +163,7 @@ atomPerforce.exports = {
             return execP4Command('info', { cwd: openedBufferFilePath })
             .then(function(p4Info) {
                 if(!p4Info['clientUnknown.'] && p4Info.currentDirectory.toLowerCase().startsWith(p4Info.clientRoot.toLowerCase())) {
-                    return execP4Command('edit', { cwd: openedBufferFilePath, files: [openedBufferFilename] })
+                    return execP4Command('edit', { cwd: openedBufferFilePath, files: [escapePathSpaces(openedBufferFilename)] })
                     .then(function(result) {
                         // p4 edit returns a 0 exit code even if the file is already opened
                         if((/currently opened/).test(result)) {
@@ -202,9 +211,9 @@ atomPerforce.exports = {
             // call p4 info to make sure perforce is available
             return execP4Command('info', { cwd: openedBufferFilePath })
             .then(function(p4Info) {
-                
+
                 if(!p4Info['clientUnknown.'] && p4Info.currentDirectory.toLowerCase().startsWith(p4Info.clientRoot.toLowerCase())) {
-                    return execP4Command('add', { cwd: openedBufferFilePath, files: [openedBufferFilename] })
+                    return execP4Command('add', { cwd: openedBufferFilePath, files: [escapePathSpaces(openedBufferFilename)] })
                     .then(function(result) {
                         // for some unfortunate reason, p4 add <existing file> returns a 0 exit code
                         if((/can't add existing file/).test(result)) {
@@ -369,7 +378,7 @@ atomPerforce.exports = {
                 if (!p4Info['clientUnknown.'] && p4Info.currentDirectory.toLowerCase().startsWith(p4Info.clientRoot.toLowerCase())) {
                     return execP4Command('revert', {
                         cwd: filepath,
-                        files: [path.basename(filename)]
+                        files: [escapePathSpaces(path.basename(filename))]
                     });
                 }
             })
@@ -442,14 +451,14 @@ atomPerforce.exports = {
                                     // call p4 diff on the file
                     return execP4Command('diff', {
                         cwd: openedBufferFilePath,
-                        files: [openedBufferFilename]
+                        files: [escapePathSpaces(openedBufferFilename)]
                     })
                     .then(function(result) {
                         console.log(result);
                         deferred.resolve(processDiff(result));
                     })
                     .catch(function(err) {
-                        if(!/not opened on this client/.test(err)) {
+                        if(!/not opened on this client/.test(err) && !/not opened for edit/.test(err)) {
                             console.error(err);
                             deferred.reject(err);
                         }
@@ -709,7 +718,7 @@ atomPerforce.exports = {
             if (!p4Info['clientUnknown.'] && p4Info.currentDirectory.toLowerCase().startsWith(p4Info.clientRoot.toLowerCase())) {
                 return execP4Command('fstat', {
                     cwd: dir,
-                    files: [path.basename(filepath)]
+                    files: [escapePathSpaces(path.basename(filepath))]
                 })
                 .then(function(fileinfo) {
                     if(fileinfo) {
