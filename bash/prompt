@@ -15,7 +15,8 @@ declare -a on_prompt
 
 git_ps1 () {
     if [ `type -t __git_ps1` ]; then
-        __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s"
+        __git_ps1 "\[$DARK_GRAY\] on \[$MAGENTA\]%s" |
+            sed -e 's/\*/✏️ /' -e 's/\$/🎁 /' -e 's/%/❓/'
     fi
 }
 
@@ -30,10 +31,7 @@ prompt_command () {
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWSTASHSTATE=1
 
-    # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053 and
-    # http://askubuntu.com/questions/24358)
-    #
-    # Avoid using Unicode characters as it interferes with Vim's Conque-Term
+    # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
     PS1_USER=$([[ "frosas frosasbosque" =~ `whoami` ]] || echo " \[$DARK_GRAY\]\u in")
     PS1="\[$RESET\]\n$PS1_USER\[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]»\[$RESET\] "
 
