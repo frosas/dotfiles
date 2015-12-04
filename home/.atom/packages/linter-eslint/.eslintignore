@@ -1,1 +1,1 @@
-spec/files/bad.js
+spec/fixtures/**/*.js

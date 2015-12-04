@@ -2,7 +2,7 @@
   "name": "linter-eslint",
   "main": "./lib/main",
   "activationCommands": [],
-  "version": "5.2.4",
+  "version": "5.2.5",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -12,8 +12,11 @@
   "engines": {
     "atom": ">0.50.0"
   },
+  "scripts": {
+    "lint": "eslint ."
+  },
   "dependencies": {
-    "atom-linter": "^3.3.9",
+    "atom-linter": "^3.4.0",
     "atom-package-deps": "^3.0.5",
     "childprocess-promise": "^3.0.0",
     "escape-html": "^1.0.3",
@@ -22,9 +25,11 @@
   },
   "devDependencies": {
     "babel-eslint": "^4.1.5",
-    "eslint-plugin-react": "^3.10.0",
+    "eslint-config-airbnb": "latest",
     "eslint-config-steelbrain": "latest",
-    "eslint-config-airbnb": "latest"
+    "eslint-plugin-import": "^0.11.0",
+    "eslint-plugin-react": "^3.10.0",
+    "shelljs": "^0.5.3"
   },
   "package-deps": [
     "linter"
@@ -41,7 +46,11 @@
     "rules": {
       "no-empty": 0,
       "no-console": 0,
-      "no-new": 0
+      "no-new": 0,
+      "semi": [
+        2,
+        "never"
+      ]
     },
     "parser": "babel-eslint",
     "globals": {
@@ -58,13 +67,18 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint#readme",
-  "_id": "linter-eslint@5.2.4",
-  "_shasum": "bf096586bc45c9db8343f33c5fa77280be1a8d18",
-  "_resolved": "file:../d-1151026-89131-9zge8f/package.tgz",
-  "_from": "../d-1151026-89131-9zge8f/package.tgz",
+  "_id": "linter-eslint@5.2.5",
+  "_shasum": "2ece61fec2c4ccaee3c7ac349f6c0028e787bb5e",
+  "_resolved": "file:../d-115114-2293-bkjspq/package.tgz",
+  "_from": "../d-115114-2293-bkjspq/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
+      {
+        "name": "atom-linter",
+        "version": "3.4.0",
+        "path": "node_modules/atom-linter/lib/helpers.js"
+      },
       {
         "name": "tmp",
         "version": "0.0.28",
@@ -82,7 +96,7 @@
       },
       {
         "name": "atom-package-deps",
-        "version": "3.0.5",
+        "version": "3.0.6",
         "path": "node_modules/atom-package-deps/lib/main.js"
       },
       {
@@ -112,7 +126,7 @@
       },
       {
         "name": "eslint",
-        "version": "1.10.1",
+        "version": "1.10.3",
         "path": "node_modules/eslint/lib/api.js"
       },
       {
@@ -177,7 +191,7 @@
       },
       {
         "name": "process-nextick-args",
-        "version": "1.0.3",
+        "version": "1.0.6",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/index.js"
       },
       {
@@ -207,7 +221,7 @@
       },
       {
         "name": "doctrine",
-        "version": "0.7.1",
+        "version": "0.7.2",
         "path": "node_modules/eslint/node_modules/doctrine/lib/doctrine.js"
       },
       {
@@ -242,7 +256,7 @@
       },
       {
         "name": "es5-ext",
-        "version": "0.10.8",
+        "version": "0.10.9",
         "path": "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/index.js"
       },
       {
@@ -277,7 +291,7 @@
       },
       {
         "name": "es5-ext",
-        "version": "0.10.8",
+        "version": "0.10.9",
         "path": "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/index.js"
       },
       {
@@ -452,7 +466,7 @@
       },
       {
         "name": "globals",
-        "version": "8.12.1",
+        "version": "8.14.0",
         "path": "node_modules/eslint/node_modules/globals/index.js"
       },
       {
@@ -1032,12 +1046,12 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "path": "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
         "name": "balanced-match",
-        "version": "0.2.1",
+        "version": "0.3.0",
         "path": "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
       },
       {
@@ -1143,10 +1157,12 @@
     ],
     "extensions": {
       ".js": [
+        "lib/es5-helpers.js",
         "lib/helpers.js",
         "lib/main.js",
         "lib/reporter.js",
         "lib/worker.js",
+        "node_modules/atom-linter/lib/helpers.js",
         "node_modules/atom-linter/node_modules/tmp/Gruntfile.js",
         "node_modules/atom-linter/node_modules/tmp/lib/tmp.js",
         "node_modules/atom-linter/node_modules/tmp/node_modules/os-tmpdir/index.js",
@@ -1721,6 +1737,8 @@
         "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/copy.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/count.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/create.js",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/ensure-natural-number-value.js",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/ensure-natural-number.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/eq.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/every.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-map/node_modules/es5-ext/object/filter.js",
@@ -2149,6 +2167,8 @@
         "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/copy.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/count.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/create.js",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/ensure-natural-number-value.js",
+        "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/ensure-natural-number.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/eq.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/every.js",
         "node_modules/eslint/node_modules/escope/node_modules/es6-weak-map/node_modules/es5-ext/object/filter.js",
@@ -3666,10 +3686,6 @@
         "node_modules/eslint/node_modules/xml-escape/test.js",
         "node_modules/resolve-env/index.js"
       ],
-      ".coffee": [
-        "node_modules/atom-linter/lib/helpers.coffee",
-        "node_modules/eslint/node_modules/escope/node_modules/esrecurse/gulpfile.coffee"
-      ],
       ".json": [
         "node_modules/atom-linter/node_modules/tmp/node_modules/os-tmpdir/package.json",
         "node_modules/atom-linter/node_modules/tmp/package.json",
@@ -3903,6 +3919,9 @@
         "node_modules/eslint/package.json",
         "node_modules/resolve-env/package.json",
         "package.json"
+      ],
+      ".coffee": [
+        "node_modules/eslint/node_modules/escope/node_modules/esrecurse/gulpfile.coffee"
       ]
     },
     "folders": [
@@ -3910,11 +3929,22 @@
         "paths": [
           "lib",
           "",
-          "spec/files",
-          "spec"
+          "spec",
+          "spec/fixtures/configs/js",
+          "spec/fixtures/configs/json",
+          "spec/fixtures/configs/no-ext",
+          "spec/fixtures/configs/none",
+          "spec/fixtures/configs/package-json",
+          "spec/fixtures/configs/yaml",
+          "spec/fixtures/configs/yml",
+          "spec/fixtures/eslintignore",
+          "spec/fixtures/files",
+          "spec/fixtures/import-resolution",
+          "spec/fixtures/import-resolution/nested",
+          "spec/fixtures/local-eslint/lib"
         ],
         "dependencies": {
-          "atom-linter": "^3.3.9",
+          "atom-linter": "^3.4.0",
           "atom-package-deps": "^3.0.5",
           "childprocess-promise": "^3.0.0",
           "escape-html": "^1.0.3",
@@ -3925,9 +3955,7 @@
       {
         "paths": [
           "node_modules/atom-linter/lib",
-          "node_modules/atom-linter",
-          "node_modules/atom-linter/spec/fixtures",
-          "node_modules/atom-linter/spec"
+          "node_modules/atom-linter"
         ],
         "dependencies": {
           "xregexp": "^2.0.0"
@@ -3991,9 +4019,9 @@
           "chalk": "^1.0.0",
           "concat-stream": "^1.4.6",
           "debug": "^2.1.1",
-          "doctrine": "^0.7.0",
+          "doctrine": "^0.7.1",
           "escape-string-regexp": "^1.0.2",
-          "escope": "^3.2.0",
+          "escope": "^3.3.0",
           "espree": "^2.2.4",
           "estraverse": "^4.1.1",
           "estraverse-fb": "^1.3.1",
@@ -4005,7 +4033,7 @@
           "inquirer": "^0.11.0",
           "is-my-json-valid": "^2.10.0",
           "is-resolvable": "^1.0.0",
-          "js-yaml": "^3.2.5",
+          "js-yaml": "3.4.5",
           "json-stable-stringify": "^1.0.0",
           "lodash.clonedeep": "^3.0.1",
           "lodash.merge": "^3.3.2",
@@ -4291,7 +4319,7 @@
         ],
         "dependencies": {
           "es6-iterator": "2",
-          "es6-symbol": "3"
+          "es6-symbol": "~3.0.1"
         }
       },
       {
@@ -4525,7 +4553,7 @@
         ],
         "dependencies": {
           "es6-iterator": "2",
-          "es6-symbol": "3"
+          "es6-symbol": "~3.0.1"
         }
       },
       {
@@ -5182,7 +5210,7 @@
           "node_modules/eslint/node_modules/minimatch/node_modules/brace-expansion"
         ],
         "dependencies": {
-          "balanced-match": "^0.2.0",
+          "balanced-match": "^0.3.0",
           "concat-map": "0.0.1"
         }
       },
