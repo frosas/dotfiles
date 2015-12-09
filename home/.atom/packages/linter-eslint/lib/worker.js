@@ -3,7 +3,6 @@
 process.title = 'linter-eslint helper'
 
 const CP = require('childprocess-promise')
-const execFileSync = require('child_process').execFileSync
 const Path = require('path')
 
 const resolveEnv = require('resolve-env')
@@ -23,12 +22,11 @@ Communication.on('JOB', function(job) {
   const params = job.Message
   const modulesPath = find(params.fileDir, 'node_modules')
   const eslintignoreDir = Path.dirname(find(params.fileDir, '.eslintignore'))
-  let configFile = null
+  // Check for config file
+  const configFile = determineConfigFile(params)
   global.__LINTER_RESPONSE = []
 
-  // Check for config file and determine whether to bail out
-  configFile = determineConfigFile(params)
-
+  // Determine whether to bail out
   if (params.canDisable && configFile === null) {
     job.Response = []
     return
@@ -69,7 +67,7 @@ Communication.on('JOB', function(job) {
       }
       argv.push('--rulesdir', rulesDir)
     }
-    if (configFile !== null) {
+    if (typeof configFile === 'string') {
       argv.push('--config', resolveEnv(configFile))
     }
     if (params.disableIgnores) {
@@ -84,21 +82,36 @@ Communication.on('JOB', function(job) {
 
 Communication.on('FIX', function(fixJob) {
   const params = fixJob.Message
-  const eslintDir = findEslintDir(params)
+  const modulesPath = find(params.fileDir, 'node_modules')
   const configFile = determineConfigFile(params)
-  const eslintBinPath = Path.normalize(Path.join(eslintDir, 'bin', 'eslint.js'))
+
+  if (modulesPath) {
+    process.env.NODE_PATH = modulesPath
+  } else process.env.NODE_PATH = ''
+  require('module').Module._initPaths()
+
+  // Determine which eslint instance to use
+  const eslintNewPath = findEslintDir(params)
+  if (eslintNewPath !== eslintPath) {
+    eslint = getEslintCli(eslintNewPath)
+    eslintPath = eslintNewPath
+  }
 
   const argv = [
+    process.execPath,
+    eslintPath,
     params.filePath,
     '--fix'
   ]
-  if (configFile !== null) {
+
+  if (typeof configFile === 'string') {
     argv.push('--config', resolveEnv(configFile))
   }
 
   fixJob.Response = new Promise(function(resolve, reject) {
     try {
-      execFileSync(eslintBinPath, argv, {cwd: params.fileDir})
+      process.argv = argv
+      eslint.execute(process.argv)
     } catch (err) {
       reject('Linter-ESLint: Fix Attempt Completed, Linting Errors Remain')
     }

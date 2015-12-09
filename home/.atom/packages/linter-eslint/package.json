@@ -2,7 +2,7 @@
   "name": "linter-eslint",
   "main": "./lib/main",
   "activationCommands": [],
-  "version": "5.2.5",
+  "version": "5.2.6",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -25,8 +25,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^4.1.5",
-    "eslint-config-airbnb": "latest",
-    "eslint-config-steelbrain": "latest",
+    "eslint-config-airbnb": "^1.0.2",
     "eslint-plugin-import": "^0.11.0",
     "eslint-plugin-react": "^3.10.0",
     "shelljs": "^0.5.3"
@@ -42,16 +41,23 @@
     }
   },
   "eslintConfig": {
-    "extends": "steelbrain",
     "rules": {
       "no-empty": 0,
       "no-console": 0,
       "no-new": 0,
+      "no-extra-semi": 1,
       "semi": [
         2,
         "never"
-      ]
+      ],
+      "func-names": 0,
+      "strict": [
+        0,
+        "never"
+      ],
+      "comma-dangle": 0
     },
+    "extends": "airbnb/base",
     "parser": "babel-eslint",
     "globals": {
       "atom": "true"
@@ -67,16 +73,16 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint#readme",
-  "_id": "linter-eslint@5.2.5",
-  "_shasum": "2ece61fec2c4ccaee3c7ac349f6c0028e787bb5e",
-  "_resolved": "file:../d-115114-2293-bkjspq/package.tgz",
-  "_from": "../d-115114-2293-bkjspq/package.tgz",
+  "_id": "linter-eslint@5.2.6",
+  "_shasum": "db03f6960d7caa8a106c51f37b5190a63c9ea694",
+  "_resolved": "file:../d-115118-90666-sulbf7/package.tgz",
+  "_from": "../d-115118-90666-sulbf7/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "atom-linter",
-        "version": "3.4.0",
+        "version": "3.4.1",
         "path": "node_modules/atom-linter/lib/helpers.js"
       },
       {
@@ -346,12 +352,12 @@
       },
       {
         "name": "del",
-        "version": "2.1.0",
+        "version": "2.2.0",
         "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/index.js"
       },
       {
         "name": "globby",
-        "version": "3.0.1",
+        "version": "4.0.0",
         "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/index.js"
       },
       {
@@ -370,14 +376,34 @@
         "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/arrify/index.js"
       },
       {
-        "name": "pinkie-promise",
-        "version": "1.0.0",
-        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/pinkie-promise/index.js"
+        "name": "glob",
+        "version": "6.0.1",
+        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/glob.js"
       },
       {
-        "name": "pinkie",
-        "version": "1.0.0",
-        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/pinkie-promise/node_modules/pinkie/index.js"
+        "name": "inflight",
+        "version": "1.0.4",
+        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/inflight.js"
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.1",
+        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "once",
+        "version": "1.3.3",
+        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/once.js"
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.1",
+        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js"
       },
       {
         "name": "is-path-cwd",
@@ -421,13 +447,8 @@
       },
       {
         "name": "read-json-sync",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/index.js"
-      },
-      {
-        "name": "graceful-fs",
-        "version": "3.0.8",
-        "path": "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/node_modules/graceful-fs/graceful-fs.js"
       },
       {
         "name": "write",
@@ -2351,8 +2372,17 @@
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/array-union/index.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/array-union/node_modules/array-uniq/index.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/arrify/index.js",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/pinkie-promise/index.js",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/pinkie-promise/node_modules/pinkie/index.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/common.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/glob.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/inflight.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/test.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inherits/inherits.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inherits/inherits_browser.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inherits/test.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/once.js",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/sync.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/is-path-cwd/index.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/is-path-in-cwd/index.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/is-path-in-cwd/node_modules/is-path-inside/index.js",
@@ -2366,9 +2396,6 @@
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/graceful-fs/legacy-streams.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/graceful-fs/polyfills.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/index.js",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/node_modules/graceful-fs/fs.js",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/node_modules/graceful-fs/graceful-fs.js",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/node_modules/graceful-fs/polyfills.js",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/write/index.js",
         "node_modules/eslint/node_modules/glob/common.js",
         "node_modules/eslint/node_modules/glob/glob.js",
@@ -3751,8 +3778,12 @@
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/array-union/node_modules/array-uniq/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/array-union/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/arrify/package.json",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/pinkie-promise/node_modules/pinkie/package.json",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/pinkie-promise/package.json",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/node_modules/wrappy/package.json",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight/package.json",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inherits/package.json",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/node_modules/wrappy/package.json",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once/package.json",
+        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/is-path-cwd/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/is-path-in-cwd/node_modules/is-path-inside/package.json",
@@ -3763,7 +3794,6 @@
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/rimraf/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/graceful-fs/package.json",
-        "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/node_modules/graceful-fs/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/write/package.json",
         "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/package.json",
@@ -4612,7 +4642,7 @@
           "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del"
         ],
         "dependencies": {
-          "globby": "^3.0.0",
+          "globby": "^4.0.0",
           "is-path-cwd": "^1.0.0",
           "is-path-in-cwd": "^1.0.0",
           "object-assign": "^4.0.1",
@@ -4628,10 +4658,10 @@
         "dependencies": {
           "array-union": "^1.0.1",
           "arrify": "^1.0.0",
-          "glob": "^5.0.3",
+          "glob": "^6.0.1",
           "object-assign": "^4.0.1",
           "pify": "^2.0.0",
-          "pinkie-promise": "^1.0.0"
+          "pinkie-promise": "^2.0.0"
         }
       },
       {
@@ -4644,10 +4674,31 @@
       },
       {
         "paths": [
-          "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/pinkie-promise"
+          "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob"
         ],
         "dependencies": {
-          "pinkie": "^1.0.0"
+          "inflight": "^1.0.4",
+          "inherits": "2",
+          "minimatch": "2 || 3",
+          "once": "^1.3.0",
+          "path-is-absolute": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/inflight"
+        ],
+        "dependencies": {
+          "once": "^1.3.0",
+          "wrappy": "1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/del/node_modules/globby/node_modules/glob/node_modules/once"
+        ],
+        "dependencies": {
+          "wrappy": "1"
         }
       },
       {
@@ -4687,7 +4738,7 @@
           "node_modules/eslint/node_modules/file-entry-cache/node_modules/flat-cache/node_modules/read-json-sync"
         ],
         "dependencies": {
-          "graceful-fs": "^3.0.5"
+          "graceful-fs": "^4.1.2"
         }
       },
       {

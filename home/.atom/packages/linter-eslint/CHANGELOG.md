@@ -1,3 +1,8 @@
+### v5.2.6
+
+* Fix file exception on Windows resolution (#354)
+* Verify `configFile` is a string before using it (#358)
+
 ### v5.2.5
 
 * Fix file import resolution (#340)

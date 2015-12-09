@@ -32,6 +32,10 @@ function escapePathSpaces(filepath) {
     }
 }
 
+function escapeBackSlashes(filepath) {
+    return filepath.replace(/\\/g, '\\\\');
+}
+
 function execP4Command(command, options) {
     var p4Fn = p4[command];
     if(p4Fn && p4Fn.call) {
@@ -75,7 +79,7 @@ function processDiff(p4DiffOutput) {
     var changes = [],
         change, firstChar;
 
-    p4DiffOutput.split('\n').forEach(function(line) {
+    p4DiffOutput.match(/[^\r\n]+/gm).forEach(function(line) {
         if(line.length > 1) {
             firstChar = line.substr(0, 1);
             if(!isNaN(parseInt(firstChar, 10))) {
@@ -115,7 +119,7 @@ function transformClientPathToLocalPath(clientPath, p4Info) {
         match = clientPathRegex.exec(clientPath);
 
     if(match) {
-        return p4Info.clientRoot + path.sep + match[1];
+        return path.join(p4Info.clientRoot, match[1]);
     }
     else {
         throw new Error('could not parse client path ', clientPath);
@@ -671,7 +675,7 @@ atomPerforce.exports = {
 
             // add back markers
             p4OpenedFiles.forEach(function(fileinfo) {
-                elements = document.querySelectorAll('[data-path="' + fileinfo.localPath + '"]');
+                elements = document.querySelectorAll('[data-path="' + escapeBackSlashes(fileinfo.localPath) + '"]');
                 [].forEach.call(elements, function(element) {
                     var className;
                     switch(fileinfo.action) {
