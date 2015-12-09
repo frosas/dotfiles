@@ -3,7 +3,7 @@ FindAndReplace = null
 
 module.exports =
 class MinimapFindAndReplaceBinding
-  constructor: (@minimap) ->
+  constructor: (@minimap, @fnrAPI) ->
     @editor = @minimap.getTextEditor()
     @subscriptions = new CompositeDisposable
     @decorationsByMarkerId = {}
@@ -11,8 +11,13 @@ class MinimapFindAndReplaceBinding
 
     @discoverMarkers()
 
-    @subscriptions.add @editor.displayBuffer.onDidCreateMarker (marker) =>
-      @handleCreatedMarker(marker)
+    if @fnrAPI?
+      @layer = @fnrAPI.resultsMarkerLayerForTextEditor(@editor)
+      @subscriptions.add @layer.onDidCreateMarker (marker) =>
+        @handleCreatedMarker(marker)
+    else
+      @subscriptions.add @editor.displayBuffer.onDidCreateMarker (marker) =>
+        @handleCreatedMarker(marker)
 
   destroy: ->
     sub.dispose() for id,sub of @subscriptionsByMarkerId
@@ -36,7 +41,7 @@ class MinimapFindAndReplaceBinding
   findAndReplace: -> FindAndReplace ?= atom.packages.getLoadedPackage('find-and-replace').mainModule
 
   discoverMarkers: ->
-    @editor.findMarkers(class: 'find-result').forEach (marker) =>
+    (@layer ? @editor).findMarkers(class: 'find-result').forEach (marker) =>
       @createDecoration(marker)
 
   handleCreatedMarker: (marker) ->
@@ -52,10 +57,11 @@ class MinimapFindAndReplaceBinding
     })
     return unless decoration?
 
-    @decorationsByMarkerId[marker.id] = decoration
-    @subscriptionsByMarkerId[marker.id] = decoration.onDidDestroy =>
-      @subscriptionsByMarkerId[marker.id].dispose()
-      delete @decorationsByMarkerId[marker.id]
-      delete @subscriptionsByMarkerId[marker.id]
+    id = marker.id
+    @decorationsByMarkerId[id] = decoration
+    @subscriptionsByMarkerId[id] = decoration.onDidDestroy =>
+      @subscriptionsByMarkerId[id].dispose()
+      delete @decorationsByMarkerId[id]
+      delete @subscriptionsByMarkerId[id]
 
   findViewIsVisible: -> @findAndReplace()?.findView?.is(':visible')
