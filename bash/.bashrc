@@ -50,5 +50,6 @@ alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
 alias cd="cd -P"
 alias t="trash"
 alias ag="ag --hidden"
+alias ll="ls -lt"
 
 function h { history | tail -${1:-20}; }
