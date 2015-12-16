@@ -134,6 +134,25 @@ export default class DecorationManagement extends Mixin {
   }
 
   /**
+   * Registers an event listener to the `did-change-decoration-range` event.
+   *
+   * This event is triggered when the marker range targeted by the decoration
+   * was changed.
+   *
+   * @param  {function(event:Object):void} callback a function to call when the
+   *                                               event is triggered.
+   *                                               the callback will be called
+   *                                               with an event object with
+   *                                               the following properties:
+   * - marker: the marker object that was decorated
+   * - decoration: the decoration object that was created
+   * @return {Disposable} a disposable to stop listening to the event
+   */
+  onDidChangeDecorationRange (callback) {
+    return this.emitter.on('did-change-decoration-range', callback)
+  }
+
+  /**
    * Registers an event listener to the `did-update-decoration` event.
    *
    * This event is triggered when the decoration itself is modified.
@@ -263,16 +282,16 @@ export default class DecorationManagement extends Mixin {
    *   highlight is rendered below the line's text.
    * - __highlight-outline__: Renders a colored outline on the minimap. The
    *   highlight box is rendered above the line's text.
-   * @param  {string} decorationParams.class the CSS class to use to retrieve
+   * @param  {string} [decorationParams.class] the CSS class to use to retrieve
    *                                        the background color of the
    *                                        decoration by building a scop
    *                                        corresponding to
    *                                        `.minimap .editor <your-class>`
-   * @param  {string} decorationParams.scope the scope to use to retrieve the
+   * @param  {string} [decorationParams.scope] the scope to use to retrieve the
    *                                        decoration background. Note that if
    *                                        the `scope` property is set, the
    *                                        `class` won't be used.
-   * @param  {string} decorationParams.color the CSS color to use to render the
+   * @param  {string} [decorationParams.color] the CSS color to use to render the
    *                                        decoration. When set, neither
    *                                        `scope` nor `class` are used.
    * @return {Decoration} the created decoration
@@ -287,6 +306,8 @@ export default class DecorationManagement extends Mixin {
     if (decorationParams.type === 'highlight') {
       decorationParams.type = 'highlight-over'
     }
+
+    const {type} = decorationParams
 
     if (decorationParams.scope == null && decorationParams['class'] != null) {
       let cls = decorationParams['class'].split(' ').join('.')
@@ -336,7 +357,7 @@ export default class DecorationManagement extends Mixin {
 
         for (let i = 0, len = rangesDiffs.length; i < len; i++) {
           let [start, end] = rangesDiffs[i]
-          this.emitRangeChanges({
+          this.emitRangeChanges(type, {
             start: start,
             end: end
           }, 0)
@@ -356,7 +377,7 @@ export default class DecorationManagement extends Mixin {
     if (this.decorationUpdatedSubscriptions[decoration.id] == null) {
       this.decorationUpdatedSubscriptions[decoration.id] =
       decoration.onDidChangeProperties((event) => {
-        this.emitDecorationChanges(decoration)
+        this.emitDecorationChanges(type, decoration)
       })
     }
 
@@ -365,7 +386,7 @@ export default class DecorationManagement extends Mixin {
       this.removeDecoration(decoration)
     })
 
-    this.emitDecorationChanges(decoration)
+    this.emitDecorationChanges(type, decoration)
     this.emitter.emit('did-add-decoration', {
       marker: marker,
       decoration: decoration
@@ -407,10 +428,11 @@ export default class DecorationManagement extends Mixin {
    * Emits a change in the `Minimap` corresponding to the
    * passed-in decoration.
    *
+   * @param  {string} type the type of decoration that changed
    * @param  {Decoration} decoration the decoration for which emitting an event
    * @access private
    */
-  emitDecorationChanges (decoration) {
+  emitDecorationChanges (type, decoration) {
     if (decoration.marker.displayBuffer.isDestroyed()) { return }
 
     this.invalidateDecorationForScreenRowsCache()
@@ -418,18 +440,19 @@ export default class DecorationManagement extends Mixin {
     let range = decoration.marker.getScreenRange()
     if (range == null) { return }
 
-    this.emitRangeChanges(range, 0)
+    this.emitRangeChanges(type, range, 0)
   }
 
   /**
    * Emits a change for the specified range.
    *
+   * @param  {string} type the type of decoration that changed
    * @param  {Object} range the range where changes occured
    * @param  {number} [screenDelta] an optional screen delta for the
    *                                change object
    * @access private
    */
-  emitRangeChanges (range, screenDelta) {
+  emitRangeChanges (type, range, screenDelta) {
     let startScreenRow = range.start.row
     let endScreenRow = range.end.row
     let lastRenderedScreenRow = this.getLastVisibleScreenRow()
@@ -443,10 +466,11 @@ export default class DecorationManagement extends Mixin {
     let changeEvent = {
       start: startScreenRow,
       end: endScreenRow,
-      screenDelta: screenDelta
+      screenDelta: screenDelta,
+      type: type
     }
 
-    this.emitChanges(changeEvent)
+    this.emitter.emit('did-change-decoration-range', changeEvent)
   }
 
   /**
@@ -476,7 +500,7 @@ export default class DecorationManagement extends Mixin {
     let decorations = this.decorationsByMarkerId[marker.id]
     if (!decorations) { return }
 
-    this.emitDecorationChanges(decoration)
+    this.emitDecorationChanges(decoration.getProperties().type, decoration)
 
     let index = decorations.indexOf(decoration)
     if (index > -1) {
@@ -509,7 +533,7 @@ export default class DecorationManagement extends Mixin {
     for (let i = 0, len = decorations.length; i < len; i++) {
       let decoration = decorations[i]
 
-      this.emitDecorationChanges(decoration)
+      this.emitDecorationChanges(decoration.getProperties().type, decoration)
       this.emitter.emit('did-remove-decoration', {
         marker: marker,
         decoration: decoration
