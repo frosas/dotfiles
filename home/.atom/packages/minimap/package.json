@@ -1,7 +1,7 @@
 {
   "name": "minimap",
   "main": "./lib/main",
-  "version": "4.18.3",
+  "version": "4.18.4",
   "private": true,
   "description": "A preview of the full source code.",
   "author": {
@@ -83,10 +83,10 @@
     "url": "https://github.com/atom-minimap/minimap/issues"
   },
   "homepage": "https://github.com/atom-minimap/minimap#readme",
-  "_id": "minimap@4.18.3",
-  "_shasum": "2bab444594bf8138dcd5c77e97a32e4a1750757c",
-  "_resolved": "file:../d-1151121-83963-c2qisp/package.tgz",
-  "_from": "../d-1151121-83963-c2qisp/package.tgz",
+  "_id": "minimap@4.18.4",
+  "_shasum": "0a386ed91f281763bd1c974ae925d09000f9cf62",
+  "_resolved": "file:../d-1151121-23305-j44klq/package.tgz",
+  "_from": "../d-1151121-23305-j44klq/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -97,7 +97,7 @@
       },
       {
         "name": "event-kit",
-        "version": "1.4.1",
+        "version": "1.5.0",
         "path": "node_modules/atom-utils/node_modules/event-kit/lib/event-kit.js"
       },
       {
