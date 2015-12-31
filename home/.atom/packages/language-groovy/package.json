@@ -1,32 +1,39 @@
 {
   "name": "language-groovy",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "description": "Groovy language support in Atom",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jakehp/language-groovy"
+    "url": "git+https://github.com/Jakehp/language-groovy.git"
   },
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0 <2.0.0"
   },
-  "dependencies": {},
   "bugs": {
     "url": "https://github.com/Jakehp/language-groovy/issues"
   },
-  "readme": "# Groovy language support in Atom\n\nAdds syntax highlighting and snippets to Groovy files in Atom.\n\nOriginally [converted](http://atom.io/docs/latest/converting-a-text-mate-bundle)\nfrom the [groovy.tmbundle](https://github.com/textmate/groovy.tmbundle).\n\nContributions are *greatly* appreciated. Please fork this repository, open a pull request to add snippets, make grammar tweaks, fix issues, etc.\n\n## Installation\n\n```shell\napm install language-groovy\n```\nIf apm is not recognized, open Atom, open the Atom menu, and select \"Install Shell Commands\". Then try running the command again.\n",
+  "scripts": {
+    "test": "coffeelint grammars/groovy.cson settings/language-groovy.cson snippets/language-groovy.cson"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "coffeelint": "1.10.1"
+  },
+  "readme": "# Groovy language support in Atom\n\n[![Build Status](https://travis-ci.org/Jakehp/language-groovy.svg?branch=master)](https://travis-ci.org/Jakehp/language-groovy)\n\nAdds syntax highlighting and snippets to Groovy files in Atom.\n\nOriginally [converted](http://atom.io/docs/latest/converting-a-text-mate-bundle)\nfrom the [groovy.tmbundle](https://github.com/textmate/groovy.tmbundle).\n\nContributions are *greatly* appreciated. Please fork this repository, open a pull request to add snippets, make grammar tweaks, fix issues, etc.\n\n## Installation\n\n```shell\napm install language-groovy\n```\nIf apm is not recognized, open Atom, open the Atom menu, and select \"Install Shell Commands\". Then try running the command again.\n\nContributors:  \n[ChristianMurphy](https://github.com/ChristianMurphy)\n",
   "readmeFilename": "README.md",
-  "homepage": "https://github.com/Jakehp/language-groovy",
-  "_id": "language-groovy@0.4.0",
-  "_shasum": "43f6ddce2406dbcb97485718761903c78bd3e9da",
-  "_resolved": "file:../d-11537-35432-i6kz4z/package.tgz",
-  "_from": "../d-11537-35432-i6kz4z/package.tgz",
+  "homepage": "https://github.com/Jakehp/language-groovy#readme",
+  "_id": "language-groovy@0.5.0",
+  "_shasum": "edfe2b815092348d0426f6558e9d2736477ac629",
+  "_resolved": "file:../d-1151131-20381-5p843z/package.tgz",
+  "_from": "../d-1151131-20381-5p843z/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],
     "extensions": {
       ".json": [
+        "coffeelint.json",
         "package.json"
       ]
     },
