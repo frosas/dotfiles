@@ -12,9 +12,10 @@
     showIndentGuide: true
     invisibles: {}
     softWrapAtPreferredLineLength: true
-    undoGroupingInterval: 100
+    undoGroupingInterval: 50
     tabLength: 4
     fontSize: 13
+    nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
   core:
     disabledPackages: [
       "spell-check"
