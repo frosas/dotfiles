@@ -51,5 +51,6 @@ alias cd="cd -P"
 alias t="trash"
 alias ag="ag --hidden"
 alias lt="ls -lt"
+alias ll="ls -l"
 
 function h { history | tail -${1:-20}; }
