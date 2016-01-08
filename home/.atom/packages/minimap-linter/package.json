@@ -1,12 +1,12 @@
 {
   "name": "minimap-linter",
   "main": "./lib/minimap-linter",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Minimap bindings for atom-linter",
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nesukun/atom-minimap-linter.git"
+    "url": "git+https://github.com/AtomLinter/atom-minimap-linter.git"
   },
   "license": "MIT",
   "engines": {
@@ -22,13 +22,13 @@
   "readme": "# minimap-linter package\n\nAtom package to display linter markers on minimap.\n\n![minimap-linter](https://raw.githubusercontent.com/nesukun/atom-minimap-linter/master/minimap-linter.gif)\n",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/nesukun/atom-minimap-linter/issues"
+    "url": "https://github.com/AtomLinter/atom-minimap-linter/issues"
   },
-  "homepage": "https://github.com/nesukun/atom-minimap-linter#readme",
-  "_id": "minimap-linter@1.1.0",
-  "_shasum": "57e6ce17b4429ec54aeac9bb58de92980f1a729f",
-  "_resolved": "file:../d-1151131-20405-sltfjj/package.tgz",
-  "_from": "../d-1151131-20405-sltfjj/package.tgz",
+  "homepage": "https://github.com/AtomLinter/atom-minimap-linter#readme",
+  "_id": "minimap-linter@1.1.1",
+  "_shasum": "3eab7208a0872a287c545791bbedd0b0ca8a818f",
+  "_resolved": "file:../d-11608-5187-38nztw/package.tgz",
+  "_from": "../d-11608-5187-38nztw/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],
