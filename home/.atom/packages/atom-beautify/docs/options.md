@@ -1740,6 +1740,30 @@ do not fix these errors/warnings (Supported by autopep8)
 }
 ```
 
+####  [Python - Sort imports](#python---sort-imports) 
+
+**Namespace**: `python`
+
+**Key**: `sort_imports`
+
+**Type**: `boolean`
+
+**Supported Beautifiers**:  [`autopep8`](#autopep8) 
+
+**Description**:
+
+sort imports (requires isort installed) (Supported by autopep8)
+
+**Example `.jsbeautifyrc` Configuration**
+
+```json
+{
+    "python": {
+        "sort_imports": false
+    }
+}
+```
+
 ####  [Ruby - Indent size](#ruby---indent-size) 
 
 **Namespace**: `ruby`
@@ -1762,6 +1786,30 @@ Indentation size/length (Supported by Rubocop, Ruby Beautify)
 {
     "ruby": {
         "indent_size": 4
+    }
+}
+```
+
+####  [Ruby - Rubocop Path](#ruby---rubocop-path) 
+
+**Namespace**: `ruby`
+
+**Key**: `rubocop_path`
+
+**Type**: `string`
+
+**Supported Beautifiers**:  [`Rubocop`](#rubocop) 
+
+**Description**:
+
+Path to the `rubocop` CLI executable (Supported by Rubocop)
+
+**Example `.jsbeautifyrc` Configuration**
+
+```json
+{
+    "ruby": {
+        "rubocop_path": ""
     }
 }
 ```
@@ -2418,6 +2466,61 @@ Automatically beautify EJS files on save
 *Edit > Preferences (Linux)*, *Atom > Preferences (OS X)*, or *File > Preferences (Windows)*.
 2. Go into *Packages* and search for "*Atom Beautify*" package.
 3. Find the option "*Language Config - EJS - Beautify On Save*" and change it to your desired configuration.
+
+####  [Language Config - Elm - Disable Beautifying Language](#language-config---elm---disable-beautifying-language) 
+
+**Important**: This option is only configurable from within Atom Beautify's setting panel.
+
+**Type**: `boolean`
+
+**Description**:
+
+Disable Elm Beautification
+
+**How to Configure**
+
+1. You can open the [Settings View](https://github.com/atom/settings-view) by navigating to
+*Edit > Preferences (Linux)*, *Atom > Preferences (OS X)*, or *File > Preferences (Windows)*.
+2. Go into *Packages* and search for "*Atom Beautify*" package.
+3. Find the option "*Language Config - Elm - Disable Beautifying Language*" and change it to your desired configuration.
+
+####  [Language Config - Elm - Default Beautifier](#language-config---elm---default-beautifier) 
+
+**Important**: This option is only configurable from within Atom Beautify's setting panel.
+
+**Default**: `elm-format`
+
+**Type**: `string`
+
+**Enum**:  `elm-format` 
+
+**Description**:
+
+Default Beautifier to be used for Elm
+
+**How to Configure**
+
+1. You can open the [Settings View](https://github.com/atom/settings-view) by navigating to
+*Edit > Preferences (Linux)*, *Atom > Preferences (OS X)*, or *File > Preferences (Windows)*.
+2. Go into *Packages* and search for "*Atom Beautify*" package.
+3. Find the option "*Language Config - Elm - Default Beautifier*" and change it to your desired configuration.
+
+####  [Language Config - Elm - Beautify On Save](#language-config---elm---beautify-on-save) 
+
+**Important**: This option is only configurable from within Atom Beautify's setting panel.
+
+**Type**: `boolean`
+
+**Description**:
+
+Automatically beautify Elm files on save
+
+**How to Configure**
+
+1. You can open the [Settings View](https://github.com/atom/settings-view) by navigating to
+*Edit > Preferences (Linux)*, *Atom > Preferences (OS X)*, or *File > Preferences (Windows)*.
+2. Go into *Packages* and search for "*Atom Beautify*" package.
+3. Find the option "*Language Config - Elm - Beautify On Save*" and change it to your desired configuration.
 
 ####  [Language Config - ERB - Disable Beautifying Language](#language-config---erb---disable-beautifying-language) 
 
@@ -6418,6 +6521,30 @@ do not fix these errors/warnings (Supported by autopep8)
 }
 ```
 
+####  [Python - Sort imports](#python---sort-imports) 
+
+**Namespace**: `python`
+
+**Key**: `sort_imports`
+
+**Type**: `boolean`
+
+**Supported Beautifiers**:  [`autopep8`](#autopep8) 
+
+**Description**:
+
+sort imports (requires isort installed) (Supported by autopep8)
+
+**Example `.jsbeautifyrc` Configuration**
+
+```json
+{
+    "python": {
+        "sort_imports": false
+    }
+}
+```
+
 
 ### Rubocop
 
@@ -6443,6 +6570,30 @@ Indentation size/length (Supported by Rubocop, Ruby Beautify)
 {
     "ruby": {
         "indent_size": 4
+    }
+}
+```
+
+####  [Ruby - Rubocop Path](#ruby---rubocop-path) 
+
+**Namespace**: `ruby`
+
+**Key**: `rubocop_path`
+
+**Type**: `string`
+
+**Supported Beautifiers**:  [`Rubocop`](#rubocop) 
+
+**Description**:
+
+Path to the `rubocop` CLI executable (Supported by Rubocop)
+
+**Example `.jsbeautifyrc` Configuration**
+
+```json
+{
+    "ruby": {
+        "rubocop_path": ""
     }
 }
 ```

@@ -131,6 +131,7 @@ function State(input, options) {
   this.schema    = options['schema']    || DEFAULT_FULL_SCHEMA;
   this.onWarning = options['onWarning'] || null;
   this.legacy    = options['legacy']    || false;
+  this.json      = options['json']      || false;
 
   this.implicitTypes = this.schema.compiledImplicit;
   this.typeMap       = this.schema.compiledTypeMap;
@@ -252,13 +253,15 @@ function captureSegment(state, start, end, checkJson) {
           throwError(state, 'expected valid JSON character');
         }
       }
+    } else if (PATTERN_NON_PRINTABLE.test(_result)) {
+      throwError(state, 'the stream contains non-printable characters');
     }
 
     state.result += _result;
   }
 }
 
-function mergeMappings(state, destination, source) {
+function mergeMappings(state, destination, source, overridableKeys) {
   var sourceKeys, key, index, quantity;
 
   if (!common.isObject(source)) {
@@ -272,11 +275,12 @@ function mergeMappings(state, destination, source) {
 
     if (!_hasOwnProperty.call(destination, key)) {
       destination[key] = source[key];
+      overridableKeys[key] = true;
     }
   }
 }
 
-function storeMappingPair(state, _result, keyTag, keyNode, valueNode) {
+function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode) {
   var index, quantity;
 
   keyNode = String(keyNode);
@@ -288,13 +292,19 @@ function storeMappingPair(state, _result, keyTag, keyNode, valueNode) {
   if ('tag:yaml.org,2002:merge' === keyTag) {
     if (Array.isArray(valueNode)) {
       for (index = 0, quantity = valueNode.length; index < quantity; index += 1) {
-        mergeMappings(state, _result, valueNode[index]);
+        mergeMappings(state, _result, valueNode[index], overridableKeys);
       }
     } else {
-      mergeMappings(state, _result, valueNode);
+      mergeMappings(state, _result, valueNode, overridableKeys);
     }
   } else {
+    if (!state.json &&
+        !_hasOwnProperty.call(overridableKeys, keyNode) &&
+        _hasOwnProperty.call(_result, keyNode)) {
+      throwError(state, 'duplicated mapping key');
+    }
     _result[keyNode] = valueNode;
+    delete overridableKeys[keyNode];
   }
 
   return _result;
@@ -634,6 +644,7 @@ function readFlowCollection(state, nodeIndent) {
       isPair,
       isExplicitPair,
       isMapping,
+      overridableKeys = {},
       keyNode,
       keyTag,
       valueNode,
@@ -705,9 +716,9 @@ function readFlowCollection(state, nodeIndent) {
     }
 
     if (isMapping) {
-      storeMappingPair(state, _result, keyTag, keyNode, valueNode);
+      storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode);
     } else if (isPair) {
-      _result.push(storeMappingPair(state, null, keyTag, keyNode, valueNode));
+      _result.push(storeMappingPair(state, null, overridableKeys, keyTag, keyNode, valueNode));
     } else {
       _result.push(keyNode);
     }
@@ -939,6 +950,7 @@ function readBlockMapping(state, nodeIndent, flowIndent) {
       _tag          = state.tag,
       _anchor       = state.anchor,
       _result       = {},
+      overridableKeys = {},
       keyTag        = null,
       keyNode       = null,
       valueNode     = null,
@@ -964,7 +976,7 @@ function readBlockMapping(state, nodeIndent, flowIndent) {
 
       if (0x3F/* ? */ === ch) {
         if (atExplicitKey) {
-          storeMappingPair(state, _result, keyTag, keyNode, null);
+          storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null);
           keyTag = keyNode = valueNode = null;
         }
 
@@ -1004,7 +1016,7 @@ function readBlockMapping(state, nodeIndent, flowIndent) {
           }
 
           if (atExplicitKey) {
-            storeMappingPair(state, _result, keyTag, keyNode, null);
+            storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null);
             keyTag = keyNode = valueNode = null;
           }
 
@@ -1049,7 +1061,7 @@ function readBlockMapping(state, nodeIndent, flowIndent) {
       }
 
       if (!atExplicitKey) {
-        storeMappingPair(state, _result, keyTag, keyNode, valueNode);
+        storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode);
         keyTag = keyNode = valueNode = null;
       }
 
@@ -1070,7 +1082,7 @@ function readBlockMapping(state, nodeIndent, flowIndent) {
 
   // Special case: last mapping's node contains only the key in explicit notation.
   if (atExplicitKey) {
-    storeMappingPair(state, _result, keyTag, keyNode, null);
+    storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null);
   }
 
   // Expose the resulting mapping.
@@ -1521,10 +1533,6 @@ function loadDocuments(input, options) {
   }
 
   var state = new State(input, options);
-
-  if (PATTERN_NON_PRINTABLE.test(state.input)) {
-    throwError(state, 'the stream contains non-printable characters');
-  }
 
   // Use 0 as string terminator. That significantly simplifies bounds check.
   state.input += '\0';
