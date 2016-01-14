@@ -1,21 +1,29 @@
 # vim-mode-visual-block
 
+# **Not maintained**
+
+I'm no longer maintaining this package.  
+Use [vim-mode-plus](https://atom.io/packages/vim-mode-plus) instead it's have native visual-block-mode support.   
+
+If you want to fix any bug for **this** package, fork it and I'm OK you to release forked version.  
+Please don't ask me to fix this package.  
+
+It might be better to unpublish this package?  
+Please report issue if you have strong opinion for that.  
+
+Thank's for using this my package.  
+
+Note added at 2016.1.13
+
+# What WAS this?
+
 Add visual-block operation to [vim-mode](https://atom.io/packages/vim-mode).
 
 ![gif](https://raw.githubusercontent.com/t9md/t9md/375d45f661b76cd8fd874dbcacf93602e7d75c99/img/vim-mode-visual-blockwise.gif)
 
-# What's this?
 
 **Temporarily** workaround, until vim-mode support visual block mode natively.
 I'm not intended to complete solution.
-
-# NOTE
-
-Added 2015.11.06
-
-Since I started yet another vim-mode project as [vim-mode-plus](https://atom.io/packages/vim-mode-plus) which have built-in visula-block-mode, I no longer use vim-mode and offcourse this package.  
-
-If you found any issue on this packages, I'm OK you to fork , fix and release as different package(or I might can transfer ownership of this project).
 
 # Keymap
 

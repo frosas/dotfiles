@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.7.3
+Fixes [#143](https://github.com/danielbrodin/atom-project-manager/issues/143)
+
+## 2.7.2
+Fixes [#185](https://github.com/danielbrodin/atom-project-manager/issues/185) and [#182](https://github.com/danielbrodin/atom-project-manager/issues/182)
+
 ## 2.7.1
 Fixes [#180](https://github.com/danielbrodin/atom-project-manager/issues/180)
 

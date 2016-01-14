@@ -1,7 +1,7 @@
 {
   "name": "project-manager",
   "main": "./lib/project-manager",
-  "version": "2.7.1",
+  "version": "2.7.3",
   "description": "Project Manager for easy access and switching between projects in Atom.",
   "repository": {
     "type": "git",
@@ -37,16 +37,16 @@
     "url": "https://github.com/danielbrodin/atom-project-manager/issues"
   },
   "homepage": "https://github.com/danielbrodin/atom-project-manager#readme",
-  "_id": "project-manager@2.7.1",
-  "_shasum": "c8db36017749ae8deae7ae3dd53b05e78be1fefb",
-  "_resolved": "file:../d-11608-5193-8ew9gn/package.tgz",
-  "_from": "../d-11608-5193-8ew9gn/package.tgz",
+  "_id": "project-manager@2.7.3",
+  "_shasum": "b5a87d29610790cd86f48cc06f45a45ce9ea9b97",
+  "_resolved": "file:../d-116014-50744-12wlbv/package.tgz",
+  "_from": "../d-116014-50744-12wlbv/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "atom-space-pen-views",
-        "version": "2.1.0",
+        "version": "2.1.1",
         "path": "node_modules/atom-space-pen-views/lib/main.js"
       },
       {
@@ -56,7 +56,7 @@
       },
       {
         "name": "space-pen",
-        "version": "5.1.1",
+        "version": "5.1.2",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/lib/space-pen.js"
       },
       {
@@ -821,7 +821,7 @@
         ],
         "dependencies": {
           "fuzzaldrin": "^2.1.0",
-          "space-pen": "^5.0.1"
+          "space-pen": "^5.1.2"
         }
       },
       {
@@ -831,7 +831,7 @@
         ],
         "dependencies": {
           "grim": "^1.0.0",
-          "jquery": "^2.1.3",
+          "jquery": "2.1.4",
           "underscore-plus": "1.x"
         }
       },
