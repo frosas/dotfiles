@@ -1,11 +1,14 @@
 'use babel'
 
+import linter from '../lib/main'
+
 describe('The eslint provider for Linter', () => {
   const { spawnWorker } = require('../lib/helpers')
   const worker = spawnWorker()
-  const lint = require('../lib/main').provideLinter.call(worker).lint
+  const lint = linter.provideLinter.call(worker).lint
 
   beforeEach(() => {
+    atom.config.set('linter-eslint.disableFSCache', false)
     waitsForPromise(() => {
       return atom.packages.activatePackage('language-javascript').then(() =>
         atom.workspace.open(__dirname + '/fixtures/files/good.js')
@@ -68,8 +71,9 @@ describe('The eslint provider for Linter', () => {
 
   describe('when resolving import paths using eslint-plugin-import', () => {
     it('correctly resolves imports from parent', () => {
+      const importingpath = `${__dirname}/fixtures/import-resolution/nested/importing.js`
       waitsForPromise(() => {
-        return atom.workspace.open(`${__dirname}/fixtures/import-resolution/nested/importing.js`).then(editor => {
+        return atom.workspace.open(importingpath).then(editor => {
           return lint(editor).then(messages => {
             expect(messages.length).toEqual(0)
           })

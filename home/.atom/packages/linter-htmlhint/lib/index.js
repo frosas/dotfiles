@@ -17,9 +17,9 @@ const GRAMMAR_SCOPES = [
 export const config = {
   executablePath: {
     title: 'Executable Path',
-    description: 'HTMLHint Executable Path',
+    description: 'HTMLHint Node Script Path',
     type: 'string',
-    default: path.join(__dirname, '..', 'node_modules', '.bin', 'htmlhint')
+    default: path.join(__dirname, '..', 'node_modules', 'htmlhint', 'bin', 'htmlhint')
   }
 };
 
