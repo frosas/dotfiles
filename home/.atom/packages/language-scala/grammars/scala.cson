@@ -32,7 +32,7 @@
     'beginCaptures':
       '0':
         'name': 'punctuation.definition.character.begin.scala'
-    'end': '\''
+    'end': '\'(?!\')'
     'endCaptures':
       '0':
         'name': 'punctuation.definition.character.end.scala'
