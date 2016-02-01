@@ -3,7 +3,10 @@
 # ----------------------------------------------------------------------------
 
     module.exports =
+        view: null
+
         activate: ->
+            @view = (require './ColorPicker-view')()
             _command = 'color-picker:open'
 
         #  Set key bindings
@@ -39,7 +42,9 @@
 
         #  Add color-picker:open command
         # ---------------------------
-            _commands = {}; _commands["#{ _command }"] = => @view?.open()
+            _commands = {}; _commands["#{ _command }"] = =>
+                return unless @view?.canOpen
+                @view.open()
             atom.commands.add 'atom-text-editor', _commands
 
             return @view.activate()
@@ -49,7 +54,7 @@
         provideColorPicker: ->
             return {
                 open: (Editor, Cursor) =>
-                    return unless @view
+                    return unless @view?.canOpen
                     return @view.open Editor, Cursor
             }
 
@@ -95,5 +100,3 @@
                 type: 'string'
                 enum: ['C', 'E', 'H', 'K']
                 default: 'C'
-
-        view: (require './ColorPicker-view')()
