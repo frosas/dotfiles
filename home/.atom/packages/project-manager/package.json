@@ -1,7 +1,7 @@
 {
   "name": "project-manager",
   "main": "./lib/project-manager",
-  "version": "2.7.5",
+  "version": "2.7.6",
   "description": "Project Manager for easy access and switching between projects in Atom.",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "productivity"
   ],
   "engines": {
-    "atom": ">0.200.0"
+    "atom": ">1.4.0"
   },
   "dependencies": {
     "atom-space-pen-views": "^2.0.3",
@@ -37,10 +37,10 @@
     "url": "https://github.com/danielbrodin/atom-project-manager/issues"
   },
   "homepage": "https://github.com/danielbrodin/atom-project-manager#readme",
-  "_id": "project-manager@2.7.5",
-  "_shasum": "f576f1e0fa8c0c860322183d6632f79b963d0c9a",
-  "_resolved": "file:../d-116025-78835-5wp2c6/package.tgz",
-  "_from": "../d-116025-78835-5wp2c6/package.tgz",
+  "_id": "project-manager@2.7.6",
+  "_shasum": "5e820c7c35ef83b685af14c31c71073ac118742e",
+  "_resolved": "file:../d-11618-24214-19qeryz/package.tgz",
+  "_from": "../d-11618-24214-19qeryz/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

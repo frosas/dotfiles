@@ -1,48 +1,15 @@
 "*":
-  "exception-reporting":
-    userId: "70a0032d-3fb2-4bcb-e887-64623e256e19"
-  "release-notes":
-    viewedVersion: "0.95.0"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "ba44e3beb28ecd4cac067ffa00fb25caece41ae8"
-  editor:
-    fontFamily: "Hack"
-    showIndentGuide: true
-    invisibles: {}
-    softWrapAtPreferredLineLength: true
-    undoGroupingInterval: 50
-    tabLength: 4
-    fontSize: 13
-    nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
-  core:
-    disabledPackages: [
-      "spell-check"
-      "whitespace"
-      "tree-view-git-modified"
-    ]
-    audioBeep: false
-    themes: [
-      "atom-dark-ui"
-      "one-dark-syntax"
-    ]
-  "spell-check":
-    grammars: [
-      "source.gfm"
-      "text.git-commit"
-      "text.plain"
-    ]
+  "atom-beautify":
+    _analyticsUserId: "4a06949d-cca0-4957-b8b7-18a5ac006998"
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+  "atom-fuzzy-grep":
+    detectGitProjectAndUseGitGrep: false
+    grepCommandString: "/usr/local/bin/ag"
   "atom-jshint":
     showErrorPanel: false
-  "markdown-preview":
-    grammars: [
-      "source.gfm"
-      "source.litcoffee"
-      "text.plain"
-      "text.plain.null-grammar"
-    ]
-    useGitHubStyle: true
+  "auto-update-packages":
+    intervalMinutes: 60
   "autoclose-html":
     closeOnEndOfOpeningTag: true
     forceInline: [
@@ -59,10 +26,78 @@
     ]
   autocomplete:
     includeCompletionsFromAllBuffers: true
-  "tree-view":
-    hideIgnoredNames: true
+  "autocomplete-plus":
+    backspaceTriggersAutocomplete: true
+    includeCompletionsFromAllBuffers: true
+  "copy-as-rtf": {}
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "spell-check"
+      "whitespace"
+      "tree-view-git-modified"
+    ]
+    themes: [
+      "atom-dark-ui"
+      "one-dark-syntax"
+    ]
+  editor:
+    fontFamily: "Hack"
+    fontSize: 13
+    invisibles: {}
+    nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
+    showIndentGuide: true
+    softWrapAtPreferredLineLength: true
+    tabLength: 4
+    undoGroupingInterval: 50
+  emmet: {}
+  "exception-reporting":
+    userId: "70a0032d-3fb2-4bcb-e887-64623e256e19"
+  "fuzzy-finder": {}
+  "git-diff":
+    showIconsInEditorGutter: true
+  jsformat:
+    format_on_save: false
+  linter:
+    showErrorPanel: false
+    showErrorTabFile: false
+    showErrorTabProject: false
+    showGutters: false
+    statusBar: "None"
+    statusIconScope: "File"
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+    showRuleIdInMessage: true
+  "markdown-preview":
+    grammars: [
+      "source.gfm"
+      "source.litcoffee"
+      "text.plain"
+      "text.plain.null-grammar"
+    ]
+    useGitHubStyle: true
+  metrics:
+    userId: "ba44e3beb28ecd4cac067ffa00fb25caece41ae8"
+  minimap:
+    plugins:
+      codeglance: true
+      "find-and-replace": true
+      "git-diff": true
+      linter: true
+      "minimap-autohide": true
+  "minimap-codeglance":
+    numberOfLines: 10
+    showLineNumbers: false
   "recent-files":
     updated: false
+  "release-notes":
+    viewedVersion: "0.95.0"
+  "spell-check":
+    grammars: [
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+    ]
   "todo-show":
     findTheseRegexes: [
       "FIXMEs"
@@ -72,48 +107,13 @@
       "CHANGEDs"
       "/\\WCHANGED\\W(.+$)/g"
     ]
-  "auto-update-packages":
-    intervalMinutes: 60
-  "autocomplete-plus":
-    includeCompletionsFromAllBuffers: true
-    backspaceTriggersAutocomplete: true
-  whitespace: {}
-  jsformat:
-    format_on_save: false
-  linter:
-    statusBar: "None"
-    showGutters: false
-    showErrorPanel: false
-    showErrorTabFile: false
-    showErrorTabProject: false
-    statusIconScope: "File"
-  "vim-mode":
-    useSmartcaseForSearch: true
-  "git-diff":
-    showIconsInEditorGutter: true
-  emmet: {}
-  "linter-eslint":
-    showRuleIdInMessage: true
-    disableWhenNoEslintrcFileInPath: true
+  "tree-view":
+    hideIgnoredNames: true
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true
-  "atom-fuzzy-grep":
-    detectGitProjectAndUseGitGrep: false
-    grepCommandString: "/usr/local/bin/ag"
-  minimap:
-    plugins:
-      "git-diff": true
-      "find-and-replace": true
-      linter: true
-      codeglance: true
-      "minimap-autohide": true
-  "fuzzy-finder": {}
-  "minimap-codeglance":
-    numberOfLines: 10
-    showLineNumbers: false
-  "atom-ctags":
-    autoBuildTagsWhenActive: true
-  "atom-beautify":
-    _analyticsUserId: "4a06949d-cca0-4957-b8b7-18a5ac006998"
-  "copy-as-rtf": {}
+  "vim-mode":
+    useSmartcaseForSearch: true
+  welcome:
+    showOnStartup: false
+  whitespace: {}
