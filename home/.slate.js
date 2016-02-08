@@ -72,7 +72,7 @@ operations.toTop = function() {
 operations.toBottom = function() {
     return slate.operation('move', {
         x: 'screenOriginX',
-        y: 'screenOriginY / 2',
+        y: 'screenOriginY + screenSizeY / 2',
         width: 'screenSizeX',
         height: 'screenSizeY / 2'
     });
