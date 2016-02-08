@@ -158,7 +158,7 @@ var layoutAll = function() {
             ];
             case 3: return [
                 slate.operation('throw', {screen: getScreen('external-0')}),
-                operations.toRight()
+                operations.toTop()
             ];
         }
     })());
@@ -174,7 +174,7 @@ var layoutAll = function() {
             case 3:
                 return [
                     slate.operation('throw', {screen: getScreen('external-0')}),
-                    operations.toLeft()
+                    operations.toBottom()
                 ];
         }
     })());
