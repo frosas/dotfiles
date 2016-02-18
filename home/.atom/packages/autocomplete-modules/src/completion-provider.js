@@ -35,7 +35,15 @@ class CompletionProvider {
         return this.lookupLocal(realPrefix, path.dirname(editor.getPath()));
       }
 
-      return this.lookupGlobal(realPrefix);
+      const vendors = atom.config.get('autocomplete-modules.vendors');
+
+      const promises = vendors.map(
+        (vendor) => this.lookupGlobal(realPrefix, vendor)
+      );
+
+      return Promise.all(promises).then(
+        (suggestions) => [].concat(...suggestions)
+      );
     } catch (e) {
       return [];
     }
@@ -52,54 +60,55 @@ class CompletionProvider {
     if (filterPrefix[filterPrefix.length - 1] === '/') {
       filterPrefix = '';
     }
+
     const lookupDirname = path.resolve(dirname, prefix).replace(new RegExp(`${filterPrefix}$`), '');
 
-    return readdir(lookupDirname).filter((filename) => {
-      return filename[0] !== '.';
-    }).map((pathname) => {
-      return {
-        text: this.normalizeLocal(pathname),
-        displayText: pathname,
-        type: 'package'
-      };
-    }).then((suggestions) => {
-      return this.filterSuggestions(filterPrefix, suggestions);
-    }).catch((e) => {
+    return readdir(lookupDirname).catch((e) => {
       if (e.code !== 'ENOENT') {
         throw e;
       }
-    });
+
+      return [];
+    }).filter(
+      (filename) => filename[0] !== '.'
+    ).map((pathname) => ({
+      text: this.normalizeLocal(pathname),
+      displayText: pathname,
+      type: 'package'
+    })).then(
+      (suggestions) => this.filterSuggestions(filterPrefix, suggestions)
+    );
   }
 
   normalizeLocal(filename) {
     return filename.replace(/\.(js|es6|jsx|coffee)$/, '');
   }
 
-  lookupGlobal(prefix) {
+  lookupGlobal(prefix, vendor = 'node_modules') {
     const projectPath = atom.project.getPaths()[0];
     if (!projectPath) {
-      return [];
+      return Promise.resolve([]);
     }
 
-    const nodeModulesPath = path.join(projectPath, 'node_modules');
+    const vendorPath = path.join(projectPath, vendor);
     if (prefix.indexOf('/') !== -1) {
-      return this.lookupLocal(`./${prefix}`, nodeModulesPath);
+      return this.lookupLocal(`./${prefix}`, vendorPath);
     }
 
-    return readdir(nodeModulesPath).then((libs) => {
-      return libs.concat(internalModules);
-    }).map((lib) => {
-      return {
-        text: lib,
-        type: 'package'
-      };
-    }).then((suggestions) => {
-      return this.filterSuggestions(prefix, suggestions);
-    }).catch((e) => {
+    return readdir(vendorPath).catch((e) => {
       if (e.code !== 'ENOENT') {
         throw e;
       }
-    });
+
+      return [];
+    }).then(
+      (libs) => [...internalModules, ...libs]
+    ).map((lib) => ({
+      text: lib,
+      type: 'package'
+    })).then(
+      (suggestions) => this.filterSuggestions(prefix, suggestions)
+    );
   }
 }
 
