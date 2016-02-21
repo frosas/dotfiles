@@ -6,7 +6,7 @@
 # Note: use `history -n` to update the history from another terminal
 
 shopt -s histappend # Append instead of overwriting
-HISTSIZE="∞"
+HISTSIZE="1000"
 HISTCONTROL=erasedups # Experimental
 
 update_history () {
