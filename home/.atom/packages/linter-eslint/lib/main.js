@@ -101,9 +101,9 @@ module.exports = {
           config: atom.config.get('linter-eslint'),
           filePath: filePath
         }).then(function (response) {
-          atom.notifications.addSuccess(response);
+          return atom.notifications.addSuccess(response);
         }).catch(function (response) {
-          atom.notifications.addWarning(response);
+          return atom.notifications.addWarning(response);
         });
       }
     }));
@@ -158,7 +158,17 @@ module.exports = {
             let severity = _ref.severity;
             let ruleId = _ref.ruleId;
             let column = _ref.column;
+            let fix = _ref.fix;
 
+            const textBuffer = textEditor.getBuffer();
+            let linterFix = null;
+            if (fix) {
+              const fixRange = new _atom.Range(textBuffer.positionForCharacterIndex(fix.range[0]), textBuffer.positionForCharacterIndex(fix.range[1]));
+              linterFix = {
+                range: fixRange,
+                newText: fix.text
+              };
+            }
             const range = Helpers.rangeFromLineNumber(textEditor, line - 1);
             if (column) {
               range[0][1] = column - 1;
@@ -172,9 +182,12 @@ module.exports = {
               range: range
             };
             if (showRule) {
-              ret.html = '<span class="badge badge-flexible">' + (ruleId || 'Fatal') + '</span> ' + (0, _escapeHtml2.default)(message);
+              ret.html = '<span class="badge badge-flexible">' + `${ ruleId || 'Fatal' }</span>${ (0, _escapeHtml2.default)(message) }`;
             } else {
               ret.text = message;
+            }
+            if (linterFix) {
+              ret.fix = linterFix;
             }
             return ret;
           });

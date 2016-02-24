@@ -26,6 +26,8 @@ var _resolveEnv2 = _interopRequireDefault(_resolveEnv);
 
 var _atomLinter = require('atom-linter');
 
+var _consistentPath = require('consistent-path');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const Cache = {
@@ -33,12 +35,22 @@ const Cache = {
   NODE_PREFIX_PATH: null,
   LAST_MODULES_PATH: null
 };
+const assign = Object.assign || function (target, source) {
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      target[key] = source[key];
+    }
+  }
+  return target;
+};
 
 function getNodePrefixPath() {
   if (Cache.NODE_PREFIX_PATH === null) {
     const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
     try {
-      Cache.NODE_PREFIX_PATH = _child_process2.default.spawnSync(npmCommand, ['get', 'prefix']).output[1].toString().trim();
+      Cache.NODE_PREFIX_PATH = _child_process2.default.spawnSync(npmCommand, ['get', 'prefix'], {
+        env: assign(assign({}, process.env), { PATH: (0, _consistentPath.getPath)() })
+      }).output[1].toString().trim();
     } catch (e) {
       throw new Error('Unable to execute `npm get prefix`. Please make sure Atom is getting $PATH correctly');
     }
@@ -78,7 +90,7 @@ function refreshModulesPath(modulesDir) {
 }
 
 function getESLintInstance(fileDir, config) {
-  const modulesDir = (0, _atomLinter.findCached)(fileDir, 'node_modules');
+  const modulesDir = _path2.default.dirname((0, _atomLinter.findCached)(fileDir, 'node_modules/eslint'));
   refreshModulesPath(modulesDir);
   return getESLintFromDirectory(modulesDir, config);
 }
@@ -114,7 +126,7 @@ function getArgv(type, config, filePath, fileDir, givenConfigPath) {
     configPath = config.eslintrcPath || null;
   } else configPath = givenConfigPath;
 
-  const argv = [process.execPath, 'a-b-c' // dummy value for eslint cwd
+  const argv = [process.execPath, 'a-b-c' // dummy value for eslint executable
   ];
   if (type === 'lint') {
     argv.push('--stdin');

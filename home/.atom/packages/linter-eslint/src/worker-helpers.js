@@ -4,11 +4,20 @@ import Path from 'path'
 import ChildProcess from 'child_process'
 import resolveEnv from 'resolve-env'
 import { findCached } from 'atom-linter'
+import { getPath } from 'consistent-path'
 
 const Cache = {
   ESLINT_LOCAL_PATH: Path.normalize(Path.join(__dirname, '..', 'node_modules', 'eslint')),
   NODE_PREFIX_PATH: null,
   LAST_MODULES_PATH: null
+}
+const assign = Object.assign || function (target, source) {
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      target[key] = source[key]
+    }
+  }
+  return target
 }
 
 export function getNodePrefixPath() {
@@ -16,7 +25,9 @@ export function getNodePrefixPath() {
     const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm'
     try {
       Cache.NODE_PREFIX_PATH =
-        ChildProcess.spawnSync(npmCommand, ['get', 'prefix']).output[1].toString().trim()
+        ChildProcess.spawnSync(npmCommand, ['get', 'prefix'], {
+          env: assign(assign({}, process.env), { PATH: getPath() })
+        }).output[1].toString().trim()
     } catch (e) {
       throw new Error(
         'Unable to execute `npm get prefix`. Please make sure Atom is getting $PATH correctly'
@@ -60,7 +71,7 @@ export function refreshModulesPath(modulesDir) {
 }
 
 export function getESLintInstance(fileDir, config) {
-  const modulesDir = findCached(fileDir, 'node_modules')
+  const modulesDir = Path.dirname(findCached(fileDir, 'node_modules/eslint'))
   refreshModulesPath(modulesDir)
   return getESLintFromDirectory(modulesDir, config)
 }
@@ -101,7 +112,7 @@ export function getArgv(type, config, filePath, fileDir, givenConfigPath) {
 
   const argv = [
     process.execPath,
-    'a-b-c' // dummy value for eslint cwd
+    'a-b-c' // dummy value for eslint executable
   ]
   if (type === 'lint') {
     argv.push('--stdin')
