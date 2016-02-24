@@ -116,7 +116,7 @@ var layoutAll = function() {
 
     slate.log('Laying out (' + screenCount + ' screens)');
 
-    runAppOperationsByNames(['iTerm', 'Terminal'], (function() {
+    runAppOperationsByNames(['iTerm2', 'Terminal'], (function() {
         switch (screenCount) {
             case 1: return operations.maximize();
             case 2: return [
