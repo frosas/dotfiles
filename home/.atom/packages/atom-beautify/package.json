@@ -1,9 +1,9 @@
 {
   "name": "atom-beautify",
   "main": "./src/beautify",
-  "version": "0.28.22",
+  "version": "0.28.24",
   "private": true,
-  "description": "Beautify HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, TypeScript, and SQL in Atom",
+  "description": "Beautify HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, TypeScript, Coldfusion, and SQL in Atom",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Glavin001/atom-beautify.git"
@@ -62,6 +62,10 @@
     {
       "name": "Murphy Randle",
       "url": "https://github.com/splodingsocks"
+    },
+    {
+      "name": "Luis Arias",
+      "url": "https://github.com/kaaloo"
     }
   ],
   "engines": {
@@ -84,13 +88,14 @@
     "extend": "^3.0.0",
     "gherkin": "2.12.2",
     "handlebars": "^4.0.2",
-    "js-beautify": "^1.5.10",
+    "js-beautify": "^1.6.2",
     "jscs": "^2.1.1",
     "lodash": "3.10.1",
     "loophole": "^1.0.0",
     "node-dir": "^0.1.8",
     "node-uuid": "^1.4.3",
-    "prettydiff": "^1.16.8",
+    "prettydiff": "^1.16.17",
+    "remark": "^3.2.2",
     "season": "^5.3.0",
     "space-pen": "^5.1.1",
     "strip-json-comments": "^1.0.2",
@@ -147,8 +152,10 @@
     "objective-c",
     "c-sharp",
     "c#",
+    "coldfusion",
     "uncrustify",
     "java",
+    "apex",
     "pawn",
     "vala",
     "d",
@@ -173,13 +180,13 @@
     "docs": "coffee docs/",
     "lint": "coffeelint src/ spec/"
   },
-  "readme": "# [atom-beautify](https://github.com/Glavin001/atom-beautify)\n\n[![Build Status](https://travis-ci.org/Glavin001/atom-beautify.svg?branch=master)](https://travis-ci.org/Glavin001/atom-beautify)\n[![Build status](https://ci.appveyor.com/api/projects/status/himnq7tjxl2fdc8u?svg=true)](https://ci.appveyor.com/project/Glavin001/atom-beautify)\n[![Gitter chat](https://img.shields.io/badge/gitter-Glavin001%2Fatom--beautify-1dce73.svg)](https://gitter.im/Glavin001/atom-beautify)\n[![Paypal Donations](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X2RK5DKN6YXPJ&lc=CA&item_name=Atom%2dBeautify&item_number=atom%2dbeautify&currency_code=CAD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)\n\n[![Throughput Graph](https://graphs.waffle.io/Glavin001/atom-beautify/throughput.svg)](https://waffle.io/Glavin001/atom-beautify/metrics)\n\n> [Beautify](https://github.com/beautify-web/js-beautify)\nHTML (including [Handlebars](http://handlebarsjs.com/)),\nCSS (including [Sass](http://sass-lang.com/) and [Less](http://lesscss.org/)),\nJavaScript, and much more in Atom.\n\nAtom Package: https://atom.io/packages/atom-beautify\n\n```bash\napm install atom-beautify\n```\n\nOr Settings/Preferences ➔ Packages ➔ Search for `atom-beautify`\n\n## Language Support\n\n- [x] JavaScript and JSON\n- [x] HTML, including\n  - [x] [Handlebars](http://handlebarsjs.com/)\n  - [x] [Mustache](http://mustache.github.io)\n  - [x] [Embedded Ruby (ERB)](https://github.com/Glavin001/atom-beautify/issues/80)\n    - Requires [htmlbeautifier](https://github.com/threedaymonk/htmlbeautifier)\n  - [x] XML\n  - [x] SVG\n  - [x] [Marko](https://github.com/marko-js/marko)\n    - Requires [language-marko](https://github.com/marko-js/atom-language-marko)\n- [x] CSS, including\n  - [Sass](http://sass-lang.com/)\n  - [Less](http://lesscss.org/)\n- [x] [SQL](https://github.com/Glavin001/atom-beautify/pull/67)\n  - Requires [python-sqlparse](https://github.com/andialbrecht/sqlparse)\n- [x] [Markdown](https://github.com/Glavin001/atom-beautify/issues/292)\n- [x] [Perl](https://github.com/Glavin001/atom-beautify/issues/33)\n  - Requires [perltidy](http://perltidy.sourceforge.net/)\n- [x] [PHP](https://github.com/Glavin001/atom-beautify/issues/26)  \n  - Requires [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to be already installed.\n- [x] [Python](https://github.com/Glavin001/atom-beautify/issues/24)\n  - Requires [autopep8](https://github.com/hhatto/autopep8) or [YAPF](https://github.com/google/yapf) to be already installed.\n  - Beautifies to [PEP 8](https://www.python.org/dev/peps/pep-0008/).\n- [x] [Ruby](https://github.com/Glavin001/atom-beautify/issues/25)\n  - Requires [Ruby Beautify](https://github.com/erniebrodeur/ruby-beautify)\n- [x] [CoffeeScript](https://github.com/Glavin001/atom-beautify/issues/31)\n- [x] [Golang](https://github.com/Glavin001/atom-beautify/issues/176)\n- [x] [Java](https://github.com/Glavin001/atom-beautify/issues/45)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [C](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [C++](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [C#](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [Objective-C](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [D](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [Fortran](https://github.com/Glavin001/atom-beautify/issues/300)\n  - Requires [GNU Emacs](http://www.gnu.org/software/emacs/)\n- [x] [Pawn](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [Vala](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [TypeScript](https://github.com/Glavin001/atom-beautify/issues/49)\n- [x] [Haskell](https://github.com/Glavin001/atom-beautify/issues/628)\n  - Requires [stylish-haskell](https://github.com/jaspervdj/stylish-haskell)\n- [x] [Elm](https://github.com/Glavin001/atom-beautify/pull/700)\n  - Requires [Elm-Format](https://github.com/avh4/elm-format)\n\n## Usage\n\nOpen the [Command Palette](https://github.com/atom/command-palette), and type `Beautify`.\n\nIt will only beautify selected text if a selection is found -- if not, the whole file will be beautified.\n\n### Shortcut\n\nYou can also type `ctrl-alt-b` as a shortcut or click `Packages > Beautify` in the menu.\n\n#### Custom Keyboard Shortcuts\n\nSee [Keymaps In-Depth](https://atom.io/docs/latest/behind-atom-keymaps-in-depth) for more details.\n\nFor example:\n\n```coffeescript\n'.editor':\n  'ctrl-alt-b': 'atom-beautify:beautify-editor'\n```\n\n## Configuration\n\nEdit your `.jsbeautifyrc` file in any of the following locations:\n\n- Atom Package Settings  \n  `Atom` ➔ `Preferences` ➔ Search for `atom-beautify`\n- Same directory as current file\n- Project root  \n`atom-beautify` will recursively look up from the current file's directory to find `.jsbeautifyrc`.\n- Your user's home directory\n\n**Note**: *Comments are supported in `.jsbeautifyrc` thanks to [strip-json-comments](https://github.com/sindresorhus/strip-json-comments).*\n\nSee examples of both ways inside [`examples/`](https://github.com/donaldpipowitch/atom-beautify/tree/master/examples)\n\nSee [all supported options in the documentation at  `docs/options.md`](https://github.com/Glavin001/atom-beautify/blob/master/docs/options.md).\n\n### Simple\n\nSee [examples/simple-jsbeautifyrc/.jsbeautifyrc](https://github.com/donaldpipowitch/atom-beautify/blob/master/examples/simple-jsbeautifyrc/.jsbeautifyrc).\n\n```json\n{\n  \"indent_size\": 2,\n  \"indent_char\": \" \",\n  \"other\": \" \",\n  \"indent_level\": 0,\n  \"indent_with_tabs\": false,\n  \"preserve_newlines\": true,\n  \"max_preserve_newlines\": 2,\n  \"jslint_happy\": true,\n  \"indent_handlebars\": true\n}\n```\n\n### Nested\n\nSee [examples/nested-jsbeautifyrc/.jsbeautifyrc](https://github.com/donaldpipowitch/atom-beautify/blob/master/examples/nested-jsbeautifyrc/.jsbeautifyrc).\n\n```json\n{\n  \"html\": {\n    \"brace_style\": \"collapse\",\n    \"indent_char\": \" \",\n    \"indent_scripts\": \"normal\",\n    \"indent_size\": 6,\n    \"max_preserve_newlines\": 1,\n    \"preserve_newlines\": true,\n    \"unformatted\": [\"a\", \"sub\", \"sup\", \"b\", \"i\", \"u\"],\n    \"wrap_line_length\": 0\n  },\n  \"css\": {\n    \"indent_char\": \" \",\n    \"indent_size\": 4\n  },\n  \"js\": {\n    \"indent_size\": 2,\n    \"indent_char\": \" \",\n    \"indent_level\": 0,\n    \"indent_with_tabs\": false,\n    \"preserve_newlines\": true,\n    \"max_preserve_newlines\": 2,\n    \"jslint_happy\": true\n  },\n  \"sql\": {\n    \"indent_size\": 4,\n    \"indent_char\": \" \",\n    \"indent_level\": 0,\n    \"indent_with_tabs\": false\n  }\n}\n```\n\n## Contributing\n\n[See all contributors on GitHub](https://github.com/donaldpipowitch/atom-beautify/graphs/contributors).\n\nPlease update the [CHANGELOG.md](https://github.com/donaldpipowitch/atom-beautify/blob/master/CHANGELOG.md),\nadd yourself as a contributor to the [package.json](https://github.com/donaldpipowitch/atom-beautify/blob/master/package.json),\nand submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).\n\n## License\n\n[MIT](https://github.com/donaldpipowitch/atom-beautify/blob/master/LICENSE.md) © [Glavin Wiechert](https://github.com/Glavin001)\n",
+  "readme": "# [atom-beautify](https://github.com/Glavin001/atom-beautify)\n\n[![Build Status](https://travis-ci.org/Glavin001/atom-beautify.svg?branch=master)](https://travis-ci.org/Glavin001/atom-beautify)\n[![Build status](https://ci.appveyor.com/api/projects/status/himnq7tjxl2fdc8u?svg=true)](https://ci.appveyor.com/project/Glavin001/atom-beautify)\n[![Gitter chat](https://img.shields.io/badge/gitter-Glavin001%2Fatom--beautify-1dce73.svg)](https://gitter.im/Glavin001/atom-beautify)\n[![Paypal Donations](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X2RK5DKN6YXPJ&lc=CA&item_name=Atom%2dBeautify&item_number=atom%2dbeautify&currency_code=CAD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)\n\n[![Throughput Graph](https://graphs.waffle.io/Glavin001/atom-beautify/throughput.svg)](https://waffle.io/Glavin001/atom-beautify/metrics)\n\n> [Beautify](https://github.com/beautify-web/js-beautify)\nHTML (including [Handlebars](http://handlebarsjs.com/)),\nCSS (including [Sass](http://sass-lang.com/) and [Less](http://lesscss.org/)),\nJavaScript, and much more in Atom.\n\nAtom Package: https://atom.io/packages/atom-beautify\n\n```bash\napm install atom-beautify\n```\n\nOr Settings/Preferences ➔ Packages ➔ Search for `atom-beautify`\n\n## Language Support\n\n- [x] JavaScript and JSON\n- [x] HTML, including\n  - [x] [Handlebars](http://handlebarsjs.com/)\n  - [x] [Mustache](http://mustache.github.io)\n  - [x] [Embedded Ruby (ERB)](https://github.com/Glavin001/atom-beautify/issues/80)\n    - Requires [htmlbeautifier](https://github.com/threedaymonk/htmlbeautifier)\n  - [x] XML\n  - [x] SVG\n  - [x] [Marko](https://github.com/marko-js/marko)\n    - Requires [language-marko](https://github.com/marko-js/atom-language-marko)\n- [x] CSS, including\n  - [Sass](http://sass-lang.com/)\n  - [Less](http://lesscss.org/)\n- [x] [SQL](https://github.com/Glavin001/atom-beautify/pull/67)\n  - Requires [python-sqlparse](https://github.com/andialbrecht/sqlparse)\n- [x] [Markdown](https://github.com/Glavin001/atom-beautify/issues/292)\n- [x] [Perl](https://github.com/Glavin001/atom-beautify/issues/33)\n  - Requires [perltidy](http://perltidy.sourceforge.net/)\n- [x] [PHP](https://github.com/Glavin001/atom-beautify/issues/26)  \n  - Requires [php-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) to be already installed.\n- [x] [Python](https://github.com/Glavin001/atom-beautify/issues/24)\n  - Requires [autopep8](https://github.com/hhatto/autopep8) or [YAPF](https://github.com/google/yapf) to be already installed.\n  - Beautifies to [PEP 8](https://www.python.org/dev/peps/pep-0008/).\n- [x] [Ruby](https://github.com/Glavin001/atom-beautify/issues/25)\n  - Requires [Ruby Beautify](https://github.com/erniebrodeur/ruby-beautify)\n- [x] [CoffeeScript](https://github.com/Glavin001/atom-beautify/issues/31)\n- [x] [Golang](https://github.com/Glavin001/atom-beautify/issues/176)\n- [x] [Java](https://github.com/Glavin001/atom-beautify/issues/45)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [C](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [C++](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [C#](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [Objective-C](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [D](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/) or [dfmt](https://github.com/Hackerpilot/dfmt)\n- [x] [Fortran](https://github.com/Glavin001/atom-beautify/issues/300)\n  - Requires [GNU Emacs](http://www.gnu.org/software/emacs/)\n- [x] [Pawn](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [Vala](https://github.com/Glavin001/atom-beautify/issues/57)\n  - Requires [Uncrustify](http://sourceforge.net/projects/uncrustify/)\n- [x] [TypeScript](https://github.com/Glavin001/atom-beautify/issues/49)\n- [x] [Haskell](https://github.com/Glavin001/atom-beautify/issues/628)\n  - Requires [stylish-haskell](https://github.com/jaspervdj/stylish-haskell)\n- [x] [Elm](https://github.com/Glavin001/atom-beautify/pull/700)\n  - Requires [Elm-Format](https://github.com/avh4/elm-format)\n- [x] [Erlang](https://github.com/Glavin001/atom-beautify/pull/683)\n  - Requires erlang syntax_tools to be installed\n\n## Usage\n\nOpen the [Command Palette](https://github.com/atom/command-palette), and type `Beautify`.\n\nIt will only beautify selected text if a selection is found -- if not, the whole file will be beautified.\n\n### Shortcut\n\nYou can also type `ctrl-alt-b` as a shortcut or click `Packages > Beautify` in the menu.\n\n#### Custom Keyboard Shortcuts\n\nSee [Keymaps In-Depth](https://atom.io/docs/latest/behind-atom-keymaps-in-depth) for more details.\n\nFor example:\n\n```coffeescript\n'.editor':\n  'ctrl-alt-b': 'atom-beautify:beautify-editor'\n```\n\n## Configuration\n\nEdit your `.jsbeautifyrc` file in any of the following locations:\n\n- Atom Package Settings  \n  `Atom` ➔ `Preferences` ➔ Search for `atom-beautify`\n- Same directory as current file\n- Project root  \n`atom-beautify` will recursively look up from the current file's directory to find `.jsbeautifyrc`.\n- Your user's home directory\n\n**Note**: *Comments are supported in `.jsbeautifyrc` thanks to [strip-json-comments](https://github.com/sindresorhus/strip-json-comments).*\n\nSee examples of both ways inside [`examples/`](https://github.com/donaldpipowitch/atom-beautify/tree/master/examples)\n\nSee [all supported options in the documentation at  `docs/options.md`](https://github.com/Glavin001/atom-beautify/blob/master/docs/options.md).\n\n### Simple\n\nSee [examples/simple-jsbeautifyrc/.jsbeautifyrc](https://github.com/donaldpipowitch/atom-beautify/blob/master/examples/simple-jsbeautifyrc/.jsbeautifyrc).\n\n```json\n{\n  \"indent_size\": 2,\n  \"indent_char\": \" \",\n  \"other\": \" \",\n  \"indent_level\": 0,\n  \"indent_with_tabs\": false,\n  \"preserve_newlines\": true,\n  \"max_preserve_newlines\": 2,\n  \"jslint_happy\": true,\n  \"indent_handlebars\": true\n}\n```\n\n### Nested\n\nSee [examples/nested-jsbeautifyrc/.jsbeautifyrc](https://github.com/donaldpipowitch/atom-beautify/blob/master/examples/nested-jsbeautifyrc/.jsbeautifyrc).\n\n```json\n{\n  \"html\": {\n    \"brace_style\": \"collapse\",\n    \"indent_char\": \" \",\n    \"indent_scripts\": \"normal\",\n    \"indent_size\": 6,\n    \"max_preserve_newlines\": 1,\n    \"preserve_newlines\": true,\n    \"unformatted\": [\"a\", \"sub\", \"sup\", \"b\", \"i\", \"u\"],\n    \"wrap_line_length\": 0\n  },\n  \"css\": {\n    \"indent_char\": \" \",\n    \"indent_size\": 4\n  },\n  \"js\": {\n    \"indent_size\": 2,\n    \"indent_char\": \" \",\n    \"indent_level\": 0,\n    \"indent_with_tabs\": false,\n    \"preserve_newlines\": true,\n    \"max_preserve_newlines\": 2,\n    \"jslint_happy\": true\n  },\n  \"sql\": {\n    \"indent_size\": 4,\n    \"indent_char\": \" \",\n    \"indent_level\": 0,\n    \"indent_with_tabs\": false\n  }\n}\n```\n\n## Contributing\n\n[See all contributors on GitHub](https://github.com/donaldpipowitch/atom-beautify/graphs/contributors).\n\nPlease update the [CHANGELOG.md](https://github.com/donaldpipowitch/atom-beautify/blob/master/CHANGELOG.md),\nadd yourself as a contributor to the [package.json](https://github.com/donaldpipowitch/atom-beautify/blob/master/package.json),\nand submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).\n\n## License\n\n[MIT](https://github.com/donaldpipowitch/atom-beautify/blob/master/LICENSE.md) © [Glavin Wiechert](https://github.com/Glavin001)\n",
   "readmeFilename": "README.md",
   "homepage": "https://github.com/Glavin001/atom-beautify#readme",
-  "_id": "atom-beautify@0.28.22",
-  "_shasum": "5f3c09fbcf7dc1708d7b573559ae7083de50fada",
-  "_resolved": "file:../d-116110-63660-rj35lh/package.tgz",
-  "_from": "../d-116110-63660-rj35lh/package.tgz",
+  "_id": "atom-beautify@0.28.24",
+  "_shasum": "3026623dd23bc752d7c66befbf59cbb6e2f2992c",
+  "_resolved": "file:../d-116129-87105-1qmcklw/package.tgz",
+  "_from": "../d-116129-87105-1qmcklw/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -585,7 +592,7 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "path": "node_modules/analytics-node/node_modules/superagent-proxy/node_modules/proxy-agent/node_modules/pac-proxy-agent/node_modules/pac-resolver/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
@@ -730,7 +737,7 @@
       },
       {
         "name": "repeat-string",
-        "version": "1.5.2",
+        "version": "1.5.4",
         "path": "node_modules/analytics-node/node_modules/superagent-proxy/node_modules/proxy-agent/node_modules/pac-proxy-agent/node_modules/pac-resolver/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/repeat-string/index.js"
       },
       {
@@ -765,7 +772,7 @@
       },
       {
         "name": "repeat-string",
-        "version": "1.5.2",
+        "version": "1.5.4",
         "path": "node_modules/analytics-node/node_modules/superagent-proxy/node_modules/proxy-agent/node_modules/pac-proxy-agent/node_modules/pac-resolver/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/repeat-string/index.js"
       },
       {
@@ -780,7 +787,7 @@
       },
       {
         "name": "escape-string-regexp",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "path": "node_modules/analytics-node/node_modules/superagent-proxy/node_modules/proxy-agent/node_modules/pac-proxy-agent/node_modules/pac-resolver/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/decamelize/node_modules/escape-string-regexp/index.js"
       },
       {
@@ -960,7 +967,7 @@
       },
       {
         "name": "atom-space-pen-views",
-        "version": "2.1.1",
+        "version": "2.2.0",
         "path": "node_modules/atom-space-pen-views/lib/main.js"
       },
       {
@@ -1020,7 +1027,7 @@
       },
       {
         "name": "cross-spawn-async",
-        "version": "2.1.8",
+        "version": "2.1.9",
         "path": "node_modules/cross-spawn/node_modules/cross-spawn-async/index.js"
       },
       {
@@ -1300,7 +1307,7 @@
       },
       {
         "name": "uglify-js",
-        "version": "2.6.1",
+        "version": "2.6.2",
         "path": "node_modules/handlebars/node_modules/uglify-js/tools/node.js"
       },
       {
@@ -1360,7 +1367,7 @@
       },
       {
         "name": "repeat-string",
-        "version": "1.5.2",
+        "version": "1.5.4",
         "path": "node_modules/handlebars/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/repeat-string/index.js"
       },
       {
@@ -1395,7 +1402,7 @@
       },
       {
         "name": "repeat-string",
-        "version": "1.5.2",
+        "version": "1.5.4",
         "path": "node_modules/handlebars/node_modules/uglify-js/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/repeat-string/index.js"
       },
       {
@@ -1410,7 +1417,7 @@
       },
       {
         "name": "escape-string-regexp",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "path": "node_modules/handlebars/node_modules/uglify-js/node_modules/yargs/node_modules/decamelize/node_modules/escape-string-regexp/index.js"
       },
       {
@@ -1460,7 +1467,7 @@
       },
       {
         "name": "jscs",
-        "version": "2.9.0",
+        "version": "2.10.1",
         "path": "node_modules/jscs/lib/checker.js"
       },
       {
@@ -1560,7 +1567,7 @@
       },
       {
         "name": "convert-source-map",
-        "version": "1.1.3",
+        "version": "1.2.0",
         "path": "node_modules/jscs/node_modules/babel-jscs/node_modules/babel-core/node_modules/convert-source-map/index.js"
       },
       {
@@ -1665,7 +1672,7 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "path": "node_modules/jscs/node_modules/babel-jscs/node_modules/babel-core/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
@@ -1855,7 +1862,7 @@
       },
       {
         "name": "repeat-string",
-        "version": "1.5.2",
+        "version": "1.5.4",
         "path": "node_modules/jscs/node_modules/babel-jscs/node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/repeat-string/index.js"
       },
       {
@@ -1890,7 +1897,7 @@
       },
       {
         "name": "repeat-string",
-        "version": "1.5.2",
+        "version": "1.5.4",
         "path": "node_modules/jscs/node_modules/babel-jscs/node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/repeat-string/index.js"
       },
       {
@@ -1905,7 +1912,7 @@
       },
       {
         "name": "escape-string-regexp",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "path": "node_modules/jscs/node_modules/babel-jscs/node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/decamelize/node_modules/escape-string-regexp/index.js"
       },
       {
@@ -2100,7 +2107,7 @@
       },
       {
         "name": "lodash.isarguments",
-        "version": "3.0.6",
+        "version": "3.0.7",
         "path": "node_modules/jscs/node_modules/babel-jscs/node_modules/lodash.assign/node_modules/lodash.keys/node_modules/lodash.isarguments/index.js"
       },
       {
@@ -2115,12 +2122,17 @@
       },
       {
         "name": "ansi-styles",
-        "version": "2.1.0",
+        "version": "2.2.0",
         "path": "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/index.js"
       },
       {
+        "name": "color-convert",
+        "version": "1.0.0",
+        "path": "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/index.js"
+      },
+      {
         "name": "escape-string-regexp",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "path": "node_modules/jscs/node_modules/chalk/node_modules/escape-string-regexp/index.js"
       },
       {
@@ -2135,7 +2147,7 @@
       },
       {
         "name": "strip-ansi",
-        "version": "3.0.0",
+        "version": "3.0.1",
         "path": "node_modules/jscs/node_modules/chalk/node_modules/strip-ansi/index.js"
       },
       {
@@ -2480,7 +2492,7 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "path": "node_modules/jscs/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
@@ -2520,7 +2532,7 @@
       },
       {
         "name": "mute-stream",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "path": "node_modules/jscs/node_modules/prompt/node_modules/read/node_modules/mute-stream/mute.js"
       },
       {
@@ -2565,12 +2577,12 @@
       },
       {
         "name": "rimraf",
-        "version": "2.5.1",
+        "version": "2.5.2",
         "path": "node_modules/jscs/node_modules/prompt/node_modules/utile/node_modules/rimraf/rimraf.js"
       },
       {
         "name": "glob",
-        "version": "6.0.4",
+        "version": "7.0.0",
         "path": "node_modules/jscs/node_modules/prompt/node_modules/utile/node_modules/rimraf/node_modules/glob/glob.js"
       },
       {
@@ -2705,7 +2717,7 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "path": "node_modules/jscs/node_modules/vow-fs/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
@@ -2760,7 +2772,7 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.2",
+        "version": "1.1.3",
         "path": "node_modules/node-dir/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
@@ -2780,8 +2792,778 @@
       },
       {
         "name": "prettydiff",
-        "version": "1.16.14",
+        "version": "1.16.22",
         "path": "node_modules/prettydiff/prettydiff.js"
+      },
+      {
+        "name": "remark",
+        "version": "3.2.3",
+        "path": "node_modules/remark/index.js"
+      },
+      {
+        "name": "camelcase",
+        "version": "2.1.0",
+        "path": "node_modules/remark/node_modules/camelcase/index.js"
+      },
+      {
+        "name": "ccount",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/ccount/index.js"
+      },
+      {
+        "name": "chalk",
+        "version": "1.1.1",
+        "path": "node_modules/remark/node_modules/chalk/index.js"
+      },
+      {
+        "name": "ansi-styles",
+        "version": "2.2.0",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/index.js"
+      },
+      {
+        "name": "color-convert",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/index.js"
+      },
+      {
+        "name": "escape-string-regexp",
+        "version": "1.0.5",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/escape-string-regexp/index.js"
+      },
+      {
+        "name": "has-ansi",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/has-ansi/index.js"
+      },
+      {
+        "name": "ansi-regex",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js"
+      },
+      {
+        "name": "strip-ansi",
+        "version": "3.0.1",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/strip-ansi/index.js"
+      },
+      {
+        "name": "ansi-regex",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js"
+      },
+      {
+        "name": "supports-color",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chalk/node_modules/supports-color/index.js"
+      },
+      {
+        "name": "chokidar",
+        "version": "1.4.3",
+        "path": "node_modules/remark/node_modules/chokidar/index.js"
+      },
+      {
+        "name": "anymatch",
+        "version": "1.3.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/index.js"
+      },
+      {
+        "name": "arrify",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/arrify/index.js"
+      },
+      {
+        "name": "micromatch",
+        "version": "2.3.7",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/index.js"
+      },
+      {
+        "name": "arr-diff",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/arr-diff/index.js"
+      },
+      {
+        "name": "arr-flatten",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/arr-diff/node_modules/arr-flatten/index.js"
+      },
+      {
+        "name": "array-unique",
+        "version": "0.2.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/array-unique/index.js"
+      },
+      {
+        "name": "braces",
+        "version": "1.8.3",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/index.js"
+      },
+      {
+        "name": "expand-range",
+        "version": "1.8.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/index.js"
+      },
+      {
+        "name": "fill-range",
+        "version": "2.2.3",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/index.js"
+      },
+      {
+        "name": "is-number",
+        "version": "2.1.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/is-number/index.js"
+      },
+      {
+        "name": "isobject",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/index.js"
+      },
+      {
+        "name": "isarray",
+        "version": "0.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/node_modules/isarray/index.js"
+      },
+      {
+        "name": "randomatic",
+        "version": "1.1.5",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/randomatic/index.js"
+      },
+      {
+        "name": "preserve",
+        "version": "0.2.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/preserve/index.js"
+      },
+      {
+        "name": "repeat-element",
+        "version": "1.1.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/repeat-element/index.js"
+      },
+      {
+        "name": "expand-brackets",
+        "version": "0.1.4",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/expand-brackets/index.js"
+      },
+      {
+        "name": "extglob",
+        "version": "0.3.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/extglob/index.js"
+      },
+      {
+        "name": "filename-regex",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/filename-regex/index.js"
+      },
+      {
+        "name": "is-extglob",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/is-extglob/index.js"
+      },
+      {
+        "name": "kind-of",
+        "version": "3.0.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/kind-of/index.js"
+      },
+      {
+        "name": "is-buffer",
+        "version": "1.1.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/kind-of/node_modules/is-buffer/index.js"
+      },
+      {
+        "name": "normalize-path",
+        "version": "2.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/normalize-path/index.js"
+      },
+      {
+        "name": "object.omit",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/index.js"
+      },
+      {
+        "name": "for-own",
+        "version": "0.1.3",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/index.js"
+      },
+      {
+        "name": "for-in",
+        "version": "0.1.4",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/node_modules/for-in/index.js"
+      },
+      {
+        "name": "is-extendable",
+        "version": "0.1.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/is-extendable/index.js"
+      },
+      {
+        "name": "parse-glob",
+        "version": "3.0.4",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/index.js"
+      },
+      {
+        "name": "glob-base",
+        "version": "0.3.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/node_modules/glob-base/index.js"
+      },
+      {
+        "name": "is-dotfile",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/node_modules/is-dotfile/index.js"
+      },
+      {
+        "name": "regex-cache",
+        "version": "0.4.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/index.js"
+      },
+      {
+        "name": "is-equal-shallow",
+        "version": "0.1.3",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/node_modules/is-equal-shallow/index.js"
+      },
+      {
+        "name": "is-primitive",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/node_modules/is-primitive/index.js"
+      },
+      {
+        "name": "async-each",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/async-each/index.js"
+      },
+      {
+        "name": "glob-parent",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/glob-parent/index.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "is-binary-path",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/is-binary-path/index.js"
+      },
+      {
+        "name": "binary-extensions",
+        "version": "1.4.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/is-binary-path/node_modules/binary-extensions/binary-extensions.json"
+      },
+      {
+        "name": "is-glob",
+        "version": "2.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/is-glob/index.js"
+      },
+      {
+        "name": "is-extglob",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/is-glob/node_modules/is-extglob/index.js"
+      },
+      {
+        "name": "path-is-absolute",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/path-is-absolute/index.js"
+      },
+      {
+        "name": "readdirp",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/readdirp.js"
+      },
+      {
+        "name": "graceful-fs",
+        "version": "4.1.3",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/graceful-fs/graceful-fs.js"
+      },
+      {
+        "name": "minimatch",
+        "version": "2.0.10",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/minimatch.js"
+      },
+      {
+        "name": "brace-expansion",
+        "version": "1.1.3",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/index.js"
+      },
+      {
+        "name": "balanced-match",
+        "version": "0.3.0",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
+      },
+      {
+        "name": "concat-map",
+        "version": "0.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js"
+      },
+      {
+        "name": "readable-stream",
+        "version": "2.0.5",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/readable.js"
+      },
+      {
+        "name": "core-util-is",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/core-util-is/lib/util.js"
+      },
+      {
+        "name": "isarray",
+        "version": "0.0.1",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/isarray/index.js"
+      },
+      {
+        "name": "process-nextick-args",
+        "version": "1.0.6",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/process-nextick-args/index.js"
+      },
+      {
+        "name": "string_decoder",
+        "version": "0.10.31",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/string_decoder/index.js"
+      },
+      {
+        "name": "util-deprecate",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/util-deprecate/node.js"
+      },
+      {
+        "name": "collapse-white-space",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/collapse-white-space/index.js"
+      },
+      {
+        "name": "commander",
+        "version": "2.9.0",
+        "path": "node_modules/remark/node_modules/commander/index.js"
+      },
+      {
+        "name": "graceful-readlink",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/commander/node_modules/graceful-readlink/index.js"
+      },
+      {
+        "name": "concat-stream",
+        "version": "1.5.1",
+        "path": "node_modules/remark/node_modules/concat-stream/index.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "readable-stream",
+        "version": "2.0.5",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/readable.js"
+      },
+      {
+        "name": "core-util-is",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/lib/util.js"
+      },
+      {
+        "name": "isarray",
+        "version": "0.0.1",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/index.js"
+      },
+      {
+        "name": "process-nextick-args",
+        "version": "1.0.6",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/index.js"
+      },
+      {
+        "name": "string_decoder",
+        "version": "0.10.31",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/index.js"
+      },
+      {
+        "name": "util-deprecate",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/node.js"
+      },
+      {
+        "name": "typedarray",
+        "version": "0.0.6",
+        "path": "node_modules/remark/node_modules/concat-stream/node_modules/typedarray/index.js"
+      },
+      {
+        "name": "debug",
+        "version": "2.2.0",
+        "path": "node_modules/remark/node_modules/debug/node.js"
+      },
+      {
+        "name": "ms",
+        "version": "0.7.1",
+        "path": "node_modules/remark/node_modules/debug/node_modules/ms/index.js"
+      },
+      {
+        "name": "elegant-spinner",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/elegant-spinner/index.js"
+      },
+      {
+        "name": "extend.js",
+        "version": "0.0.2",
+        "path": "node_modules/remark/node_modules/extend.js/index.js"
+      },
+      {
+        "name": "glob",
+        "version": "6.0.4",
+        "path": "node_modules/remark/node_modules/glob/glob.js"
+      },
+      {
+        "name": "inflight",
+        "version": "1.0.4",
+        "path": "node_modules/remark/node_modules/glob/node_modules/inflight/inflight.js"
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/remark/node_modules/glob/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "once",
+        "version": "1.3.3",
+        "path": "node_modules/remark/node_modules/glob/node_modules/once/once.js"
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js"
+      },
+      {
+        "name": "path-is-absolute",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/glob/node_modules/path-is-absolute/index.js"
+      },
+      {
+        "name": "globby",
+        "version": "4.0.0",
+        "path": "node_modules/remark/node_modules/globby/index.js"
+      },
+      {
+        "name": "array-union",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/globby/node_modules/array-union/index.js"
+      },
+      {
+        "name": "array-uniq",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/globby/node_modules/array-union/node_modules/array-uniq/index.js"
+      },
+      {
+        "name": "arrify",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/globby/node_modules/arrify/index.js"
+      },
+      {
+        "name": "object-assign",
+        "version": "4.0.1",
+        "path": "node_modules/remark/node_modules/globby/node_modules/object-assign/index.js"
+      },
+      {
+        "name": "pify",
+        "version": "2.3.0",
+        "path": "node_modules/remark/node_modules/globby/node_modules/pify/index.js"
+      },
+      {
+        "name": "pinkie-promise",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/globby/node_modules/pinkie-promise/index.js"
+      },
+      {
+        "name": "pinkie",
+        "version": "2.0.4",
+        "path": "node_modules/remark/node_modules/globby/node_modules/pinkie-promise/node_modules/pinkie/index.js"
+      },
+      {
+        "name": "he",
+        "version": "0.5.0",
+        "path": "node_modules/remark/node_modules/he/he.js"
+      },
+      {
+        "name": "log-update",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/log-update/index.js"
+      },
+      {
+        "name": "ansi-escapes",
+        "version": "1.1.1",
+        "path": "node_modules/remark/node_modules/log-update/node_modules/ansi-escapes/index.js"
+      },
+      {
+        "name": "cli-cursor",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/index.js"
+      },
+      {
+        "name": "restore-cursor",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/index.js"
+      },
+      {
+        "name": "exit-hook",
+        "version": "1.1.1",
+        "path": "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/node_modules/exit-hook/index.js"
+      },
+      {
+        "name": "onetime",
+        "version": "1.1.0",
+        "path": "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/node_modules/onetime/index.js"
+      },
+      {
+        "name": "longest-streak",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/longest-streak/index.js"
+      },
+      {
+        "name": "markdown-table",
+        "version": "0.4.0",
+        "path": "node_modules/remark/node_modules/markdown-table/index.js"
+      },
+      {
+        "name": "minimatch",
+        "version": "3.0.0",
+        "path": "node_modules/remark/node_modules/minimatch/minimatch.js"
+      },
+      {
+        "name": "brace-expansion",
+        "version": "1.1.3",
+        "path": "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/index.js"
+      },
+      {
+        "name": "balanced-match",
+        "version": "0.3.0",
+        "path": "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
+      },
+      {
+        "name": "concat-map",
+        "version": "0.0.1",
+        "path": "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js"
+      },
+      {
+        "name": "npm-prefix",
+        "version": "1.2.0",
+        "path": "node_modules/remark/node_modules/npm-prefix/index.js"
+      },
+      {
+        "name": "rc",
+        "version": "1.1.6",
+        "path": "node_modules/remark/node_modules/npm-prefix/node_modules/rc/index.js"
+      },
+      {
+        "name": "deep-extend",
+        "version": "0.4.1",
+        "path": "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/deep-extend/lib/deep-extend.js"
+      },
+      {
+        "name": "ini",
+        "version": "1.3.4",
+        "path": "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/ini/ini.js"
+      },
+      {
+        "name": "minimist",
+        "version": "1.2.0",
+        "path": "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/minimist/index.js"
+      },
+      {
+        "name": "shellsubstitute",
+        "version": "1.1.0",
+        "path": "node_modules/remark/node_modules/npm-prefix/node_modules/shellsubstitute/index.js"
+      },
+      {
+        "name": "untildify",
+        "version": "2.1.0",
+        "path": "node_modules/remark/node_modules/npm-prefix/node_modules/untildify/index.js"
+      },
+      {
+        "name": "os-homedir",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/npm-prefix/node_modules/untildify/node_modules/os-homedir/index.js"
+      },
+      {
+        "name": "parse-entities",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/parse-entities/index.js"
+      },
+      {
+        "name": "character-entities",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/parse-entities/node_modules/character-entities/index.js"
+      },
+      {
+        "name": "character-entities-legacy",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/parse-entities/node_modules/character-entities-legacy/index.js"
+      },
+      {
+        "name": "character-reference-invalid",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/parse-entities/node_modules/character-reference-invalid/index.js"
+      },
+      {
+        "name": "repeat-string",
+        "version": "1.5.4",
+        "path": "node_modules/remark/node_modules/repeat-string/index.js"
+      },
+      {
+        "name": "stringify-entities",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/stringify-entities/index.js"
+      },
+      {
+        "name": "character-entities-html4",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/stringify-entities/node_modules/character-entities-html4/index.js"
+      },
+      {
+        "name": "to-vfile",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/to-vfile/index.js"
+      },
+      {
+        "name": "trim",
+        "version": "0.0.1",
+        "path": "node_modules/remark/node_modules/trim/index.js"
+      },
+      {
+        "name": "trim-trailing-lines",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/trim-trailing-lines/index.js"
+      },
+      {
+        "name": "unified",
+        "version": "2.1.4",
+        "path": "node_modules/remark/node_modules/unified/index.js"
+      },
+      {
+        "name": "attach-ware",
+        "version": "1.1.1",
+        "path": "node_modules/remark/node_modules/unified/node_modules/attach-ware/index.js"
+      },
+      {
+        "name": "bail",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/unified/node_modules/bail/index.js"
+      },
+      {
+        "name": "unherit",
+        "version": "1.0.4",
+        "path": "node_modules/remark/node_modules/unified/node_modules/unherit/index.js"
+      },
+      {
+        "name": "clone",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/clone/clone.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "user-home",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/user-home/index.js"
+      },
+      {
+        "name": "os-homedir",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/user-home/node_modules/os-homedir/index.js"
+      },
+      {
+        "name": "vfile",
+        "version": "1.3.1",
+        "path": "node_modules/remark/node_modules/vfile/index.js"
+      },
+      {
+        "name": "vfile-find-down",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/vfile-find-down/index.js"
+      },
+      {
+        "name": "vfile-find-up",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/vfile-find-up/index.js"
+      },
+      {
+        "name": "vfile-reporter",
+        "version": "1.5.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/index.js"
+      },
+      {
+        "name": "log-symbols",
+        "version": "1.0.2",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/log-symbols/index.js"
+      },
+      {
+        "name": "plur",
+        "version": "2.1.2",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/plur/index.js"
+      },
+      {
+        "name": "irregular-plurals",
+        "version": "1.1.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/plur/node_modules/irregular-plurals/irregular-plurals.json"
+      },
+      {
+        "name": "string-width",
+        "version": "1.0.1",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/index.js"
+      },
+      {
+        "name": "code-point-at",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/code-point-at/index.js"
+      },
+      {
+        "name": "number-is-nan",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/code-point-at/node_modules/number-is-nan/index.js"
+      },
+      {
+        "name": "is-fullwidth-code-point",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/is-fullwidth-code-point/index.js"
+      },
+      {
+        "name": "number-is-nan",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/is-fullwidth-code-point/node_modules/number-is-nan/index.js"
+      },
+      {
+        "name": "strip-ansi",
+        "version": "3.0.1",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/strip-ansi/index.js"
+      },
+      {
+        "name": "ansi-regex",
+        "version": "2.0.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/strip-ansi/node_modules/ansi-regex/index.js"
+      },
+      {
+        "name": "text-table",
+        "version": "0.2.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/index.js"
+      },
+      {
+        "name": "vfile-sort",
+        "version": "1.0.0",
+        "path": "node_modules/remark/node_modules/vfile-reporter/node_modules/vfile-sort/index.js"
+      },
+      {
+        "name": "ware",
+        "version": "1.3.0",
+        "path": "node_modules/remark/node_modules/ware/lib/index.js"
+      },
+      {
+        "name": "wrap-fn",
+        "version": "0.1.5",
+        "path": "node_modules/remark/node_modules/ware/node_modules/wrap-fn/index.js"
+      },
+      {
+        "name": "co",
+        "version": "3.1.0",
+        "path": "node_modules/remark/node_modules/ware/node_modules/wrap-fn/node_modules/co/index.js"
       },
       {
         "name": "season",
@@ -2950,7 +3732,7 @@
       },
       {
         "name": "js-yaml",
-        "version": "3.5.2",
+        "version": "3.5.3",
         "path": "node_modules/tidy-markdown/node_modules/js-yaml/index.js"
       },
       {
@@ -3065,7 +3847,7 @@
       },
       {
         "name": "yaml-front-matter",
-        "version": "3.3.0",
+        "version": "3.4.0",
         "path": "node_modules/yaml-front-matter/index.js"
       },
       {
@@ -3075,7 +3857,7 @@
       },
       {
         "name": "js-yaml",
-        "version": "3.5.2",
+        "version": "3.5.3",
         "path": "node_modules/yaml-front-matter/node_modules/js-yaml/index.js"
       },
       {
@@ -3567,6 +4349,7 @@
         "node_modules/jscs/node_modules/babel-jscs/node_modules/lodash.assign/node_modules/lodash.keys/package.json",
         "node_modules/jscs/node_modules/babel-jscs/node_modules/lodash.assign/package.json",
         "node_modules/jscs/node_modules/babel-jscs/package.json",
+        "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/package.json",
         "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/package.json",
         "node_modules/jscs/node_modules/chalk/node_modules/escape-string-regexp/package.json",
         "node_modules/jscs/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json",
@@ -3756,6 +4539,178 @@
         "node_modules/prettydiff/bower.json",
         "node_modules/prettydiff/inch.json",
         "node_modules/prettydiff/package.json",
+        "node_modules/remark/lib/block-elements.json",
+        "node_modules/remark/lib/escape.json",
+        "node_modules/remark/node_modules/camelcase/package.json",
+        "node_modules/remark/node_modules/ccount/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/escape-string-regexp/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/has-ansi/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/strip-ansi/package.json",
+        "node_modules/remark/node_modules/chalk/node_modules/supports-color/package.json",
+        "node_modules/remark/node_modules/chalk/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/arrify/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/arr-diff/node_modules/arr-flatten/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/arr-diff/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/array-unique/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/is-number/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/node_modules/isarray/component.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/node_modules/isarray/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/randomatic/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/preserve/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/repeat-element/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/expand-brackets/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/extglob/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/filename-regex/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/is-extglob/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/kind-of/node_modules/is-buffer/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/kind-of/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/normalize-path/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/node_modules/for-in/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/is-extendable/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/node_modules/glob-base/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/node_modules/is-dotfile/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/node_modules/is-equal-shallow/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/node_modules/is-primitive/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/async-each/bower.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/async-each/component.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/async-each/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/glob-parent/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/inherits/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-binary-path/node_modules/binary-extensions/binary-extensions.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-binary-path/node_modules/binary-extensions/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-binary-path/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-glob/node_modules/is-extglob/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-glob/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/path-is-absolute/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/examples/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/graceful-fs/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/core-util-is/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/isarray/component.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/process-nextick-args/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/util-deprecate/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/package.json",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/package.json",
+        "node_modules/remark/node_modules/chokidar/package.json",
+        "node_modules/remark/node_modules/collapse-white-space/package.json",
+        "node_modules/remark/node_modules/commander/node_modules/graceful-readlink/package.json",
+        "node_modules/remark/node_modules/commander/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/inherits/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/component.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/package.json",
+        "node_modules/remark/node_modules/concat-stream/node_modules/typedarray/package.json",
+        "node_modules/remark/node_modules/concat-stream/package.json",
+        "node_modules/remark/node_modules/debug/bower.json",
+        "node_modules/remark/node_modules/debug/component.json",
+        "node_modules/remark/node_modules/debug/node_modules/ms/package.json",
+        "node_modules/remark/node_modules/debug/package.json",
+        "node_modules/remark/node_modules/elegant-spinner/package.json",
+        "node_modules/remark/node_modules/extend.js/component.json",
+        "node_modules/remark/node_modules/extend.js/package.json",
+        "node_modules/remark/node_modules/glob/node_modules/inflight/node_modules/wrappy/package.json",
+        "node_modules/remark/node_modules/glob/node_modules/inflight/package.json",
+        "node_modules/remark/node_modules/glob/node_modules/inherits/package.json",
+        "node_modules/remark/node_modules/glob/node_modules/once/node_modules/wrappy/package.json",
+        "node_modules/remark/node_modules/glob/node_modules/once/package.json",
+        "node_modules/remark/node_modules/glob/node_modules/path-is-absolute/package.json",
+        "node_modules/remark/node_modules/glob/package.json",
+        "node_modules/remark/node_modules/globby/node_modules/array-union/node_modules/array-uniq/package.json",
+        "node_modules/remark/node_modules/globby/node_modules/array-union/package.json",
+        "node_modules/remark/node_modules/globby/node_modules/arrify/package.json",
+        "node_modules/remark/node_modules/globby/node_modules/object-assign/package.json",
+        "node_modules/remark/node_modules/globby/node_modules/pify/package.json",
+        "node_modules/remark/node_modules/globby/node_modules/pinkie-promise/node_modules/pinkie/package.json",
+        "node_modules/remark/node_modules/globby/node_modules/pinkie-promise/package.json",
+        "node_modules/remark/node_modules/globby/package.json",
+        "node_modules/remark/node_modules/he/package.json",
+        "node_modules/remark/node_modules/log-update/node_modules/ansi-escapes/package.json",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/node_modules/exit-hook/package.json",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/node_modules/onetime/package.json",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/package.json",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/package.json",
+        "node_modules/remark/node_modules/log-update/package.json",
+        "node_modules/remark/node_modules/longest-streak/package.json",
+        "node_modules/remark/node_modules/markdown-table/package.json",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/package.json",
+        "node_modules/remark/node_modules/minimatch/package.json",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/deep-extend/package.json",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/ini/package.json",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/minimist/package.json",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/package.json",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/shellsubstitute/package.json",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/untildify/node_modules/os-homedir/package.json",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/untildify/package.json",
+        "node_modules/remark/node_modules/npm-prefix/package.json",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-entities/index.json",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-entities/package.json",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-entities-legacy/index.json",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-entities-legacy/package.json",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-reference-invalid/index.json",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-reference-invalid/package.json",
+        "node_modules/remark/node_modules/parse-entities/package.json",
+        "node_modules/remark/node_modules/repeat-string/package.json",
+        "node_modules/remark/node_modules/stringify-entities/node_modules/character-entities-html4/index.json",
+        "node_modules/remark/node_modules/stringify-entities/node_modules/character-entities-html4/package.json",
+        "node_modules/remark/node_modules/stringify-entities/package.json",
+        "node_modules/remark/node_modules/to-vfile/package.json",
+        "node_modules/remark/node_modules/trim/component.json",
+        "node_modules/remark/node_modules/trim/package.json",
+        "node_modules/remark/node_modules/trim-trailing-lines/package.json",
+        "node_modules/remark/node_modules/unified/node_modules/attach-ware/package.json",
+        "node_modules/remark/node_modules/unified/node_modules/bail/package.json",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/clone/package.json",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/inherits/package.json",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/package.json",
+        "node_modules/remark/node_modules/unified/package.json",
+        "node_modules/remark/node_modules/user-home/node_modules/os-homedir/package.json",
+        "node_modules/remark/node_modules/user-home/package.json",
+        "node_modules/remark/node_modules/vfile/package.json",
+        "node_modules/remark/node_modules/vfile-find-down/package.json",
+        "node_modules/remark/node_modules/vfile-find-up/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/log-symbols/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/plur/node_modules/irregular-plurals/irregular-plurals.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/plur/node_modules/irregular-plurals/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/plur/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/code-point-at/node_modules/number-is-nan/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/code-point-at/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/is-fullwidth-code-point/node_modules/number-is-nan/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/is-fullwidth-code-point/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/strip-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/strip-ansi/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/vfile-sort/package.json",
+        "node_modules/remark/node_modules/vfile-reporter/package.json",
+        "node_modules/remark/node_modules/ware/node_modules/wrap-fn/node_modules/co/package.json",
+        "node_modules/remark/node_modules/ware/node_modules/wrap-fn/package.json",
+        "node_modules/remark/node_modules/ware/package.json",
+        "node_modules/remark/package.json",
         "node_modules/season/node_modules/cson-parser/node_modules/coffee-script/bower.json",
         "node_modules/season/node_modules/cson-parser/node_modules/coffee-script/package.json",
         "node_modules/season/node_modules/cson-parser/package.json",
@@ -5840,6 +6795,7 @@
         "node_modules/jscs/lib/rules/disallow-spaces-inside-object-brackets.js",
         "node_modules/jscs/lib/rules/disallow-spaces-inside-parentheses.js",
         "node_modules/jscs/lib/rules/disallow-spaces-inside-parenthesized-expression.js",
+        "node_modules/jscs/lib/rules/disallow-spaces-inside-template-string-placeholders.js",
         "node_modules/jscs/lib/rules/disallow-tabs.js",
         "node_modules/jscs/lib/rules/disallow-trailing-comma.js",
         "node_modules/jscs/lib/rules/disallow-trailing-whitespace.js",
@@ -5866,6 +6822,7 @@
         "node_modules/jscs/lib/rules/require-early-return.js",
         "node_modules/jscs/lib/rules/require-enhanced-object-literals.js",
         "node_modules/jscs/lib/rules/require-function-declarations.js",
+        "node_modules/jscs/lib/rules/require-imports-alphabetized.js",
         "node_modules/jscs/lib/rules/require-keywords-on-new-line.js",
         "node_modules/jscs/lib/rules/require-line-break-after-variable-assignment.js",
         "node_modules/jscs/lib/rules/require-line-feed-at-file-end.js",
@@ -7340,6 +8297,10 @@
         "node_modules/jscs/node_modules/babel-jscs/node_modules/lodash.assign/node_modules/lodash.keys/node_modules/lodash.isarray/index.js",
         "node_modules/jscs/node_modules/chalk/index.js",
         "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/index.js",
+        "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/conversions.js",
+        "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/css-keywords.js",
+        "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/index.js",
+        "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/route.js",
         "node_modules/jscs/node_modules/chalk/node_modules/escape-string-regexp/index.js",
         "node_modules/jscs/node_modules/chalk/node_modules/has-ansi/index.js",
         "node_modules/jscs/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js",
@@ -9091,6 +10052,266 @@
         "node_modules/prettydiff/lib/markuppretty.js",
         "node_modules/prettydiff/lib/safeSort.js",
         "node_modules/prettydiff/prettydiff.js",
+        "node_modules/remark/index.js",
+        "node_modules/remark/lib/cli/cli.js",
+        "node_modules/remark/lib/cli/configuration.js",
+        "node_modules/remark/lib/cli/file-pipeline/configure.js",
+        "node_modules/remark/lib/cli/file-pipeline/copy.js",
+        "node_modules/remark/lib/cli/file-pipeline/file-system.js",
+        "node_modules/remark/lib/cli/file-pipeline/index.js",
+        "node_modules/remark/lib/cli/file-pipeline/parse.js",
+        "node_modules/remark/lib/cli/file-pipeline/queue.js",
+        "node_modules/remark/lib/cli/file-pipeline/read.js",
+        "node_modules/remark/lib/cli/file-pipeline/stdout.js",
+        "node_modules/remark/lib/cli/file-pipeline/stringify.js",
+        "node_modules/remark/lib/cli/file-pipeline/transform.js",
+        "node_modules/remark/lib/cli/file-set-pipeline/configure.js",
+        "node_modules/remark/lib/cli/file-set-pipeline/file-system.js",
+        "node_modules/remark/lib/cli/file-set-pipeline/index.js",
+        "node_modules/remark/lib/cli/file-set-pipeline/log.js",
+        "node_modules/remark/lib/cli/file-set-pipeline/stdin.js",
+        "node_modules/remark/lib/cli/file-set-pipeline/transform.js",
+        "node_modules/remark/lib/cli/file-set.js",
+        "node_modules/remark/lib/cli/finder.js",
+        "node_modules/remark/lib/cli/ignore.js",
+        "node_modules/remark/lib/cli/index.js",
+        "node_modules/remark/lib/cli/spinner.js",
+        "node_modules/remark/lib/cli/watch-output-cache.js",
+        "node_modules/remark/lib/defaults.js",
+        "node_modules/remark/lib/parse.js",
+        "node_modules/remark/lib/stringify.js",
+        "node_modules/remark/lib/utilities.js",
+        "node_modules/remark/node_modules/camelcase/index.js",
+        "node_modules/remark/node_modules/ccount/index.js",
+        "node_modules/remark/node_modules/chalk/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/conversions.js",
+        "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/css-keywords.js",
+        "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/ansi-styles/node_modules/color-convert/route.js",
+        "node_modules/remark/node_modules/chalk/node_modules/escape-string-regexp/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/has-ansi/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/strip-ansi/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/remark/node_modules/chalk/node_modules/supports-color/index.js",
+        "node_modules/remark/node_modules/chokidar/index.js",
+        "node_modules/remark/node_modules/chokidar/lib/fsevents-handler.js",
+        "node_modules/remark/node_modules/chokidar/lib/nodefs-handler.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/arrify/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/lib/chars.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/lib/expand.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/lib/glob.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/lib/utils.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/arr-diff/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/arr-diff/node_modules/arr-flatten/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/array-unique/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/is-number/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/node_modules/isarray/build/build.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject/node_modules/isarray/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/randomatic/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/preserve/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/preserve/test.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/repeat-element/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/expand-brackets/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/extglob/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/filename-regex/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/is-extglob/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/kind-of/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/kind-of/node_modules/is-buffer/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/normalize-path/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/for-own/node_modules/for-in/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/is-extendable/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/node_modules/glob-base/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/node_modules/is-dotfile/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/node_modules/is-equal-shallow/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/node_modules/is-primitive/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/async-each/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/async-each/test.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/glob-parent/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/glob-parent/test.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/inherits/inherits.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/inherits/inherits_browser.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/inherits/test.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-binary-path/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-glob/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/is-glob/node_modules/is-extglob/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/path-is-absolute/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/examples/callback-api.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/examples/grep.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/examples/stream-api-pipe.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/examples/stream-api.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/graceful-fs/fs.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/graceful-fs/graceful-fs.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/graceful-fs/legacy-streams.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/graceful-fs/polyfills.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/browser.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/minimatch.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/example.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/example.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/example/map.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/duplex.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/lib/_stream_duplex.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/lib/_stream_passthrough.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/lib/_stream_readable.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/lib/_stream_transform.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/lib/_stream_writable.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/core-util-is/test.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/isarray/build/build.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/process-nextick-args/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/process-nextick-args/test.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/string_decoder/index.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/util-deprecate/browser.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/node_modules/util-deprecate/node.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/passthrough.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/readable.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/transform.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/writable.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/readdirp.js",
+        "node_modules/remark/node_modules/chokidar/node_modules/readdirp/stream-api.js",
+        "node_modules/remark/node_modules/collapse-white-space/index.js",
+        "node_modules/remark/node_modules/commander/index.js",
+        "node_modules/remark/node_modules/commander/node_modules/graceful-readlink/index.js",
+        "node_modules/remark/node_modules/concat-stream/index.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/inherits/inherits.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/inherits/inherits_browser.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/inherits/test.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/duplex.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/lib/_stream_duplex.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/lib/_stream_passthrough.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/lib/_stream_readable.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/lib/_stream_transform.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/lib/_stream_writable.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/test.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/build/build.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/index.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/test.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/index.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/browser.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/node_modules/util-deprecate/node.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/passthrough.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/readable.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/transform.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/writable.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/typedarray/example/tarray.js",
+        "node_modules/remark/node_modules/concat-stream/node_modules/typedarray/index.js",
+        "node_modules/remark/node_modules/debug/browser.js",
+        "node_modules/remark/node_modules/debug/debug.js",
+        "node_modules/remark/node_modules/debug/node.js",
+        "node_modules/remark/node_modules/debug/node_modules/ms/index.js",
+        "node_modules/remark/node_modules/elegant-spinner/index.js",
+        "node_modules/remark/node_modules/extend.js/index.js",
+        "node_modules/remark/node_modules/glob/common.js",
+        "node_modules/remark/node_modules/glob/glob.js",
+        "node_modules/remark/node_modules/glob/node_modules/inflight/inflight.js",
+        "node_modules/remark/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js",
+        "node_modules/remark/node_modules/glob/node_modules/inflight/test.js",
+        "node_modules/remark/node_modules/glob/node_modules/inherits/inherits.js",
+        "node_modules/remark/node_modules/glob/node_modules/inherits/inherits_browser.js",
+        "node_modules/remark/node_modules/glob/node_modules/inherits/test.js",
+        "node_modules/remark/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js",
+        "node_modules/remark/node_modules/glob/node_modules/once/once.js",
+        "node_modules/remark/node_modules/glob/node_modules/path-is-absolute/index.js",
+        "node_modules/remark/node_modules/glob/sync.js",
+        "node_modules/remark/node_modules/globby/index.js",
+        "node_modules/remark/node_modules/globby/node_modules/array-union/index.js",
+        "node_modules/remark/node_modules/globby/node_modules/array-union/node_modules/array-uniq/index.js",
+        "node_modules/remark/node_modules/globby/node_modules/arrify/index.js",
+        "node_modules/remark/node_modules/globby/node_modules/object-assign/index.js",
+        "node_modules/remark/node_modules/globby/node_modules/pify/index.js",
+        "node_modules/remark/node_modules/globby/node_modules/pinkie-promise/index.js",
+        "node_modules/remark/node_modules/globby/node_modules/pinkie-promise/node_modules/pinkie/index.js",
+        "node_modules/remark/node_modules/he/he.js",
+        "node_modules/remark/node_modules/log-update/index.js",
+        "node_modules/remark/node_modules/log-update/node_modules/ansi-escapes/index.js",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/index.js",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/index.js",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/node_modules/exit-hook/index.js",
+        "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor/node_modules/onetime/index.js",
+        "node_modules/remark/node_modules/longest-streak/index.js",
+        "node_modules/remark/node_modules/markdown-table/index.js",
+        "node_modules/remark/node_modules/minimatch/minimatch.js",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/example.js",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/index.js",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/example.js",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/example/map.js",
+        "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js",
+        "node_modules/remark/node_modules/npm-prefix/index.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/browser.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/index.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/lib/utils.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/deep-extend/index.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/deep-extend/lib/deep-extend.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/ini/ini.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/minimist/example/parse.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/rc/node_modules/minimist/index.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/shellsubstitute/index.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/untildify/index.js",
+        "node_modules/remark/node_modules/npm-prefix/node_modules/untildify/node_modules/os-homedir/index.js",
+        "node_modules/remark/node_modules/parse-entities/index.js",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-entities/index.js",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-entities-legacy/index.js",
+        "node_modules/remark/node_modules/parse-entities/node_modules/character-reference-invalid/index.js",
+        "node_modules/remark/node_modules/repeat-string/index.js",
+        "node_modules/remark/node_modules/stringify-entities/index.js",
+        "node_modules/remark/node_modules/stringify-entities/lib/expression.js",
+        "node_modules/remark/node_modules/stringify-entities/node_modules/character-entities-html4/index.js",
+        "node_modules/remark/node_modules/to-vfile/index.js",
+        "node_modules/remark/node_modules/to-vfile/lib/to-vfile.js",
+        "node_modules/remark/node_modules/trim/index.js",
+        "node_modules/remark/node_modules/trim-trailing-lines/index.js",
+        "node_modules/remark/node_modules/unified/index.js",
+        "node_modules/remark/node_modules/unified/node_modules/attach-ware/index.js",
+        "node_modules/remark/node_modules/unified/node_modules/bail/index.js",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/index.js",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/clone/clone.js",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/clone/test.js",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/inherits/inherits.js",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/inherits/inherits_browser.js",
+        "node_modules/remark/node_modules/unified/node_modules/unherit/node_modules/inherits/test.js",
+        "node_modules/remark/node_modules/user-home/index.js",
+        "node_modules/remark/node_modules/user-home/node_modules/os-homedir/index.js",
+        "node_modules/remark/node_modules/vfile/index.js",
+        "node_modules/remark/node_modules/vfile-find-down/index.js",
+        "node_modules/remark/node_modules/vfile-find-up/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/log-symbols/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/plur/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/code-point-at/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/code-point-at/node_modules/number-is-nan/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/is-fullwidth-code-point/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/is-fullwidth-code-point/node_modules/number-is-nan/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/strip-ansi/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/strip-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/example/align.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/example/center.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/example/dotalign.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/example/doubledot.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/example/table.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/text-table/index.js",
+        "node_modules/remark/node_modules/vfile-reporter/node_modules/vfile-sort/index.js",
+        "node_modules/remark/node_modules/ware/lib/index.js",
+        "node_modules/remark/node_modules/ware/node_modules/wrap-fn/index.js",
+        "node_modules/remark/node_modules/ware/node_modules/wrap-fn/node_modules/co/index.js",
         "node_modules/season/lib/cson.js",
         "node_modules/season/lib/csonc.js",
         "node_modules/season/node_modules/cson-parser/lib/cson-parser.js",
@@ -9992,7 +11213,9 @@
         "src/beautifiers/coffee-fmt.coffee",
         "src/beautifiers/coffee-formatter.coffee",
         "src/beautifiers/csscomb.coffee",
+        "src/beautifiers/dfmt.coffee",
         "src/beautifiers/elm-format.coffee",
+        "src/beautifiers/erl_tidy.coffee",
         "src/beautifiers/fortran-beautifier/index.coffee",
         "src/beautifiers/gherkin.coffee",
         "src/beautifiers/gofmt.coffee",
@@ -10002,8 +11225,10 @@
         "src/beautifiers/jscs.coffee",
         "src/beautifiers/perltidy.coffee",
         "src/beautifiers/php-cs-fixer.coffee",
+        "src/beautifiers/phpcbf.coffee",
         "src/beautifiers/prettydiff.coffee",
         "src/beautifiers/puppet-fix.coffee",
+        "src/beautifiers/remark.coffee",
         "src/beautifiers/rubocop.coffee",
         "src/beautifiers/ruby-beautify.coffee",
         "src/beautifiers/rustfmt.coffee",
@@ -10016,10 +11241,12 @@
         "src/beautifiers/yapf.coffee",
         "src/beautify.coffee",
         "src/config.coffee",
+        "src/languages/apex.coffee",
         "src/languages/arduino.coffee",
         "src/languages/c-sharp.coffee",
         "src/languages/c.coffee",
         "src/languages/coffeescript.coffee",
+        "src/languages/coldfusion.coffee",
         "src/languages/cpp.coffee",
         "src/languages/css.coffee",
         "src/languages/csv.coffee",
@@ -10027,6 +11254,7 @@
         "src/languages/ejs.coffee",
         "src/languages/elm.coffee",
         "src/languages/erb.coffee",
+        "src/languages/erlang.coffee",
         "src/languages/fortran.coffee",
         "src/languages/gherkin.coffee",
         "src/languages/go.coffee",
@@ -10105,13 +11333,14 @@
           "extend": "^3.0.0",
           "gherkin": "2.12.2",
           "handlebars": "^4.0.2",
-          "js-beautify": "^1.5.10",
+          "js-beautify": "^1.6.2",
           "jscs": "^2.1.1",
           "lodash": "3.10.1",
           "loophole": "^1.0.0",
           "node-dir": "^0.1.8",
           "node-uuid": "^1.4.3",
-          "prettydiff": "^1.16.8",
+          "prettydiff": "^1.16.17",
+          "remark": "^3.2.2",
           "season": "^5.3.0",
           "space-pen": "^5.1.1",
           "strip-json-comments": "^1.0.2",
@@ -12202,6 +13431,14 @@
       },
       {
         "paths": [
+          "node_modules/jscs/node_modules/chalk/node_modules/ansi-styles"
+        ],
+        "dependencies": {
+          "color-convert": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
           "node_modules/jscs/node_modules/chalk/node_modules/has-ansi"
         ],
         "dependencies": {
@@ -12981,7 +14218,7 @@
           "node_modules/jscs/node_modules/prompt/node_modules/utile/node_modules/rimraf"
         ],
         "dependencies": {
-          "glob": "^6.0.1"
+          "glob": "^7.0.0"
         }
       },
       {
@@ -13143,6 +14380,666 @@
         "dependencies": {
           "balanced-match": "^0.3.0",
           "concat-map": "0.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark",
+          "node_modules/remark/lib",
+          "node_modules/remark/lib/cli",
+          "node_modules/remark/lib/cli/file-pipeline",
+          "node_modules/remark/lib/cli/file-set-pipeline"
+        ],
+        "dependencies": {
+          "camelcase": "^2.0.0",
+          "ccount": "^1.0.0",
+          "chalk": "^1.0.0",
+          "chokidar": "^1.0.5",
+          "collapse-white-space": "^1.0.0",
+          "commander": "^2.0.0",
+          "concat-stream": "^1.0.0",
+          "debug": "^2.0.0",
+          "elegant-spinner": "^1.0.0",
+          "extend.js": "0.0.2",
+          "glob": "^6.0.1",
+          "globby": "^4.0.0",
+          "he": "^0.5.0",
+          "log-update": "^1.0.1",
+          "longest-streak": "^1.0.0",
+          "markdown-table": "^0.4.0",
+          "minimatch": "^3.0.0",
+          "npm-prefix": "^1.0.1",
+          "parse-entities": "^1.0.0",
+          "repeat-string": "^1.5.0",
+          "stringify-entities": "^1.0.0",
+          "to-vfile": "^1.0.0",
+          "trim": "^0.0.1",
+          "trim-trailing-lines": "^1.0.0",
+          "unified": "^2.0.0",
+          "user-home": "^2.0.0",
+          "vfile": "^1.1.0",
+          "vfile-find-down": "^1.0.0",
+          "vfile-find-up": "^1.0.0",
+          "vfile-reporter": "^1.5.0",
+          "ware": "^1.3.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chalk"
+        ],
+        "dependencies": {
+          "ansi-styles": "^2.1.0",
+          "escape-string-regexp": "^1.0.2",
+          "has-ansi": "^2.0.0",
+          "strip-ansi": "^3.0.0",
+          "supports-color": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chalk/node_modules/ansi-styles"
+        ],
+        "dependencies": {
+          "color-convert": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chalk/node_modules/has-ansi"
+        ],
+        "dependencies": {
+          "ansi-regex": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chalk/node_modules/strip-ansi"
+        ],
+        "dependencies": {
+          "ansi-regex": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar",
+          "node_modules/remark/node_modules/chokidar/lib"
+        ],
+        "dependencies": {
+          "anymatch": "^1.3.0",
+          "async-each": "^1.0.0",
+          "glob-parent": "^2.0.0",
+          "inherits": "^2.0.1",
+          "is-binary-path": "^1.0.0",
+          "is-glob": "^2.0.0",
+          "path-is-absolute": "^1.0.0",
+          "readdirp": "^2.0.0",
+          "fsevents": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch"
+        ],
+        "dependencies": {
+          "arrify": "^1.0.0",
+          "micromatch": "^2.1.5"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch",
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/lib"
+        ],
+        "dependencies": {
+          "arr-diff": "^2.0.0",
+          "array-unique": "^0.2.1",
+          "braces": "^1.8.2",
+          "expand-brackets": "^0.1.4",
+          "extglob": "^0.3.1",
+          "filename-regex": "^2.0.0",
+          "is-extglob": "^1.0.0",
+          "is-glob": "^2.0.1",
+          "kind-of": "^3.0.2",
+          "normalize-path": "^2.0.1",
+          "object.omit": "^2.0.0",
+          "parse-glob": "^3.0.4",
+          "regex-cache": "^0.4.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/arr-diff"
+        ],
+        "dependencies": {
+          "arr-flatten": "^1.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces"
+        ],
+        "dependencies": {
+          "expand-range": "^1.8.1",
+          "preserve": "^0.2.0",
+          "repeat-element": "^1.1.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range"
+        ],
+        "dependencies": {
+          "fill-range": "^2.1.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range"
+        ],
+        "dependencies": {
+          "is-number": "^2.1.0",
+          "isobject": "^2.0.0",
+          "randomatic": "^1.1.3",
+          "repeat-element": "^1.1.2",
+          "repeat-string": "^1.5.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/is-number"
+        ],
+        "dependencies": {
+          "kind-of": "^3.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/isobject"
+        ],
+        "dependencies": {
+          "isarray": "0.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/braces/node_modules/expand-range/node_modules/fill-range/node_modules/randomatic"
+        ],
+        "dependencies": {
+          "is-number": "^2.0.2",
+          "kind-of": "^3.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/extglob"
+        ],
+        "dependencies": {
+          "is-extglob": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/kind-of"
+        ],
+        "dependencies": {
+          "is-buffer": "^1.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit"
+        ],
+        "dependencies": {
+          "for-own": "^0.1.3",
+          "is-extendable": "^0.1.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/object.omit/node_modules/for-own"
+        ],
+        "dependencies": {
+          "for-in": "^0.1.4"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob"
+        ],
+        "dependencies": {
+          "glob-base": "^0.3.0",
+          "is-dotfile": "^1.0.0",
+          "is-extglob": "^1.0.0",
+          "is-glob": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/parse-glob/node_modules/glob-base"
+        ],
+        "dependencies": {
+          "glob-parent": "^2.0.0",
+          "is-glob": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache"
+        ],
+        "dependencies": {
+          "is-equal-shallow": "^0.1.1",
+          "is-primitive": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/anymatch/node_modules/micromatch/node_modules/regex-cache/node_modules/is-equal-shallow"
+        ],
+        "dependencies": {
+          "is-primitive": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/glob-parent"
+        ],
+        "dependencies": {
+          "is-glob": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/is-binary-path"
+        ],
+        "dependencies": {
+          "binary-extensions": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/is-glob"
+        ],
+        "dependencies": {
+          "is-extglob": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/readdirp/examples",
+          "node_modules/remark/node_modules/chokidar/node_modules/readdirp",
+          "node_modules/remark/node_modules/chokidar/node_modules/readdirp/test"
+        ],
+        "dependencies": {
+          "graceful-fs": "^4.1.2",
+          "minimatch": "^2.0.10",
+          "readable-stream": "^2.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch"
+        ],
+        "dependencies": {
+          "brace-expansion": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/minimatch/node_modules/brace-expansion"
+        ],
+        "dependencies": {
+          "balanced-match": "^0.3.0",
+          "concat-map": "0.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream",
+          "node_modules/remark/node_modules/chokidar/node_modules/readdirp/node_modules/readable-stream/lib"
+        ],
+        "dependencies": {
+          "core-util-is": "~1.0.0",
+          "inherits": "~2.0.1",
+          "isarray": "0.0.1",
+          "process-nextick-args": "~1.0.6",
+          "string_decoder": "~0.10.x",
+          "util-deprecate": "~1.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/commander"
+        ],
+        "dependencies": {
+          "graceful-readlink": ">= 1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/concat-stream"
+        ],
+        "dependencies": {
+          "inherits": "~2.0.1",
+          "typedarray": "~0.0.5",
+          "readable-stream": "~2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream",
+          "node_modules/remark/node_modules/concat-stream/node_modules/readable-stream/lib"
+        ],
+        "dependencies": {
+          "core-util-is": "~1.0.0",
+          "inherits": "~2.0.1",
+          "isarray": "0.0.1",
+          "process-nextick-args": "~1.0.6",
+          "string_decoder": "~0.10.x",
+          "util-deprecate": "~1.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/debug"
+        ],
+        "dependencies": {
+          "ms": "0.7.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/glob"
+        ],
+        "dependencies": {
+          "inflight": "^1.0.4",
+          "inherits": "2",
+          "minimatch": "2 || 3",
+          "once": "^1.3.0",
+          "path-is-absolute": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/glob/node_modules/inflight"
+        ],
+        "dependencies": {
+          "once": "^1.3.0",
+          "wrappy": "1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/glob/node_modules/once"
+        ],
+        "dependencies": {
+          "wrappy": "1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/globby"
+        ],
+        "dependencies": {
+          "array-union": "^1.0.1",
+          "arrify": "^1.0.0",
+          "glob": "^6.0.1",
+          "object-assign": "^4.0.1",
+          "pify": "^2.0.0",
+          "pinkie-promise": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/globby/node_modules/array-union"
+        ],
+        "dependencies": {
+          "array-uniq": "^1.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/globby/node_modules/pinkie-promise"
+        ],
+        "dependencies": {
+          "pinkie": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/log-update"
+        ],
+        "dependencies": {
+          "ansi-escapes": "^1.0.0",
+          "cli-cursor": "^1.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/log-update/node_modules/cli-cursor"
+        ],
+        "dependencies": {
+          "restore-cursor": "^1.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/log-update/node_modules/cli-cursor/node_modules/restore-cursor"
+        ],
+        "dependencies": {
+          "exit-hook": "^1.0.0",
+          "onetime": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/minimatch"
+        ],
+        "dependencies": {
+          "brace-expansion": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/minimatch/node_modules/brace-expansion"
+        ],
+        "dependencies": {
+          "balanced-match": "^0.3.0",
+          "concat-map": "0.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/npm-prefix"
+        ],
+        "dependencies": {
+          "rc": "^1.1.0",
+          "shellsubstitute": "^1.1.0",
+          "untildify": "^2.1.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/npm-prefix/node_modules/rc",
+          "node_modules/remark/node_modules/npm-prefix/node_modules/rc/lib",
+          "node_modules/remark/node_modules/npm-prefix/node_modules/rc/test"
+        ],
+        "dependencies": {
+          "deep-extend": "~0.4.0",
+          "ini": "~1.3.0",
+          "minimist": "^1.2.0",
+          "strip-json-comments": "~1.0.4"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/npm-prefix/node_modules/untildify"
+        ],
+        "dependencies": {
+          "os-homedir": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/parse-entities"
+        ],
+        "dependencies": {
+          "character-entities": "^1.0.0",
+          "character-entities-legacy": "^1.0.0",
+          "character-reference-invalid": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/stringify-entities",
+          "node_modules/remark/node_modules/stringify-entities/lib"
+        ],
+        "dependencies": {
+          "character-entities-html4": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/to-vfile",
+          "node_modules/remark/node_modules/to-vfile/lib"
+        ],
+        "dependencies": {
+          "vfile": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/unified"
+        ],
+        "dependencies": {
+          "attach-ware": "^1.0.0",
+          "bail": "^1.0.0",
+          "extend": "^3.0.0",
+          "unherit": "^1.0.4",
+          "vfile": "^1.0.0",
+          "ware": "^1.3.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/unified/node_modules/attach-ware"
+        ],
+        "dependencies": {
+          "unherit": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/unified/node_modules/unherit"
+        ],
+        "dependencies": {
+          "clone": "^1.0.1",
+          "inherits": "^2.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/user-home"
+        ],
+        "dependencies": {
+          "os-homedir": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-find-down"
+        ],
+        "dependencies": {
+          "to-vfile": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-find-up"
+        ],
+        "dependencies": {
+          "to-vfile": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-reporter"
+        ],
+        "dependencies": {
+          "chalk": "^1.1.0",
+          "log-symbols": "^1.0.2",
+          "plur": "^2.0.0",
+          "repeat-string": "^1.5.0",
+          "string-width": "^1.0.0",
+          "text-table": "^0.2.0",
+          "vfile-sort": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-reporter/node_modules/log-symbols"
+        ],
+        "dependencies": {
+          "chalk": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-reporter/node_modules/plur"
+        ],
+        "dependencies": {
+          "irregular-plurals": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width"
+        ],
+        "dependencies": {
+          "code-point-at": "^1.0.0",
+          "is-fullwidth-code-point": "^1.0.0",
+          "strip-ansi": "^3.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/code-point-at"
+        ],
+        "dependencies": {
+          "number-is-nan": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/is-fullwidth-code-point"
+        ],
+        "dependencies": {
+          "number-is-nan": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/vfile-reporter/node_modules/string-width/node_modules/strip-ansi"
+        ],
+        "dependencies": {
+          "ansi-regex": "^2.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/ware/lib",
+          "node_modules/remark/node_modules/ware"
+        ],
+        "dependencies": {
+          "wrap-fn": "^0.1.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/remark/node_modules/ware/node_modules/wrap-fn"
+        ],
+        "dependencies": {
+          "co": "3.1.0"
         }
       },
       {
