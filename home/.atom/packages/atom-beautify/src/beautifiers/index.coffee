@@ -262,13 +262,6 @@ module.exports = class Beautifiers extends EventEmitter
       beautifiers = lang.beautifiers
       optionName = "language_#{lang.namespace}"
 
-      # Check if namespace has already been used
-      if _.has(flatOptions, "#{optionName}_disabled")
-        error = new Error("Language named '#{name}' has an already used namespace #{lang.namespace}.")
-        atom.notifications?.addError(error.message, {
-          stack: error.stack, detail: error.message, dismissable : true})
-        throw error
-
       # Add Language configurations
       flatOptions["#{optionName}_disabled"] = {
         title : "Language Config - #{name} - Disable Beautifying Language"
@@ -308,7 +301,7 @@ module.exports = class Beautifiers extends EventEmitter
     _.filter( @beautifiers, (beautifier) ->
 
       # logger.verbose('beautifier',beautifier, language)
-      _.contains(beautifier.languages, language)
+      _.includes(beautifier.languages, language)
     )
 
   getBeautifierForLanguage : (language) ->

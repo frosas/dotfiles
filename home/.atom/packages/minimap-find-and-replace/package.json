@@ -1,7 +1,7 @@
 {
   "name": "minimap-find-and-replace",
   "main": "./lib/minimap-find-and-replace",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "Minimap bindings for the find and replace package",
   "author": {
     "name": "Cédric Néhémie",
@@ -33,10 +33,10 @@
     "url": "https://github.com/atom-minimap/minimap-find-and-replace/issues"
   },
   "homepage": "https://github.com/atom-minimap/minimap-find-and-replace#readme",
-  "_id": "minimap-find-and-replace@4.4.0",
-  "_shasum": "f8d26fb3538b50d8a73d502f53b337bf46c112cb",
-  "_resolved": "file:../d-115119-38483-bcetxa/package.tgz",
-  "_from": "../d-115119-38483-bcetxa/package.tgz",
+  "_id": "minimap-find-and-replace@4.5.0",
+  "_shasum": "693c7483630ddb5cff31d8f6e0dc066ebc4590f0",
+  "_resolved": "file:../d-11627-3289-3kod12/package.tgz",
+  "_from": "../d-11627-3289-3kod12/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],
