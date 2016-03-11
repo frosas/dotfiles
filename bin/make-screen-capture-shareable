@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -ex
+
+IN=$1
+OUT=${IN%.*}.mp4
+
+ffmpeg -i "$IN" -vcodec libx264 -crf 20 "$OUT"
