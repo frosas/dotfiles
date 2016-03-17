@@ -4,7 +4,7 @@
 
 Adds syntax highlighting and snippets to Groovy files in Atom.
 
-Originally [converted](http://atom.io/docs/latest/converting-a-text-mate-bundle)
+Originally [converted](https://atom.io/docs/latest/hacking-atom-converting-from-textmate)
 from the [groovy.tmbundle](https://github.com/textmate/groovy.tmbundle).
 
 Contributions are *greatly* appreciated. Please fork this repository, open a pull request to add snippets, make grammar tweaks, fix issues, etc.
@@ -17,4 +17,4 @@ apm install language-groovy
 If apm is not recognized, open Atom, open the Atom menu, and select "Install Shell Commands". Then try running the command again.
 
 Contributors:  
-[ChristianMurphy](https://github.com/ChristianMurphy)
+[ChristianMurphy](https://github.com/ChristianMurphy), [bhuddleston42](https://github.com/bhuddleston42), [bakharal](https://github.com/bakharal)
