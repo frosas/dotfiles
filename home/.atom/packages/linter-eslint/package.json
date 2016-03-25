@@ -1,7 +1,7 @@
 {
   "name": "linter-eslint",
   "main": "./lib/main",
-  "version": "7.1.1",
+  "version": "7.1.3",
   "description": "Lint JavaScript on the fly, using ESLint",
   "repository": {
     "type": "git",
@@ -84,10 +84,10 @@
     "url": "https://github.com/AtomLinter/linter-eslint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-eslint#readme",
-  "_id": "linter-eslint@7.1.1",
-  "_shasum": "c1caa72c2258beab7daa8fc52caae65bdaec4089",
-  "_resolved": "file:../d-116212-80902-fgaw7x/package.tgz",
-  "_from": "../d-116212-80902-fgaw7x/package.tgz",
+  "_id": "linter-eslint@7.1.3",
+  "_shasum": "e5c07ad0ebdf931b2f662cf457c05f55b4739e11",
+  "_resolved": "file:../d-116225-4715-dzfagt/package.tgz",
+  "_from": "../d-116225-4715-dzfagt/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -213,7 +213,7 @@
       },
       {
         "name": "readable-stream",
-        "version": "2.0.5",
+        "version": "2.0.6",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/readable.js"
       },
       {
@@ -223,7 +223,7 @@
       },
       {
         "name": "isarray",
-        "version": "0.0.1",
+        "version": "1.0.0",
         "path": "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/index.js"
       },
       {
@@ -353,7 +353,7 @@
       },
       {
         "name": "espree",
-        "version": "3.1.1",
+        "version": "3.1.3",
         "path": "node_modules/eslint/node_modules/espree/espree.js"
       },
       {
@@ -628,7 +628,7 @@
       },
       {
         "name": "figures",
-        "version": "1.4.0",
+        "version": "1.5.0",
         "path": "node_modules/eslint/node_modules/inquirer/node_modules/figures/index.js"
       },
       {
@@ -758,12 +758,12 @@
       },
       {
         "name": "js-yaml",
-        "version": "3.5.4",
+        "version": "3.5.5",
         "path": "node_modules/eslint/node_modules/js-yaml/index.js"
       },
       {
         "name": "argparse",
-        "version": "1.0.6",
+        "version": "1.0.7",
         "path": "node_modules/eslint/node_modules/js-yaml/node_modules/argparse/index.js"
       },
       {
@@ -1298,8 +1298,8 @@
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/lib/_stream_writable.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/core-util-is/test.js",
-        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/build/build.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/isarray/test.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/index.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/process-nextick-args/test.js",
         "node_modules/eslint/node_modules/concat-stream/node_modules/readable-stream/node_modules/string_decoder/index.js",
@@ -3962,7 +3962,7 @@
         "dependencies": {
           "core-util-is": "~1.0.0",
           "inherits": "~2.0.1",
-          "isarray": "0.0.1",
+          "isarray": "~1.0.0",
           "process-nextick-args": "~1.0.6",
           "string_decoder": "~0.10.x",
           "util-deprecate": "~1.0.1"
