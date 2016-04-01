@@ -3,14 +3,16 @@
 import {Emitter} from 'atom';
 import _ from 'underscore-plus';
 import Settings from './settings';
-import DB from './db';
+import fs from 'fs';
+import db from './db';
+import CSON from 'season';
 
 export default class Project {
 
   constructor(props={}) {
     this.props = {};
     this.emitter = new Emitter();
-    this.db = new DB();
+    this.settings = new Settings();
     this.updateProps(props);
     this.lookForUpdates();
   }
@@ -31,8 +33,35 @@ export default class Project {
     };
   }
 
+  get rootPath() {
+    if (this.props.paths[0]) {
+      return this.props.paths[0];
+    }
+
+    return '';
+  }
+
+  get lastModified() {
+    let mtime = 0;
+    try {
+      const stats = fs.statSync(this.rootPath);
+      mtime = stats.mtime;
+    } catch (e) {
+      mtime = new Date(0);
+    }
+
+    return mtime;
+  }
+
   updateProps(props) {
-    this.props = _.deepExtend(this.defaultProps, props);
+    this.props = _.deepExtend({}, this.defaultProps, this.props, props);
+
+    try {
+      const stats = fs.statSync(this.rootPath);
+      this.stats = stats;
+    } catch (e) {
+      this.stats = false;
+    }
   }
 
   getPropsToSave() {
@@ -92,27 +121,22 @@ export default class Project {
 
   lookForUpdates() {
     if (this.props._id) {
-      this.db.setSearchQuery('_id', this.props._id);
-      this.db.onUpdate((props) => {
+      const id = this.props._id;
+      const query = {
+        key: 'paths',
+        value: this.props.paths
+      };
+      db.addUpdater(id, query, (props) => {
         if (props) {
           const updatedProps = _.deepExtend(this.defaultProps, props);
           if (!_.isEqual(this.props, updatedProps)) {
             this.updateProps(props);
             this.emitter.emit('updated');
+
             if (this.isCurrent()) {
               this.load();
             }
           }
-        } else {
-          this.db.setSearchQuery('paths', this.props.paths);
-          this.db.find((props) => {
-            this.updateProps(props);
-            this.db.setSearchQuery('_id', this.props._id);
-            this.emitter.emit('updated');
-            if (this.isCurrent()) {
-              this.load();
-            }
-          });
         }
       });
     }
@@ -120,9 +144,7 @@ export default class Project {
 
   isCurrent() {
     const activePath = atom.project.getPaths()[0];
-    const mainPath = (this.props && this.props.paths && this.props.paths[0])
-      ? this.props.paths[0] : null;
-    if (activePath === mainPath) {
+    if (activePath === this.rootPath) {
       return true;
     }
 
@@ -142,17 +164,45 @@ export default class Project {
 
   load() {
     if (this.isCurrent()) {
-      let projectSettings = new Settings();
-      projectSettings.load(this.props.settings);
+      this.checkForLocalSettings();
+      this.settings.load(this.props.settings);
+    }
+  }
+
+  checkForLocalSettings() {
+    if (this.localSettingsWatcher) {
+      this.localSettingsWatcher.close();
+    }
+
+    if (!this.localSettingsChecked) {
+      this.localSettingsChecked = true;
+      try {
+        const localSettingsFile = `${this.rootPath}/project.cson`;
+        const settings = CSON.readFileSync(localSettingsFile);
+
+        if (settings) {
+          this.localSettingsWatcher = fs.watch(localSettingsFile, () => {
+            this.localSettingsChecked = false;
+
+            if (this.isCurrent()) {
+              this.load();
+            } else {
+              this.checkForLocalSettings();
+            }
+          });
+
+          this.updateProps(settings);
+        }
+      } catch (e) {}
     }
   }
 
   save() {
     if (this.isValid()) {
       if (this.props._id) {
-        this.db.update(this.getPropsToSave());
+        db.update(this.getPropsToSave());
       } else {
-        this.db.add(this.getPropsToSave(), id => {
+        db.add(this.getPropsToSave(), id => {
           this.props._id = id;
           this.lookForUpdates();
         });
@@ -165,7 +215,7 @@ export default class Project {
   }
 
   remove() {
-    this.db.delete(this.props._id);
+    db.delete(this.props._id);
   }
 
   open() {
@@ -179,7 +229,7 @@ export default class Project {
     });
 
     if (closeCurrent) {
-      setTimeout(function() {
+      setTimeout(function () {
         win.close();
       }, 0);
     }

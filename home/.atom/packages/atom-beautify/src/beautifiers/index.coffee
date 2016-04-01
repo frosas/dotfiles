@@ -44,6 +44,7 @@ module.exports = class Beautifiers extends EventEmitter
     'csscomb'
     'gherkin'
     'gofmt'
+    'latex-beautify'
     'fortran-beautifier'
     'js-beautify'
     'jscs'
@@ -51,6 +52,7 @@ module.exports = class Beautifiers extends EventEmitter
     'php-cs-fixer'
     'phpcbf'
     'prettydiff'
+    'pug-beautify'
     'puppet-fix'
     'remark'
     'rubocop'
@@ -129,7 +131,10 @@ module.exports = class Beautifiers extends EventEmitter
         op.key =  field
 
         # Remember Option's Language
-        op.language = lang
+        op.language = {
+          name: lang.name,
+          namespace: lang.namespace
+        }
 
         # Add option
         options[field] = op

@@ -1,6 +1,6 @@
 Dialog = require './dialog'
 Project = require './project'
-Projects = require './projects'
+projects = require './projects'
 path = require 'path'
 
 module.exports =
@@ -10,6 +10,7 @@ class SaveDialog extends Dialog
   constructor: () ->
     firstPath = atom.project.getPaths()[0]
     title = path.basename(firstPath)
+    title = @prettifyTitle(title)
 
     super
       prompt: 'Enter name of project'
@@ -17,7 +18,6 @@ class SaveDialog extends Dialog
       select: true
       iconClass: 'icon-arrow-right'
 
-    projects = new Projects()
     projects.getCurrent (project) =>
       if project.props.paths[0] is firstPath
         @showError "This project is already saved as #{project.props.title}"
@@ -35,3 +35,7 @@ class SaveDialog extends Dialog
       @close()
     else
       @showError('You need to specify a name for the project')
+
+  prettifyTitle: (title) ->
+    title = title.replace(/[^\w\s]/gi, ' ')
+    title = title.charAt(0).toUpperCase() + title.slice(1)
