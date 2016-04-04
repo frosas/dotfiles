@@ -48,7 +48,6 @@
     invisibles: {}
     nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
     showIndentGuide: true
-    showInvisibles: true
     softWrapAtPreferredLineLength: true
     tabLength: 4
     undoGroupingInterval: 50
