@@ -31,6 +31,7 @@
     includeCompletionsFromAllBuffers: true
   "copy-as-rtf": {}
   core:
+    allowPendingPaneItems: false
     audioBeep: false
     disabledPackages: [
       "spell-check"
@@ -47,6 +48,7 @@
     invisibles: {}
     nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
     showIndentGuide: true
+    showInvisibles: true
     softWrapAtPreferredLineLength: true
     tabLength: 4
     undoGroupingInterval: 50

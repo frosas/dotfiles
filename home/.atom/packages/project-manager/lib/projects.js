@@ -19,18 +19,13 @@ class Projects {
   }
 
   getAll(callback) {
-    if (this.projects.length) {
-      callback(this.projects);
-    } else {
-      db.find(projectSettings => {
-        let setting;
-        for (setting of projectSettings) {
-          this.addProject(setting);
-        }
+    db.find(projectSettings => {
+      for (const setting of projectSettings) {
+        this.addProject(setting);
+      }
 
-        callback(this.projects);
-      });
-    }
+      callback(this.projects);
+    });
   }
 
   getCurrent(callback) {
@@ -49,7 +44,7 @@ class Projects {
     for (const project of this.projects) {
       if (project.props._id === settings._id) {
         found = true;
-      } else if (project.props.paths[0] === settings.paths[0]) {
+      } else if (project.rootPath === settings.paths[0]) {
         found = true;
       }
     }

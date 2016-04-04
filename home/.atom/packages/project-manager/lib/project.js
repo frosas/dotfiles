@@ -10,7 +10,7 @@ import CSON from 'season';
 export default class Project {
 
   constructor(props={}) {
-    this.props = {};
+    this.props = this.defaultProps;
     this.emitter = new Emitter();
     this.settings = new Settings();
     this.updateProps(props);
@@ -54,7 +54,26 @@ export default class Project {
   }
 
   updateProps(props) {
-    this.props = _.deepExtend({}, this.defaultProps, this.props, props);
+    const activePaths = atom.project.getPaths();
+    const currentProps = this.props;
+
+    this.props = _.deepExtend({}, currentProps, props);
+
+    if (this.isCurrent()) {
+      // Add any new paths.
+      for (const path of this.props.paths) {
+        if (activePaths.indexOf(path) < 0) {
+          atom.project.addPath(path);
+        }
+      }
+
+      // Remove paths that have been removed.
+      for (const activePath of activePaths) {
+        if (this.props.paths.indexOf(activePath) < 0) {
+          atom.project.removePath(activePath);
+        }
+      }
+    }
 
     try {
       const stats = fs.statSync(this.rootPath);
@@ -128,7 +147,7 @@ export default class Project {
       };
       db.addUpdater(id, query, (props) => {
         if (props) {
-          const updatedProps = _.deepExtend(this.defaultProps, props);
+          const updatedProps = _.deepExtend({}, this.defaultProps, props);
           if (!_.isEqual(this.props, updatedProps)) {
             this.updateProps(props);
             this.emitter.emit('updated');
