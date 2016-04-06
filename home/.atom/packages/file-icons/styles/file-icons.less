@@ -51,10 +51,19 @@
   &[data-name$=".ada"]:before,
   &[data-name$=".adb"]:before,
   &[data-name$=".ads"]:before            { .ada-icon;            .medium-blue; }
+  
+  // Adobe
+  &[data-name$=".ai"]:before             { .ai-icon;           .medium-orange; }
+  &[data-name$=".ait"]:before            { .ai-icon;             .dark-orange; }
+  &[data-name$=".psd"]:before            { .psd-icon;            .medium-blue; }
 
   // APL / Dyalog APL
   &[data-name$=".apl"]:before            { .apl-icon;               .dark-red; }
   &[data-name$=".dyalog"]:before         { .dyalog-icon;       .medium-orange; }
+  
+  // AppleScript
+  &[data-name$=".applescript"]:before,
+  &[data-name$=".scpt"]:before           { .apple-icon;        .medium-purple; }
 
   // AsciiDoc
   &[data-name$=".adoc"]:before,
@@ -74,6 +83,9 @@
 
   // Boot
   &[data-name$="build.boot"]:before      { .boot-icon; }
+
+  // Cakefile
+  &[data-name="Cakefile"]:before         { .cake-icon;            .medium-red; }
 
   // Checklist
   &[data-name$="TODO"]:before            { .checklist-icon;    .medium-yellow; }
@@ -141,6 +153,12 @@
 
   // Elm
   &[data-name$=".elm"]:before            { .elm-icon;            .medium-blue; }
+  
+  // Emacs Lisp
+  &[data-name$=".emacs"]:before,
+  &[data-name$=".emacs.desktop"]:before,
+  &[data-name$=".el"]:before             { .emacs-icon;        .medium-purple; }
+  
 
   // Emblem
   &[data-name$=".emblem"]:before,
@@ -183,8 +201,10 @@
   &[data-name=".lesshintrc"]:before      { .gear-icon;           .dark-yellow; }
   &[data-name=".csscomb.json"]:before    { .gear-icon;         .medium-yellow; }
   &[data-name$=".csslintrc"]:before      { .gear-icon;         .medium-yellow; }
+  &[data-name$=".jsbeautifyrc"]:before   { .gear-icon;         .medium-yellow; }
   &[data-name$=".jshintrc"]:before       { .gear-icon;         .medium-yellow; }
   &[data-name$=".jshintignore"]:before   { .gear-icon;                         }
+  &[data-name$="coffeelintignore"]:before{ .gear-icon;         .medium-maroon; }
   &[data-name$=".jscsrc"]:before         { .gear-icon;         .medium-yellow; }
   &[data-name$=".module"]:before         { .gear-icon;           .medium-blue; }
   &[data-name=".htaccess"]:before        { .gear-icon;            .medium-red; }
@@ -267,7 +287,7 @@
   &[data-name$=".gnuplot"]:before        { .graph-icon;           .medium-red; }
 
   // Go
-  &[data-name$=".go"]:before             { .go-icon; }
+  &[data-name$=".go"]:before             { .go-icon;             .medium-blue; }
   &[data-name$=".gohtml"]:before         { .html5-icon;            .dark-blue; }
 
   // Gradle
@@ -339,8 +359,11 @@
   &[data-name$=".lua"]:before            { .lua-icon;            .medium-blue; }
 
   // Makefile
-  &[data-name*="Makefile"]:before        { .checklist-icon;    .medium-yellow; }
-  &[data-name*="makefile"]:before        { .checklist-icon;    .medium-yellow; }
+  &[data-name^="Makefile"]:before        { .checklist-icon;    .medium-yellow; }
+  &[data-name="GNUmakefile"]:before      { .checklist-icon;     .medium-green; }
+  &[data-name="Kbuild"]:before           { .checklist-icon;      .medium-blue; }
+  &[data-name="makefile"]:before         { .checklist-icon;    .medium-yellow; }
+  &[data-name="mkfile"]:before           { .checklist-icon;    .medium-yellow; }
   &[data-name$=".mk"]:before             { .checklist-icon;    .medium-yellow; }
   &[data-name$=".mak"]:before            { .checklist-icon;    .medium-yellow; }
 
@@ -350,6 +373,7 @@
   &[data-name$=".mkd"]:before,
   &[data-name$=".mkdown"]:before,
   &[data-name$=".rmd"]:before,
+  &[data-name$=".Rmd"]:before,
   &[data-name$=".ron"]:before,
   &[data-name$=".md"]:before             { .markdown-icon;       .medium-blue; }
 
@@ -523,6 +547,9 @@
   &[data-name=".zshrc"]:before           { .terminal-icon;       .medium-blue; }
   &[data-name$=".fish"]:before,
   &[data-name=".fishrc"]:before          { .terminal-icon;      .medium-green; }
+  
+  // Sketch
+  &[data-name$=".sketch"]:before         { .sketch-icon;       .medium-orange; }
 
   // Smarty
   &[data-name$=".tpl"]:before            { .smarty-icon;        .auto(yellow); }
@@ -594,6 +621,9 @@
   &[data-name="apache.conf"]:before      { .apache-icon;          .medium-red; }
   &[data-name="apache2.conf"]:before     { .apache-icon;          .medium-red; }
   &[data-name="httpd.conf"]:before       { .apache-icon;          .medium-red; }
+  
+  // Appveyor
+  &[data-name="appveyor.yml"]:before     { .appveyor-icon;       .medium-blue; }
   
   // Bower
   &[data-name=".bowerrc"]:before         { .bower-icon;                        }

@@ -55,9 +55,9 @@ export default class Project {
 
   updateProps(props) {
     const activePaths = atom.project.getPaths();
-    const currentProps = this.props;
-
-    this.props = _.deepExtend({}, currentProps, props);
+    const newProps = _.clone(this.props);
+    _.deepExtend(newProps, props);
+    this.props = newProps;
 
     if (this.isCurrent()) {
       // Add any new paths.
@@ -147,7 +147,8 @@ export default class Project {
       };
       db.addUpdater(id, query, (props) => {
         if (props) {
-          const updatedProps = _.deepExtend({}, this.defaultProps, props);
+          const updatedProps = this.defaultProps;
+          _.deepExtend(updatedProps, props);
           if (!_.isEqual(this.props, updatedProps)) {
             this.updateProps(props);
             this.emitter.emit('updated');

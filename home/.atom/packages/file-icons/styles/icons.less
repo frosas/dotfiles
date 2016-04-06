@@ -117,30 +117,6 @@
 .vim-icon             { .devicons; content: "\e6c5"; }
 .windows-icon         { .devicons; content: "\e60f"; }
 
-
-// Adjust colour of Go icon depending on theme
-.set-go-bg-color(@c) when (lightness(@c) >= 50%) { background-color: lighten(@mc, 55%); }
-.set-go-bg-color(@c) when (lightness(@c) <  50%) { background-color:  darken(@mc, 55%); }
-
-.go-icon {
-  .devicons;
-  content: "\e624";
-  font-weight: bolder;
-  top: 4px;
-  -webkit-background-clip: text;
-  -webkit-text-stroke-color: transparent;
-  -webkit-text-stroke-width: 0.85px;
-  -webkit-transform: scale(1.15, 1.10);
-  font-size: medium;
-  
-  .set-go-bg-color(@tree-view-background-color);
-  color: @mb;
-  
-  .selected > &:before {
-    -webkit-text-stroke-width: 0 !important;
-  }
-}
-
 .git-icon {
   .devicons;
   content: "\e602";
@@ -170,22 +146,28 @@
 .file-icons         { font-family: "file-icons"; font-size: large; text-align: center; top: 2px; }
 
 .ada-icon           { .file-icons; content: "\e90b"; font-size: 17px; }
+.ai-icon            { .file-icons; content: "\e6b4"; font-size: 15px; }
 .apl-icon           { .file-icons; content: "\e909"; font-size: 15px; }
+.apple-icon         { .file-icons; content: "\e925"; font-size: 15px; }
+.appveyor-icon      { .file-icons; content: "\e923"; font-size: 15px; }
 .asciidoc-icon      { .file-icons; content: "\e918"; font-size: 14px; }
 .babel-icon         { .file-icons; content: "\e91f"; font-size: 15px; top: 3px; left: 2px; }
 .bibtex-icon        { .file-icons; content: "\e601"; font-size: 8px;  top: -2px; .thicken; }
 .boot-icon          { .file-icons; content: "\f103"; left: 2px; }
 .broccoli-icon      { .file-icons; content: "\e922"; font-size: 14px; }
+.cake-icon          { .file-icons; content: "\e924"; font-size: 15px; }
 .cljs-icon          { .file-icons; content: "\f104"; }
 .composer-icon      { .file-icons; content: "\e683"; font-size: 17px; }
 .crystal-icon       { .file-icons; content: "\e902"; font-size: 15px; left: 1px; }
 .docker-icon        { .file-icons; content: "\f106"; }
 .dyalog-icon        { .file-icons; content: "\e90c"; font-size: 14px; left: 1px; }
 .elm-icon           { .file-icons; content: "\f102"; }
+.emacs-icon         { .file-icons; content: "\e926"; font-size: 15px; }
 .eslint-icon        { .file-icons; content: "\e90e"; font-size: 14px; left: 1px; }
 .flow-icon          { .file-icons; content: "\e921"; font-size: 15px; left: 2px; }
 .font-icon          { .file-icons; content: "\e90f"; font-size: 14px; left: 1px; top: -1px; }
 .fortran-icon       { .file-icons; content: "\e90a"; font-size: 14px; left: 1px; top: 1px; }
+.go-icon            { .file-icons; content: "\e624"; font-size: 15px; top: 3px; }
 .gradle-icon        { .file-icons; content: "\e903"; font-size: 14px; top: 1px; }
 .groovy-icon        { .file-icons; content: "\e904"; font-size: 14px; left: -1px; }
 .haml-icon          { .file-icons; content: "\f15b"; font-size: 15px; left: 1px; }
@@ -207,12 +189,14 @@
 .org-icon           { .file-icons; content: "\e917"; font-size: 14px; left: 1px; }
 .php-icon           { .file-icons; content: "\f147"; font-size: 14px; left: 1px; }
 .postcss-icon       { .file-icons; content: "\e910"; font-size: 14px; }
+.psd-icon           { .file-icons; content: "\e6b8"; font-size: 15px; }
 .r-icon             { .file-icons; content: "\e905"; font-size: 13px; left: 0; top: 1px; }
 .raml-icon          { .file-icons; content: "\e913"; font-size: 14px; }
 .react-icon         { .file-icons; content: "\f100"; top: 3px; left: -2px; }
 .riot-icon          { .file-icons; content: "\e919"; font-size: 7px; top: 0; }
 .saltstack-icon     { .file-icons; content: "\e915"; font-size: 14px; }
 .scad-icon          { .file-icons; content: "\e911"; font-size: 14px; }
+.sketch-icon        { .file-icons; content: "\e927"; font-size: 15px; }
 .terraform-icon     { .file-icons; content: "\e916"; font-size: 14px; }
 .tex-icon           { .file-icons; content: "\e600"; font-size: 8px;  top: 0; .thicken; }
 .ts-icon            { .file-icons; content: "\e912"; font-size: 14px; left: -1px; top: 2px; }
