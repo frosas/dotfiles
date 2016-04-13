@@ -120,6 +120,7 @@
     colorStatusIndicatorsInTreeView: true
     showIcons: true
   "vim-mode":
+    useClipboardAsDefaultRegister: false
     useSmartcaseForSearch: true
   welcome:
     showOnStartup: false
