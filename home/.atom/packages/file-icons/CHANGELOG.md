@@ -4,6 +4,26 @@ All notable changes to the project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+[1.7.4] - 2016-04-18
+--------------------
+### Added
+- **New icons:** Ant Build System, Bluespec, Boo, Brainfuck, Bro, ChucK, CLIPS, CMake, Component Pascal, Glade, GNU, Isabelle, Jinja, Mapbox, Stylelint
+- **Support:** AGS, ApacheConf (`.apacheconf`, `.vhost), Befunge, BitBake, BlitzMax, Brightscript, C2hs, Cap'n Proto, COBOL, `.csx`, Extra extensions for C, C++ and Erlang, Haskell `.hsc` files, HTTP, Jenkins, JSONLD, TeX `.aux` files, TopoJSON
+
+### Fixed
+- [[`#296`](https://github.com/DanBrooker/file-icons/issues/296)] Material UI resets size adjustments applied to icons
+
+
+[1.7.3] - 2016-04-17
+--------------------
+### Added
+- **New icons:** ABAP, ActionScript, Alloy, ANTLR, API Blueprint, Arc, Arduino, ATS, Augeas, AutoHotkey, AutoIt, ColdFusion, J, Manual pages, Pascal
+- **Support:** Agda, ASP.net, AspectJ, AWK-scripts, Extra assembly extensions, `.pcss`
+
+### Fixed
+- `_osc` and `PKGBUILD` icons now show icons correctly
+
+
 [1.7.2] - 2016-04-14
 --------------------
 ### Added
@@ -635,7 +655,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Initial release.
 
 
-[Unreleased]: https://github.com/DanBrooker/file-icons/compare/v1.7.2...HEAD
+[Unreleased]: https://github.com/DanBrooker/file-icons/compare/v1.7.4...HEAD
+[1.7.4]:  https://github.com/DanBrooker/file-icons/compare/v1.7.3...v1.7.4
+[1.7.3]:  https://github.com/DanBrooker/file-icons/compare/v1.7.2...v1.7.3
 [1.7.2]:  https://github.com/DanBrooker/file-icons/compare/v1.7.1...v1.7.2
 [1.7.1]:  https://github.com/DanBrooker/file-icons/compare/v1.7.0...v1.7.1
 [1.7.0]:  https://github.com/DanBrooker/file-icons/compare/v1.6.21...v1.7.0
