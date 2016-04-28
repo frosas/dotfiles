@@ -273,7 +273,15 @@ export default class MinimapElement {
       'minimap.absoluteMode': (absoluteMode) => {
         this.absoluteMode = absoluteMode
 
-        return this.classList.toggle('absolute', this.absoluteMode)
+        this.classList.toggle('absolute', this.absoluteMode)
+      },
+
+      'minimap.adjustAbsoluteModeHeight': (adjustAbsoluteModeHeight) => {
+        this.adjustAbsoluteModeHeight = adjustAbsoluteModeHeight
+
+        this.classList.toggle('adjust-absolute-height', this.adjustAbsoluteModeHeight)
+
+        if (this.attached) { this.measureHeightAndWidth() }
       },
 
       'minimap.ignoreWhitespacesInTokens': (ignoreWhitespacesInTokens) => {
@@ -828,6 +836,8 @@ export default class MinimapElement {
       if (!minimap.canScroll()) { this.disposeScrollIndicator() }
     }
 
+    if (this.absoluteMode && this.adjustAbsoluteModeHeight) { this.updateCanvasesSize() }
+
     this.updateCanvas()
     minimap.clearCache()
   }
@@ -897,16 +907,19 @@ export default class MinimapElement {
   measureHeightAndWidth (visibilityChanged, forceUpdate = true) {
     if (!this.minimap) { return }
 
-    const devicePixelRatio = this.minimap.getDevicePixelRatio()
     let wasResized = this.width !== this.clientWidth || this.height !== this.clientHeight
 
     this.height = this.clientHeight
     this.width = this.clientWidth
     let canvasWidth = this.width
 
-    if ((this.minimap != null)) { this.minimap.setScreenHeightAndWidth(this.height, this.width) }
+    if ((this.minimap != null)) {
+      this.minimap.setScreenHeightAndWidth(this.height, this.width)
+    }
 
-    if (wasResized || visibilityChanged || forceUpdate) { this.requestForcedUpdate() }
+    if (wasResized || visibilityChanged || forceUpdate) {
+      this.requestForcedUpdate()
+    }
 
     if (!this.isVisible()) { return }
 
@@ -927,12 +940,23 @@ export default class MinimapElement {
         delete this.flexBasis
       }
 
-      let canvas = this.getFrontCanvas()
-      if (canvasWidth !== canvas.width || this.height !== canvas.height) {
-        this.setCanvasesSize(
-          canvasWidth * devicePixelRatio,
-          (this.height + this.minimap.getLineHeight()) * devicePixelRatio
-        )
+      this.updateCanvasesSize(canvasWidth)
+    }
+  }
+
+  updateCanvasesSize (canvasWidth = this.getFrontCanvas().width) {
+    const devicePixelRatio = this.minimap.getDevicePixelRatio()
+    const maxCanvasHeight = this.height + this.minimap.getLineHeight()
+    const newHeight = this.absoluteMode && this.adjustAbsoluteModeHeight ? Math.min(this.minimap.getHeight(), maxCanvasHeight) : maxCanvasHeight
+    const canvas = this.getFrontCanvas()
+    if (canvasWidth !== canvas.width || newHeight !== canvas.height) {
+      this.setCanvasesSize(
+        canvasWidth * devicePixelRatio,
+        newHeight * devicePixelRatio
+      )
+      if (this.absoluteMode && this.adjustAbsoluteModeHeight) {
+        this.offscreenFirstRow = null
+        this.offscreenLastRow = null
       }
     }
   }
