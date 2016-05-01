@@ -9,5 +9,6 @@
 # .buildpath
 # .project
 
-# PhpStorm
+# IntelliJ
 .idea
+*.iml
