@@ -1,8 +1,7 @@
 "*":
   "atom-beautify":
-    _analyticsUserId: "4a06949d-cca0-4957-b8b7-18a5ac006998"
     general:
-      _analyticsUserId: "11fcca08-9b3c-4ec0-ab6d-b23cf07d43b4"
+      _analyticsUserId: "4a06949d-cca0-4957-b8b7-18a5ac006998"
   "atom-ctags":
     autoBuildTagsWhenActive: true
   "atom-fuzzy-grep":

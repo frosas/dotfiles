@@ -15,14 +15,20 @@ module.exports = ActivatePowerMode =
     @subscriptions.add atom.commands.add "atom-workspace",
       "activate-power-mode:toggle": => @toggle()
 
-    @activeItemSubscription = atom.workspace.onDidChangeActivePaneItem =>
+    @activeItemSubscription = atom.workspace.onDidStopChangingActivePaneItem =>
       @subscribeToActiveTextEditor()
 
-    @subscribeToActiveTextEditor()
-    @setupCanvas()
+    if @getConfig "autoToggle"
+      @toggle()
 
-  destroy: ->
+  deactivate: ->
+    @editorChangeSubscription?.dispose()
     @activeItemSubscription?.dispose()
+    @subscriptions?.dispose()
+    @subscriptions = null
+    @active = false
+    @canvas?.parentNode.removeChild @canvas
+    @canvas = null
 
   getConfig: (config) ->
     atom.config.get "activate-power-mode.#{config}"
@@ -39,13 +45,15 @@ module.exports = ActivatePowerMode =
 
     @editorChangeSubscription?.dispose()
     @editorChangeSubscription = @editor.getBuffer().onDidChange @onChange.bind(this)
-    @canvas.style.display = "block" if @canvas
+
+    @setupCanvas() if not @canvas
+    @editorElement.parentNode.appendChild @canvas
+    @canvas.style.display = "block"
 
   setupCanvas: ->
     @canvas = document.createElement "canvas"
     @context = @canvas.getContext "2d"
     @canvas.classList.add "power-mode-canvas"
-    @editorElement.parentNode.appendChild @canvas
 
   calculateCursorOffset: ->
     editorRect = @editorElement.getBoundingClientRect()
@@ -88,11 +96,12 @@ module.exports = ActivatePowerMode =
     random(min, max, true) * direction
 
   spawnParticles: (range) ->
+    screenPosition = @editor.screenPositionForBufferPosition range
     cursorOffset = @calculateCursorOffset()
 
-    {left, top} = @editor.pixelPositionForScreenPosition range
-    left += cursorOffset.left - @editor.getScrollLeft()
-    top += cursorOffset.top - @editor.getScrollTop()
+    {left, top} = @editorElement.pixelPositionForScreenPosition screenPosition
+    left += cursorOffset.left - @editorElement.getScrollLeft()
+    top += cursorOffset.top - @editorElement.getScrollTop()
 
     color = @getColorAtPosition left, top
     numParticles = random @getConfig("particles.spawnCount.min"), @getConfig("particles.spawnCount.max")
@@ -123,6 +132,8 @@ module.exports = ActivatePowerMode =
 
   drawParticles: ->
     requestAnimationFrame @drawParticles.bind(this) if @active
+    return unless @canvas
+
     @canvas.width = @editorElement.offsetWidth
     @canvas.height = @editorElement.offsetHeight
     gco = @context.globalCompositeOperation

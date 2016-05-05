@@ -1,12 +1,9 @@
 {
   "name": "activate-power-mode",
   "main": "./lib/activate-power-mode",
-  "version": "0.4.1",
+  "version": "0.5.2",
   "description": "Activate POWER MODE to write your code in style.",
   "keywords": [],
-  "activationCommands": {
-    "atom-workspace": "activate-power-mode:toggle"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JoelBesada/activate-power-mode.git"
@@ -30,27 +27,17 @@
     "url": "https://github.com/JoelBesada/activate-power-mode/issues"
   },
   "homepage": "https://github.com/JoelBesada/activate-power-mode#readme",
-  "_id": "activate-power-mode@0.4.1",
-  "_shasum": "789843c394c691010b8ef399b174cb4d8c5ce07d",
-  "_resolved": "file:../d-115118-90656-1otjdyx/package.tgz",
-  "_from": "../d-115118-90656-1otjdyx/package.tgz",
+  "_id": "activate-power-mode@0.5.2",
+  "_shasum": "90494cba611dae866dfcec93e06fa8c64a1cd4f8",
+  "_resolved": "file:../d-11644-60275-tdv5/package.tgz",
+  "_from": "../d-11644-60275-tdv5/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "lodash.random",
-        "version": "3.0.1",
+        "version": "3.1.4",
         "path": "node_modules/lodash.random/index.js"
-      },
-      {
-        "name": "lodash._baserandom",
-        "version": "3.0.1",
-        "path": "node_modules/lodash.random/node_modules/lodash._baserandom/index.js"
-      },
-      {
-        "name": "lodash._isiterateecall",
-        "version": "3.0.9",
-        "path": "node_modules/lodash.random/node_modules/lodash._isiterateecall/index.js"
       },
       {
         "name": "lodash.throttle",
@@ -75,15 +62,11 @@
       ],
       ".js": [
         "node_modules/lodash.random/index.js",
-        "node_modules/lodash.random/node_modules/lodash._baserandom/index.js",
-        "node_modules/lodash.random/node_modules/lodash._isiterateecall/index.js",
         "node_modules/lodash.throttle/index.js",
         "node_modules/lodash.throttle/node_modules/lodash.debounce/index.js",
         "node_modules/lodash.throttle/node_modules/lodash.debounce/node_modules/lodash._getnative/index.js"
       ],
       ".json": [
-        "node_modules/lodash.random/node_modules/lodash._baserandom/package.json",
-        "node_modules/lodash.random/node_modules/lodash._isiterateecall/package.json",
         "node_modules/lodash.random/package.json",
         "node_modules/lodash.throttle/node_modules/lodash.debounce/node_modules/lodash._getnative/package.json",
         "node_modules/lodash.throttle/node_modules/lodash.debounce/package.json",
@@ -100,15 +83,6 @@
         "dependencies": {
           "lodash.random": "^3.0.1",
           "lodash.throttle": "^3.0.4"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/lodash.random"
-        ],
-        "dependencies": {
-          "lodash._baserandom": "^3.0.0",
-          "lodash._isiterateecall": "^3.0.0"
         }
       },
       {

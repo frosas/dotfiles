@@ -1,7 +1,7 @@
 {
   "name": "minimap",
   "main": "./lib/main",
-  "version": "4.23.2",
+  "version": "4.23.3",
   "private": true,
   "description": "A preview of the full source code.",
   "author": {
@@ -92,10 +92,10 @@
     "url": "https://github.com/atom-minimap/minimap/issues"
   },
   "homepage": "https://github.com/atom-minimap/minimap#readme",
-  "_id": "minimap@4.23.2",
-  "_shasum": "9b1debf9b7b412aa9ed2ef10fd96db7095281d4b",
-  "_resolved": "file:../d-116327-36213-151019c/package.tgz",
-  "_from": "../d-116327-36213-151019c/package.tgz",
+  "_id": "minimap@4.23.3",
+  "_shasum": "0abbf19b87a5503d7cba6be084354565f5a6bddf",
+  "_resolved": "file:../d-11644-60296-bftifn/package.tgz",
+  "_from": "../d-11644-60296-bftifn/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
