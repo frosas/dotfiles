@@ -1,0 +1,9 @@
+:size : "t2.medium"
+:run_list : "role[travel-pixel-web]"
+:security_group_ids : "sg-4ace2f25,sg-5bce2f34,sg-85213ae7,sg-58ce2f37"
+:subnet : "subnet-f54e259d"
+:elb_https_certificate_arn: "arn:aws:iam::111248436868:server-certificate/wildcard.trvl-px.com"kdd
+:elb_scheme: "internet-facing"
+:elb:
+  :subnet:  "subnet-55a9bf21"
+  :security_group_ids:  "sg-6b203b09,sg-c0e246a5"

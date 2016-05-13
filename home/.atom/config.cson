@@ -104,6 +104,12 @@
       "text.git-commit"
       "text.plain"
     ]
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
   "todo-show":
     findTheseRegexes: [
       "FIXMEs"
