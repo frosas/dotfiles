@@ -1,3 +1,7 @@
+## 0.8.0 - 2016-05-13
+* Added "Copy to Right" and "Copy to Left" palette commands, which partially adds #14
+* Fixed error when trying to diff using a non-git repo #43
+
 ## 0.7.5 - 2016-04-21
 * Improved highlighting performance
 * Fixed diffing huge files freezes editor #6
