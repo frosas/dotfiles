@@ -33,7 +33,7 @@ prompt_command () {
 
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
     PS1_USER=$([[ "frosas frosasbosque" =~ `whoami` ]] || echo " \[$DARK_GRAY\]\u in")
-    PS1="\[$RESET\]\n$PS1_USER\[$GREEN\]\w$(git_ps1) \[$DARK_GRAY\]»\[$RESET\] "
+    PS1="\[$RESET\]\n$PS1_USER\[$GREEN\]\w$(git_ps1)\n\[$DARK_GRAY\]$\[$RESET\] "
 
     # For anything else we may want to do at every command
     for callback in "${on_prompt[@]}"; do $callback; done
