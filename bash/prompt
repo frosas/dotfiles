@@ -27,8 +27,8 @@ prompt_command () {
         tput bel
     fi
 
-    GIT_PS1_SHOWDIRTYSTATE=1
-    GIT_PS1_SHOWUNTRACKEDFILES=1
+    # GIT_PS1_SHOWDIRTYSTATE=1
+    # GIT_PS1_SHOWUNTRACKEDFILES=1 # It's just too slow in big repos
     GIT_PS1_SHOWSTASHSTATE=1
 
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
