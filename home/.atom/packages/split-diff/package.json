@@ -1,7 +1,7 @@
 {
   "name": "split-diff",
   "main": "./lib/split-diff",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A split pane diff tool.",
   "keywords": [
     "diff",
@@ -38,10 +38,10 @@
     "url": "https://github.com/mupchrch/split-diff/issues"
   },
   "homepage": "https://github.com/mupchrch/split-diff#readme",
-  "_id": "split-diff@0.8.0",
-  "_shasum": "5efdf744db43e49d649a3bcf023ba627a36c5ad6",
-  "_resolved": "file:../d-116413-42510-15xbqbw/package.tgz",
-  "_from": "../d-116413-42510-15xbqbw/package.tgz",
+  "_id": "split-diff@0.8.1",
+  "_shasum": "ccee637a02661c90826cd35bc10135ce39bd5832",
+  "_resolved": "file:../d-116416-19375-1rnibz5/package.tgz",
+  "_from": "../d-116416-19375-1rnibz5/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

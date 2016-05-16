@@ -1,10 +1,82 @@
-:image: "ami-c3a247a2"
-:size : "m4.large"
-:run_list : "role[hopscotch-star]"
-:security_group_ids : "sg-4ace2f25,sg-5bce2f34,sg-85213ae7,sg-58ce2f37"
-:subnet : "subnet-f54e259d"
-:elb_https_certificate_arn:  "arn:aws:iam::111248436868:server-certificate/wildcard.ap-northeast-1.prod.expedia.com"
-:elb_scheme: "internet-facing"
-:elb:
-  :subnet:  "subnet-55a9bf21"
-  :security_group_ids:  "sg-6b203b09,sg-c0e246a5"
+/* eslint-env node */
+
+var cookies = require('./analytics/cookies');
+var util = require('./analytics/util');
+var userIdTracking = require('./analytics/user-id-tracking');
+
+var ANONYMOUS_USER_ID = -1;
+
+exports.processExpUserId = function(appMeasurement) {
+    if (exports._isRealUserExpUserId(appMeasurement.prop13)) {
+        overrideEidCookie(appMeasurement.prop13);
+    } else {
+        appMeasurement.prop13 = cookies.get('eid') || ANONYMOUS_USER_ID;
+    }
+
+    function overrideEidCookie(expUserId) {
+        cookies.set({name: 'eid', value: expUserId, path: '/', expires: getExpiryDate()});
+    }
+
+    function getExpiryDate() {
+        var expiryDate = new Date();
+        expiryDate.setFullYear(expiryDate.getFullYear() + 5);
+        return expiryDate;
+    }
+};
+
+/**
+ * @param {string} domain
+ * @returns {string} The Point of Sale (domain) that identifies `domain` (e.g. 
+ *     www.expedia.com → expedia.com)
+ */
+exports.getPointOfSale = function (domain) {
+    if (domain === 'travel.hotels.com') return domain;
+    var primaryDomain = util.getPrimaryDomain(domain);
+    if (primaryDomain === 'karmalab.net') return domain;
+    if (primaryDomain === 'eurostar.com') return domain;
+    var matches = domain.match(/(^|\.)((thailand|china)\.airasiago\.com$)/);
+    if (matches) return matches[2];
+    return primaryDomain;
+};
+
+/**
+ * @return {string|nully} The site TPID or a nully if none is set or it can't be
+ *     parsed.
+ */
+exports.getTpid = function() {
+    // Based on the implementation seen in many places (e.g. https://opengrok/source/xref/e3/components/platform/products/presentation/test/p02649.main/test/src/com/expedia/e3/platform/presentation/siteid/CookieTestVerifier.java)
+    return (cookies.get('tpid') || '').match(/^v\.1,(.*)/) && RegExp.$1;
+};
+
+/**
+ * @return {string|nully} The site EAPID or a nully if none is set or it can't be
+ *     parsed.
+ */
+exports.getEapid = function() {
+    // Based on https://ewegithub.sb.karmalab.net/EWE/paandi-web/blob/203eca09ef14251638e22c9ac026949617bfaa99/src/main/java/com/expedia/www/paandi/common/logging/EapidTpidSiteValidator.java#L106-L122
+    return (cookies.get('iEAPID') || '').match(/^([^,]+)/) && RegExp.$1;
+};
+
+/**
+ * @return {string|nully} The user GUID (see https://dictionary.exp-tools.net/v/user_guid)
+ *     or a nully if none is set or it can't be parsed.
+ */
+exports.getGuid = function() {
+    return (cookies.get('MC1') || '').match(/^GUID=(.*)/) && RegExp.$1;
+};
+
+/**
+ * Initialization common in all analytics libs
+ */
+exports.init = function() {
+    userIdTracking.track();
+};
+
+/**
+ * @param {string} expUserId
+ * @returns {boolean} Whether the ID represents a real specific user (some IDs,
+ *     like 0 or -1, have other meanings like "anonymous user")
+ */
+exports._isRealUserExpUserId = function(expUserId) {
+    return expUserId > 0;
+};
