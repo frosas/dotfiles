@@ -1,82 +1,68 @@
-/* eslint-env node */
+var type = function(o) {
+    var actualType = Object.prototype.toString.call(o);
+    return actualType.substr(8).replace(']', '');
+};
 
-var cookies = require('./analytics/cookies');
-var util = require('./analytics/util');
-var userIdTracking = require('./analytics/user-id-tracking');
+function undefined(obj) {
+    return (type(obj) == 'Undefined');
+}
 
-var ANONYMOUS_USER_ID = -1;
+var KeyValueTransformer = function(f, k) {
+    var fieldSeparator = f;
+    var kvSeparator = k;
 
-exports.processExpUserId = function(appMeasurement) {
-    if (exports._isRealUserExpUserId(appMeasurement.prop13)) {
-        overrideEidCookie(appMeasurement.prop13);
-    } else {
-        appMeasurement.prop13 = cookies.get('eid') || ANONYMOUS_USER_ID;
+    function toJson(kvpairs) {
+        var json = {};
+        kvpairs.split(fieldSeparator).forEach(function(s) {
+            var kv = s.split(kvSeparator).map(function(s1) {
+                return s1.trim();
+            });
+            json[kv[0]] = kv[1];
+        });
+        return json;
     }
 
-    function overrideEidCookie(expUserId) {
-        cookies.set({name: 'eid', value: expUserId, path: '/', expires: getExpiryDate()});
-    }
-
-    function getExpiryDate() {
-        var expiryDate = new Date();
-        expiryDate.setFullYear(expiryDate.getFullYear() + 5);
-        return expiryDate;
+    this.handle = function(data) {
+        return toJson(data);
     }
 };
 
-/**
- * @param {string} domain
- * @returns {string} The Point of Sale (domain) that identifies `domain` (e.g. 
- *     www.expedia.com → expedia.com)
- */
-exports.getPointOfSale = function (domain) {
-    if (domain === 'travel.hotels.com') return domain;
-    var primaryDomain = util.getPrimaryDomain(domain);
-    if (primaryDomain === 'karmalab.net') return domain;
-    if (primaryDomain === 'eurostar.com') return domain;
-    var matches = domain.match(/(^|\.)((thailand|china)\.airasiago\.com$)/);
-    if (matches) return matches[2];
-    return primaryDomain;
-};
+var kvTransformer = new KeyValueTransformer(';', '=');
+var BloomFilter = require('bloomfilter').BloomFilter;
+var bloom = new BloomFilter(
+    32 * 4096, 16
+);
 
-/**
- * @return {string|nully} The site TPID or a nully if none is set or it can't be
- *     parsed.
- */
-exports.getTpid = function() {
-    // Based on the implementation seen in many places (e.g. https://opengrok/source/xref/e3/components/platform/products/presentation/test/p02649.main/test/src/com/expedia/e3/platform/presentation/siteid/CookieTestVerifier.java)
-    return (cookies.get('tpid') || '').match(/^v\.1,(.*)/) && RegExp.$1;
-};
+var args = require('minimist')(process.argv);
 
-/**
- * @return {string|nully} The site EAPID or a nully if none is set or it can't be
- *     parsed.
- */
-exports.getEapid = function() {
-    // Based on https://ewegithub.sb.karmalab.net/EWE/paandi-web/blob/203eca09ef14251638e22c9ac026949617bfaa99/src/main/java/com/expedia/www/paandi/common/logging/EapidTpidSiteValidator.java#L106-L122
-    return (cookies.get('iEAPID') || '').match(/^([^,]+)/) && RegExp.$1;
-};
+var in_file = args['file'];
+var do_bloom = args['bloom'];
+if (undefined(in_file)) {
+    throw Error('Please check the value of file');
+}
 
-/**
- * @return {string|nully} The user GUID (see https://dictionary.exp-tools.net/v/user_guid)
- *     or a nully if none is set or it can't be parsed.
- */
-exports.getGuid = function() {
-    return (cookies.get('MC1') || '').match(/^GUID=(.*)/) && RegExp.$1;
-};
+var lineReader = require('readline').createInterface({ input: require('fs').createReadStream(in_file) });
 
-/**
- * Initialization common in all analytics libs
- */
-exports.init = function() {
-    userIdTracking.track();
-};
-
-/**
- * @param {string} expUserId
- * @returns {boolean} Whether the ID represents a real specific user (some IDs,
- *     like 0 or -1, have other meanings like "anonymous user")
- */
-exports._isRealUserExpUserId = function(expUserId) {
-    return expUserId > 0;
-};
+lineReader.on('line', function (line) {
+    if (line.trim().length > 0) {
+        try {
+            var obj = JSON.parse(line);
+            var cookie = kvTransformer.handle(decodeURIComponent(obj.reqHdr.cookie));
+            var cesc = cookie.cesc;
+            if (cesc.trim().length != 0) {
+                if (do_bloom) {
+                    if (!bloom.test(cesc)) {
+                        bloom.add(cesc);
+                        console.log(cesc);
+                    }
+                }
+                else {
+                    console.log(cesc);
+                }
+            }
+        }
+        catch (e) {
+            //console.log(e);
+        }
+    }
+});

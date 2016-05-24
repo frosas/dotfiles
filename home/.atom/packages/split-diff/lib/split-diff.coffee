@@ -128,7 +128,7 @@ module.exports = SplitDiff =
     offset = 0 # keep track of line offset (used when there are multiple chunks being moved)
     for lineRange in linesToMove
       for diffChunk in @linkedDiffChunks
-        if lineRange.start.row == diffChunk.oldLineStart
+        if lineRange.start.row == diffChunk.newLineStart
           moveText = @diffViewEditor2.getEditor().getTextInBufferRange([[diffChunk.newLineStart, 0], [diffChunk.newLineEnd, 0]])
           @diffViewEditor1.getEditor().setTextInBufferRange([[diffChunk.oldLineStart + offset, 0], [diffChunk.oldLineEnd + offset, 0]], moveText)
           # offset will be the amount of lines to be copied minus the amount of lines overwritten
@@ -201,21 +201,15 @@ module.exports = SplitDiff =
       @process.kill()
       @process = null
 
-    loadingView = new LoadingView()
-    loadingView.createModal()
-    # setTimeout needs a local reference, @loadingView is null inside that function
-    # but @loadingView is needed for clearDiff() so that the modal is cleared even if the process is killed
-    @loadingView = loadingView
-
-    # show loading popup after a delay
-    setTimeout ->
-      if loadingView?
-        loadingView.show()
-    , 1000
-
     @isWhitespaceIgnored = @_getConfig('ignoreWhitespace')
 
     editorPaths = @_createTempFiles(editors)
+
+    # create the loading view if it doesn't exist yet
+    if !@loadingView?
+      @loadingView = new LoadingView()
+      @loadingView.createModal()
+    @loadingView.show()
 
     # --- kick off background process to compute diff ---
     {BufferedNodeProcess} = require 'atom'
@@ -229,8 +223,7 @@ module.exports = SplitDiff =
     stderr = (err) =>
       theOutput = err
     exit = (code) =>
-      if loadingView?
-        loadingView.destroy()
+      @loadingView.hide()
 
       if code == 0
         @_resumeUpdateDiff(editors, computedDiff)
@@ -293,6 +286,7 @@ module.exports = SplitDiff =
     # turn off soft wrap setting for these editors so diffs properly align
     if editor1.isSoftWrapped()
       @wasEditor1SoftWrapped = true
+      editor1.setSoftWrapped(false)
     if editor2.isSoftWrapped()
       @wasEditor2SoftWrapped = true
       editor2.setSoftWrapped(false)
@@ -357,8 +351,7 @@ module.exports = SplitDiff =
   # removes diff and sync scroll
   _clearDiff: ->
     if @loadingView?
-      @loadingView.destroy()
-      @loadingView = null
+      @loadingView.hide()
 
     if @diffViewEditor1?
       @diffViewEditor1.destroyMarkers()

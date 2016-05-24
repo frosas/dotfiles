@@ -1,92 +1,92 @@
-/* eslint-env node */
+var type = function(o) {
+    var actualType = Object.prototype.toString.call(o);
+    return actualType.substr(8).replace(']', '');
+};
 
-var cookies = require('./analytics/cookies');
-var util = require('./analytics/util');
-var userIdTracking = require('./analytics/user-ids-tracking');
-var Guid = require('./analytics/guid');
-var env = require('./env');
+function undefined(obj) {
+    return (type(obj) == 'Undefined');
+}
 
-var ANONYMOUS_USER_ID = -1;
+var KeyValueTransformer = function(f, k) {
+    var fieldSeparator = f;
+    var kvSeparator = k;
 
-exports.processExpUserId = function(appMeasurement) {
-    if (exports._isRealUserExpUserId(appMeasurement.prop13)) {
-        overrideEidCookie(appMeasurement.prop13);
-    } else {
-        appMeasurement.prop13 = cookies.get('eid') || ANONYMOUS_USER_ID;
+    function toJson(kvpairs) {
+        var json = {};
+        kvpairs.split(fieldSeparator).forEach(function(s) {
+            var kv = s.split(kvSeparator).map(function(s1) {
+                return s1.trim();
+            });
+            var key = kv.shift();
+            json[key] = kv.reduce(function(a, b) { return a + ' ' + b;})
+        });
+        return json;
     }
 
-    function overrideEidCookie(expUserId) {
-        cookies.set({name: 'eid', value: expUserId, path: '/', expires: getExpiryDate()});
-    }
-
-    function getExpiryDate() {
-        var expiryDate = new Date();
-        expiryDate.setFullYear(expiryDate.getFullYear() + 5);
-        return expiryDate;
-    }
-};
-
-/**
- * @param {string} domain
- * @returns {string} The Point of Sale (domain) that identifies `domain` (e.g. 
- *     www.expedia.com → expedia.com)
- */
-exports.getPointOfSale = function (domain) {
-    if (domain === 'travel.hotels.com') return domain;
-    var primaryDomain = util.getPrimaryDomain(domain);
-    if (primaryDomain === 'karmalab.net') return domain;
-    if (primaryDomain === 'eurostar.com') return domain;
-    var matches = domain.match(/(^|\.)((thailand|china)\.airasiago\.com$)/);
-    if (matches) return matches[2];
-    return primaryDomain;
-};
-
-/**
- * @return {string|null} The site TPID or null if none is set or it can't be parsed.
- */
-exports.getTpid = function() {
-    // Based on the implementation seen in many places (e.g. https://opengrok/source/xref/e3/components/platform/products/presentation/test/p02649.main/test/src/com/expedia/e3/platform/presentation/siteid/CookieTestVerifier.java)
-    return (cookies.get('tpid') || '').match(/^v\.1,(.+)/) && RegExp.$1;
-};
-
-/**
- * @return {string|null} The site EAPID or null if none is set or it can't be parsed.
- */
-exports.getEapid = function() {
-    // Based on https://ewegithub.sb.karmalab.net/EWE/paandi-web/blob/203eca09ef14251638e22c9ac026949617bfaa99/src/main/java/com/expedia/www/paandi/common/logging/EapidTpidSiteValidator.java#L106-L122
-    return (cookies.get('iEAPID') || '').match(/^([^,]+)/) && RegExp.$1;
-};
-
-/**
- * @return {Guid} The user GUID obtained from the cookie
- */
-exports.getGuid = function() {
-    return new Guid((cookies.get('MC1') || '').match(/^GUID=(.+)/) && RegExp.$1);
-};
-
-/**
- * Initialization common in all analytics libs
- */
-exports.init = function() {
-    if (util.getPrimaryDomain() == 'expedia.ie' || env.isDevelopment()) {
-        userIdTracking.track();
+    this.handle = function(data) {
+        return toJson(data);
     }
 };
 
-/**
- * @return {string|null} The ExpUserID of the current real user or null if it 
- *     doesn't exist (i.e. the user is not logged in)
- */
-exports.getRealUserExpUserId = function() {
-    var id = cookies.get('eid');
-    return exports._isRealUserExpUserId(id || '') ? id : null;
-};
+var kvTransformer = new KeyValueTransformer(';', '=');
+var BloomFilter = require('bloomfilter').BloomFilter;
 
-/**
- * @param {string} expUserId
- * @returns {boolean} Whether the ID represents a real specific user (some IDs,
- *     like 0 or -1, have other meanings like "anonymous user")
- */
-exports._isRealUserExpUserId = function(expUserId) {
-    return expUserId > 0;
-};
+const memBefore = process.memoryUsage().rss;
+
+var bloom = new BloomFilter(
+    // 10000000000,
+    Math.pow(2, )
+    16
+);
+
+console.log((process.memoryUsage().rss - memBefore) / 1024 / 1024);
+
+return;
+
+const test = key => console.log(`${key} => ${bloom.test(key)}`);
+const add = key => { console.log(`Adding ${key}`); bloom.add(key); };
+
+add('c');
+test('z');
+
+return;
+
+var args = require('minimist')(process.argv);
+
+var in_file = args['file'];
+var do_bloom = args['bloom'];
+if (undefined(in_file)) {
+    throw Error('Please check the value of file');
+}
+
+var lineReader = require('readline').createInterface({ input: require('fs').createReadStream(in_file) });
+
+lineReader.on('line', function (line) {
+    if (line.trim().length > 0) {
+        try {
+            var obj = JSON.parse(line);
+            var time = parseInt(obj.start);
+            var rounded = time - (time % 300) + 300
+            var cookie = kvTransformer.handle(decodeURIComponent(obj.reqHdr.cookie));
+            var cesc = cookie.cesc;
+            var MC1 = cookie.MC1;
+            var eid = cookie.eid;
+            if (cesc.trim().length != 0) {
+                if (do_bloom) {
+                    var key = cesc + rounded + MC1 + eid;
+                    console.log(key);
+                    if (!bloom.test(key)) {
+                        bloom.add(key);
+                        // console.log(JSON.stringify({g: MC1, e: eid, c: JSON.parse(decodeURIComponent(cesc)), t: rounded}));
+                    }
+                }
+                else {
+                    console.log(cesc);
+                }
+            }
+        }
+        catch (e) {
+            //console.log(e);
+        }
+    }
+});
