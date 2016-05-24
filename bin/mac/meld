@@ -2,4 +2,9 @@
 
 # See http://www.alexkras.com/how-to-run-meld-on-mac-os-x-yosemite-without-homebrew-macports-or-think/
 
-exec open -W -a meld --args "$@"
+set -ex
+
+left=$(realpath $1)
+right=$(realpath $2)
+
+open -W -a meld --args "$left" "$right"
