@@ -393,11 +393,11 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>0 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 34 1438 843 0 0 1440 877 </string>
+	<string>-554 902 1018 1438 -554 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 34 1438 843 0 0 1440 877 </string>
+	<string>0 17 1438 860 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>-554 928 1018 1404 -554 900 2560 1440 </string>
+	<string>-554 902 1018 1438 -554 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>0 4 1440 873 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -1124,7 +1124,7 @@
 					<key>parameter</key>
 					<integer>1001</integer>
 					<key>regex</key>
-					<string>^\++ [^ ]+.*</string>
+					<string>DISABLED ^\++ [^ ]+.*</string>
 				</dict>
 				<dict>
 					<key>action</key>
@@ -1248,7 +1248,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-04-29T07:32:13Z</date>
+	<date>2016-05-12T23:56:45Z</date>
 	<key>SUSkippedVersion</key>
 	<string>2.0.0.20141103</string>
 	<key>SavePasteHistory</key>
