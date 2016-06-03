@@ -2,11 +2,13 @@
 
 osascript -e 'set volume 3'
 
-# Shuffling doesn't seem to be random if it's not turned off first
-osascript -e 'tell application "Spotify" to set shuffling to false'
-osascript -e 'tell application "Spotify" to set shuffling to true'
+open 'https://www.youtube.com/watch?v=CD-E-LDc384&list=RDEMAkKpoB62G5Wmtp0nQxfrDg'
 
-osascript -e 'tell application "Spotify" to play track "spotify:user:frosas:starred"'
+# Shuffling doesn't seem to be random if it's not turned off first
+# osascript -e 'tell application "Spotify" to set shuffling to false'
+# osascript -e 'tell application "Spotify" to set shuffling to true'
+
+# osascript -e 'tell application "Spotify" to play track "spotify:user:frosas:starred"'
 
 # Skip the first track as it's always the same
-osascript -e 'tell application "Spotify" to next track'
+# osascript -e 'tell application "Spotify" to next track'
