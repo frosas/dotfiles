@@ -1,68 +1,22 @@
-var type = function(o) {
-    var actualType = Object.prototype.toString.call(o);
-    return actualType.substr(8).replace(']', '');
-};
-
-function undefined(obj) {
-    return (type(obj) == 'Undefined');
+{
+    "time": "2016-05-27T07:04:19.361Z",
+    "level": 30,
+    "msg": "Skipping duplicated message",
+    "hostname": "ip-10-0-85-82",
+    "message": {
+        "xdid": "83b26957-51a9-4c5b-9a53-e8abcb734ff6",
+        "guid": "10b91625-dd28-4eee-9127-594d940b063a",
+        "tpid": "29",
+        "eapid": "40743",
+        "expUserId": "40864731",
+        "amcv": "28177812234694662850726743031253937758",
+        "inAuthId": "4e040367-43ec-444a-9a25-1e87ca02fb8e",
+        "path": "/pix.gif",
+        "useragent": "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko",
+        "referrer": "https://www.expedia.co.nz/Fiji-Hotels-Sheraton-Denarau-Villas.h601409.Hotel-Information?chkin=14/07/2016&chkout=21/07/2016&rm1=a2:c8:c5&hwrqCacheKey=10b91625-dd28-4eee-9127-594d940b063aHWRQ1464308771148&c=5eb1a7b7-bb26-4255-813c-d079a015c124&",
+        "time": "2016-05-27T02:25:47+00:00"
+    },
+    "name": "app",
+    "pid": 2685,
+    "v": 0
 }
-
-var KeyValueTransformer = function(f, k) {
-    var fieldSeparator = f;
-    var kvSeparator = k;
-
-    function toJson(kvpairs) {
-        var json = {};
-        kvpairs.split(fieldSeparator).forEach(function(s) {
-            var kv = s.split(kvSeparator).map(function(s1) {
-                return s1.trim();
-            });
-            json[kv[0]] = kv[1];
-        });
-        return json;
-    }
-
-    this.handle = function(data) {
-        return toJson(data);
-    }
-};
-
-var kvTransformer = new KeyValueTransformer(';', '=');
-var BloomFilter = require('bloomfilter').BloomFilter;
-var bloom = new BloomFilter(
-    32 * 4096, 16
-);
-
-var args = require('minimist')(process.argv);
-
-var in_file = args['file'];
-var do_bloom = args['bloom'];
-if (undefined(in_file)) {
-    throw Error('Please check the value of file');
-}
-
-var lineReader = require('readline').createInterface({ input: require('fs').createReadStream(in_file) });
-
-lineReader.on('line', function (line) {
-    if (line.trim().length > 0) {
-        try {
-            var obj = JSON.parse(line);
-            var cookie = kvTransformer.handle(decodeURIComponent(obj.reqHdr.cookie));
-            var cesc = cookie.cesc;
-            if (cesc.trim().length != 0) {
-                if (do_bloom) {
-                    if (!bloom.test(cesc)) {
-                        bloom.add(cesc);
-                        console.log(cesc);
-                    }
-                }
-                else {
-                    console.log(cesc);
-                }
-            }
-        }
-        catch (e) {
-            //console.log(e);
-        }
-    }
-});

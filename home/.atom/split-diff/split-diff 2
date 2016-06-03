@@ -1,92 +1,23 @@
-var type = function(o) {
-    var actualType = Object.prototype.toString.call(o);
-    return actualType.substr(8).replace(']', '');
-};
-
-function undefined(obj) {
-    return (type(obj) == 'Undefined');
+{
+    "time": "2016-05-27T07:03:56.107Z",
+    "level": 30,
+    "msg": "Consuming message",
+    "hostname": "ip-10-0-85-82",
+    "message": {
+        "xdid": "83b26957-51a9-4c5b-9a53-e8abcb734ff6",
+        "guid": "10b91625-dd28-4eee-9127-594d940b063a",
+        "tpid": "29",
+        "eapid": "40743",
+        "expUserId": "40864731",
+        "amcv": "28177812234694662850726743031253937758",
+        "inAuthId": "4e040367-43ec-444a-9a25-1e87ca02fb8e",
+        "path": "/pix.gif",
+        "useragent": "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko",
+        "referrer": "https://www.expedia.co.nz/HotelCheckout?tripid=29aeed61-7d58-4875-9689-9bdd8372552e&c=611ea856-9fcb-4a52-87f4-a59f80801e82&rfrr=placeHolder",
+        "time": "2016-05-27T02:24:27+00:00"
+    },
+    "name": "app",
+    "component": "kafka-consumer",
+    "pid": 2685,
+    "v": 0
 }
-
-var KeyValueTransformer = function(f, k) {
-    var fieldSeparator = f;
-    var kvSeparator = k;
-
-    function toJson(kvpairs) {
-        var json = {};
-        kvpairs.split(fieldSeparator).forEach(function(s) {
-            var kv = s.split(kvSeparator).map(function(s1) {
-                return s1.trim();
-            });
-            var key = kv.shift();
-            json[key] = kv.reduce(function(a, b) { return a + ' ' + b;})
-        });
-        return json;
-    }
-
-    this.handle = function(data) {
-        return toJson(data);
-    }
-};
-
-var kvTransformer = new KeyValueTransformer(';', '=');
-var BloomFilter = require('bloomfilter').BloomFilter;
-
-const memBefore = process.memoryUsage().rss;
-
-var bloom = new BloomFilter(
-    // 10000000000,
-    Math.pow(2, )
-    16
-);
-
-console.log((process.memoryUsage().rss - memBefore) / 1024 / 1024);
-
-return;
-
-const test = key => console.log(`${key} => ${bloom.test(key)}`);
-const add = key => { console.log(`Adding ${key}`); bloom.add(key); };
-
-add('c');
-test('z');
-
-return;
-
-var args = require('minimist')(process.argv);
-
-var in_file = args['file'];
-var do_bloom = args['bloom'];
-if (undefined(in_file)) {
-    throw Error('Please check the value of file');
-}
-
-var lineReader = require('readline').createInterface({ input: require('fs').createReadStream(in_file) });
-
-lineReader.on('line', function (line) {
-    if (line.trim().length > 0) {
-        try {
-            var obj = JSON.parse(line);
-            var time = parseInt(obj.start);
-            var rounded = time - (time % 300) + 300
-            var cookie = kvTransformer.handle(decodeURIComponent(obj.reqHdr.cookie));
-            var cesc = cookie.cesc;
-            var MC1 = cookie.MC1;
-            var eid = cookie.eid;
-            if (cesc.trim().length != 0) {
-                if (do_bloom) {
-                    var key = cesc + rounded + MC1 + eid;
-                    console.log(key);
-                    if (!bloom.test(key)) {
-                        bloom.add(key);
-                        // console.log(JSON.stringify({g: MC1, e: eid, c: JSON.parse(decodeURIComponent(cesc)), t: rounded}));
-                    }
-                }
-                else {
-                    console.log(cesc);
-                }
-            }
-        }
-        catch (e) {
-            //console.log(e);
-        }
-    }
-});
