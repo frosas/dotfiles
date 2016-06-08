@@ -15,7 +15,7 @@
 '.source.js':
     'var … = require(\'…\');':
         'prefix': 'require'
-        'body': 'var $1$2 = require(\'$1\');'
+        'body': 'const $1$2 = require(\'$1\');'
     'function(…) {…}':
         'prefix': 'f'
         'body': 'function($1) {$2}$3'
