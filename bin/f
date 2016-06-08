@@ -4,4 +4,4 @@
 
 query="$1"
 shift
-find . -ipath "*$query*" "$@"
+find . -type f -ipath "*$query*" "$@"
