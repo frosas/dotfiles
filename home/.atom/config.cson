@@ -37,7 +37,6 @@
     disabledPackages: [
       "spell-check"
       "whitespace"
-      "tree-view-git-modified"
     ]
     themes: [
       "atom-dark-ui"
