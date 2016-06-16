@@ -81,7 +81,11 @@ export default class LinterViews {
     for (let message of editorLinter.messages) {
       if (message.range && message.range.containsPoint(point)) {
         this.bubbleRange = Range.fromObject([point, point])
-        this.bubble = editorLinter.editor.markBufferRange(this.bubbleRange, {invalidate: 'never'})
+        this.bubble = editorLinter.editor.markBufferRange(this.bubbleRange, {invalidate: 'inside'})
+        this.bubble.onDidDestroy(() => {
+          this.bubble = null
+          this.bubbleRange = null
+        })
         editorLinter.editor.decorateMarker(this.bubble, {
           type: 'overlay',
           item: createBubble(message)
@@ -94,7 +98,6 @@ export default class LinterViews {
   removeBubble() {
     if (this.bubble) {
       this.bubble.destroy()
-      this.bubble = null
     }
   }
   notifyEditorLinters({added, removed}) {

@@ -1,6 +1,6 @@
 {
   "name": "linter-htmlhint",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "private": true,
   "description": "A plugin for Atom Linter providing an interface to HTMLHint.",
   "main": "lib/index.js",
@@ -12,7 +12,8 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "scripts": {
-    "test": "eslint ."
+    "test": "apm test",
+    "lint": "eslint ."
   },
   "keywords": [
     "html",
@@ -25,14 +26,16 @@
   },
   "homepage": "https://github.com/AtomLinter/linter-htmlhint#readme",
   "dependencies": {
-    "atom-linter": "^4.6.1",
+    "atom-linter": "^5.0.2",
     "atom-package-deps": "^4.0.1",
-    "htmlhint": "~0.9.12"
+    "htmlhint": "0.9.12",
+    "strip-json-comments": "^2.0.1",
+    "tiny-promisify": "^0.1.1"
   },
   "devDependencies": {
-    "eslint": "^2.8.0",
-    "eslint-config-airbnb-base": "^1.0.0",
-    "eslint-plugin-import": "^1.5.0"
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.7.0"
   },
   "eslintConfig": {
     "rules": {
@@ -71,16 +74,16 @@
   },
   "readme": "# linter-htmlhint\n\nA plugin for [Linter] providing an interface to [HTMLHint]. It will be\nused with files that have the syntax.\n\n## Installation\n\nThe [Linter] package will be installed for you to provide an interface to this package. If you are using an alternative debugging interface that supports linter plugins simply disable [Linter].\n\n```ShellSession\n$ apm install linter-htmlhint\n```\n\n## Config\n\nThis plugin will search for a [HTMLHint] configuration file called `.htmlhintrc` and use that file if it exists in any parent folder. It will stop at the first `.htmlhintrc` file found.\n\n## Settings\n\nYou can configure `linter-htmlhint` in Atom's Settings.\n\n[linter]: https://github.com/atom-community/linter \"Linter\"\n[HTMLHint]: https://github.com/yaniswang/HTMLHint \"HTMLHint\"\n",
   "readmeFilename": "README.md",
-  "_id": "linter-htmlhint@1.1.4",
-  "_shasum": "15ed62b74aa901cc0fbf06e4a1630f4ef97619ea",
-  "_resolved": "file:../d-116323-10341-1ymy3g8/package.tgz",
-  "_from": "../d-116323-10341-1ymy3g8/package.tgz",
+  "_id": "linter-htmlhint@1.2.0",
+  "_shasum": "4333a4b30ee6318303f717ff745adc15cbe0f632",
+  "_resolved": "file:../d-116516-30319-1eixa5d/package.tgz",
+  "_from": "../d-116516-30319-1eixa5d/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "atom-linter",
-        "version": "4.7.0",
+        "version": "5.0.2",
         "path": "node_modules/atom-linter/lib/index.js"
       },
       {
@@ -90,18 +93,13 @@
       },
       {
         "name": "sb-exec",
-        "version": "1.0.5",
+        "version": "2.0.4",
         "path": "node_modules/atom-linter/node_modules/sb-exec/lib/index.js"
       },
       {
         "name": "consistent-env",
-        "version": "1.1.2",
+        "version": "1.2.0",
         "path": "node_modules/atom-linter/node_modules/sb-exec/node_modules/consistent-env/lib/index.js"
-      },
-      {
-        "name": "extify",
-        "version": "1.0.0",
-        "path": "node_modules/atom-linter/node_modules/sb-exec/node_modules/extify/lib/index.js"
       },
       {
         "name": "sb-npm-path",
@@ -180,12 +178,12 @@
       },
       {
         "name": "inflight",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/inflight/inflight.js"
       },
       {
         "name": "wrappy",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js"
       },
       {
@@ -200,12 +198,12 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.3",
+        "version": "1.1.5",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
         "name": "balanced-match",
-        "version": "0.3.0",
+        "version": "0.4.1",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
       },
       {
@@ -220,7 +218,7 @@
       },
       {
         "name": "wrappy",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js"
       },
       {
@@ -355,12 +353,12 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.3",
+        "version": "1.1.5",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
         "name": "balanced-match",
-        "version": "0.3.0",
+        "version": "0.4.1",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
       },
       {
@@ -412,6 +410,16 @@
         "name": "xml",
         "version": "1.0.0",
         "path": "node_modules/htmlhint/node_modules/xml/lib/xml.js"
+      },
+      {
+        "name": "strip-json-comments",
+        "version": "2.0.1",
+        "path": "node_modules/strip-json-comments/index.js"
+      },
+      {
+        "name": "tiny-promisify",
+        "version": "0.1.1",
+        "path": "node_modules/tiny-promisify/index.js"
       }
     ],
     "extensions": {
@@ -426,8 +434,6 @@
         "node_modules/atom-linter/node_modules/sb-exec/lib/types.js",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/consistent-env/lib/helpers.js",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/consistent-env/lib/index.js",
-        "node_modules/atom-linter/node_modules/sb-exec/node_modules/extify/lib/helpers.js",
-        "node_modules/atom-linter/node_modules/sb-exec/node_modules/extify/lib/index.js",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/sb-npm-path/lib/helpers.js",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/sb-npm-path/lib/index.js",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/sb-npm-path/node_modules/sb-memoize/lib/index.js",
@@ -467,14 +473,11 @@
         "node_modules/htmlhint/node_modules/glob/glob.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/inflight/inflight.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js",
-        "node_modules/htmlhint/node_modules/glob/node_modules/inflight/test.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/inherits/inherits.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/inherits/inherits_browser.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/inherits/test.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/minimatch.js",
-        "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/example.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/index.js",
-        "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/example.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/example/map.js",
         "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js",
@@ -961,9 +964,7 @@
         "node_modules/htmlhint/node_modules/jshint/node_modules/lodash/utility.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/browser.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/minimatch.js",
-        "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/example.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/index.js",
-        "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/example.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/example/map.js",
         "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js",
@@ -1025,14 +1026,14 @@
         "node_modules/htmlhint/node_modules/xml/examples/examples.js",
         "node_modules/htmlhint/node_modules/xml/examples/server.js",
         "node_modules/htmlhint/node_modules/xml/lib/escapeForXML.js",
-        "node_modules/htmlhint/node_modules/xml/lib/xml.js"
+        "node_modules/htmlhint/node_modules/xml/lib/xml.js",
+        "node_modules/strip-json-comments/index.js",
+        "node_modules/tiny-promisify/index.js"
       ],
       ".json": [
         "node_modules/atom-linter/node_modules/named-js-regexp/package.json",
         "node_modules/atom-linter/node_modules/sb-exec/.eslintrc.json",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/consistent-env/package.json",
-        "node_modules/atom-linter/node_modules/sb-exec/node_modules/extify/.eslintrc.json",
-        "node_modules/atom-linter/node_modules/sb-exec/node_modules/extify/package.json",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/sb-npm-path/.eslintrc.json",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/sb-npm-path/node_modules/sb-memoize/.eslintrc.json",
         "node_modules/atom-linter/node_modules/sb-exec/node_modules/sb-npm-path/node_modules/sb-memoize/package.json",
@@ -1111,6 +1112,8 @@
         "node_modules/htmlhint/node_modules/strip-json-comments/package.json",
         "node_modules/htmlhint/node_modules/xml/package.json",
         "node_modules/htmlhint/package.json",
+        "node_modules/strip-json-comments/package.json",
+        "node_modules/tiny-promisify/package.json",
         "package.json"
       ],
       ".coffee": [
@@ -1125,9 +1128,11 @@
           "spec"
         ],
         "dependencies": {
-          "atom-linter": "^4.6.1",
+          "atom-linter": "^5.0.2",
           "atom-package-deps": "^4.0.1",
-          "htmlhint": "~0.9.12"
+          "htmlhint": "0.9.12",
+          "strip-json-comments": "^2.0.1",
+          "tiny-promisify": "^0.1.1"
         }
       },
       {
@@ -1137,7 +1142,7 @@
         ],
         "dependencies": {
           "named-js-regexp": "^1.3.1",
-          "sb-exec": "^1.0.4",
+          "sb-exec": "^2.0.4",
           "sb-promisify": "^1.0.0",
           "tmp": "~0.0.28"
         }
@@ -1148,8 +1153,7 @@
           "node_modules/atom-linter/node_modules/sb-exec/lib"
         ],
         "dependencies": {
-          "consistent-env": "^1.0.1",
-          "extify": "^1.0.0",
+          "consistent-env": "^1.2.0",
           "sb-npm-path": "^1.0.0"
         }
       },
@@ -1254,7 +1258,7 @@
           "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion"
         ],
         "dependencies": {
-          "balanced-match": "^0.3.0",
+          "balanced-match": "^0.4.1",
           "concat-map": "0.0.1"
         }
       },
@@ -1401,7 +1405,7 @@
           "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion"
         ],
         "dependencies": {
-          "balanced-match": "^0.3.0",
+          "balanced-match": "^0.4.1",
           "concat-map": "0.0.1"
         }
       },

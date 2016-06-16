@@ -37,6 +37,7 @@
     disabledPackages: [
       "spell-check"
       "whitespace"
+      "graphviz-preview"
     ]
     themes: [
       "atom-dark-ui"

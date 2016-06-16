@@ -4,7 +4,7 @@
   "author": {
     "name": "atom-community"
   },
-  "version": "1.11.8",
+  "version": "1.11.10",
   "description": "A Base Linter with Cow Powers",
   "repository": {
     "type": "git",
@@ -51,10 +51,10 @@
     "url": "https://github.com/atom-community/linter/issues"
   },
   "homepage": "https://github.com/atom-community/linter#readme",
-  "_id": "linter@1.11.8",
-  "_shasum": "a5dddaebc5e5836dff35d798d5b26efdadab3fe6",
-  "_resolved": "file:../d-116511-621-2839ea/package.tgz",
-  "_from": "../d-116511-621-2839ea/package.tgz",
+  "_id": "linter@1.11.10",
+  "_shasum": "4f68617d0f3a133601c8eed581787459b8a0f9ba",
+  "_resolved": "file:../d-116516-30315-gafudn/package.tgz",
+  "_from": "../d-116516-30315-gafudn/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -70,7 +70,7 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.4",
+        "version": "1.1.5",
         "path": "node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
@@ -120,7 +120,6 @@
         "node_modules/interact.js/dist/interact.min.js",
         "node_modules/interact.js/interact.js",
         "node_modules/minimatch/minimatch.js",
-        "node_modules/minimatch/node_modules/brace-expansion/example.js",
         "node_modules/minimatch/node_modules/brace-expansion/index.js",
         "node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js",
         "node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/example/map.js",
