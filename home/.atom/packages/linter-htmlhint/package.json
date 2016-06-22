@@ -1,6 +1,6 @@
 {
   "name": "linter-htmlhint",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "A plugin for Atom Linter providing an interface to HTMLHint.",
   "main": "lib/index.js",
@@ -28,7 +28,7 @@
   "dependencies": {
     "atom-linter": "^5.0.2",
     "atom-package-deps": "^4.0.1",
-    "htmlhint": "0.9.12",
+    "htmlhint": "0.9.13",
     "strip-json-comments": "^2.0.1",
     "tiny-promisify": "^0.1.1"
   },
@@ -74,10 +74,10 @@
   },
   "readme": "# linter-htmlhint\n\nA plugin for [Linter] providing an interface to [HTMLHint]. It will be\nused with files that have the syntax.\n\n## Installation\n\nThe [Linter] package will be installed for you to provide an interface to this package. If you are using an alternative debugging interface that supports linter plugins simply disable [Linter].\n\n```ShellSession\n$ apm install linter-htmlhint\n```\n\n## Config\n\nThis plugin will search for a [HTMLHint] configuration file called `.htmlhintrc` and use that file if it exists in any parent folder. It will stop at the first `.htmlhintrc` file found.\n\n## Settings\n\nYou can configure `linter-htmlhint` in Atom's Settings.\n\n[linter]: https://github.com/atom-community/linter \"Linter\"\n[HTMLHint]: https://github.com/yaniswang/HTMLHint \"HTMLHint\"\n",
   "readmeFilename": "README.md",
-  "_id": "linter-htmlhint@1.2.0",
-  "_shasum": "4333a4b30ee6318303f717ff745adc15cbe0f632",
-  "_resolved": "file:../d-116516-30319-1eixa5d/package.tgz",
-  "_from": "../d-116516-30319-1eixa5d/package.tgz",
+  "_id": "linter-htmlhint@1.2.1",
+  "_shasum": "2b03acde1e515039b744c12435057c72e5a9796c",
+  "_resolved": "file:../d-116522-79323-1viagzf/package.tgz",
+  "_from": "../d-116522-79323-1viagzf/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -143,7 +143,7 @@
       },
       {
         "name": "htmlhint",
-        "version": "0.9.12",
+        "version": "0.9.13",
         "path": "node_modules/htmlhint/index.js"
       },
       {
@@ -193,7 +193,7 @@
       },
       {
         "name": "minimatch",
-        "version": "3.0.0",
+        "version": "3.0.2",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/minimatch.js"
       },
       {
@@ -447,6 +447,14 @@
         "node_modules/atom-package-deps/node_modules/atom-package-path/lib/index.js",
         "node_modules/atom-package-deps/node_modules/atom-package-path/node_modules/sb-callsite/lib/main.js",
         "node_modules/htmlhint/Gruntfile.js",
+        "node_modules/htmlhint/bin/formatter.js",
+        "node_modules/htmlhint/bin/formatters/checkstyle.js",
+        "node_modules/htmlhint/bin/formatters/compact.js",
+        "node_modules/htmlhint/bin/formatters/default.js",
+        "node_modules/htmlhint/bin/formatters/json.js",
+        "node_modules/htmlhint/bin/formatters/junit.js",
+        "node_modules/htmlhint/bin/formatters/markdown.js",
+        "node_modules/htmlhint/bin/formatters/unix.js",
         "node_modules/htmlhint/index.js",
         "node_modules/htmlhint/lib/htmlhint.js",
         "node_modules/htmlhint/node_modules/async/lib/async.js",
@@ -1027,6 +1035,7 @@
         "node_modules/htmlhint/node_modules/xml/examples/server.js",
         "node_modules/htmlhint/node_modules/xml/lib/escapeForXML.js",
         "node_modules/htmlhint/node_modules/xml/lib/xml.js",
+        "node_modules/htmlhint/test.js",
         "node_modules/strip-json-comments/index.js",
         "node_modules/tiny-promisify/index.js"
       ],
@@ -1130,7 +1139,7 @@
         "dependencies": {
           "atom-linter": "^5.0.2",
           "atom-package-deps": "^4.0.1",
-          "htmlhint": "0.9.12",
+          "htmlhint": "0.9.13",
           "strip-json-comments": "^2.0.1",
           "tiny-promisify": "^0.1.1"
         }
@@ -1201,6 +1210,8 @@
       {
         "paths": [
           "node_modules/htmlhint",
+          "node_modules/htmlhint/bin",
+          "node_modules/htmlhint/bin/formatters",
           "node_modules/htmlhint/lib"
         ],
         "dependencies": {
