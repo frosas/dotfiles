@@ -1,23 +1,110 @@
-{
-    "time": "2016-05-27T07:03:56.107Z",
-    "level": 30,
-    "msg": "Consuming message",
-    "hostname": "ip-10-0-85-82",
-    "message": {
-        "xdid": "83b26957-51a9-4c5b-9a53-e8abcb734ff6",
-        "guid": "10b91625-dd28-4eee-9127-594d940b063a",
-        "tpid": "29",
-        "eapid": "40743",
-        "expUserId": "40864731",
-        "amcv": "28177812234694662850726743031253937758",
-        "inAuthId": "4e040367-43ec-444a-9a25-1e87ca02fb8e",
-        "path": "/pix.gif",
-        "useragent": "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko",
-        "referrer": "https://www.expedia.co.nz/HotelCheckout?tripid=29aeed61-7d58-4875-9689-9bdd8372552e&c=611ea856-9fcb-4a52-87f4-a59f80801e82&rfrr=placeHolder",
-        "time": "2016-05-27T02:24:27+00:00"
-    },
-    "name": "app",
-    "component": "kafka-consumer",
-    "pid": 2685,
-    "v": 0
-}
+/* eslint-env node */
+
+var util = require('./util');
+var collector = require('../collector');
+
+var debounce = function(duration, callback) {
+    var timeoutId;
+    var latestArguments;
+    return function() {
+        var _this = this;
+        latestArguments = arguments;
+        if (!timeoutId) {
+            timeoutId = setTimeout(function() {
+                timeoutId = null;
+                callback.apply(_this, latestArguments);
+            }, duration);
+        }
+    };
+};
+
+var Tracker = module.exports = function() {
+    var tracker = this;
+    
+    this._elementsFound = [];
+    this._trackedEventsKeys = {}; // Used as a set
+    this._batchedEvents = [];
+    
+    this._onElementFound(function(element) {
+        tracker._elementsFound.push(element);
+        // element.domElement.style.opacity = '0.3';
+        tracker._trackElementImpressionIfVisible(element);
+        var domElement = element.domElement;
+        domElement.addEventListener('click', function() {
+            tracker._track({action: 'click', element: element});
+        });
+        domElement.addEventListener('mouseenter', debounce(500, function() {
+            tracker._track({action: 'hover', element: element});
+        }));
+    });
+    
+    var trackVisibleElementsDebounced = debounce(1000, function() {
+        util.map(tracker._elementsFound, function(element) {
+            tracker._trackElementImpressionIfVisible(element);
+        });
+    });
+    addEventListener('scroll', trackVisibleElementsDebounced);
+    addEventListener('resize', trackVisibleElementsDebounced);
+};
+
+Tracker.prototype._onElementFound = function(onElementFound) {
+    util.map(document.querySelectorAll('.flex-module'), function(el) {
+        onElementFound({id: el.id, domElement: el});
+    });
+    
+    (function _findSearchWizard() {
+        var el = document.querySelector('#new-homepage-search-wizard');
+        if (el) {
+            onElementFound({id: el.id, domElement: el});
+        } else {
+            setTimeout(_findSearchWizard, 1000);
+        }
+    })();
+};
+
+Tracker.prototype._trackElementImpressionIfVisible = function(element) {
+    if (elementInViewport(element.domElement)) {
+        this._track({action: 'view', element: element});
+    }
+};
+
+Tracker.prototype._track = function(event) {
+    var tracker = this;
+    this._trackOnce(event, function _onFirstTrack() {
+        tracker._batchedEvents.push(event);
+        tracker._sendBatchDebounced();
+    });
+};
+
+Tracker.prototype._sendBatchDebounced = debounce(500, function() {
+    collector.send({
+        topic: 'travelerEngagement',
+        persist: true,
+        data: {
+            url: location.href,
+            regionId: util.get(window, 'utag_data.pageInfo.omnitureInfo.destination'),
+            events: util.map(this._batchedEvents, function(event) {
+                return {action: event.action, elementId: event.element.id};
+            })
+        }
+    });
+    this._batchedEvents = [];
+});
+
+Tracker.prototype._trackOnce = function(event, onFirstTrack) {
+    var key = [event.action, event.element.id].join(',');
+    if (key in this._trackedEventsKeys) return;
+    onFirstTrack();
+    this._trackedEventsKeys[key] = null;
+};
+
+// See http://stackoverflow.com/a/26039199/337172
+var elementInViewport = function(element) {
+    var rect = element.getBoundingClientRect();
+    return (
+        rect.top <= document.documentElement.clientHeight &&
+        rect.left <= document.documentElement.clientWidth && 
+        rect.top + rect.height >= 0 &&
+        rect.left + rect.width >= 0
+    );
+};
