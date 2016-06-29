@@ -87,7 +87,11 @@ class CompletionProvider {
       filterPrefix = '';
     }
 
-    const lookupDirname = path.resolve(dirname, prefix).replace(new RegExp(`${filterPrefix}$`), '');
+    const includeExtension = atom.config.get('autocomplete-modules.includeExtension');
+    let lookupDirname = path.resolve(dirname, prefix);
+    if (filterPrefix) {
+      lookupDirname = lookupDirname.replace(new RegExp(`${escapeRegExp(filterPrefix)}$`), '');
+    }
 
     return readdir(lookupDirname).catch((e) => {
       if (e.code !== 'ENOENT') {
@@ -98,7 +102,7 @@ class CompletionProvider {
     }).filter(
       (filename) => filename[0] !== '.'
     ).map((pathname) => ({
-      text: this.normalizeLocal(pathname),
+      text: includeExtension ? pathname : this.normalizeLocal(pathname),
       displayText: pathname,
       type: 'package'
     })).then(

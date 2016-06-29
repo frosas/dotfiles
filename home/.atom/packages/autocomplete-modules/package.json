@@ -1,7 +1,7 @@
 {
   "name": "autocomplete-modules",
   "main": "./src/main",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Autocomplete for require/import statements",
   "keywords": [
     "javascript",
@@ -39,16 +39,16 @@
       }
     }
   },
-  "readme": "# Atom autocomplete for modules.\n[![Current version](https://img.shields.io/apm/v/autocomplete-modules.svg)](https://atom.io/packages/autocomplete-modules)\n[![Downloads](https://img.shields.io/apm/dm/autocomplete-modules.svg)](https://atom.io/packages/autocomplete-modules)\n\nAutocomplete for require/import statements.\n\n![Preview](https://cloud.githubusercontent.com/assets/3505878/7442538/9c1892cc-f11e-11e4-8070-3fa8b79beefc.gif)\n\n## Configuration\n\n**Vendor directories:** A list of directories to search for modules relative to the project\n  root. (*Default:* `node_modules`)\n\n**Webpack support:** Look for webpack configuration file and add the `resolve.modulesDirectories` paths to the module search scope.\n\n**Webpack configuration filename:** Name of the configuration file to look for. (*Default:* `webpack.config.js`)\n\nLicense\n-------\n[![MIT License](https://img.shields.io/apm/l/autocomplete-modules.svg)](LICENSE)\n",
+  "readme": "# Atom autocomplete for modules.\n[![Current version](https://img.shields.io/apm/v/autocomplete-modules.svg)](https://atom.io/packages/autocomplete-modules)\n[![Downloads](https://img.shields.io/apm/dm/autocomplete-modules.svg)](https://atom.io/packages/autocomplete-modules)\n\nAutocomplete for require/import statements.\n\n![Preview](https://cloud.githubusercontent.com/assets/3505878/7442538/9c1892cc-f11e-11e4-8070-3fa8b79beefc.gif)\n\n## Configuration\n\n**Include file extension:**  Include the file's extension when filling in the completion.\n\n**Vendor directories:** A list of directories to search for modules relative to the project\n  root. (*Default:* `node_modules`)\n\n**Webpack support:** Look for webpack configuration file and add the `resolve.modulesDirectories` paths to the module search scope.\n\n**Webpack configuration filename:** Name of the configuration file to look for. (*Default:* `webpack.config.js`)\n\nLicense\n-------\n[![MIT License](https://img.shields.io/apm/l/autocomplete-modules.svg)](LICENSE)\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/nkt/atom-autocomplete-modules/issues"
   },
   "homepage": "https://github.com/nkt/atom-autocomplete-modules#readme",
-  "_id": "autocomplete-modules@1.5.1",
-  "_shasum": "5bc35326e14ab04ddcaedb9e5a9a91b580c313d9",
-  "_resolved": "file:../d-11652-82075-r4yfrq/package.tgz",
-  "_from": "../d-11652-82075-r4yfrq/package.tgz",
+  "_id": "autocomplete-modules@1.5.2",
+  "_shasum": "9f60c484ca2c2f4197c5995e9f23bba512196371",
+  "_resolved": "file:../d-116529-59150-r8ol2m/package.tgz",
+  "_from": "../d-116529-59150-r8ol2m/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
