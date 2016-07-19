@@ -1,7 +1,7 @@
 {
   "name": "atom-fuzzy-grep",
   "main": "./lib/atom-fuzzy-grep",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "Fuzzy grep project using ag, pt, ack, grep or git-grep",
   "keywords": [
     "fuzzy",
@@ -103,10 +103,10 @@
     "url": "https://github.com/geksilla/atom-fuzzy-grep/issues"
   },
   "homepage": "https://github.com/geksilla/atom-fuzzy-grep#readme",
-  "_id": "atom-fuzzy-grep@0.13.0",
-  "_shasum": "adf7be6a7dd0eb31ce8bb6e7c2de562f40d9dd16",
-  "_resolved": "file:../d-116124-75888-16ri1a/package.tgz",
-  "_from": "../d-116124-75888-16ri1a/package.tgz",
+  "_id": "atom-fuzzy-grep@0.14.0",
+  "_shasum": "1ebf9956ec0e460898fb3f0fc56d5208fa421386",
+  "_resolved": "file:../d-116619-85924-1tespne/package.tgz",
+  "_from": "../d-116619-85924-1tespne/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -152,7 +152,7 @@
       },
       {
         "name": "es5-ext",
-        "version": "0.10.11",
+        "version": "0.10.12",
         "path": "node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/index.js"
       },
       {
@@ -162,7 +162,7 @@
       },
       {
         "name": "es6-symbol",
-        "version": "3.0.2",
+        "version": "3.1.0",
         "path": "node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/node_modules/es6-symbol/index.js"
       },
       {
@@ -997,7 +997,7 @@
         ],
         "dependencies": {
           "es6-iterator": "2",
-          "es6-symbol": "~3.0.2"
+          "es6-symbol": "~3.1"
         }
       },
       {
@@ -1020,7 +1020,7 @@
         ],
         "dependencies": {
           "d": "~0.1.1",
-          "es5-ext": "~0.10.10"
+          "es5-ext": "~0.10.11"
         }
       },
       {
