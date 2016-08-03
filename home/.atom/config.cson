@@ -45,7 +45,6 @@
     ]
   editor:
     fontFamily: "Hack"
-    fontSize: 13
     invisibles: {}
     nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
     showIndentGuide: true
