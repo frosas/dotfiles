@@ -1,3 +1,25 @@
+# Project specific config
+
+# Installed for linting the project
+language: node_js
+
+matrix:
+  include:
+    - os: linux
+      env: ATOM_CHANNEL=stable
+      node_js: "6"
+
+    - os: linux
+      env: ATOM_CHANNEL=beta
+      node_js: "6"
+
+    - os: osx
+      env: ATOM_CHANNEL=stable
+      node_js: "6"
+
+# Generic setup follows
+script: 'curl -Ls https://github.com/Arcanemagus/ci/raw/atomlinter/build-package.sh | sh'
+
 notifications:
   email:
     on_success: never
@@ -7,24 +29,10 @@ branches:
   only:
     - master
 
-script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
-
 git:
   depth: 10
 
 sudo: false
-
-os:
-  - linux
-  - osx
-
-env:
-  global:
-    - APM_TEST_PACKAGES=""
-
-  matrix:
-    - ATOM_CHANNEL=stable
-    - ATOM_CHANNEL=beta
 
 addons:
   apt:

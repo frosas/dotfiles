@@ -1,6 +1,6 @@
 {
   "name": "linter-htmlhint",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "private": true,
   "description": "A plugin for Atom Linter providing an interface to HTMLHint.",
   "main": "lib/index.js",
@@ -9,7 +9,25 @@
     "url": "git+https://github.com/AtomLinter/linter-htmlhint.git"
   },
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.4.0 <2.0.0"
+  },
+  "configSchema": {
+    "enabledScopes": {
+      "description": "List of scopes to run HTMLHint on, run `Editor: Log Cursor Scope` to determine the scopes for a file.",
+      "type": "array",
+      "default": [
+        "text.html.angular",
+        "text.html.basic",
+        "text.html.erb",
+        "text.html.gohtml",
+        "text.html.jsp",
+        "text.html.mustache",
+        "text.html.ruby"
+      ],
+      "items": {
+        "type": "string"
+      }
+    }
   },
   "scripts": {
     "test": "apm test",
@@ -26,32 +44,33 @@
   },
   "homepage": "https://github.com/AtomLinter/linter-htmlhint#readme",
   "dependencies": {
-    "atom-linter": "^5.0.2",
+    "atom-linter": "^7.0.0",
     "atom-package-deps": "^4.0.1",
     "htmlhint": "0.9.13",
     "strip-json-comments": "^2.0.1",
     "tiny-promisify": "^0.1.1"
   },
   "devDependencies": {
-    "eslint": "^2.9.0",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.7.0"
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb-base": "^5.0.0",
+    "eslint-plugin-import": "^1.10.2"
   },
   "eslintConfig": {
     "rules": {
       "comma-dangle": [
-        2,
+        "error",
         "never"
       ],
-      "global-require": 0,
+      "global-require": "off",
       "import/no-unresolved": [
-        2,
+        "error",
         {
           "ignore": [
             "atom"
           ]
         }
-      ]
+      ],
+      "import/no-extraneous-dependencies": "off"
     },
     "extends": "airbnb-base",
     "globals": {
@@ -74,16 +93,16 @@
   },
   "readme": "# linter-htmlhint\n\nA plugin for [Linter] providing an interface to [HTMLHint]. It will be\nused with files that have the syntax.\n\n## Installation\n\nThe [Linter] package will be installed for you to provide an interface to this package. If you are using an alternative debugging interface that supports linter plugins simply disable [Linter].\n\n```ShellSession\n$ apm install linter-htmlhint\n```\n\n## Config\n\nThis plugin will search for a [HTMLHint] configuration file called `.htmlhintrc` and use that file if it exists in any parent folder. It will stop at the first `.htmlhintrc` file found.\n\n## Settings\n\nYou can configure `linter-htmlhint` in Atom's Settings.\n\n[linter]: https://github.com/atom-community/linter \"Linter\"\n[HTMLHint]: https://github.com/yaniswang/HTMLHint \"HTMLHint\"\n",
   "readmeFilename": "README.md",
-  "_id": "linter-htmlhint@1.2.1",
-  "_shasum": "2b03acde1e515039b744c12435057c72e5a9796c",
-  "_resolved": "file:../d-116522-79323-1viagzf/package.tgz",
-  "_from": "../d-116522-79323-1viagzf/package.tgz",
+  "_id": "linter-htmlhint@1.3.0",
+  "_shasum": "7c1a6e9085a43a048f97f8dc167cc6dde0330305",
+  "_resolved": "file:../d-11673-47280-m71si/package.tgz",
+  "_from": "../d-11673-47280-m71si/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "atom-linter",
-        "version": "5.0.2",
+        "version": "7.0.0",
         "path": "node_modules/atom-linter/lib/index.js"
       },
       {
@@ -93,7 +112,7 @@
       },
       {
         "name": "sb-exec",
-        "version": "2.0.4",
+        "version": "2.0.5",
         "path": "node_modules/atom-linter/node_modules/sb-exec/lib/index.js"
       },
       {
@@ -103,7 +122,7 @@
       },
       {
         "name": "sb-npm-path",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "path": "node_modules/atom-linter/node_modules/sb-exec/node_modules/sb-npm-path/lib/index.js"
       },
       {
@@ -198,12 +217,12 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.5",
+        "version": "1.1.6",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
         "name": "balanced-match",
-        "version": "0.4.1",
+        "version": "0.4.2",
         "path": "node_modules/htmlhint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
       },
       {
@@ -353,12 +372,12 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.5",
+        "version": "1.1.6",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
         "name": "balanced-match",
-        "version": "0.4.1",
+        "version": "0.4.2",
         "path": "node_modules/htmlhint/node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
       },
       {
@@ -1137,7 +1156,7 @@
           "spec"
         ],
         "dependencies": {
-          "atom-linter": "^5.0.2",
+          "atom-linter": "^7.0.0",
           "atom-package-deps": "^4.0.1",
           "htmlhint": "0.9.13",
           "strip-json-comments": "^2.0.1",
