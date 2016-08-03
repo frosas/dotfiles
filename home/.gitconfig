@@ -19,7 +19,7 @@
     cp = checkout -p # Checkouts interactively
     b = branch
     # fetch-all = fetch --all --prune # Rarely used
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' # Single-line tree-formatted log
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
     m = merge
     # merge-upstream = merge --ff-only @{u} # Rarely used
     s = stash save -u # Stashes tracked and untracked (but not ignored) files
