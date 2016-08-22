@@ -1,110 +1,68 @@
-/* eslint-env node */
+/* eslint-env browser, node */
 
 var util = require('./util');
-var collector = require('../collector');
 
-var debounce = function(duration, callback) {
-    var timeoutId;
-    var latestArguments;
-    return function() {
-        var _this = this;
-        latestArguments = arguments;
-        if (!timeoutId) {
-            timeoutId = setTimeout(function() {
-                timeoutId = null;
-                callback.apply(_this, latestArguments);
-            }, duration);
-        }
-    };
+var cookies = module.exports;
+
+/**
+ * Sets a cookie
+ *
+ * @param {Object} params
+ * @param {string} params.name The name of the cookie
+ * @param {string} params.value The value to store
+ * @param {string} [params.path]
+ * @param {date} [params.expires]
+ */
+cookies.set = function (params) {
+    var fields = [];
+    var addField = function (key, value) { fields.push(key + '=' + value); };
+    addField(encodeURIComponent(params.name), encodeURIComponent(params.value));
+    if (params.domain) addField('domain', util.getCookieDomain(params.domain));
+    if (params.path) addField('path', params.path);
+    if (params.maxAge) params.expires = util.getDateFromNow(params.maxAge);
+    if (params.expires) addField('expires', params.expires.toUTCString());
+    document.cookie = fields.join(';');
 };
 
-var Tracker = module.exports = function() {
-    var tracker = this;
-    
-    this._elementsFound = [];
-    this._trackedEventsKeys = {}; // Used as a set
-    this._batchedEvents = [];
-    
-    this._onElementFound(function(element) {
-        tracker._elementsFound.push(element);
-        // element.domElement.style.opacity = '0.3';
-        tracker._trackElementImpressionIfVisible(element);
-        var domElement = element.domElement;
-        domElement.addEventListener('click', function() {
-            tracker._track({action: 'click', element: element});
-        });
-        domElement.addEventListener('mouseenter', debounce(500, function() {
-            tracker._track({action: 'hover', element: element});
-        }));
+/**
+ * @see     https://confluence/pages/viewpage.action?pageId=518921678
+ * @param   {String} str
+ * @returns {String}
+ */
+function encodeMarketingLOBPackage(str) {
+    return str.replace(/\%(?=\D)/g, function (match) {
+        return encodeURIComponent(match);
     });
-    
-    var trackVisibleElementsDebounced = debounce(1000, function() {
-        util.map(tracker._elementsFound, function(element) {
-            tracker._trackElementImpressionIfVisible(element);
-        });
-    });
-    addEventListener('scroll', trackVisibleElementsDebounced);
-    addEventListener('resize', trackVisibleElementsDebounced);
-};
+}
 
-Tracker.prototype._onElementFound = function(onElementFound) {
-    util.map(document.querySelectorAll('.flex-module'), function(el) {
-        onElementFound({id: el.id, domElement: el});
-    });
-    
-    (function _findSearchWizard() {
-        var el = document.querySelector('#new-homepage-search-wizard');
-        if (el) {
-            onElementFound({id: el.id, domElement: el});
-        } else {
-            setTimeout(_findSearchWizard, 1000);
-        }
-    })();
-};
-
-Tracker.prototype._trackElementImpressionIfVisible = function(element) {
-    if (elementInViewport(element.domElement)) {
-        this._track({action: 'view', element: element});
+/**
+ * @param {Object|string} params A list of params or the same as params.name
+ * @param {string} params.name The name of the cookie
+ * @param {string} [params.cookies] String containing the cookies or
+ *     document.cookie by default.
+ * @return {string|undefined} The value of the cookie or undefined if it
+ *     doesn't exist
+ */
+cookies.get = function (params) {
+    if (typeof params == 'string') params = {name: params};
+    if (params.cookies == null) params.cookies = document.cookie;
+    var cookies = params.cookies.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        // All these " *" are to trim without using trim() as IE8 doesn't
+        // support it. Also, "=" is considered optional as IE8 still follows
+        // the now obsolete RFC 2965.
+        var matches = cookies[i].match(/ *([^=]*) *(= *(.*))? */);
+        var cookieName = util.safeDecodeURIComponent(encodeMarketingLOBPackage(matches[1]));
+        var cookieValue = matches[3] == null ? '' : util.safeDecodeURIComponent(encodeMarketingLOBPackage(matches[3]));
+        if (cookieName === params.name) return cookieValue;
     }
 };
 
-Tracker.prototype._track = function(event) {
-    var tracker = this;
-    this._trackOnce(event, function _onFirstTrack() {
-        tracker._batchedEvents.push(event);
-        tracker._sendBatchDebounced();
+cookies['delete'] = function (params) {
+    this.set({
+        name: params.name,
+        value: '',
+        path: params.path,
+        expires: new Date(0)
     });
-};
-
-Tracker.prototype._sendBatchDebounced = debounce(500, function() {
-    collector.send({
-        topic: 'travelerEngagement',
-        persist: true,
-        data: {
-            url: location.href,
-            regionId: util.get(window, 'utag_data.pageInfo.omnitureInfo.destination'),
-            events: util.map(this._batchedEvents, function(event) {
-                return {action: event.action, elementId: event.element.id};
-            })
-        }
-    });
-    this._batchedEvents = [];
-});
-
-Tracker.prototype._trackOnce = function(event, onFirstTrack) {
-    var key = [event.action, event.element.id].join(',');
-    if (key in this._trackedEventsKeys) return;
-    onFirstTrack();
-    this._trackedEventsKeys[key] = null;
-};
-
-// See http://stackoverflow.com/a/26039199/337172
-var elementInViewport = function(element) {
-    var rect = element.getBoundingClientRect();
-    return (
-        rect.top <= document.documentElement.clientHeight &&
-        rect.left <= document.documentElement.clientWidth && 
-        rect.top + rect.height >= 0 &&
-        rect.left + rect.width >= 0
-    );
 };

@@ -1,7 +1,7 @@
 {
   "name": "split-diff",
   "main": "./lib/split-diff",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A split pane diff tool.",
   "keywords": [
     "diff",
@@ -18,7 +18,9 @@
   "activationCommands": {
     "atom-workspace": [
       "split-diff:toggle",
-      "split-diff:enable"
+      "split-diff:enable",
+      "split-diff:next-diff",
+      "split-diff:prev-diff"
     ]
   },
   "repository": {
@@ -38,10 +40,10 @@
     "url": "https://github.com/mupchrch/split-diff/issues"
   },
   "homepage": "https://github.com/mupchrch/split-diff#readme",
-  "_id": "split-diff@1.0.3",
-  "_shasum": "d6bc6ff11accb5dfa0657004fb49076880a57986",
-  "_resolved": "file:../d-116522-79326-j07nyf/package.tgz",
-  "_from": "../d-116522-79326-j07nyf/package.tgz",
+  "_id": "split-diff@1.0.4",
+  "_shasum": "a4ca2546684b8e62086a1692ab2ced39ce32ae30",
+  "_resolved": "file:../d-116719-85224-1u00zna/package.tgz",
+  "_from": "../d-116719-85224-1u00zna/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
