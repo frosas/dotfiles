@@ -37,5 +37,6 @@
     wip = ! git a . && git ci -m WIP # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
     wip-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-wip-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
     browse = ! hub browse # Opens current repo and branch in GitHub
+    show-commit-files = "show --name-only --pretty=''"
 [hub]
 	host = ewegithub.sb.karmalab.net
