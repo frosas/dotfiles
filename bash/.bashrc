@@ -52,5 +52,6 @@ alias t="trash"
 alias ag="ag --hidden"
 alias lt="ls -lt"
 alias ll="ls -l"
+alias d="docker"
 
 function h { history | tail -${1:-20}; }
