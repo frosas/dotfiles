@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Starts a clean Chrome
+#
+# Based on https://github.com/karma-runner/karma-chrome-launcher/blob/4110f87beb51ec45e23b4fc186957c2789a93b9a/index.js#L85-L91
+
+chrome \
+    --user-data-dir=$(mktemp -d) \
+    --no-default-browser-check \
+    --no-first-run \
+    --disable-default-apps \
+    "$@"
