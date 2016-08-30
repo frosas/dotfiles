@@ -5,12 +5,12 @@ var minimatch = require('minimatch');
 var fs = require('fs');
 
 var TERN_ROOT = '../node_modules/tern';
+var TernServer;
 
 module.exports = TernServer = function () {
 
   process.__tern = tern;
   process.__infer = infer;
-  this.config = {};
 };
 
 TernServer.prototype.importPlugins = function (plugins) {
@@ -27,26 +27,39 @@ TernServer.prototype.importPlugins = function (plugins) {
 
 TernServer.prototype.startServer = function (data) {
 
-  this.config = data.config;
   this.importPlugins(data.config.pluginImports);
 
   this.ternServer = new tern.Server({
 
     getFile: function(name, c) {
 
-      if (this.config.dontLoad && this.config.dontLoad.some(function(pat) {
+      if (data.config.dontLoad && data.config.dontLoad.some(function(pat) {
 
         return minimatch(name, pat);
       })) {
 
-        c(null, '');
+        if (data.config.async) {
+
+          c(null, '');
+
+          return;
+        }
+
+        return '';
 
       } else {
 
-        fs.readFile(path.resolve(data.dir, name), 'utf8', c);
+        if (data.config.async) {
+
+          fs.readFile(path.resolve(data.dir, name), 'utf8', c);
+
+          return;
+        }
+
+        return fs.readFileSync(path.resolve(data.dir, name), 'utf8');
       }
-    }.bind(this),
-    async: true,
+    },
+    async: data.config.async,
     defs: data.defs,
     plugins: data.plugins,
     debug: false,
@@ -66,8 +79,6 @@ TernServer.prototype.startServer = function (data) {
 };
 
 TernServer.prototype.request = function (data) {
-
-  var that = this;
 
   function done(err, reqData) {
 
@@ -117,7 +128,7 @@ process.on('uncaughtException', function (err) {
 
 process.on('disconnect', function () {
 
-	process.kill();
+  process.kill();
 });
 
 process.on('message', function (e) {

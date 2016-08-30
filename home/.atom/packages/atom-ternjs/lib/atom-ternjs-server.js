@@ -1,17 +1,20 @@
-"use babel";
+'use babel';
 
-let fs = require('fs');
-let path = require('path');
-let glob = require('glob');
-let cp = require('child_process');
-let minimatch = require('minimatch');
-let uuid = require('node-uuid');
+import manager from './atom-ternjs-manager';
+import {fileExists} from './atom-ternjs-helper';
+import fs from 'fs';
+import path from 'path';
+import glob from 'glob';
+import cp from 'child_process';
+import minimatch from 'minimatch';
+import uuid from 'node-uuid';
+import resolveFrom from 'resolve-from';
+import packageConfig from './atom-ternjs-package-config';
 
 export default class Server {
 
-  constructor(projectRoot, client, manager) {
+  constructor(projectRoot, client) {
 
-    this.manager = manager;
     this.client = client;
 
     this.child = null;
@@ -32,8 +35,15 @@ export default class Server {
       },
       ecmaScript: true,
       ecmaVersion: 6,
-      dependencyBudget: 40000
+      dependencyBudget: 20000
     };
+
+    const homeDir = process.env.HOME || process.env.USERPROFILE;
+
+    if (homeDir && fs.existsSync(path.resolve(homeDir, '.tern-config'))) {
+
+      this.defaultConfig = this.readProjectFile(path.resolve(homeDir, '.tern-config'));
+    }
 
     this.projectFileName = '.tern-project';
     this.disableLoadingLocal = false;
@@ -54,6 +64,9 @@ export default class Server {
 
       this.config = this.defaultConfig;
     }
+
+    this.config.async = packageConfig.options.ternServerGetFileAsync;
+    this.config.dependencyBudget = packageConfig.options.ternServerDependencyBudget;
 
     if (!this.config.plugins['doc_comment']) {
 
@@ -96,12 +109,12 @@ export default class Server {
 
       dismissable: true
     });
-	}
+  }
 
-	onDisconnect(e) {
+  onDisconnect(e) {
 
-    console.log(e);
-	}
+    console.warn(e);
+  }
 
   request(type, data) {
 
@@ -159,7 +172,7 @@ export default class Server {
       this.resolves = {};
       this.rejects = {};
 
-      this.manager.restartServer();
+      manager.restartServer();
 
       return;
     }
@@ -168,7 +181,7 @@ export default class Server {
 
     if (isError) {
 
-      console.log(e);
+      console.error(e);
     }
 
     if (!e.type && this.resolves[e.id]) {
@@ -182,8 +195,8 @@ export default class Server {
         this.resolves[e.id](e.data);
       }
 
-      delete(this.resolves[e.id]);
-      delete(this.rejects[e.id]);
+      delete this.resolves[e.id];
+      delete this.rejects[e.id];
     }
   }
 
@@ -200,7 +213,7 @@ export default class Server {
 
   readJSON(fileName) {
 
-    if (this.manager.helper.fileExists(fileName) !== undefined) {
+    if (fileExists(fileName) !== undefined) {
 
       return false;
     }
@@ -221,6 +234,33 @@ export default class Server {
     }
   }
 
+  mergeObjects(base, value) {
+
+    if (!base) {
+
+      return value;
+    }
+
+    if (!value) {
+
+      return base;
+    }
+
+    let result = {};
+
+    for (const prop in base) {
+
+      result[prop] = base[prop];
+    }
+
+    for (const prop in value) {
+
+      result[prop] = value[prop];
+    }
+
+    return result;
+  }
+
   readProjectFile(fileName) {
 
     let data = this.readJSON(fileName);
@@ -230,8 +270,18 @@ export default class Server {
       return false;
     }
 
-    for (var option in this.defaultConfig) if (!data.hasOwnProperty(option))
-      data[option] = this.defaultConfig[option];
+    for (var option in this.defaultConfig) {
+
+      if (!data.hasOwnProperty(option)) {
+
+        data[option] = this.defaultConfig[option];
+
+      } else if (option === 'plugins') {
+
+        data[option] = this.mergeObjects(this.defaultConfig[option], data[option]);
+      }
+    }
+
     return data;
   }
 
@@ -257,17 +307,9 @@ export default class Server {
     let defs = [];
     let src = config.libs.slice();
 
-    if (config.ecmaScript) {
+    if (config.ecmaScript && src.indexOf('ecmascript') === -1) {
 
-      if (src.indexOf('ecma6') == -1 && config.ecmaVersion >= 6) {
-
-        src.unshift('ecma6');
-      }
-
-      if (src.indexOf('ecma5') == -1) {
-
-        src.unshift('ecma5');
-      }
+      src.unshift('ecmascript');
     }
 
     for (var i = 0; i < src.length; ++i) {
@@ -279,7 +321,10 @@ export default class Server {
         file = `${file}.json`;
       }
 
-      let found = this.findFile(file, projectDir, path.resolve(this.distDir, 'defs'));
+      let found =
+        this.findFile(file, projectDir, path.resolve(this.distDir, 'defs')) ||
+        resolveFrom(projectDir, `tern-${src[i]}`)
+        ;
 
       if (!found) {
 
@@ -302,6 +347,7 @@ export default class Server {
         defs.push(this.readJSON(found));
       }
     }
+
     return defs;
   }
 
@@ -320,7 +366,10 @@ export default class Server {
         continue;
       }
 
-      let found = this.findFile(`${plugin}.js`, projectDir, path.resolve(this.distDir, 'plugin'));
+      let found =
+        this.findFile(`${plugin}.js`, projectDir, path.resolve(this.distDir, 'plugin')) ||
+        resolveFrom(projectDir, `tern-${plugin}`)
+        ;
 
       if (!found) {
 
@@ -328,7 +377,10 @@ export default class Server {
 
           found = require.resolve(`tern-${plugin}`);
 
-        } catch(e) {}
+        } catch (e) {
+
+          console.warn(e);
+        }
       }
 
       if (!found) {

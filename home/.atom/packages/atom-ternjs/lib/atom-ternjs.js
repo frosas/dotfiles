@@ -1,58 +1,29 @@
-"use babel";
+'use babel';
 
-let Manager = require('./atom-ternjs-manager');
-let Provider = require('./atom-ternjs-provider');
-let LinterTern;
+import defaulConfig from './config';
+import provider from './atom-ternjs-provider';
+import manager from './atom-ternjs-manager';
 
 class AtomTernjs {
 
   constructor() {
 
-    this.manager = undefined;
-    this.provider = undefined;
-    this.useLint = undefined;
-    this.providerLinter = undefined;
-
-    this.config = require('./config.json');
+    this.config = defaulConfig;
   }
 
   activate() {
 
-    this.provider = new Provider();
-    this.manager = new Manager(this.provider);
-    this.useLint = atom.config.get('atom-ternjs.lint');
-
-    if (!this.useLint) {
-
-      return;
-    }
-
-    LinterTern = require('./linter');
-    this.providerLinter = new LinterTern(this.manager);
+    manager.init();
   }
 
   deactivate() {
 
-    this.manager.destroy();
-    this.manager = undefined;
-    this.provider = undefined;
-    this.useLint = undefined;
-    this.providerLinter = undefined;
+    manager.destroy();
   }
 
   provide() {
 
-    return this.provider;
-  }
-
-  provideLinter() {
-
-    if (!this.useLint) {
-
-      return;
-    }
-
-    return this.providerLinter;
+    return provider;
   }
 }
 

@@ -56,7 +56,7 @@ module.exports = function invokeHandlers(config, handlers, options) {
             }
 
             if (!handler) {
-                let badProperty = JSON.stringify(k);
+                var badProperty = JSON.stringify(k);
                 if (k !== keyNoDashes) {
                     badProperty += '/' + JSON.stringify(keyNoDashes);
                 }

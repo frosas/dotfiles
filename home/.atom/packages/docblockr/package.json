@@ -1,7 +1,7 @@
 {
   "name": "docblockr",
   "main": "./lib/docblockr.js",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "A helper package for writing documentation",
   "repository": {
     "type": "git",
@@ -31,10 +31,10 @@
     "url": "https://github.com/nikhilkalige/docblockr/issues"
   },
   "homepage": "https://github.com/nikhilkalige/docblockr#readme",
-  "_id": "docblockr@0.8.3",
-  "_shasum": "3317ff71c8caba39b3cf4d590a07f5c56bc2f851",
-  "_resolved": "file:../d-116723-57740-8nezko/package.tgz",
-  "_from": "../d-116723-57740-8nezko/package.tgz",
+  "_id": "docblockr@0.8.4",
+  "_shasum": "ab1d8f1b5ea85a9c9c3f8844e3f94b6b75ece8eb",
+  "_resolved": "file:../d-116730-91681-16b3314/package.tgz",
+  "_from": "../d-116730-91681-16b3314/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],

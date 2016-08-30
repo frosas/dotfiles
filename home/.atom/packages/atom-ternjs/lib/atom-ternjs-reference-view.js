@@ -1,8 +1,10 @@
-"use babel";
+'use babel';
 
-import {replaceTags} from './atom-ternjs-helper.js';
+import {replaceTags} from './atom-ternjs-helper';
+import emitter from './atom-ternjs-events';
+import TernView from './atom-ternjs-view';
 
-class ReferenceView extends HTMLElement {
+class ReferenceView extends TernView {
 
   createdCallback() {
 
@@ -18,14 +20,9 @@ class ReferenceView extends HTMLElement {
     container.appendChild(this.closeButton);
     container.appendChild(this.content);
 
+    this.closeButton.addEventListener('click', (e) => emitter.emit('reference-hide'));
+
     this.appendChild(container);
-  }
-
-  initialize(model) {
-
-    this.setModel(model);
-
-    return this;
   }
 
   clickHandle(i) {
@@ -69,26 +66,6 @@ class ReferenceView extends HTMLElement {
     }
 
     this.content.appendChild(list);
-  }
-
-  getClose() {
-
-    return this.closeButton;
-  }
-
-  getModel() {
-
-    return this.model;
-  }
-
-  setModel(model) {
-
-    this.model = model;
-  }
-
-  destroy() {
-
-    this.remove();
   }
 }
 

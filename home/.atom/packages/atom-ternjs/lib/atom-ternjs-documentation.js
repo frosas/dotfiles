@@ -1,16 +1,35 @@
-"use babel";
+'use babel';
 
-let DocumentationView = require('./atom-ternjs-documentation-view');
+const DocumentationView = require('./atom-ternjs-documentation-view');
 
-export default class Documentation {
+import manager from './atom-ternjs-manager';
+import emitter from './atom-ternjs-events';
+import {disposeAll} from './atom-ternjs-helper';
+import {
+  replaceTags,
+  formatType
+} from '././atom-ternjs-helper';
 
-  constructor(manager) {
+class Documentation {
 
-    this.manager = manager;
+  constructor() {
+
+    this.disposables = [];
+
     this.view = new DocumentationView();
     this.view.initialize(this);
 
     atom.views.getView(atom.workspace).appendChild(this.view);
+
+    this.destroyDocumenationHandler = this.destroyOverlay.bind(this);
+    emitter.on('documentation-destroy-overlay', this.destroyDocumenationHandler);
+
+    this.registerCommands();
+  }
+
+  registerCommands() {
+
+    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:documentation', this.request.bind(this)));
   }
 
   request() {
@@ -25,9 +44,9 @@ export default class Documentation {
     let cursor = editor.getLastCursor();
     let position = cursor.getBufferPosition();
 
-    this.manager.client.update(editor).then((data) => {
+    manager.client.update(editor).then((data) => {
 
-      this.manager.client.documentation(atom.project.relativizePath(editor.getURI())[1], {
+      manager.client.documentation(atom.project.relativizePath(editor.getURI())[1], {
 
         line: position.row,
         ch: position.column
@@ -41,9 +60,9 @@ export default class Documentation {
 
         this.view.setData({
 
-          doc: this.manager.helper.replaceTags(data.doc),
+          doc: replaceTags(data.doc),
           origin: data.origin,
-          type: this.manager.helper.formatType(data),
+          type: formatType(data),
           url: data.url || ''
         });
 
@@ -106,8 +125,16 @@ export default class Documentation {
 
   destroy() {
 
+    disposeAll(this.disposables);
+
     this.destroyOverlay();
-    this.view.destroy();
-    this.view = undefined;
+
+    if (this.view) {
+
+      this.view.destroy();
+      this.view = undefined;
+    }
   }
 }
+
+export default new Documentation();

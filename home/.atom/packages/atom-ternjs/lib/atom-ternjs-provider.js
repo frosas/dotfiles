@@ -1,22 +1,31 @@
-"use babel";
+'use babel';
 
-let Function = require('loophole').Function;
-let _ = require('underscore-plus');
-
+const Function = require('loophole').Function;
 const REGEXP_LINE = /(([\$\w]+[\w-]*)|([.:;'"[{( ]+))$/g;
 
-export default class Provider {
+import manager from './atom-ternjs-manager';
+import packageConfig from './atom-ternjs-package-config';
+import {
+  formatTypeCompletion
+} from './atom-ternjs-helper';
+import {
+  clone
+} from 'underscore-plus';
 
-  constructor(manager) {
+class Provider {
 
-    this.manager = undefined;
+  constructor() {
+
+    this.disposables = [];
+
     this.force = false;
 
     // automcomplete-plus
     this.selector = '.source.js';
     this.disableForSelector = '.source.js .comment';
     this.inclusionPriority = 1;
-    this.excludeLowerPriority = false;
+    this.suggestionPriority = packageConfig.options.snippetsFirst ? null : 2;
+    this.excludeLowerPriority = packageConfig.options.excludeLowerPriorityProviders;
 
     this.line = undefined;
     this.lineMatchResult = undefined;
@@ -24,17 +33,13 @@ export default class Provider {
     this.suggestionsArr = undefined;
     this.suggestion = undefined;
     this.suggestionClone = undefined;
+
+    this.registerCommands();
   }
 
-  init(manager) {
+  registerCommands() {
 
-    this.manager = manager;
-    this.excludeLowerPriority = this.manager.packageConfig.options.excludeLowerPriorityProviders;
-
-    if (this.manager.packageConfig.options.displayAboveSnippets) {
-
-      this.suggestionPriority = 2;
-    }
+    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:startCompletion', this.forceCompletion.bind(this)));
   }
 
   isValidPrefix(prefix, prefixLast) {
@@ -73,7 +78,10 @@ export default class Provider {
 
   checkPrefix(prefix) {
 
-    if (prefix.match(/(\s|;|\.|\"|\')$/) || prefix.replace(/\s/g, '').length === 0) {
+    if (
+      prefix.match(/(\(|\s|;|\.|\"|\')$/) ||
+      prefix.replace(/\s/g, '').length === 0
+    ) {
 
       return '';
     }
@@ -96,7 +104,7 @@ export default class Provider {
 
     return new Promise((resolve) => {
 
-      if (!this.manager.client) {
+      if (!manager.client) {
 
         return resolve([]);
       }
@@ -110,14 +118,14 @@ export default class Provider {
 
       prefix = this.checkPrefix(this.tempPrefix);
 
-      this.manager.client.update(editor).then((data) => {
+      manager.client.update(editor).then((data) => {
 
         if (!data) {
 
           return resolve([]);
         }
 
-        this.manager.client.completions(atom.project.relativizePath(editor.getURI())[1], {
+        manager.client.completions(atom.project.relativizePath(editor.getURI())[1], {
 
           line: bufferPosition.row,
           ch: bufferPosition.column
@@ -141,7 +149,7 @@ export default class Provider {
 
           for (let obj of data.completions) {
 
-            obj = this.manager.helper.formatTypeCompletion(obj, isInFunDef);
+            obj = formatTypeCompletion(obj, data.isProperty, data.isObjectKey, isInFunDef);
 
             this.suggestion = {
 
@@ -156,9 +164,9 @@ export default class Provider {
               descriptionMoreURL: obj.url || null
             };
 
-            if (this.manager.packageConfig.options.useSnippetsAndFunction && obj._hasParams) {
+            if (packageConfig.options.useSnippetsAndFunction && obj._hasParams) {
 
-              this.suggestionClone = _.clone(this.suggestion);
+              this.suggestionClone = clone(this.suggestion);
               this.suggestionClone.type = 'snippet';
 
               if (obj._hasParams) {
@@ -183,7 +191,7 @@ export default class Provider {
 
         }).catch((err) => {
 
-          console.log(err);
+          console.error(err);
           resolve([]);
         });
       });
@@ -196,4 +204,11 @@ export default class Provider {
     atom.commands.dispatch(atom.views.getView(atom.workspace.getActiveTextEditor()), 'autocomplete-plus:activate');
     this.force = false;
   }
+
+  destroy() {
+
+
+  }
 }
+
+export default new Provider();

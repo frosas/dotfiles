@@ -1,10 +1,16 @@
 'use babel';
 
+import manager from './atom-ternjs-manager';
+import packageConfig from './atom-ternjs-package-config';
+import {
+  setMarkerCheckpoint,
+  openFileAndGoTo
+} from './atom-ternjs-helper';
+
 export default class Client {
 
-  constructor(manager, projectDir) {
+  constructor(projectDir) {
 
-    this.manager = manager;
     this.projectDir = projectDir;
   }
 
@@ -19,13 +25,13 @@ export default class Client {
         end: end,
         types: true,
         includeKeywords: true,
-        sort: this.manager.packageConfig.options.sort,
-        guess: this.manager.packageConfig.options.guess,
-        docs: this.manager.packageConfig.options.documentation,
-        urls: this.manager.packageConfig.options.urls,
-        origins: this.manager.packageConfig.options.origins,
+        sort: packageConfig.options.sort,
+        guess: packageConfig.options.guess,
+        docs: packageConfig.options.documentation,
+        urls: packageConfig.options.urls,
+        origins: packageConfig.options.origins,
         lineCharPositions: true,
-        caseInsensitive: this.manager.packageConfig.options.caseInsensitive
+        caseInsensitive: packageConfig.options.caseInsensitive
       }
     });
   }
@@ -93,13 +99,13 @@ export default class Client {
 
   update(editor) {
 
-    const editorMeta = this.manager.getEditor(editor);
+    const editorMeta = manager.getEditor(editor);
     const file = atom.project.relativizePath(editor.getURI())[1].replace(/\\/g, '/');
 
     // check if this file is excluded via dontLoad
     if (
-      this.manager.server &&
-      this.manager.server.dontLoad(file)
+      manager.server &&
+      manager.server.dontLoad(file)
     ) {
 
       return Promise.resolve({});
@@ -166,23 +172,6 @@ export default class Client {
     });
   }
 
-  lint(file, text) {
-
-    return this.post('query', {
-
-      query: {
-
-        type: 'lint',
-        file: file,
-        files: [{
-          type: 'full',
-          name: file,
-          text: text
-        }]
-      }
-    });
-  }
-
   type(editor, position) {
 
     const file = atom.project.relativizePath(editor.getURI())[1];
@@ -229,11 +218,8 @@ export default class Client {
 
       if (data && data.start) {
 
-        if (this.manager.helper) {
-
-          this.manager.helper.setMarkerCheckpoint();
-          this.manager.helper.openFileAndGoTo(data.start, data.file);
-        }
+        setMarkerCheckpoint();
+        openFileAndGoTo(data.start, data.file);
       }
     }).catch((err) => {
 
@@ -258,7 +244,7 @@ export default class Client {
 
   post(type, data) {
 
-    const promise = this.manager.server.request(type, data);
+    const promise = manager.server.request(type, data);
 
     return promise;
   }

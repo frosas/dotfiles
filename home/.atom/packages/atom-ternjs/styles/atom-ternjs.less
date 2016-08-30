@@ -1,7 +1,3 @@
-// The ui-variables file is provided by base themes provided by Atom.
-//
-// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
-// for a full listing of what's available.
 @import 'ui-variables';
 
 @atom-ternjs-padding: 20px;
@@ -111,10 +107,9 @@ atom-ternjs-reference {
 .atom-ternjs-documentation,
 .atom-ternjs-type {
 
-  max-width: 60%;
-  background: fade(@overlay-background-color, 90%);
-  border: 1px solid fade(@base-border-color, 20%);
-  color: @text-color;
+  max-width: 1000px;
+  background: @overlay-background-color;
+  color: @text-color-highlight;
   border-radius: @component-border-radius;
 
   h3,
@@ -123,6 +118,16 @@ atom-ternjs-reference {
 
     word-break: break-word;
   }
+}
+
+.atom-ternjs-documentation {
+
+  border: 10px solid @base-border-color;
+}
+
+.atom-ternjs-type {
+
+  border: 1px solid @base-border-color;
 }
 
 atom-ternjs-type,
@@ -135,9 +140,10 @@ atom-ternjs-documentation {
   }
 }
 
-atom-ternjs-documentation {
+atom-ternjs-documentation,
+atom-ternjs-type {
 
-  > div {
+  > div:not(:empty) {
 
     padding: 5px 20px;
   }
@@ -145,15 +151,23 @@ atom-ternjs-documentation {
 
 atom-ternjs-type {
 
-  > div:not(:empty) {
+  color: @text-color;
 
-    padding: 5px 10px;
+  .doc-param-first,
+  .storage.type {
+
+    display: inline-block;
+  }
+
+  .doc-param-first,
+  .doc-return {
+
+    margin-top: 10px;
   }
 
   .current-param {
 
     font-weight: 500;
-    color: @text-color-highlight;
   }
 }
 
@@ -207,16 +221,22 @@ atom-text-editor::shadow .scroll-view {
 
 .atom-ternjs-config-close {
 
-  margin: 20px 0 0;
+  margin: 20px 0 60px;
 }
 
 .atom-ternjs-config-panel {
 
+  max-width: 1000px;
   overflow-y: auto;
   padding: @atom-ternjs-padding;
 }
 
 .atom-ternjs-config {
+
+  h1 {
+
+    margin-bottom: 30px;
+  }
 
   .content {
 
@@ -225,6 +245,11 @@ atom-text-editor::shadow .scroll-view {
       width: 100%;
       text-align: center;
     }
+  }
+
+  section {
+
+    padding-bottom: 20px;
   }
 
   atom-text-editor {
@@ -266,6 +291,11 @@ atom-text-editor::shadow .scroll-view {
 
   .input-wrapper {
 
+    span {
+
+      font-size: 12px;
+    }
+
     &:first-of-type {
 
       .sub {
@@ -281,12 +311,17 @@ atom-text-editor::shadow .scroll-view {
   }
 
   .libs,
-  .ecmaVersion {
+  .ecmaVersion,
+  .plugins {
 
     span {
 
       margin-right: 10px;
     }
+  }
+
+  .libs,
+  .ecmaVersion {
 
     .input-wrapper {
 
@@ -296,6 +331,14 @@ atom-text-editor::shadow .scroll-view {
 
         margin-left: 20px;
       }
+    }
+  }
+
+  .plugins {
+
+    .input-wrapper {
+
+      margin-bottom: 5px;
     }
   }
 

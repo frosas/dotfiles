@@ -1,24 +1,32 @@
-"use babel";
+'use babel';
 
-let Server;
-let Client;
-let Documentation;
-let Helper;
-let PackageConfig;
-let Config;
-let Type;
-let Reference;
-let Rename;
-let _ = require('underscore-plus');
+const Server = require('./atom-ternjs-server');
+const Client = require('./atom-ternjs-client');
 
-export default class Manager {
+import {debounce} from 'underscore-plus';
+import emitter from './atom-ternjs-events';
+import documentation from './atom-ternjs-documentation';
+import reference from './atom-ternjs-reference';
+import packageConfig from './atom-ternjs-package-config';
+import type from './atom-ternjs-type';
+import config from './atom-ternjs-config';
+import {
+  accessKey,
+  isDirectory,
+  markerCheckpointBack,
+  disposeAll
+} from './atom-ternjs-helper';
+import provider from './atom-ternjs-provider';
+import rename from './atom-ternjs-rename';
 
-  constructor(provider) {
+class Manager {
 
-    this.provider = provider;
+  constructor() {
+
+    this.initCalled = false;
+    this.initialised = false;
 
     this.disposables = [];
-
     this.grammars = ['JavaScript'];
 
     this.clients = [];
@@ -27,30 +35,12 @@ export default class Manager {
     this.server = undefined;
 
     this.editors = [];
-
-    this.rename = undefined;
-    this.type = undefined;
-    this.reference = undefined;
-    this.documentation = undefined;
-
-    this.initialised = false;
-
-    window.setTimeout(this.init.bind(this), 0);
   }
 
   init() {
 
-    Helper = require('./atom-ternjs-helper.coffee');
-    PackageConfig = require('./atom-ternjs-package-config');
-    Config = require('./atom-ternjs-config');
-
-    this.helper = new Helper(this);
-    this.packageConfig = new PackageConfig(this);
-    this.config = new Config(this);
-    this.provider.init(this);
+    packageConfig.registerEvents();
     this.initServers();
-
-    this.registerHelperCommands();
 
     this.disposables.push(atom.project.onDidChangePaths((paths) => {
 
@@ -58,6 +48,8 @@ export default class Manager {
       this.checkPaths(paths);
       this.setActiveServerAndClient();
     }));
+
+    this.initCalled = true;
   }
 
   activate() {
@@ -67,16 +59,9 @@ export default class Manager {
     this.registerCommands();
   }
 
-  destroyObject(object) {
-
-    if (object) {
-
-      object.destroy();
-    }
-    object = undefined;
-  }
-
   destroy() {
+
+    disposeAll(this.disposables);
 
     for (let server of this.servers) {
 
@@ -84,69 +69,39 @@ export default class Manager {
       server = undefined;
     }
     this.servers = [];
-
-    for (let client of this.clients) {
-
-      client = undefined;
-    }
     this.clients = [];
 
     this.server = undefined;
     this.client = undefined;
-    this.unregisterEventsAndCommands();
-    this.provider = undefined;
 
-    this.destroyObject(this.config);
-    this.destroyObject(this.packageConfig);
-    this.destroyObject(this.reference);
-    this.destroyObject(this.rename);
-    this.destroyObject(this.type);
-    this.destroyObject(this.helper);
+    documentation && documentation.destroy();
+    reference && reference.destroy();
+    type && type.destroy();
+    packageConfig && packageConfig.destroy();
+    rename && rename.destroy();
+    config && config.destroy();
+    provider && provider.destroy();
 
     this.initialised = false;
-  }
-
-  unregisterEventsAndCommands() {
-
-    for (let disposable of this.disposables) {
-
-      if (!disposable) {
-
-        continue;
-      }
-
-      disposable.dispose();
-    }
-
-    this.disposables = [];
+    this.initCalled = false;
   }
 
   initServers() {
 
-    let dirs = atom.project.getDirectories();
+    const projectDirectories = atom.project.getDirectories();
 
-    if (dirs.length === 0) {
+    projectDirectories.forEach((projectDirectory) => {
 
-      return;
-    }
+      const directory = atom.project.relativizePath(projectDirectory.path)[0];
 
-    for (let dir of dirs) {
+      if (isDirectory(directory)) {
 
-      dir = atom.project.relativizePath(dir.path)[0];
-
-      if (this.helper.isDirectory(dir)) {
-
-        this.startServer(dir);
+        this.startServer(directory);
       }
-    }
+    });
   }
 
   startServer(dir) {
-
-    if (!Server) {
-
-      Server = require('./atom-ternjs-server');
-    }
 
     if (this.getServerForProject(dir)) {
 
@@ -157,16 +112,11 @@ export default class Manager {
 
     if (!client) {
 
-      if (!Client) {
-
-        Client = require('./atom-ternjs-client');
-      }
-
-      let clientIdx = this.clients.push(new Client(this, dir)) - 1;
+      let clientIdx = this.clients.push(new Client(dir)) - 1;
       client = this.clients[clientIdx];
     }
 
-    this.servers.push(new Server(dir, client, this));
+    this.servers.push(new Server(dir, client));
 
     if (this.servers.length === this.clients.length) {
 
@@ -205,13 +155,13 @@ export default class Manager {
     if (server && client) {
 
       this.server = server;
-      this.config.gatherData();
+      config.gatherData();
       this.client = client;
 
     } else {
 
       this.server = undefined;
-      this.config.clear();
+      config.clear();
       this.client = undefined;
     }
   }
@@ -222,7 +172,7 @@ export default class Manager {
 
       let dir = atom.project.relativizePath(path)[0];
 
-      if (this.helper.isDirectory(dir)) {
+      if (isDirectory(dir)) {
 
         this.startServer(dir);
       }
@@ -321,20 +271,9 @@ export default class Manager {
 
   onDidChangeCursorPosition(editor, e) {
 
-    if (this.packageConfig.options.inlineFnCompletion) {
+    if (packageConfig.options.inlineFnCompletion) {
 
-      if (!this.type) {
-
-        Type = require('./atom-ternjs-type');
-        this.type = new Type(this);
-      }
-
-      this.type.queryType(editor, e.cursor);
-    }
-
-    if (this.rename) {
-
-      this.rename.hide();
+      type.queryType(editor, e.cursor);
     }
   }
 
@@ -365,7 +304,10 @@ export default class Manager {
 
         this.disposables.push(editorView.addEventListener('click', (e) => {
 
-          if (!e[this.helper.accessKey]) {
+          if (
+            !e[accessKey] ||
+            editor.getSelectedText() !== ''
+          ) {
 
             return;
           }
@@ -392,7 +334,7 @@ export default class Manager {
 
         this.disposables.push(scrollView.addEventListener('mousemove', (e) => {
 
-          if (!e[this.helper.accessKey]) {
+          if (!e[accessKey]) {
 
             return;
           }
@@ -413,18 +355,11 @@ export default class Manager {
 
       this.disposables.push(editor.onDidChangeCursorPosition((e) => {
 
-        if (this.type) {
-
-          this.type.destroyOverlay();
-        }
-
-        if (this.documentation) {
-
-          this.documentation.destroyOverlay();
-        }
+        emitter.emit('type-destroy-overlay');
+        emitter.emit('documentation-destroy-overlay');
       }));
 
-      this.disposables.push(editor.onDidChangeCursorPosition(_.debounce(this.onDidChangeCursorPosition.bind(this, editor), 300)));
+      this.disposables.push(editor.onDidChangeCursorPosition(debounce(this.onDidChangeCursorPosition.bind(this, editor), 300)));
 
       this.disposables.push(editor.getBuffer().onDidSave((e) => {
 
@@ -442,27 +377,14 @@ export default class Manager {
 
     this.disposables.push(atom.workspace.onDidChangeActivePaneItem((item) => {
 
-      if (this.config) {
-
-        this.config.clear();
-      }
-
-      if (this.type) {
-
-        this.type.destroyOverlay();
-      }
-
-      if (this.rename) {
-
-        this.rename.hide();
-      }
+      emitter.emit('config-clear');
+      emitter.emit('type-destroy-overlay');
+      emitter.emit('documentation-destroy-overlay');
+      emitter.emit('rename-hide');
 
       if (!this.isValidEditor(item)) {
 
-        if (this.reference) {
-
-          this.reference.hide();
-        }
+        emitter.emit('reference-hide');
 
       } else {
 
@@ -471,47 +393,15 @@ export default class Manager {
     }));
   }
 
-  registerHelperCommands() {
-
-    this.disposables.push(atom.commands.add('atom-workspace', 'atom-ternjs:openConfig', (e) => {
-
-      if (!this.config) {
-
-        this.config = new Config(this);
-      }
-
-      this.config.show();
-    }));
-  }
-
   registerCommands() {
 
     this.disposables.push(atom.commands.add('atom-text-editor', 'core:cancel', (e) => {
 
-      if (this.config) {
-
-        this.config.hide();
-      }
-
-      if (this.type) {
-
-        this.type.destroyOverlay();
-      }
-
-      if (this.rename) {
-
-        this.rename.hide();
-      }
-
-      if (this.reference) {
-
-        this.reference.hide();
-      }
-
-      if (this.documentation) {
-
-        this.documentation.destroyOverlay();
-      }
+      emitter.emit('config-clear');
+      emitter.emit('type-destroy-overlay');
+      emitter.emit('documentation-destroy-overlay');
+      emitter.emit('reference-hide');
+      emitter.emit('rename-hide');
     }));
 
     this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:listFiles', (e) => {
@@ -533,57 +423,9 @@ export default class Manager {
       }
     }));
 
-    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:documentation', (e) => {
-
-      if (!this.documentation) {
-
-        Documentation = require('./atom-ternjs-documentation');
-        this.documentation = new Documentation(this);
-      }
-
-      if (this.client) {
-
-        this.documentation.request();
-      }
-    }));
-
-    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:references', (e) => {
-
-      if (!this.reference) {
-
-        Reference = require('./atom-ternjs-reference');
-        this.reference = new Reference(this);
-      }
-
-      this.reference.findReference();
-    }));
-
-    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:rename', (e) => {
-
-        if (!this.rename) {
-
-          Rename = require('./atom-ternjs-rename');
-          this.rename = new Rename(this);
-        }
-
-        this.rename.show();
-      }
-    ));
-
     this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:markerCheckpointBack', (e) => {
 
-      if (this.helper) {
-
-        this.helper.markerCheckpointBack();
-      }
-    }));
-
-    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:startCompletion', (e) => {
-
-      if (this.provider) {
-
-        this.provider.forceCompletion();
-      }
+      markerCheckpointBack();
     }));
 
     this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:definition', (e) => {
@@ -608,6 +450,7 @@ export default class Manager {
     }
 
     let dir = this.server.projectDir;
+    let serverIdx;
 
     for (let i = 0; i < this.servers.length; i++) {
 
@@ -628,3 +471,5 @@ export default class Manager {
     this.startServer(dir);
   }
 }
+
+export default new Manager();

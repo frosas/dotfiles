@@ -1,23 +1,57 @@
-"use babel";
+'use babel';
 
-let ConfigView;
-let _ = require('underscore-plus');
+const ConfigView = require('./atom-ternjs-config-view');
 
-export default class Config {
+import manager from './atom-ternjs-manager';
+import emitter from './atom-ternjs-events';
+import {
+  getFileContent,
+  focusEditor,
+  updateTernFile,
+  disposeAll
+} from './atom-ternjs-helper';
 
-  constructor(manager) {
+import {
+  deepExtend,
+  clone,
+  isEmpty
+} from 'underscore-plus';
 
-    this.manager = manager;
+class Config {
+
+  constructor() {
+
+    this.disposables = [];
 
     this.config = undefined;
     this.projectConfig = undefined;
     this.editors = [];
+
+    this.configClearHandler = this.clear.bind(this);
+    emitter.on('config-clear', this.configClearHandler);
+
+    this.registerCommands();
+  }
+
+  registerCommands() {
+
+    this.disposables.push(atom.commands.add('atom-workspace', 'atom-ternjs:openConfig', this.show.bind(this)));
   }
 
   getContent(filePath, projectRoot) {
 
-    let error = false;
-    let content = this.manager.helper.getFileContent(filePath, projectRoot);
+    let root;
+
+    if (projectRoot) {
+
+      root = manager.server && manager.server.projectDir;
+
+    } else {
+
+      root = '';
+    }
+
+    let content = getFileContent(filePath, root);
 
     if (!content) {
 
@@ -28,7 +62,7 @@ export default class Config {
 
       content = JSON.parse(content);
 
-    } catch(e) {
+    } catch (e) {
 
       atom.notifications.addInfo('Error parsing .tern-project. Please check if it is a valid JSON file.', {
 
@@ -40,85 +74,87 @@ export default class Config {
     return content;
   }
 
-  prepareLibs(localConfig, configStub) {
+  prepareLibs(configDefault) {
 
     let libs = {};
 
-    if (!localConfig.libs) {
+    for (const index in configDefault.libs) {
 
-      localConfig.libs = {};
+      if (this.projectConfig.libs && this.projectConfig.libs.indexOf(configDefault.libs[index]) > -1) {
 
-    } else {
+        libs[configDefault.libs[index]] = {
 
-      let libsAsObject = {};
-      for (let lib of localConfig.libs) {
-
-        libsAsObject[lib] = true;
-      }
-
-      localConfig.libs = libsAsObject;
-    }
-
-    for (let lib of Object.keys(configStub.libs)) {
-
-      if (!localConfig.libs[lib]) {
-
-        libs[lib] = false;
+          _active: true
+        };
 
       } else {
 
-        libs[lib] = true;
+        libs[configDefault.libs[index]] = {
+
+          _active: false
+        };
       }
     }
 
-    for (let lib of Object.keys(localConfig.libs)) {
-
-      if (lib === 'ecma5' || lib === 'ecma6') {
-
-        atom.notifications.addInfo('You are using a outdated .tern-project file. Please remove libs ecma5, ecma6 manually and restart the Server via Packages -> Atom Ternjs -> Restart server. Then configure the project via Packages -> Atom Ternjs -> Configure project.', {
-
-          dismissable: true
-        });
-      }
-
-      if (!libs[lib]) {
-
-        libs[lib] = true;
-      }
-    }
-
-    localConfig.libs = libs;
-
-    return localConfig;
+    this.config.libs = libs;
   }
 
-  prepareEcma(localConfig, configStub) {
+  prepareEcma(configDefault) {
 
     let ecmaVersions = {};
 
-    for (let lib of Object.keys(configStub.ecmaVersions)) {
+    for (let lib of Object.keys(configDefault.ecmaVersions)) {
 
-      ecmaVersions[lib] = configStub.ecmaVersions[lib];
+      ecmaVersions[lib] = configDefault.ecmaVersions[lib];
     }
 
-    localConfig.ecmaVersions = ecmaVersions;
+    this.config.ecmaVersions = ecmaVersions;
 
-    if (localConfig.ecmaVersion) {
+    if (this.config.ecmaVersion) {
 
-      for (let lib of Object.keys(localConfig.ecmaVersions)) {
+      for (let lib of Object.keys(this.config.ecmaVersions)) {
 
-        if (lib === 'ecmaVersion' + localConfig.ecmaVersion) {
+        if (lib === 'ecmaVersion' + this.config.ecmaVersion) {
 
-          localConfig.ecmaVersions[lib] = true;
+          this.config.ecmaVersions[lib] = true;
 
         } else {
 
-          localConfig.ecmaVersions[lib] = false;
+          this.config.ecmaVersions[lib] = false;
         }
       }
     }
+  }
 
-    return localConfig;
+  preparePlugins(availablePlugins) {
+
+    if (!this.config.plugins) {
+
+      this.config.plugins = {};
+    }
+
+    // check if there are unknown plugins in .tern-config
+    for (const plugin of Object.keys(this.config.plugins)) {
+
+      if (!availablePlugins[plugin]) {
+
+        availablePlugins[plugin] = plugin;
+      }
+    }
+
+    for (const plugin of Object.keys(availablePlugins)) {
+
+      if (this.config.plugins[plugin]) {
+
+        this.config.plugins[plugin] = this.mergeConfigObjects(availablePlugins[plugin], this.config.plugins[plugin]);
+        this.config.plugins[plugin]._active = true;
+
+      } else {
+
+        this.config.plugins[plugin] = availablePlugins[plugin];
+        this.config.plugins[plugin]._active = false;
+      }
+    }
   }
 
   registerEvents() {
@@ -130,20 +166,22 @@ export default class Config {
 
       this.updateConfig();
       this.hide();
-      this.manager.helper.focusEditor();
+
+      focusEditor();
     });
 
     cancel.addEventListener('click', (e) => {
 
       this.destroyEditors();
       this.hide();
-      this.manager.helper.focusEditor();
+
+      focusEditor();
     });
   }
 
   mergeConfigObjects(obj1, obj2) {
 
-    return _.deepExtend({}, obj1, obj2);
+    return deepExtend({}, obj1, obj2);
   }
 
   hide() {
@@ -173,36 +211,36 @@ export default class Config {
 
   gatherData() {
 
-    let configStub = this.getContent('../tern-config.json', false);
+    const configDefault = this.getContent('../config/tern-config.json', false);
+    const pluginsTern = this.getContent('../config/tern-plugins.json', false);
 
-    if (!configStub) {
+    if (!configDefault) {
 
+      console.error('Could not load: tern-config.json');
       return;
     }
 
     this.projectConfig = this.getContent('/.tern-project', true);
+    this.config = this.projectConfig || {};
 
-    this.config = {};
-    this.config = this.mergeConfigObjects(this.projectConfig, this.config);
+    if (!this.projectConfig) {
 
-    if (this.projectConfig) {
+      this.projectConfig = {};
+      this.config = clone(configDefault);
+    }
 
-      this.config = this.prepareEcma(this.config, configStub);
-      this.config = this.prepareLibs(this.config, configStub);
+    this.prepareEcma(configDefault);
+    this.prepareLibs(configDefault);
+    this.preparePlugins(pluginsTern);
 
-      for (let plugin in this.config.plugins) {
+    if (!this.config.loadEagerly) {
 
-        if (this.config.plugins[plugin]) {
+      this.config.loadEagerly = [];
+    }
 
-          this.config.plugins[plugin].active = true;
-        }
-      }
+    if (!this.config.dontLoad) {
 
-      this.config = this.mergeConfigObjects(configStub, this.config);
-
-    } else {
-
-      this.config = configStub;
+      this.config.dontLoad = [];
     }
 
     return true;
@@ -260,7 +298,7 @@ export default class Config {
     let newConfig = this.buildNewConfig();
     let newConfigJSON = JSON.stringify(newConfig, null, 2);
 
-    this.manager.helper.updateTernFile(newConfigJSON, true);
+    updateTernFile(newConfigJSON, true);
   }
 
   buildNewConfig() {
@@ -276,13 +314,13 @@ export default class Config {
       }
     }
 
-    if (!_.isEmpty(this.config.libs)) {
+    if (!isEmpty(this.config.libs)) {
 
       newConfig.libs = [];
 
       for (let key of Object.keys(this.config.libs)) {
 
-        if (this.config.libs[key]) {
+        if (this.config.libs[key]._active) {
 
           newConfig.libs.push(key);
         }
@@ -299,21 +337,24 @@ export default class Config {
       newConfig.dontLoad = this.config.dontLoad;
     }
 
-    if (this.projectConfig && !_.isEmpty(this.projectConfig.plugins)) {
+    if (!isEmpty(this.config.plugins)) {
 
-      newConfig.plugins = this.projectConfig.plugins;
+      newConfig.plugins = {};
+
+      for (const key of Object.keys(this.config.plugins)) {
+
+        if (this.config.plugins[key]._active) {
+
+          delete this.config.plugins[key]._active;
+          newConfig.plugins[key] = this.config.plugins[key];
+        }
+      }
     }
 
     return newConfig;
   }
 
   initConfigView() {
-
-    if (!ConfigView) {
-
-      ConfigView = require('./atom-ternjs-config-view');
-    }
-
 
     this.configView = new ConfigView();
     this.configView.initialize(this);
@@ -337,22 +378,20 @@ export default class Config {
 
     this.clear();
 
-    atom.views.getView(this.configPanel).classList.add('atom-ternjs-config-panel');
-
     if (!this.gatherData()) {
 
-      atom.notifications.addInfo('There is no active project. Please re-open or focus at least one JavaScript file of the project to configure.', {
-
-        dismissable: true
-      });
       return;
     }
 
-    this.configView.buildOptionsMarkup(this.manager);
+    atom.views.getView(this.configPanel).classList.add('atom-ternjs-config-panel');
+
+    this.configView.buildOptionsMarkup();
     this.configPanel.show();
   }
 
   destroy() {
+
+    disposeAll(this.disposables);
 
     if (this.configView) {
 
@@ -367,3 +406,5 @@ export default class Config {
     this.configPanel = undefined;
   }
 }
+
+export default new Config();

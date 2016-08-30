@@ -1,7 +1,7 @@
 {
   "name": "atom-ternjs",
   "main": "./lib/atom-ternjs",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "private": false,
   "description": "JavaScript code intelligence for atom with Tern. Adds support for ES5, ES6 (JavaScript 2015), Node.js, jQuery & Angular. Extendable via plugins. Uses suggestion provider by autocomplete-plus.",
   "activationCommands": {},
@@ -11,31 +11,27 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">=1.2.0"
+    "atom": ">=1.9.0"
   },
   "dependencies": {
-    "loophole": "^1.1.0",
-    "tern": "^0.18.0",
-    "tern-lint": "^0.6.0",
-    "underscore-plus": "^1.6.6",
+    "event-kit": "2.1.0",
     "glob": "3",
+    "loophole": "^1.1.0",
     "minimatch": "0.2",
-    "node-uuid": "1.4.7"
+    "node-uuid": "1.4.7",
+    "resolve-from": "^2.0.0",
+    "tern": "^0.20.0",
+    "underscore-plus": "^1.6.6"
   },
   "devDependencies": {
-    "eslint": "2.12.0",
-    "babel-eslint": "6.0.4",
-    "eslint-plugin-babel": "3.2.0"
+    "eslint": "^2.13.1",
+    "babel-eslint": "6.0.5",
+    "eslint-plugin-babel": "3.3.0"
   },
   "providedServices": {
     "autocomplete.provider": {
       "versions": {
         "2.0.0": "provide"
-      }
-    },
-    "linter": {
-      "versions": {
-        "1.0.0": "provideLinter"
       }
     }
   },
@@ -49,19 +45,24 @@
     "jquery",
     "tern"
   ],
-  "readme": "# atom-ternjs\n\n> JavaScript code intelligence for atom with [Tern](https://github.com/ternjs/tern).\nAdds support for ES5, ES6 (JavaScript 2015), Node.js, jQuery, Angular and more. Extendable via plugins.\nUses suggestion provider by [autocomplete-plus](https://github.com/atom/autocomplete-plus).\n\n## Installation\n\nConfigure your project\n* Navigate to Packages -> Atom Ternjs -> Configure project\n* The config view appears.\n* Hit \"Save & Restart Server\" to create/update the .tern-project file\n\n**Configure project doesn't support the plugins-section (yet).\nPlease add plugins manually by editing the .tern-project file as shown below.**\n\n**In order to use third party plugins read the [Third party plugins](#third-party-plugins) section!**\n\n**In order to use third party plugins from within your project's ```node_modules``` read the [Third party plugins local](#third-party-plugins-local) section! This is also an alternative if [Third party plugins](#third-party-plugins) aren't working.**\n\nIf configure project does not work for you\n* In your project root create a file named .tern-project. See docs @ http://ternjs.net/doc/manual.html#configuration.\n* Check path in loadEagerly\n* Restart the server via *Packages -> Atom Ternjs -> Restart server*\n\nExample `.tern-project` file (customize to your own needs):\n```json\n{\n  \"ecmaVersion\": 6,\n  \"libs\": [\n    \"browser\",\n    \"jquery\"\n  ],\n  \"loadEagerly\": [\n    \"path/to/your/js/**/*.js\"\n  ],\n  \"dontLoad\": [\n    \"path/to/your/js/**/*.js\"\n  ],\n  \"plugins\": {\n    \"complete_strings\": {},\n    \"node\": {},\n    \"lint\": {},\n    \"angular\": {},\n    \"requirejs\": {},\n    \"modules\": {},\n    \"es_modules\": {},\n    \"doc_comment\": {\n      \"fullDocs\": true\n    }\n  }\n}\n```\n\n### Keybindings\nList of [keybindings](#features).\nTo use your own keybindings goto `atom-ternjs` package settings and disable keybindings.\n\n### EcmaVersion\n* 5: use ECMAScript5\n* 6: use ECMAScript6 (default)\n\n### Libs\n* browser: completion for vanilla js (optional)\n* jquery: completion for jQuery (optional)\n\n### Options\n* loadEagerly: provide the path to your projects js. For relative paths do not use `./` as a prefix. This sometimes leads to an unexpected behaviour.\n* **loadEagerly is expensive. Do not add paths like `node_modules`.**\n* dontLoad: can be used to prevent Tern from loading certain files. It also takes an array of file names or glob patterns.\n\n### Plugins\n* complete_strings: When enabled, this plugin will gather (short) strings in your code, and completing when inside a string will try to complete to previously seen strings. Takes a single option, maxLength, which controls the maximum length of string values to gather, and defaults to 15. (optional)\n* doc_comment: tern will look for JSDoc-style type declarations. Returns the full comment text instead of the first sentence. (optional)\n* node: NodeJS (optional)\n* lint: <a href=\"https://github.com/angelozerr/tern-lint\">angelozerr/tern-lint</a> is a tern plugin which is able to validate JavaScript files to collect semantic errors. <a href=\"https://github.com/AtomLinter/Linter\">Linter</a> is used to display these errors and warnings (optional)\n* angular: AngularJS (optional)\n* requirejs: RequireJS (optional, understand RequireJS-style dependency management)\n* modules: This is a supporting plugin to act as a dependency for other module-loading and module-resolving plugins. (optional, required by es_modules)\n* es_modules: Builds on top of the modules plugin to support ECMAScript 6’s import and export based module inclusion. (optional, requires modules)\n* For a list of possible plugins goto http://ternjs.net/doc/manual.html#plugins\n\n## Third party plugins\nIn order to use third party plugins (e.g. [tern-node-express](https://github.com/angelozerr/tern-node-express)):\n```\n$ cd ~/.atom/packages/atom-ternjs\n$ npm install tern-node-express\n```\nAdd the plugin to your .tern-project file:\n```json\n{\n  \"ecmaVersion\": 6,\n  \"libs\": [\n    \"browser\"\n  ],\n  \"loadEagerly\": [\n    \"app/**/*.js\"\n  ],\n  \"plugins\": {\n    \"node-express\": {}\n  }\n}\n```\n\nThird party plugins are still an issue and sometimes do not work as expected. This will be fixed in future release.\nRestart the server: *Packages -> Atom Ternjs -> Restart server*\n\n## Third party plugins local\n\nExample for node-express.\nOpen node_modules/tern-node-express/tern-express.js\n\nReplace:\n\n```js\n(function(mod) {\n  if (typeof exports == \"object\" && typeof module == \"object\") // CommonJS\n    return mod(require(\"tern/lib/infer\"), require(\"tern/lib/tern\"));\n  if (typeof define == \"function\" && define.amd) // AMD\n    return define([ \"tern/lib/infer\", \"tern/lib/tern\" ], mod);\n  mod(tern, tern);\n}...\n```\n\nWith\n\n```js\n(function(mod) {\n  return mod(process.__infer, process.__tern);\n}...\n\n```\n\nRestart Atom.\n\n## .tern-project created/modified\n* After the file was created or has been modified, restart the server via *Packages -> Atom Ternjs -> Restart server*\n\n## Features\n* Completion (autocompletion triggers automatically), or via the keybindings:\n  * <kbd>strg+space</kbd>\n  * <kbd>ctrl+alt+space</kbd> (force autocompletion in any context)\n\n![atom-ternjs](http://www.tobias-schubert.com/github/completion-1.png)\n\n![atom-ternjs](http://www.tobias-schubert.com/github/completion-2.png)\n* Find references (set your cursor position to one of variable, function or instance -> open context-menu and trigger \"Find references\" or use the keybindings:\n  * <kbd>ctrl+shift+r</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+e</kbd> (linux)\n\nClick any item in the generated reference-list and navigate directly to file and position\n\n![atom-ternjs](http://www.tobias-schubert.com/github/reference-1.png)\n\n* Documentation\n  * Show documentation for the thing under the cursor via <kbd>alt+o</kbd> (mac, windows, linux)\n  ![atom-ternjs](http://www.tobias-schubert.com/github/docs.png)\n  * Also displayed if a suggestion with a valid documentation is selected in the autocomplete-plus select-list\n\n* Find definition (set your cursor position to one of variable, function or instance -> open context-menu and trigger \"Find definition\") or use the keybindings:\n  * <kbd>alt+click</kbd> (mac, windows, linux)\n  * <kbd>ctrl+alt+d</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+d</kbd> (linux)\n\n* Back from definition\n  * <kbd>ctrl+alt+z</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+z</kbd> (linux)\n\n* Rename variable (set your cursor position to a variable -> open context-menu and trigger \"Rename\") or use the keybindings:\n  * <kbd>ctrl+alt+c</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+c</kbd> (linux)\n",
+  "readme": "# atom-ternjs\n\n> JavaScript code intelligence for atom with [Tern](https://github.com/ternjs/tern).\nAdds support for ES5, ES6, ES7, Node.js, jQuery, Angular and more. Extendable via plugins.\nUses suggestion provider by [autocomplete-plus](https://github.com/atom/autocomplete-plus).\n\n## Installation\n\nConfigure your project\n* Open any JavaScript file from within you project\n* Navigate to Packages -> Atom Ternjs -> Configure project\n* The config view appears.\n* Hit \"Save & Restart Server\" to create/update the .tern-project file\n\n**In order to use third party plugins read the [Third party plugins](#third-party-plugins) section!**\n\n**In order to use third party plugins from within your project's ```node_modules``` read the [Third party plugins local](#third-party-plugins-local) section! This is also an alternative if [Third party plugins](#third-party-plugins) aren't working.**\n\nIf configure project does not work for you\n* In your project root create a file named .tern-project. See docs @ http://ternjs.net/doc/manual.html#configuration.\n* Restart the server via *Packages -> Atom Ternjs -> Restart server*\n\nExample `.tern-project` file (customize to your own needs):\n\n```json\n{\n  \"ecmaVersion\": 6,\n  \"libs\": [\n    \"browser\",\n    \"jquery\"\n  ],\n  \"loadEagerly\": [\n    \"path/to/your/js/**/*.js\"\n  ],\n  \"dontLoad\": [\n    \"path/to/your/js/**/*.js\"\n  ],\n  \"plugins\": {\n    \"complete_strings\": {\n      \"maxLength\": 15\n    },\n    \"node\": {},\n    \"doc_comment\": {\n      \"fullDocs\": true,\n      \"strong\": true\n    }\n  }\n}\n```\n\n### EcmaVersion\n* 5: use ECMAScript5\n* 6: use ECMAScript6 (default)\n* 7: use ECMAScript7\n\n### Libs\n* browser: completion for vanilla js (optional)\n* jquery: completion for jQuery (optional)\n* underscore: completion for underscore (optional)\n* chai: completion for chai (optional)\n\n### Options\n* loadEagerly: provide the path to your projects js. For relative paths do not use `./` as a prefix. This sometimes leads to an unexpected behaviour.\n* **loadEagerly is expensive. Do not add paths like `node_modules`.**\n* dontLoad: can be used to prevent Tern from loading certain files. It also takes an array of file names or glob patterns.\n\n### Plugins\n* For a list of build in server plugins, visit: http://ternjs.net/doc/manual.html#plugins\n\n### Keybindings\nList of [keybindings](#features).\nTo use your own keybindings goto `atom-ternjs` package settings and disable keybindings.\n\n## Third party plugins\nIn order to use third party plugins (e.g. [tern-node-express](https://github.com/angelozerr/tern-node-express)):\n```\n$ cd ~/.atom/packages/atom-ternjs\n$ npm install tern-node-express\n```\nAdd the plugin to your .tern-project file:\n```json\n{\n  \"ecmaVersion\": 6,\n  \"libs\": [\n    \"browser\"\n  ],\n  \"loadEagerly\": [\n    \"app/**/*.js\"\n  ],\n  \"plugins\": {\n    \"node-express\": {}\n  }\n}\n```\n\nThird party plugins are still an issue and sometimes do not work as expected, especially if the plugin is requiring a tern version that does not match the tern version that is used by atom-ternjs.\nRestart the server: *Packages -> Atom Ternjs -> Restart server*\n\n## Third party plugins local\n\nExample for node-express.\nOpen node_modules/tern-node-express/tern-express.js\n\nReplace:\n\n```js\n(function(mod) {\n  if (typeof exports == \"object\" && typeof module == \"object\") // CommonJS\n    return mod(require(\"tern/lib/infer\"), require(\"tern/lib/tern\"));\n  if (typeof define == \"function\" && define.amd) // AMD\n    return define([ \"tern/lib/infer\", \"tern/lib/tern\" ], mod);\n  mod(tern, tern);\n}...\n```\n\nWith\n\n```js\n(function(mod) {\n  return mod(process.__infer, process.__tern);\n}...\n\n```\n\nRestart Atom.\n\n## .tern-project created/modified\n* After the file was created or has been modified, restart the server via *Packages -> Atom Ternjs -> Restart server*\n\n## Features\n* Completion (autocompletion triggers automatically), or via the keybindings:\n  * <kbd>strg+space</kbd>\n  * <kbd>ctrl+alt+space</kbd> (force autocompletion in any context)\n\n![atom-ternjs](http://www.tobias-schubert.com/github/completion-1.png)\n\n![atom-ternjs](http://www.tobias-schubert.com/github/completion-2.png)\n* Find references (set your cursor position to one of variable, function or instance -> open context-menu and trigger \"Find references\" or use the keybindings:\n  * <kbd>ctrl+shift+r</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+e</kbd> (linux)\n\nClick any item in the generated reference-list and navigate directly to file and position\n\n![atom-ternjs](http://www.tobias-schubert.com/github/reference-1.png)\n\n* Documentation\n  * Show documentation for the thing under the cursor via <kbd>alt+o</kbd> (mac, windows, linux)\n  ![atom-ternjs](http://www.tobias-schubert.com/github/docs.png)\n  * Also displayed if a suggestion with a valid documentation is selected in the autocomplete-plus select-list\n\n* Find definition (set your cursor position to one of variable, function or instance -> open context-menu and trigger \"Find definition\") or use the keybindings:\n  * <kbd>alt+click</kbd> (mac, windows, linux)\n  * <kbd>ctrl+alt+d</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+d</kbd> (linux)\n\n* Back from definition\n  * <kbd>ctrl+alt+z</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+z</kbd> (linux)\n\n* Rename variable (set your cursor position to a variable -> open context-menu and trigger \"Rename\") or use the keybindings:\n  * <kbd>ctrl+alt+c</kbd> (mac, windows)\n  * <kbd>ctrl+alt+shift+c</kbd> (linux)\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/tststs/atom-ternjs/issues"
   },
   "homepage": "https://github.com/tststs/atom-ternjs#readme",
-  "_id": "atom-ternjs@0.14.2",
-  "_shasum": "cf7c15e1e66868c6c2446b53c473de2c0b5dd1c6",
-  "_resolved": "file:../d-116522-79291-40h8qr/package.tgz",
-  "_from": "../d-116522-79291-40h8qr/package.tgz",
+  "_id": "atom-ternjs@0.15.0",
+  "_shasum": "f1d06108a62f430104dd5d0a2ce56389da3ccec8",
+  "_resolved": "file:../d-116730-91678-v7zq3v/package.tgz",
+  "_from": "../d-116730-91678-v7zq3v/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
+      {
+        "name": "event-kit",
+        "version": "2.1.0",
+        "path": "node_modules/event-kit/lib/event-kit.js"
+      },
       {
         "name": "glob",
         "version": "3.2.11",
@@ -113,49 +114,94 @@
         "path": "node_modules/node-uuid/uuid.js"
       },
       {
+        "name": "resolve-from",
+        "version": "2.0.0",
+        "path": "node_modules/resolve-from/index.js"
+      },
+      {
         "name": "tern",
-        "version": "0.18.0",
+        "version": "0.20.0",
         "path": "node_modules/tern/lib/tern.js"
       },
       {
         "name": "acorn",
-        "version": "2.7.0",
+        "version": "3.3.0",
         "path": "node_modules/tern/node_modules/acorn/dist/acorn.js"
       },
       {
         "name": "enhanced-resolve",
-        "version": "0.9.1",
+        "version": "2.2.2",
         "path": "node_modules/tern/node_modules/enhanced-resolve/lib/node.js"
       },
       {
         "name": "graceful-fs",
-        "version": "4.1.3",
+        "version": "4.1.6",
         "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/graceful-fs/graceful-fs.js"
       },
       {
         "name": "memory-fs",
-        "version": "0.2.0",
+        "version": "0.3.0",
         "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/lib/MemoryFileSystem.js"
       },
       {
+        "name": "errno",
+        "version": "0.1.4",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/errno.js"
+      },
+      {
+        "name": "prr",
+        "version": "0.0.0",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/node_modules/prr/prr.js"
+      },
+      {
+        "name": "readable-stream",
+        "version": "2.1.5",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/readable.js"
+      },
+      {
+        "name": "buffer-shims",
+        "version": "1.0.0",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/buffer-shims/index.js"
+      },
+      {
+        "name": "core-util-is",
+        "version": "1.0.2",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/core-util-is/lib/util.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "isarray",
+        "version": "1.0.0",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/isarray/index.js"
+      },
+      {
+        "name": "process-nextick-args",
+        "version": "1.0.7",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/process-nextick-args/index.js"
+      },
+      {
+        "name": "string_decoder",
+        "version": "0.10.31",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/string_decoder/index.js"
+      },
+      {
+        "name": "util-deprecate",
+        "version": "1.0.2",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/util-deprecate/node.js"
+      },
+      {
+        "name": "object-assign",
+        "version": "4.1.0",
+        "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/object-assign/index.js"
+      },
+      {
         "name": "tapable",
-        "version": "0.1.10",
+        "version": "0.2.4",
         "path": "node_modules/tern/node_modules/enhanced-resolve/node_modules/tapable/lib/Tapable.js"
-      },
-      {
-        "name": "typescript",
-        "version": "1.0.1",
-        "path": "node_modules/tern/node_modules/typescript/bin/typescript.js"
-      },
-      {
-        "name": "tern-lint",
-        "version": "0.6.0",
-        "path": "node_modules/tern-lint/lint.js"
-      },
-      {
-        "name": "acorn",
-        "version": "2.7.0",
-        "path": "node_modules/tern-lint/node_modules/acorn/dist/acorn.js"
       },
       {
         "name": "underscore-plus",
@@ -169,30 +215,33 @@
       }
     ],
     "extensions": {
-      ".coffee": [
-        "lib/atom-ternjs-client.coffee",
-        "lib/atom-ternjs-config-view.coffee",
-        "lib/atom-ternjs-helper.coffee",
-        "lib/atom-ternjs-reference.coffee",
-        "lib/atom-ternjs-rename-view.coffee",
-        "lib/atom-ternjs-rename.coffee",
-        "lib/atom-ternjs-type-view.coffee",
-        "lib/atom-ternjs-type.coffee",
-        "lib/linter.coffee"
-      ],
       ".js": [
         "lib/atom-ternjs-client.js",
+        "lib/atom-ternjs-config-view.js",
         "lib/atom-ternjs-config.js",
         "lib/atom-ternjs-documentation-view.js",
         "lib/atom-ternjs-documentation.js",
+        "lib/atom-ternjs-events.js",
         "lib/atom-ternjs-helper.js",
         "lib/atom-ternjs-manager.js",
         "lib/atom-ternjs-package-config.js",
+        "lib/atom-ternjs-plugin-manager.js",
         "lib/atom-ternjs-provider.js",
         "lib/atom-ternjs-reference-view.js",
+        "lib/atom-ternjs-reference.js",
+        "lib/atom-ternjs-rename-view.js",
+        "lib/atom-ternjs-rename.js",
         "lib/atom-ternjs-server-worker.js",
         "lib/atom-ternjs-server.js",
+        "lib/atom-ternjs-type-view.js",
+        "lib/atom-ternjs-type.js",
+        "lib/atom-ternjs-view.js",
         "lib/atom-ternjs.js",
+        "lib/config.js",
+        "node_modules/event-kit/lib/composite-disposable.js",
+        "node_modules/event-kit/lib/disposable.js",
+        "node_modules/event-kit/lib/emitter.js",
+        "node_modules/event-kit/lib/event-kit.js",
         "node_modules/glob/examples/g.js",
         "node_modules/glob/examples/usr-local.js",
         "node_modules/glob/glob.js",
@@ -210,6 +259,7 @@
         "node_modules/minimatch/node_modules/sigmund/sigmund.js",
         "node_modules/node-uuid/benchmark/benchmark.js",
         "node_modules/node-uuid/uuid.js",
+        "node_modules/resolve-from/index.js",
         "node_modules/tern/doc/demo/demo.js",
         "node_modules/tern/doc/demo/polyfill.js",
         "node_modules/tern/doc/demo/underscore.js",
@@ -219,19 +269,23 @@
         "node_modules/tern/lib/infer.js",
         "node_modules/tern/lib/signal.js",
         "node_modules/tern/lib/tern.js",
-        "node_modules/tern/lib/typescript.js",
-        "node_modules/tern/node_modules/acorn/bin/build-acorn.js",
         "node_modules/tern/node_modules/acorn/bin/generate-identifier-regex.js",
+        "node_modules/tern/node_modules/acorn/dist/acorn.es.js",
         "node_modules/tern/node_modules/acorn/dist/acorn.js",
+        "node_modules/tern/node_modules/acorn/dist/acorn_loose.es.js",
         "node_modules/tern/node_modules/acorn/dist/acorn_loose.js",
+        "node_modules/tern/node_modules/acorn/dist/walk.es.js",
         "node_modules/tern/node_modules/acorn/dist/walk.js",
+        "node_modules/tern/node_modules/acorn/rollup/config.bin.js",
+        "node_modules/tern/node_modules/acorn/rollup/config.loose.js",
+        "node_modules/tern/node_modules/acorn/rollup/config.main.js",
+        "node_modules/tern/node_modules/acorn/rollup/config.walk.js",
         "node_modules/tern/node_modules/acorn/src/bin/acorn.js",
         "node_modules/tern/node_modules/acorn/src/expression.js",
         "node_modules/tern/node_modules/acorn/src/identifier.js",
         "node_modules/tern/node_modules/acorn/src/index.js",
         "node_modules/tern/node_modules/acorn/src/location.js",
         "node_modules/tern/node_modules/acorn/src/locutil.js",
-        "node_modules/tern/node_modules/acorn/src/loose/acorn_loose.js",
         "node_modules/tern/node_modules/acorn/src/loose/expression.js",
         "node_modules/tern/node_modules/acorn/src/loose/index.js",
         "node_modules/tern/node_modules/acorn/src/loose/parseutil.js",
@@ -250,26 +304,44 @@
         "node_modules/tern/node_modules/acorn/src/util.js",
         "node_modules/tern/node_modules/acorn/src/walk/index.js",
         "node_modules/tern/node_modules/acorn/src/whitespace.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/AliasFieldPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/AliasPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/AppendPlugin.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/DirectoryDefaultFilePlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/DirectoryDescriptionFileFieldAliasPlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/DirectoryDescriptionFilePlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/DirectoryResultPlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/FileAppendPlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/ModuleAliasPlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/ModuleAsDirectoryPlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/ModuleAsFilePlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/ModuleTemplatesPlugin.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/ModulesInDirectoriesPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/CloneBasenamePlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ConcordExtensionsPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ConcordMainPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ConcordModulesPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/DescriptionFileUtils.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/DirectoryExistsPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/FileExistsPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/FileKindPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/JoinRequestPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/LogInfoPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/MainFieldPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ModuleAppendPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ModuleKindPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ModulesInHierachicDirectoriesPlugin.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/ModulesInRootPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/NextPlugin.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/NodeJsInputFileSystem.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ParsePlugin.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/Resolver.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/ResultSymlinkPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ResolverFactory.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/ResultPlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/SymlinkPlugin.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/SyncNodeJsInputFileSystem.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/TryNextPlugin.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/UseFilePlugin.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/concord.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/createInnerCallback.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/forEachBail.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/getInnerRequest.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/getPaths.js",
+        "node_modules/tern/node_modules/enhanced-resolve/lib/globToRegExp.js",
         "node_modules/tern/node_modules/enhanced-resolve/lib/node.js",
-        "node_modules/tern/node_modules/enhanced-resolve/lib/popPathSeqment.js",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/graceful-fs/fs.js",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/graceful-fs/graceful-fs.js",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/graceful-fs/legacy-streams.js",
@@ -277,9 +349,39 @@
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/lib/MemoryFileSystem.js",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/lib/join.js",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/lib/normalize.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/build.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/cli.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/custom.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/errno.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/node_modules/prr/prr.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/node_modules/prr/test.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/test.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/duplex.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib/_stream_duplex.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib/_stream_passthrough.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib/_stream_readable.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib/_stream_transform.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib/_stream_writable.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib/internal/streams/BufferList.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/buffer-shims/index.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/core-util-is/test.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/inherits/inherits.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/inherits/inherits_browser.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/inherits/test.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/isarray/test.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/process-nextick-args/index.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/process-nextick-args/test.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/string_decoder/index.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/util-deprecate/browser.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/util-deprecate/node.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/passthrough.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/readable.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/transform.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/writable.js",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/object-assign/index.js",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/tapable/lib/Tapable.js",
-        "node_modules/tern/node_modules/typescript/bin/tsc.js",
-        "node_modules/tern/node_modules/typescript/bin/typescript.js",
         "node_modules/tern/plugin/angular.js",
         "node_modules/tern/plugin/commonjs.js",
         "node_modules/tern/plugin/complete_strings.js",
@@ -290,49 +392,13 @@
         "node_modules/tern/plugin/node_resolve.js",
         "node_modules/tern/plugin/requirejs.js",
         "node_modules/tern/plugin/webpack.js",
-        "node_modules/tern-lint/codemirror/addon/lint/tern-lint.js",
-        "node_modules/tern-lint/demos/defs/browser.json.js",
-        "node_modules/tern-lint/demos/defs/ecma5.json.js",
-        "node_modules/tern-lint/demos/defs/jquery.json.js",
-        "node_modules/tern-lint/demos/tern.googleapi/plugin/gmaps_3.17.js",
-        "node_modules/tern-lint/lint.js",
-        "node_modules/tern-lint/node_modules/acorn/bin/build-acorn.js",
-        "node_modules/tern-lint/node_modules/acorn/bin/generate-identifier-regex.js",
-        "node_modules/tern-lint/node_modules/acorn/dist/acorn.js",
-        "node_modules/tern-lint/node_modules/acorn/dist/acorn_loose.js",
-        "node_modules/tern-lint/node_modules/acorn/dist/walk.js",
-        "node_modules/tern-lint/node_modules/acorn/src/bin/acorn.js",
-        "node_modules/tern-lint/node_modules/acorn/src/expression.js",
-        "node_modules/tern-lint/node_modules/acorn/src/identifier.js",
-        "node_modules/tern-lint/node_modules/acorn/src/index.js",
-        "node_modules/tern-lint/node_modules/acorn/src/location.js",
-        "node_modules/tern-lint/node_modules/acorn/src/locutil.js",
-        "node_modules/tern-lint/node_modules/acorn/src/loose/acorn_loose.js",
-        "node_modules/tern-lint/node_modules/acorn/src/loose/expression.js",
-        "node_modules/tern-lint/node_modules/acorn/src/loose/index.js",
-        "node_modules/tern-lint/node_modules/acorn/src/loose/parseutil.js",
-        "node_modules/tern-lint/node_modules/acorn/src/loose/state.js",
-        "node_modules/tern-lint/node_modules/acorn/src/loose/statement.js",
-        "node_modules/tern-lint/node_modules/acorn/src/loose/tokenize.js",
-        "node_modules/tern-lint/node_modules/acorn/src/lval.js",
-        "node_modules/tern-lint/node_modules/acorn/src/node.js",
-        "node_modules/tern-lint/node_modules/acorn/src/options.js",
-        "node_modules/tern-lint/node_modules/acorn/src/parseutil.js",
-        "node_modules/tern-lint/node_modules/acorn/src/state.js",
-        "node_modules/tern-lint/node_modules/acorn/src/statement.js",
-        "node_modules/tern-lint/node_modules/acorn/src/tokencontext.js",
-        "node_modules/tern-lint/node_modules/acorn/src/tokenize.js",
-        "node_modules/tern-lint/node_modules/acorn/src/tokentype.js",
-        "node_modules/tern-lint/node_modules/acorn/src/util.js",
-        "node_modules/tern-lint/node_modules/acorn/src/walk/index.js",
-        "node_modules/tern-lint/node_modules/acorn/src/whitespace.js",
-        "node_modules/tern-lint/scripts/git-tag.js",
         "node_modules/underscore-plus/lib/underscore-plus.js",
         "node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
         "node_modules/underscore-plus/node_modules/underscore/underscore.js"
       ],
       ".json": [
-        "lib/config.json",
+        "node_modules/event-kit/api.json",
+        "node_modules/event-kit/package.json",
         "node_modules/glob/node_modules/inherits/package.json",
         "node_modules/glob/node_modules/minimatch/node_modules/lru-cache/package.json",
         "node_modules/glob/node_modules/minimatch/node_modules/sigmund/package.json",
@@ -345,66 +411,53 @@
         "node_modules/node-uuid/bower.json",
         "node_modules/node-uuid/component.json",
         "node_modules/node-uuid/package.json",
+        "node_modules/resolve-from/package.json",
         "node_modules/tern/defs/browser.json",
         "node_modules/tern/defs/chai.json",
-        "node_modules/tern/defs/ecma5.json",
-        "node_modules/tern/defs/ecma6.json",
+        "node_modules/tern/defs/ecmascript.json",
         "node_modules/tern/defs/jquery.json",
         "node_modules/tern/defs/underscore.json",
         "node_modules/tern/node_modules/acorn/package.json",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/graceful-fs/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/node_modules/prr/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/buffer-shims/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/core-util-is/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/inherits/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/isarray/component.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/process-nextick-args/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/node_modules/util-deprecate/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/package.json",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/package.json",
+        "node_modules/tern/node_modules/enhanced-resolve/node_modules/object-assign/package.json",
         "node_modules/tern/node_modules/enhanced-resolve/node_modules/tapable/package.json",
         "node_modules/tern/node_modules/enhanced-resolve/package.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/cs/cz/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/cs/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/cz/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/de/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/en/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/en/us/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/es/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/fr/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/it/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/ja/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/ja/jp/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/ko/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/ko/kr/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/pl/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/pt/br/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/pt/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/ru/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/tr/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/zh/cn/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/bin/resources/zh/tw/diagnosticMessages.generated.json",
-        "node_modules/tern/node_modules/typescript/package.json",
         "node_modules/tern/package.json",
-        "node_modules/tern-lint/node_modules/acorn/package.json",
-        "node_modules/tern-lint/package.json",
-        "node_modules/tern-lint/scripts/package.json",
         "node_modules/underscore-plus/node_modules/underscore/package.json",
         "node_modules/underscore-plus/package.json",
-        "npm-shrinkwrap.json",
-        "package.json",
-        "tern-config.json"
+        "package.json"
       ]
     },
     "folders": [
       {
         "paths": [
+          "config",
           "lib",
           "",
           "spec",
           "spec/fixtures"
         ],
         "dependencies": {
-          "loophole": "^1.1.0",
-          "tern": "^0.18.0",
-          "tern-lint": "^0.6.0",
-          "underscore-plus": "^1.6.6",
+          "event-kit": "2.1.0",
           "glob": "3",
+          "loophole": "^1.1.0",
           "minimatch": "0.2",
-          "node-uuid": "1.4.7"
+          "node-uuid": "1.4.7",
+          "resolve-from": "^2.0.0",
+          "tern": "^0.20.0",
+          "underscore-plus": "^1.6.6"
         }
       },
       {
@@ -455,17 +508,18 @@
           "node_modules/tern/test/cases/requirejs",
           "node_modules/tern/test/cases/requirejs/subdir",
           "node_modules/tern/test/cases/requirejs_config",
+          "node_modules/tern/test/cases/webpack/component",
           "node_modules/tern/test/cases/webpack",
           "node_modules/tern/test/condense",
           "node_modules/tern/test",
           "node_modules/tern/test/data"
         ],
         "dependencies": {
-          "acorn": "^2.7.0",
-          "enhanced-resolve": "^0.9.1",
+          "acorn": "^3.2.0",
+          "enhanced-resolve": "^2.2.2",
           "glob": "3",
           "minimatch": "0.2",
-          "typescript": "=1.0.1"
+          "resolve-from": "2.0.0"
         }
       },
       {
@@ -474,29 +528,45 @@
           "node_modules/tern/node_modules/enhanced-resolve"
         ],
         "dependencies": {
-          "tapable": "^0.1.8",
-          "memory-fs": "^0.2.0",
-          "graceful-fs": "^4.1.2"
+          "tapable": "^0.2.3",
+          "memory-fs": "^0.3.0",
+          "graceful-fs": "^4.1.2",
+          "object-assign": "^4.0.1"
         }
       },
       {
         "paths": [
-          "node_modules/tern-lint/codemirror/addon/lint",
-          "node_modules/tern-lint/demos/defs",
-          "node_modules/tern-lint/demos/tern.googleapi/plugin",
-          "node_modules/tern-lint",
-          "node_modules/tern-lint/scripts",
-          "node_modules/tern-lint/test",
-          "node_modules/tern-lint/test/es6",
-          "node_modules/tern-lint/test/fixtures",
-          "node_modules/tern-lint/test/jsdoc",
-          "node_modules/tern-lint/test/requirejs"
+          "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/lib",
+          "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs",
+          "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/test"
         ],
         "dependencies": {
-          "tern": "^0.16.0",
-          "acorn": "^2.6.4",
-          "glob": "3",
-          "minimatch": "0.2"
+          "errno": "^0.1.3",
+          "readable-stream": "^2.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/errno"
+        ],
+        "dependencies": {
+          "prr": "~0.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream",
+          "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib",
+          "node_modules/tern/node_modules/enhanced-resolve/node_modules/memory-fs/node_modules/readable-stream/lib/internal/streams"
+        ],
+        "dependencies": {
+          "buffer-shims": "^1.0.0",
+          "core-util-is": "~1.0.0",
+          "inherits": "~2.0.1",
+          "isarray": "~1.0.0",
+          "process-nextick-args": "~1.0.6",
+          "string_decoder": "~0.10.x",
+          "util-deprecate": "~1.0.1"
         }
       },
       {
