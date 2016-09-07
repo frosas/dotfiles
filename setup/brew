@@ -5,9 +5,4 @@ set -xe
 brew install bash-completion node npm the_silver_searcher trash wget git ag tree \
     coreutils pstree hub
 
-brew install macvim --override-system-vim
-
 brew linkapps
-
-# TODO What is this for?
-cp -aH /Applications/MacVim.app ~/Applications || true
