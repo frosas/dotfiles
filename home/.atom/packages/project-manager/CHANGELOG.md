@@ -1,5 +1,35 @@
 # Changelog
 
+## 3.2.3
+Fixes [#260](https://github.com/danielbrodin/atom-project-manager/issues/260)
+
+## 3.2.2
+Fixes the sorting option.
+
+## 3.2.1
+Fixes [#259](https://github.com/danielbrodin/atom-project-manager/issues/259)
+
+## 3.2.0
+Added a new setting for reversing the effect of `shift+enter` in the list view, so it will default to open in the same window.
+
+## 3.1.0
+Added a method to save a project in the provider. Check the readme for more info.
+
+## 3.0.1
+Fixed an issue that prevent the settings from being loaded.
+
+## 3.0.0
+This release features a complete rewrite and structure that should hopefully fix some bugs. Make sure to reload Atom after the update.
+
+Some of the new features include:
+- A new setting to include git repositories found in your `core.projectHome` directory.
+- You can now open a project with `shift + enter` which will open it in the current window.
+- The start of a new project edit mode. `Project Manager: Edit Project` in the command palette. It currently only features some of the fields, but everything should be added.
+- A new structure in the `projects.cson` file. Finally rid of the unnecessary object key :) Your file will be updated the first time you save a project.
+- The templates integration isn't 100% yet, but it's there.
+
+Please report any bugs you find, but first make sure you have reloaded Atom.
+
 ## 2.9.7
 Apm seem to have screwed up with publishing.
 
