@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116819-60744-12pp15x/package.tgz",
+        "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-116821-3609-1ofpa6u/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116819-60744-12pp15x/package.tgz",
-        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116819-60744-12pp15x/package.tgz",
+        "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-116821-3609-1ofpa6u/package.tgz",
+        "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-116821-3609-1ofpa6u/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116819-60744-17kswwx"
+      "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-116821-3609-182xlmd"
     ]
   ],
-  "_from": "../d-116819-60744-12pp15x/package.tgz",
+  "_from": "../d-116821-3609-1ofpa6u/package.tgz",
   "_id": "autocomplete-modules@1.6.3",
   "_inCache": true,
   "_installable": true,
   "_location": "/autocomplete-modules",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116819-60744-12pp15x/package.tgz",
+    "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-116821-3609-1ofpa6u/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116819-60744-12pp15x/package.tgz",
-    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116819-60744-12pp15x/package.tgz",
+    "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-116821-3609-1ofpa6u/package.tgz",
+    "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-116821-3609-1ofpa6u/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-116819-60744-12pp15x/package.tgz",
+  "_resolved": "file:../d-116821-3609-1ofpa6u/package.tgz",
   "_shasum": "e46fba3ab5c971d120fd005276c4f8869746f072",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116819-60744-12pp15x/package.tgz",
-  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116819-60744-17kswwx",
+  "_spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-116821-3609-1ofpa6u/package.tgz",
+  "_where": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-116821-3609-182xlmd",
   "bugs": {
     "url": "https://github.com/nkt/atom-autocomplete-modules/issues"
   },
