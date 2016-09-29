@@ -1,35 +1,60 @@
 {
-  "name": "language-ejs",
-  "version": "0.2.0",
-  "private": true,
-  "description": "EJS support for Atom.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/darron/language-ejs"
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116829-78577-blqw6a/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116829-78577-blqw6a/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116829-78577-blqw6a/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116829-78577-17eqc3q"
+    ]
+  ],
+  "_from": "../d-116829-78577-blqw6a/package.tgz",
+  "_id": "language-ejs@0.4.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/language-ejs",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116829-78577-blqw6a/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116829-78577-blqw6a/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116829-78577-blqw6a/package.tgz",
+    "type": "local"
   },
-  "license": "MIT",
-  "engines": {
-    "atom": ">0.50.0"
-  },
-  "dependencies": {},
-  "readme": "# language-ejs package\n\nEJS support for Atom.\n\nConverted from [https://github.com/gregory-m/ejs-tmbundle](https://github.com/gregory-m/ejs-tmbundle).\n\nSelect \"JavaScript Template\" if it's not automatically working.\n\n\n## Screenshot\n\n![screenshot](screenshot.png)\n",
-  "readmeFilename": "README.md",
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-116829-78577-blqw6a/package.tgz",
+  "_shasum": "70dd2fdc699f69ff0418257b7cfcd29f23a08be7",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116829-78577-blqw6a/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116829-78577-17eqc3q",
   "bugs": {
     "url": "https://github.com/darron/language-ejs/issues"
   },
-  "homepage": "https://github.com/darron/language-ejs",
-  "_id": "language-ejs@0.2.0",
-  "_shasum": "c30d74b5238c47e3c2ba9159ed055df3b7f12854",
-  "_resolved": "file:../d-115528-82921-e608zt/package.tgz",
-  "_from": "../d-115528-82921-e608zt/package.tgz",
-  "_atomModuleCache": {
-    "version": 1,
-    "dependencies": [],
-    "extensions": {
-      ".json": [
-        "package.json"
-      ]
-    },
-    "folders": []
-  }
+  "dependencies": {},
+  "description": "EJS support for Atom.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/darron/language-ejs#readme",
+  "license": "MIT",
+  "name": "language-ejs",
+  "optionalDependencies": {},
+  "private": true,
+  "readme": "# language-ejs package\n\nEJS support for Atom.\n\nConverted from [https://github.com/gregory-m/ejs-tmbundle](https://github.com/gregory-m/ejs-tmbundle).\n\nSelect \"JavaScript Template\" if it's not automatically working.\n\n\n## Screenshot\n\n![screenshot](https://github.com/darron/language-ejs/raw/master/screenshot.png)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darron/language-ejs.git"
+  },
+  "version": "0.4.0"
 }
