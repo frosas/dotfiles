@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-11687-69884-6eb6cl/package.tgz",
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11698-80169-z2ahik/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-11687-69884-6eb6cl/package.tgz",
-        "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-11687-69884-6eb6cl/package.tgz",
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11698-80169-z2ahik/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11698-80169-z2ahik/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-11687-69884-1igq1k2"
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-11698-80169-oyywn2"
     ]
   ],
-  "_from": "../d-11687-69884-6eb6cl/package.tgz",
-  "_id": "docblockr@0.8.5",
+  "_from": "../d-11698-80169-z2ahik/package.tgz",
+  "_id": "docblockr@0.8.7",
   "_inCache": true,
   "_installable": true,
   "_location": "/docblockr",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-11687-69884-6eb6cl/package.tgz",
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11698-80169-z2ahik/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-11687-69884-6eb6cl/package.tgz",
-    "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-11687-69884-6eb6cl/package.tgz",
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11698-80169-z2ahik/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11698-80169-z2ahik/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-11687-69884-6eb6cl/package.tgz",
-  "_shasum": "74ebe80b094475a83198c77a1a0b8a0d5423f0fa",
+  "_resolved": "file:../d-11698-80169-z2ahik/package.tgz",
+  "_shasum": "d7c0b42f12c929b5405f726bd229c5014292e641",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-11687-69884-6eb6cl/package.tgz",
-  "_where": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-11687-69884-1igq1k2",
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-11698-80169-z2ahik/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-11698-80169-oyywn2",
   "atomTestRunner": "./spec/runner",
   "bugs": {
     "url": "https://github.com/nikhilkalige/docblockr/issues"
@@ -68,5 +68,5 @@
     "type": "git",
     "url": "git+https://github.com/nikhilkalige/docblockr.git"
   },
-  "version": "0.8.5"
+  "version": "0.8.7"
 }

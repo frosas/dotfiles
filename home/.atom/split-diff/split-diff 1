@@ -1,300 +1,70 @@
 /* eslint-env browser, node */
 
-var dctk = require('../dctk');
-var omniture = require('../analytics/omniture');
-var util = require('../analytics/util');
-var omnitureAccounts = require('../analytics/omniture/accounts');
-var analytics = require('../analytics');
-var runMarketingLogic = require('./../analytics/marketing/runLogic');
-var scrollDepth = require('../analytics/omniture/scroll-depth');
+(function () { // Required because the `return` we have later
+    var Yaku = require('yaku');
+    var tealium = require('./tealium');
+    var time = require('../time');
+    var marketing = require('../analytics/marketing');
+    var analytics = require('../analytics');
 
-dctk.createOmniturePlugins = function () {
-    /** ************************ PLUGINS SECTION ************************ */
+    var dctk = require('../dctk');
+    var util = require('../analytics/util');
 
-    // See https://www.targetier.com/collect-mobile-orientation-on-page-load-into-prop-or-evar/
-    dctk.omtr.checkMobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
-    dctk.omtr.mobileOrientation = (dctk.omtr.checkMobile)
-        ? (window.innerHeight > window.innerWidth)
-        ? "Portrait"
-        : "Landscape"
-        : "";
+    if (dctk._loaded) { // Avoid loading the lib twice
+        util.warn(new Error("DCTK was attempted to be loaded twice"));
+        return;
+    }
+
+    dctk._loaded = true;
+
+    // By default it only logs the error in the console. With this we ensure the
+    // errors are reported.
+    Yaku.onUnhandledRejection = function (reason) {
+        util.warn(reason.message);
+    };
+
+    analytics.init();
+
+    require('./bootstrap');
+    require('./main');
+    require('./util');
+    require('./omniture-track-plugins');
+    require('./abacus');
+
+    dctk.tealium = {};
 
     /**
-     * Clears all Omniture variables
+     * Returns a reference to the `utag` object, loading it if it wasn't already
+     * available.
+     *
+     * It requires the `tealiumSettingInfo` object to be set with:
+     *
+     * - `tealiumProfilename` (`string`)
+     * - `tealiumEnvironment` (`string`) Either `prod`, `dev` or `qa`.
+     *
+     * Usage example:
+     *
+     * ```js
+     * window.tealiumSettingInfo = {
+     *     tealiumProfilename: 'main',
+     *     tealiumEnvironment: 'prod'
+     * };
+     *
+     * dctk.tealium.getUtag().then(function(utag) {
+     *     utag.view(…);
+     * });
+     * ```
+     *
+     * @api
+     * @return {Promise} The `utag` object
      */
-    dctk.omtr.clearOmnitureObject = function () {
-        for (var i = 0; i < 100; i++) {
-            dctk.omtr['prop' + i] = '';
-            dctk.omtr['eVar' + i] = '';
-        }
-        dctk.omtr.products = '';
-        dctk.omtr.events = '';
-        dctk.omtr.linkTrackVars = '';
-        dctk.omtr.server = '';
-        dctk.omtr.channel = '';
-        dctk.omtr.pageName = '';
-        dctk.omtr.pageType = '';
-        dctk.omtr.campaign = '';
+    dctk.tealium.getUtag = function() {
+        return tealium.getUtag();
     };
-};
 
-/**
- * Called at every tracking
- *
- * @param {Object} params The params passed to dctk.initOmniture()
- */
-dctk.doOmniturePlugins = function (params) {
-    var tpidMap = {}, s_eVar9, fbEvents, mTypeVal, hotelId, hostname = window.location.hostname;
+    // Expose methods used during functional testing
+    dctk._increaseTimeDelta = function(delta) { time.delta += delta; };
+    dctk._getReferrer = marketing.getReferrer;
 
-    if (typeof window.s_exp_siteSpect !== 'undefined') {
-        dctk.omtr.eVar23 = window.s_exp_siteSpect;
-    }
-
-    dctk.omtr.referrer = params._referrer || document.referrer;
-
-    omniture.setEventIfVisitorApiEnabled(dctk.omtr);
-
-    // See http://microsite.omniture.com/t2/help/en_US/sc/implement/abort.html
-    dctk.omtr.abort = (function () {
-        if (dctk.omtr_account == omnitureAccounts.NULL_ACCOUNT)
-            return true;
-
-        /*
-         * HACK: This is to prevent an extra omniture call that gets fired on the Flight Search Results Page Please contact Sam Kuttler (skuttler) or
-         * Rohan Balakrishnan (rbalakrishnan) before modifying the if-statement below
-         */
-        if (dctk.omtr.pageName === 'page.Flight-Search-All.byot')
-            return true;
-
-        if (dctk.omtr.pageName === 'page.Flight-Search-Roundtrip.Out') {
-            if (typeof dctk.omtr.linkType === 'undefined') { // to prevent the first load event
-                return true;
-            }
-        }
-
-        if (dctk.omtr.pageName === 'page.Flight')
-            return true;
-
-        // Avoid tracking pages loaded as part of a prefetching or a preview
-        if (params._loadPurpose === "preview") return true;
-
-        if (prop5IsNotSetAndSearchPage()) return true;
-
-        function prop5IsNotSetAndSearchPage() {
-            return ['page.Flight-Search-Roundtrip.Out',
-                    'page.Car-Search',
-                    'page.Package.FC.Flight-Search-Roundtrip.Out',
-                    'page.Package.FHC.Car-Search',
-                    'page.Flight-Search-Oneway',
-                    'page.Flight-Search.MDest'].indexOf(dctk.omtr.pageName) > -1 && !dctk.omtr.prop5;
-        }
-    })();
-
-    // Omniture will set abort to false after tracking an event. Here we store
-    // the original value to be able to check it later.
-    dctk._aborted = dctk.omtr.abort;
-
-    /* Mobile device orientation tracking */
-    dctk.omtr.prop39 = dctk.omtr.mobileOrientation;
-
-    // Begin Travelocity Specific Plugin code
-    if (util.isTravelocity(params._hostname)) {
-
-        switch (dctk.omtr.eVar61) {
-            case 'travelocity.com':
-                dctk.omtr.tpid = '80001';
-                break;
-            case 'travelocity.ca':
-                dctk.omtr.tpid = '80004';
-                break;
-            default:
-                dctk.omtr.tpid = '';
-        }
-
-        // End Travelocity Specific Plugin code
-    } else {
-        // Begin Expedia specific code
-
-        // set tpid so that we can append it to purchaseID to make it Globally Unique. Also cleanup super weird domains
-        tpidMap = {
-            'expedia.com' : '1',
-            'expedia.com.sg' : '14',
-            'expedia.com.my' : '15',
-            'expedia.com.hk' : '18',
-            'expedia.com.au' : '25',
-            'expedia.com.tw' : '62',
-            'expedia.com.ph' : '68',
-            'expedia.com.br' : '69',
-            'expedia.com.ar' : '70',
-            'expedia.com.vn' : '71',
-            'expedia.co.uk' : '3',
-            'expedia.co.kr' : '16',
-            'expedia.co.th' : '17',
-            'expedia.co.jp' : '28',
-            'expedia.co.nz' : '29',
-            'expedia.co.in' : '61',
-            'expedia.ca' : '4',
-            'expedia.de' : '6',
-            'expedia.it' : '8',
-            'expedia.es' : '9',
-            'expedia.nl' : '11',
-            'expedia.mx' : '12',
-            'expedia.fr' : '20',
-            'expedia.in' : '27',
-            'expedia.ie' : '63',
-            'expedia.be' : '64',
-            'expedia.se' : '65',
-            'expedia.no' : '66',
-            'expedia.dk' : '67',
-            'expedia.at' : '10122',
-            'hotwire.com' : '30031',
-            'expediafortd.com' : '4',
-            'expedia-aarp.com' : '30029',
-            'traveltainment.de' : '6',
-            'cheaptickets.com' : '70301',
-            'orbitz.com' : '70201',
-            'ebookers.com' : '70403',
-            'ebookers.de' : '70406',
-            'ebookers.fr' : '70420',
-            'ebookers.ie' : '70463',
-            'mrjet.se' : '70465',
-            'ebookers.ch' : '70472',
-            'ebookers.fi' : '70473',
-            'lastminute.com.au' : '8868',
-            'lastminute.co.nz' : '799554',
-            'wotif.com' : '70125',
-            'wotif.co.nz' : '70129',
-            'expedia-barclays.co.uk' : '1960',
-            'travel.hotels.com' : '300001',
-            'voyages-sncf.com' : '7'
-        };
-
-        dctk.omtr.tpid = tpidMap[dctk.omtr.eVar61] || '';
-
-        if (dctk.omtr.eVar61 === 'traveltainment.de') {
-            dctk.omtr.tpid = (/secure2.traveltainment.de/.test(hostname))
-                ? '10122'
-                : '6';
-        }
-
-        if (/karmalab.net/.test(hostname)) {
-            dctk.omtr.tpid = 'dev';
-        }
-    }
-    /* End Expedia specific code */
-
-    if (!util.isPointOfSale('ie')) {
-        runMarketingLogic();
-    }
-
-    this.omtr.prop64 = this.omtr.c_r('IAID'); // Track persisted InAuth ID
-
-    if (dctk.omtr.purchaseID) {
-        if (dctk.omtr.tpid && (dctk.omtr.purchaseID.indexOf(":") !== -1) && (dctk.omtr.purchaseID.indexOf('tp'
-            + dctk.omtr.tpid) === -1)) {
-            dctk.omtr.purchaseID = dctk.omtr.purchaseID + 'tp' + dctk.omtr.tpid;
-        }
-    }
-
-    dctk.omtr.eVar50 = 'desktop';
-
-    // This overrides any dctk.omtr.prop12 set in scripts in the HTML by
-    // the server, as long as the cookie is available. dctk.omtr.prop12
-    // is often set incorrectly by the FTLs as ${this.getGuid()}
-    dctk._updateTrackVars({
-        prop12 : analytics.getGuid()
-            .getShort()
-            || dctk.omtr.prop12
-    });
-
-    /* Fix prop1 escape lines in EU POS */
-    if (isNaN(parseFloat(dctk.omtr.prop1)) || !isFinite(dctk.omtr.prop1)) {
-        dctk.omtr.prop1 = "";
-    }
-    /* End fix prop1 */
-
-    /* DRR Ends */
-    /* Fix carriage return on DRR messages */
-    if (dctk.omtr.eVar9) {
-        s_eVar9 = dctk.omtr.eVar9;
-        s_eVar9 = s_eVar9.replace(/\t/g, "");
-        s_eVar9 = s_eVar9.replace(/\r\n/g, "");
-        s_eVar9 = s_eVar9.replace(/\n/g, "");
-        dctk.omtr.eVar9 = s_eVar9;
-    }
-    /* End fix DRR messages */
-
-    /* override referrer if needed */
-    dctk.omtr.referrer = dctk.omtr.getQueryParam("origref");
-
-    /* server */
-    dctk.omtr.server = document.domain;
-
-    // getQueryParam gpcid for Compulsion
-    dctk.omtr.eVar42 = dctk.omtr.getQueryParam("gpcid");
-
-    /* Facebook / User Login Reporting */
-
-    if (dctk.omtr.getQueryParam("mtype").length > 0) {
-        fbEvents = ["event25", "event26", "event61"];
-        mTypeVal = dctk.omtr.getQueryParam("mtype");
-        dctk.omtr.eVar55 = "loggedin | hard";
-
-        dctk.omtr.events = (mTypeVal == "4" || mTypeVal == "9") ? dctk.omtr.apl(dctk.omtr.events, fbEvents[0] + "," + fbEvents[1], ',', 1) :
-            (mTypeVal == "5" || mTypeVal == "10") ? dctk.omtr.apl(dctk.omtr.events, fbEvents[0] + "," + fbEvents[1] + "," + fbEvents[2], ',', 1) :
-                (mTypeVal == "11") ? dctk.omtr.apl(dctk.omtr.events, fbEvents[1] + "," + fbEvents[2], ',', 1) :
-                    dctk.omtr.apl(dctk.omtr.events, fbEvents[1], ',', 1);
-    }
-
-    /* rfrr IDs */
-    if (!dctk.omtr.eVar28) {
-        if (dctk.omtr.getQueryParam("rfrr").length > 0) {
-            dctk.omtr.eVar28 = dctk.omtr.getQueryParam("rfrr");
-        }
-        if (!dctk.omtr.eVar28 && window.qscr_rfrr) {
-            dctk.omtr.eVar28 = window.qscr_rfrr;
-        }
-    }
-    dctk.omtr.prop16 = dctk.omtr.eVar28;
-
-    scrollDepth.updateScrollDepthData(dctk.omtr);
-
-    // todo: set currency_code so that we can append it to u16, need to add more
-    switch (dctk.omtr.u16) {
-        case 'expedia.com':
-            dctk.omtr.currency_code = 'USD';
-            break;
-        case 'expedia.com.uk':
-            dctk.omtr.currency_code = 'GBP';
-            break;
-        case 'expedia.com.ca':
-            dctk.omtr.currency_code = 'CAD';
-            break;
-    }
-
-    hotelId = document.URL.toString()
-        .match(/\d+/);
-    dctk.omtr.hotelId = hotelId;
-
-    (function () {
-        "use strict";
-        var krazyGlueId, tripExId;
-
-        krazyGlueId = dctk.omtr.getQueryParam("kgid");
-        tripExId = dctk.omtr.getQueryParam("trcid");
-
-        if (krazyGlueId) {
-            dctk.omtr.eVar65 = krazyGlueId;
-        }
-        if (tripExId) {
-            dctk.omtr.eVar67 = tripExId;
-        }
-    }());
-
-    dctk._updateTrackVars({
-        eVar61 : true, // PoS
-        list1 : true, // Experiments
-        prop34 : true, // Experiments
-        eVar34 : true // Experiments
-    });
-};
+    require('./amd');
+})();
