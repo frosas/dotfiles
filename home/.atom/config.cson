@@ -71,7 +71,6 @@
     disableWhenNoEslintrcFileInPath: true
     lintHtmlFiles: true
     showRuleIdInMessage: true
-    useGlobalEslint: true
   "markdown-preview":
     grammars: [
       "source.gfm"
