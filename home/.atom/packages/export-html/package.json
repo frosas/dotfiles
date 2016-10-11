@@ -1,0 +1,104 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116910-39011-13g52i4"
+    ]
+  ],
+  "_from": "../d-116910-39011-pwzwyy/package.tgz",
+  "_id": "export-html@3.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/export-html",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-116910-39011-pwzwyy/package.tgz",
+  "_shasum": "adefaef240fcf7eddf29bb63bd15f0f54b5b0b38",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116910-39011-13g52i4",
+  "activationCommands": {
+    "atom-workspace": "export-html:export"
+  },
+  "bugs": {
+    "url": "https://github.com/nobuhito/atom-export-html/issues"
+  },
+  "configSchema": {
+    "fontSize": {
+      "type": "integer",
+      "default": 12
+    },
+    "openIn": {
+      "type": "string",
+      "default": "atom",
+      "enum": [
+        "atom",
+        "browser",
+        "none"
+      ]
+    },
+    "style": {
+      "type": "string",
+      "default": "github",
+      "tilte": "Stylesheet",
+      "description": "Choose from [highlight.js styles.](https://github.com/isagalaev/highlight.js/tree/master/src/styles) ."
+    },
+    "lineNumber": {
+      "type": "object",
+      "properties": {
+        "use": {
+          "type": "boolean",
+          "default": true
+        },
+        "styles": {
+          "type": "string",
+          "title": "StyleSheet",
+          "default": "opacity: 0.5;"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "atom-space-pen-views": "^2.1.0",
+    "highlight.js": "^8.7.0",
+    "roaster": "^1.2.0",
+    "underscore-plus": "^1.6.6"
+  },
+  "description": "Write the file being displayed as HTML, it can be printed directly from the Atom.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/nobuhito/atom-export-html#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "./lib/export-html",
+  "name": "export-html",
+  "optionalDependencies": {},
+  "readme": "# export-html package for Atom\n\nWrite the file being displayed as HTML, it can be printed directly from the Atom.\n\n![screen-cast](https://raw.githubusercontent.com/nobuhito/atom-export-html/master/screen-cast.gif)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nobuhito/atom-export-html.git"
+  },
+  "version": "3.0.0"
+}
