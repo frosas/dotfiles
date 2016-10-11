@@ -39,6 +39,7 @@
       "whitespace"
       "graphviz-preview"
     ]
+    telemetryConsent: "limited"
     themes: [
       "atom-dark-ui"
       "one-dark-syntax"
@@ -68,7 +69,9 @@
     statusIconScope: "File"
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
+    lintHtmlFiles: true
     showRuleIdInMessage: true
+    useGlobalEslint: true
   "markdown-preview":
     grammars: [
       "source.gfm"

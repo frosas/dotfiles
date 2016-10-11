@@ -24,6 +24,7 @@ interface CompilerOptions {
     charset?: string;
     codepage?: number;
     declaration?: boolean;
+    declarationDir?: string;
     diagnostics?: boolean;
     emitBOM?: boolean;
     experimentalAsyncFunctions?: boolean;
@@ -31,6 +32,7 @@ interface CompilerOptions {
     emitDecoratorMetadata?: boolean;                  // Experimental. Emits addition type information for this reflection API https://github.com/rbuckton/ReflectDecorators
     forceConsistentCasingInFileNames?: boolean;
     help?: boolean;
+    importHelpers?: boolean;
     isolatedModules?: boolean;
     inlineSourceMap?: boolean;
     inlineSources?: boolean;
@@ -68,6 +70,7 @@ interface CompilerOptions {
     removeComments?: boolean;                         // Do not emit comments in output
     rootDir?: string;
     skipDefaultLibCheck?: boolean;
+    skipLibCheck?: boolean;
     sourceMap?: boolean;                              // Generates SourceMaps (.map files)
     sourceRoot?: string;                              // Optionally specifies the location where debugger should locate TypeScript source files after deployment
     stripInternal?: boolean;
@@ -90,6 +93,7 @@ var compilerOptionsValidation: simpleValidator.ValidationInfo = {
     charset: { type: types.string },
     codepage: { type: types.number },
     declaration: { type: types.boolean },
+    declarationDir: { type: types.string },
     diagnostics: { type: types.boolean },
     emitBOM: { type: types.boolean },
     experimentalAsyncFunctions: { type: types.boolean },
@@ -97,6 +101,7 @@ var compilerOptionsValidation: simpleValidator.ValidationInfo = {
     emitDecoratorMetadata: { type: types.boolean },
     forceConsistentCasingInFileNames: { type: types.boolean },
     help: { type: types.boolean },
+    importHelpers: { type: types.boolean },
     inlineSourceMap: { type: types.boolean },
     inlineSources: { type: types.boolean },
     isolatedModules: { type: types.boolean },
@@ -134,6 +139,7 @@ var compilerOptionsValidation: simpleValidator.ValidationInfo = {
     removeComments: { type: types.boolean },
     rootDir: { type: types.string },
     skipDefaultLibCheck: { type: types.boolean },
+    skipLibCheck: { type: types.boolean },
     sourceMap: { type: types.boolean },
     sourceRoot: { type: types.string },
     strictNullChecks: { type: types.boolean },
@@ -142,7 +148,7 @@ var compilerOptionsValidation: simpleValidator.ValidationInfo = {
     suppressImplicitAnyIndexErrors: { type: types.boolean },
     target: { type: types.string, validValues: ['es3', 'es5', 'es6', 'es2015'] },
     typeRoots: { type: types.array },
-    types: { type: types.object },
+    types: { type: types.array },
     version: { type: types.boolean },
     watch: { type: types.boolean },
     lib: { type: types.array }
