@@ -60,17 +60,8 @@
     showIconsInEditorGutter: true
   jsformat:
     format_on_save: false
-  linter:
-    showErrorPanel: false
-    showErrorTabFile: false
-    showErrorTabProject: false
-    showGutters: false
-    statusBar: "None"
-    statusIconScope: "File"
   "linter-eslint":
-    disableWhenNoEslintrcFileInPath: true
-    lintHtmlFiles: true
-    showRuleIdInMessage: true
+    disableWhenNoEslintConfig: false
   "markdown-preview":
     grammars: [
       "source.gfm"
