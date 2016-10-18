@@ -1,21 +1,8 @@
 dependencies:
   override:
-    - curl -L https://atom.io/download/deb -o atom-amd64.deb
-    - sudo dpkg --install atom-amd64.deb || true
-    - sudo apt-get update
-    - sudo apt-get -f install
-    - npm install
+    - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
+    - chmod u+x build-package.sh
 
 test:
   override:
-    - npm run lint
-    # Remove the node_modules installed with the system npm to test real apm install
-    - rm -Rf node_modules
-    - atom -v
-    - apm -v
-    - apm install --production
-    - apm test
-
-machine:
-  node:
-    version: 6
+    - ./build-package.sh
