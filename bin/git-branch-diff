@@ -1,6 +1,8 @@
 #!/bin/bash
 
-PARENT_BRANCH=${1:-"origin/master"} # TODO How to obtain it automatically?
-BRANCH=${2:-"HEAD"}
+# A `git diff` of $BRANCH (`HEAD` by default) against $PARENT_BRANCH ('origin/master' by default)
+
+BRANCH=${1:-"HEAD"}
+PARENT_BRANCH=${2:-"origin/master"} # TODO How to obtain it automatically?
 
 git diff $PARENT_BRANCH...$BRANCH "${@:3}"
