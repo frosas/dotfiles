@@ -4,9 +4,10 @@
 
 set -e
 
-source="$1"
-source_palette="/tmp/$source-palette.png"
+input_file="$1"
+output_file="${input_file%.*}.gif"
+source_palette="/tmp/$input_file-palette.png"
 common_filter="fps=10,scale=-1:-1"
 
-ffmpeg -i "$source" -vf "$common_filter,palettegen" -y "$source_palette"
-ffmpeg -i "$source" -i "$source_palette" -filter_complex "$common_filter,paletteuse" "$source.gif"
+ffmpeg -i "$input_file" -vf "$common_filter,palettegen" -y "$source_palette"
+ffmpeg -i "$input_file" -i "$source_palette" -filter_complex "$common_filter,paletteuse" "$output_file"
