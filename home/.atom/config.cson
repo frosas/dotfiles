@@ -38,12 +38,18 @@
       "spell-check"
       "whitespace"
       "graphviz-preview"
+      "project-colorize"
+    ]
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "node_modules"
     ]
     telemetryConsent: "limited"
-    themes: [
-      "atom-dark-ui"
-      "one-dark-syntax"
-    ]
   editor:
     fontFamily: "Hack"
     invisibles: {}
@@ -111,8 +117,7 @@
       "CHANGEDs"
       "/\\WCHANGED\\W(.+$)/g"
     ]
-  "tree-view":
-    hideIgnoredNames: true
+  "tree-view": {}
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true
@@ -122,3 +127,7 @@
   welcome:
     showOnStartup: false
   whitespace: {}
+".ini.source":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
+    tabLength: 4
