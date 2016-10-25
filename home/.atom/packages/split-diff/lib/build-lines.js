@@ -11,6 +11,8 @@ module.exports = class DiffViewEditor {
     this._currentSelection = null;
     this._oldPlaceholderText = editor.getPlaceholderText();
     editor.setPlaceholderText('Paste what you want to diff here!');
+    // add split-diff css selector to editors for keybindings #73
+    atom.views.getView(this._editor).classList.add('split-diff');
   }
 
   /**
@@ -129,7 +131,16 @@ module.exports = class DiffViewEditor {
     this._markers = [];
 
     this.deselectAllLines();
-    this._editor.setPlaceholderText(this._oldPlaceholderText);
+  }
+
+  /**
+   * Destroys the instance of the DiffViewEditor and cleans up after itself.
+   */
+  destroy(): void {
+      this.destroyMarkers();
+      this._editor.setPlaceholderText(this._oldPlaceholderText);
+      // remove split-diff css selector from editors for keybindings #73
+      atom.views.getView(this._editor).classList.remove('split-diff')
   }
 
   /**
@@ -154,6 +165,19 @@ module.exports = class DiffViewEditor {
       this._currentSelection.destroy();
       this._currentSelection = null;
     }
+  }
+
+  /**
+   * Used to test whether there is currently an active selection highlight in
+   * the editor.
+   *
+   * @return A boolean signifying whether there is an active selection highlight.
+   */
+  hasSelection(): boolean {
+    if(this._currentSelection) {
+        return true;
+    }
+    return false;
   }
 
   /**
@@ -187,7 +211,7 @@ module.exports = class DiffViewEditor {
    *
    * @return The line ranges of diffs that are touched by a cursor.
    */
-  getCursorDiffLines(): boolean {
+  getCursorDiffLines(): any {
     var cursorPositions = this._editor.getCursorBufferPositions();
     var touchedLines = [];
 
