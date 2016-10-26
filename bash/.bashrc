@@ -55,3 +55,8 @@ alias ll="ls -l"
 alias d="docker"
 
 function h { history | tail -${1:-20}; }
+
+# Default to the latest visited directory
+[[ -e ~/.last_pwd ]] && cd $(cat ~/.last_pwd)
+save_pwd () { pwd > ~/.last_pwd; }
+on_prompt=("${on_prompt[@]}" save_pwd)
