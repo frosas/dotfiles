@@ -118,6 +118,7 @@
       "/\\WCHANGED\\W(.+$)/g"
     ]
   "tree-view": {}
+  "tree-view-git-status": {}
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
     showIcons: true
