@@ -393,13 +393,13 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>0 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>98 59 918 495 0 0 1440 877 </string>
+	<string>506 253 918 495 0 0 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 4 1434 873 0 0 1440 877 </string>
+	<string>-805 907 1018 1433 -805 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>576 17 864 860 0 0 1440 877 </string>
+	<string>0 130 1210 747 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>-805 902 1018 1438 -805 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -961,7 +961,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 13</string>
+			<string>Hack 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1165,6 +1165,8 @@
 	<true/>
 	<key>NoSyncHaveShownPromoWithId_4</key>
 	<true/>
+	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>9337D2A7-3221-4977-AB76-382790E741A2</string>
 	<key>NoSyncLastTipTime</key>
@@ -1254,7 +1256,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-10-04T09:15:35Z</date>
+	<date>2016-10-25T16:12:26Z</date>
 	<key>SUSkippedVersion</key>
 	<string>2.0.0.20141103</string>
 	<key>SavePasteHistory</key>
@@ -1306,7 +1308,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.10</string>
+	<string>3.0.11</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
