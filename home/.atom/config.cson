@@ -52,6 +52,7 @@
     telemetryConsent: "limited"
   editor:
     fontFamily: "Hack"
+    fontSize: 15
     invisibles: {}
     nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
     showIndentGuide: true

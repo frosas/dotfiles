@@ -1,34 +1,59 @@
 {
-  "name": "language-scala",
-  "version": "1.1.6",
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71825-1mn996j/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71825-1mn996j/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71825-1mn996j/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116102-71825-ojqb2g"
+    ]
+  ],
+  "_from": "../d-116102-71825-1mn996j/package.tgz",
+  "_id": "language-scala@1.1.7",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/language-scala",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71825-1mn996j/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71825-1mn996j/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71825-1mn996j/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-116102-71825-1mn996j/package.tgz",
+  "_shasum": "20b159ea497a2d526ed4b38739f6ae120e9b5055",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71825-1mn996j/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116102-71825-ojqb2g",
+  "bugs": {
+    "url": "https://github.com/jroesch/language-scala/issues"
+  },
+  "dependencies": {},
   "description": "Scala language support in Atom",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/jroesch/language-scala#readme",
+  "license": "MIT",
+  "name": "language-scala",
+  "optionalDependencies": {},
+  "readme": "# Language support for Scala in Atom\n\n[![apm](https://img.shields.io/apm/v/language-scala.svg?style=flat-square)](https://atom.io/packages/language-scala)\n[![npm](https://img.shields.io/npm/v/language-scala.svg?style=flat-square)](https://www.npmjs.com/package/language-scala)\n\n[Scala grammar](https://atom.io/packages/language-scala) for [Atom](https://atom.io). Originally converted from the [Scala TextMate bundle](https://github.com/mads379/scala.tmbundle). Also available as a [Node package](https://www.npmjs.com/package/language-scala).\n",
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jroesch/language-scala.git"
   },
-  "license": "MIT",
-  "engines": {
-    "atom": ">0.50.0"
-  },
-  "dependencies": {},
-  "readme": "# Language support for Scala in Atom\n\n[![apm](https://img.shields.io/apm/v/language-scala.svg?style=flat-square)](https://atom.io/packages/language-scala)\n[![npm](https://img.shields.io/npm/v/language-scala.svg?style=flat-square)](https://www.npmjs.com/package/language-scala)\n\n[Scala grammar](https://atom.io/packages/language-scala) for [Atom](https://atom.io). Originally converted from the [Scala TextMate bundle](https://github.com/mads379/scala.tmbundle). Also available as a [Node package](https://www.npmjs.com/package/language-scala).\n",
-  "readmeFilename": "README.md",
-  "bugs": {
-    "url": "https://github.com/jroesch/language-scala/issues"
-  },
-  "homepage": "https://github.com/jroesch/language-scala#readme",
-  "_id": "language-scala@1.1.6",
-  "_shasum": "8a753b7a6f773aad3988c7ed7d4894493a56fc4d",
-  "_resolved": "file:../d-116025-17340-vhbsb8/package.tgz",
-  "_from": "../d-116025-17340-vhbsb8/package.tgz",
-  "_atomModuleCache": {
-    "version": 1,
-    "dependencies": [],
-    "extensions": {
-      ".json": [
-        "package.json"
-      ]
-    },
-    "folders": []
-  }
+  "version": "1.1.7"
 }

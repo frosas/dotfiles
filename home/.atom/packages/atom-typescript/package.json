@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116927-11595-npj8ba/package.tgz",
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71811-1c067mn/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116927-11595-npj8ba/package.tgz",
-        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116927-11595-npj8ba/package.tgz",
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71811-1c067mn/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71811-1c067mn/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116927-11595-ezxcv4"
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116102-71811-k1djcf"
     ]
   ],
-  "_from": "../d-116927-11595-npj8ba/package.tgz",
-  "_id": "atom-typescript@10.1.10",
+  "_from": "../d-116102-71811-1c067mn/package.tgz",
+  "_id": "atom-typescript@10.1.11",
   "_inCache": true,
   "_installable": true,
   "_location": "/atom-typescript",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116927-11595-npj8ba/package.tgz",
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71811-1c067mn/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116927-11595-npj8ba/package.tgz",
-    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116927-11595-npj8ba/package.tgz",
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71811-1c067mn/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71811-1c067mn/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-116927-11595-npj8ba/package.tgz",
-  "_shasum": "c508d6219402f24f2ce431de10a9f999571a252c",
+  "_resolved": "file:../d-116102-71811-1c067mn/package.tgz",
+  "_shasum": "c9a945bf11fa4a482180551599f56f4cdeb0df30",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116927-11595-npj8ba/package.tgz",
-  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116927-11595-ezxcv4",
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116102-71811-1c067mn/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116102-71811-k1djcf",
   "bin": {
     "atbuild": "./dist/main/bin/atbuild"
   },
@@ -54,7 +54,7 @@
     "atom-space-pen-views": "^2.0.4",
     "babel": "^5.6.23",
     "basarat-text-buffer": "6.0.0",
-    "byots": "2.1.0-dev.20161022.0.26",
+    "byots": "2.1.0-dev.20161029.21.55",
     "d3": "^3.5.5",
     "detect-indent": "^4.0.0",
     "detect-newline": "^2.1.0",
@@ -128,5 +128,5 @@
     "prepublish": "typings install",
     "test": "tsc -p ./lib && tsc --noEmit -p ./scripts"
   },
-  "version": "10.1.10"
+  "version": "10.1.11"
 }
