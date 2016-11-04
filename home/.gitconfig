@@ -39,7 +39,7 @@
     browse = ! hub browse # Opens current repo and branch in GitHub
     bi = bisect
 
-    # Usage: $ g quick-bisect sh -c '! ag <my-string>'
+    # Usage: $ g quick-bisect sh -c '! ag <my-string> -l'
     quick-bisect = ! git bisect start HEAD $(git rev-list --max-parents=0 HEAD) -- && git bisect run
     show-commit-files = "show --name-only --pretty=''"
 [hub]
