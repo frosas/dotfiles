@@ -44,7 +44,7 @@ export default {
   },
   snippetsFirst: {
 
-    title: 'Display above snippets',
+    title: 'Display snippets above',
     description: 'Displays snippets above tern suggestions. Requires a restart.',
     type: 'boolean',
     default: false,
@@ -69,7 +69,7 @@ export default {
   inlineFnCompletionDocumentation: {
 
     title: 'Display inline suggestions with additional documentation (if any)',
-    description: 'Adds documentation to the inline functionm completion',
+    description: 'Adds documentation to the inline function completion',
     type: 'boolean',
     default: false,
     order: 8

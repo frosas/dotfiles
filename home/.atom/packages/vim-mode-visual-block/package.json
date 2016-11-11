@@ -1,15 +1,43 @@
 {
-  "name": "vim-mode-visual-block",
-  "main": "./lib/main",
-  "version": "0.2.15",
-  "description": "Add visual-blockwise feature to vim-mode",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/t9md/atom-vim-mode-visual-block.git"
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42337-1i5cqsu/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42337-1i5cqsu/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42337-1i5cqsu/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161011-42337-1doz9od"
+    ]
+  ],
+  "_from": "../d-1161011-42337-1i5cqsu/package.tgz",
+  "_id": "vim-mode-visual-block@0.2.16",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/vim-mode-visual-block",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42337-1i5cqsu/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42337-1i5cqsu/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42337-1i5cqsu/package.tgz",
+    "type": "local"
   },
-  "license": "MIT",
-  "engines": {
-    "atom": ">=0.174.0 <2.0.0"
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-1161011-42337-1i5cqsu/package.tgz",
+  "_shasum": "b4fdb20b99b68a0667e8c5fcad7f6c5e2accf422",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42337-1i5cqsu/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161011-42337-1doz9od",
+  "bugs": {
+    "url": "https://github.com/t9md/atom-vim-mode-visual-block/issues"
   },
   "consumedServices": {
     "vim-mode": {
@@ -21,64 +49,21 @@
   "dependencies": {
     "underscore-plus": "^1.6.6"
   },
-  "readme": "# vim-mode-visual-block\n\n# **Not maintained**\n\nI'm no longer maintaining this package.  \nUse [vim-mode-plus](https://atom.io/packages/vim-mode-plus) instead it's have native visual-block-mode support.   \n\nIf you want to fix any bug for **this** package, fork it and I'm OK you to release forked version.  \nPlease don't ask me to fix this package.  \n\nIt might be better to unpublish this package?  \nPlease report issue if you have strong opinion for that.  \n\nThank's for using this my package.  \n\nNote added at 2016.1.13\n\n# What WAS this?\n\nAdd visual-block operation to [vim-mode](https://atom.io/packages/vim-mode).\n\n![gif](https://raw.githubusercontent.com/t9md/t9md/375d45f661b76cd8fd874dbcacf93602e7d75c99/img/vim-mode-visual-blockwise.gif)\n\n\n**Temporarily** workaround, until vim-mode support visual block mode natively.\nI'm not intended to complete solution.\n\n# Keymap\n\nFrom version 0.2.5, starting to provide [default keymap](https://github.com/t9md/atom-vim-mode-visual-block/blob/master/keymaps/vim-mode-visual-block.cson).  \n\nFor older version user\n* Remove explicit keymap from `keymap.cson` and use default keymap.\n\n# Limitation\n- Count not supported.\n- Currently yank and paste for block range is not supported.\n- No support for non-contiguous multi selection.\n\n# Todo\n* [x] Precise state check when escape from visual-block.\n* [x] Support other insert-mode initiator like `a`, `i`, `C`.\n* [ ] Yank and paste support.\n* [ ] Concatenate undo transaction?.\n",
-  "readmeFilename": "README.md",
-  "bugs": {
-    "url": "https://github.com/t9md/atom-vim-mode-visual-block/issues"
+  "description": "[DEPRECATED] Add visual-blockwise feature to vim-mode",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
   },
   "homepage": "https://github.com/t9md/atom-vim-mode-visual-block#readme",
-  "_id": "vim-mode-visual-block@0.2.15",
-  "_shasum": "f3dd81de9a9e268afae7767330f351431562b994",
-  "_resolved": "file:../d-116014-50746-bd5njz/package.tgz",
-  "_from": "../d-116014-50746-bd5njz/package.tgz",
-  "_atomModuleCache": {
-    "version": 1,
-    "dependencies": [
-      {
-        "name": "underscore-plus",
-        "version": "1.6.6",
-        "path": "node_modules/underscore-plus/lib/underscore-plus.js"
-      },
-      {
-        "name": "underscore",
-        "version": "1.6.0",
-        "path": "node_modules/underscore-plus/node_modules/underscore/underscore.js"
-      }
-    ],
-    "extensions": {
-      ".coffee": [
-        "lib/main.coffee"
-      ],
-      ".js": [
-        "node_modules/underscore-plus/lib/underscore-plus.js",
-        "node_modules/underscore-plus/node_modules/underscore/underscore-min.js",
-        "node_modules/underscore-plus/node_modules/underscore/underscore.js"
-      ],
-      ".json": [
-        "node_modules/underscore-plus/node_modules/underscore/package.json",
-        "node_modules/underscore-plus/package.json",
-        "package.json"
-      ]
-    },
-    "folders": [
-      {
-        "paths": [
-          "lib",
-          ""
-        ],
-        "dependencies": {
-          "underscore-plus": "^1.6.6"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/underscore-plus/lib",
-          "node_modules/underscore-plus"
-        ],
-        "dependencies": {
-          "underscore": "~1.6.0"
-        }
-      }
-    ]
-  }
+  "license": "MIT",
+  "main": "./lib/main",
+  "name": "vim-mode-visual-block",
+  "optionalDependencies": {},
+  "readme": "# vim-mode-visual-block\n\n# [DEPRECATED] **Not maintained**\n\nI'm no longer maintaining this package.  \nUse [vim-mode-plus](https://atom.io/packages/vim-mode-plus) instead it's have native visual-block-mode support.   \n\nIf you want to fix any bug for **this** package, fork it and I'm OK you to release forked version.  \nPlease don't ask me to fix this package.  \n\nIt might be better to unpublish this package?  \nPlease report issue if you have strong opinion for that.  \n\nThank's for using this my package.  \n\nNote added at 2016.1.13\n\n# What WAS this?\n\nAdd visual-block operation to [vim-mode](https://atom.io/packages/vim-mode).\n\n![gif](https://raw.githubusercontent.com/t9md/t9md/375d45f661b76cd8fd874dbcacf93602e7d75c99/img/vim-mode-visual-blockwise.gif)\n\n\n**Temporarily** workaround, until vim-mode support visual block mode natively.\nI'm not intended to complete solution.\n\n# Keymap\n\nFrom version 0.2.5, starting to provide [default keymap](https://github.com/t9md/atom-vim-mode-visual-block/blob/master/keymaps/vim-mode-visual-block.cson).  \n\nFor older version user\n* Remove explicit keymap from `keymap.cson` and use default keymap.\n\n# Limitation\n- Count not supported.\n- Currently yank and paste for block range is not supported.\n- No support for non-contiguous multi selection.\n\n# Todo\n* [x] Precise state check when escape from visual-block.\n* [x] Support other insert-mode initiator like `a`, `i`, `C`.\n* [ ] Yank and paste support.\n* [ ] Concatenate undo transaction?.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t9md/atom-vim-mode-visual-block.git"
+  },
+  "version": "0.2.16"
 }

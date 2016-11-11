@@ -64,8 +64,12 @@
   "fuzzy-finder": {}
   "git-diff":
     showIconsInEditorGutter: true
+  "js-hyperclick":
+    jumpToImport: true
   jsformat:
     format_on_save: false
+  linter:
+    statusIconScope: "File"
   "linter-eslint":
     disableWhenNoEslintConfig: false
   "markdown-preview":
