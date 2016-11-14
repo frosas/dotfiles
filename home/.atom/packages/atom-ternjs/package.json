@@ -2,42 +2,43 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42328-1usfe3/package.tgz",
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67461-sl6uqa/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42328-1usfe3/package.tgz",
-        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42328-1usfe3/package.tgz",
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67461-sl6uqa/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67461-sl6uqa/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161011-42328-1s5ts4q"
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161014-67461-1jizw9z"
     ]
   ],
-  "_from": "../d-1161011-42328-1usfe3/package.tgz",
-  "_id": "atom-ternjs@0.16.0",
+  "_from": "../d-1161014-67461-sl6uqa/package.tgz",
+  "_id": "atom-ternjs@0.16.1",
   "_inCache": true,
   "_installable": true,
   "_location": "/atom-ternjs",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42328-1usfe3/package.tgz",
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67461-sl6uqa/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42328-1usfe3/package.tgz",
-    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42328-1usfe3/package.tgz",
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67461-sl6uqa/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67461-sl6uqa/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-1161011-42328-1usfe3/package.tgz",
-  "_shasum": "f3309b4ae8aae22f6d8e126dd62e27ab6f2a4bd8",
+  "_resolved": "file:../d-1161014-67461-sl6uqa/package.tgz",
+  "_shasum": "264dae90e4bd0683eba52e541465129ea9ed7008",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161011-42328-1usfe3/package.tgz",
-  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161011-42328-1s5ts4q",
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67461-sl6uqa/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161014-67461-1jizw9z",
   "activationHooks": [
-    "language-javascript:grammar-used"
+    "language-javascript:grammar-used",
+    "language-babel:grammar-used"
   ],
   "bugs": {
     "url": "https://github.com/tststs/atom-ternjs/issues"
@@ -90,5 +91,5 @@
     "type": "git",
     "url": "git+https://github.com/tststs/atom-ternjs.git"
   },
-  "version": "0.16.0"
+  "version": "0.16.1"
 }

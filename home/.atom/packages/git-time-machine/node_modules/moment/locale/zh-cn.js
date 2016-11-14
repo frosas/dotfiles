@@ -3,9 +3,8 @@
 //! author : suupic : https://github.com/suupic
 //! author : Zeno Zeng : https://github.com/zenozeng
 
-;(function (global, factory) {
-   typeof exports === 'object' && typeof module !== 'undefined'
-       && typeof require === 'function' ? factory(require('../moment')) :
+(function (global, factory) {
+   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('../moment')) :
    typeof define === 'function' && define.amd ? define(['moment'], factory) :
    factory(global.moment)
 }(this, function (moment) { 'use strict';
@@ -73,7 +72,7 @@
             nextWeek : function () {
                 var startOfWeek, prefix;
                 startOfWeek = moment().startOf('week');
-                prefix = this.diff(startOfWeek, 'days') >= 7 ? '[下]' : '[本]';
+                prefix = this.unix() - startOfWeek.unix() >= 7 * 24 * 3600 ? '[下]' : '[本]';
                 return this.minutes() === 0 ? prefix + 'dddAh点整' : prefix + 'dddAh点mm';
             },
             lastWeek : function () {
