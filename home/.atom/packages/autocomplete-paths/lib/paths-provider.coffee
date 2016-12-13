@@ -7,7 +7,7 @@ module.exports =
 class PathsProvider
   id: 'autocomplete-paths-pathsprovider'
   selector: '*'
-  wordRegex: /[a-zA-Z0-9\.\/_-]*\/[a-zA-Z0-9\.\/_-]*/g
+  wordRegex: /(?:[a-zA-Z]:)?[a-zA-Z0-9./\\_-]*(?:\/|\\\\?)[a-zA-Z0-9./\\_-]*/g
   cache: []
 
   requestHandler: (options = {}) =>
@@ -18,7 +18,8 @@ class PathsProvider
     return [] unless basePath?
 
     prefix = @prefixForCursor(options.editor, options.buffer, options.cursor, options.position)
-    return [] unless prefix.length
+
+    return [] unless prefix.length > atom.config.get('autocomplete-plus.minimumWordLength')
 
     suggestions = @findSuggestionsForPrefix(options.editor, basePath, prefix)
     return [] unless suggestions.length
@@ -55,7 +56,7 @@ class PathsProvider
 
     prefixPath = path.resolve(basePath, prefix)
 
-    if prefix.endsWith('/')
+    if prefix.match(/[/\\]$/)
       directory = prefixPath
       prefix = ''
     else
@@ -89,7 +90,6 @@ class PathsProvider
         continue
       if stat.isDirectory()
         label = 'Dir'
-        result += path.sep
       else if stat.isFile()
         label = 'File'
       else
