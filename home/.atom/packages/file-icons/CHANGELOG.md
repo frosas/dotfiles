@@ -4,6 +4,41 @@ All notable changes to the project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+[2.0.2] - 2016-12-30
+--------------------
+### Added
+- **Support:** [[`#470`][]] `source.octave` as a MATLAB scope
+
+### Fixed
+- [[`#470`][]] Lack of support for user-defined filetypes with leading dots
+- [[`#472`][]] Tree-view hidden at startup
+- [[`#473`][]] Sporadic breakage when switching project windows
+- Failing file-signature specs
+
+### Currently working on
+- [[`#471`][]] Icons not showing in Nuclide file-tree
+
+[`#470`]: https://github.com/DanBrooker/file-icons/issues/470
+[`#471`]: https://github.com/DanBrooker/file-icons/issues/471
+[`#472`]: https://github.com/DanBrooker/file-icons/issues/472
+[`#473`]: https://github.com/DanBrooker/file-icons/issues/473
+
+
+
+[2.0.1] - 2016-12-30
+--------------------
+Fixed breakage at startup when run on Windows.
+
+
+[2.0.0] - 2016-12-30
+--------------------
+### Added
+- **New features:** Hashbang detection, modeline recognition, and much more.
+[Please consult the release notes for full details](https://github.com/DanBrooker/file-icons/releases/tag/v2.0.0).
+- **New icons:** ArtText (`.artx` folders), Electron, FFmpeg, GN (`.gn`, `.gni`), ICU, libuv, Ninja (`.ninja`), Nodemon (`nodemon.json`, `.nodemonignore`), Rascal (`.rsc`), V8
+- **Support:** HTML (`.vash`, `.xhtml`), Source maps (`.css.map`, `.js.map`)
+
+
 [1.7.25] - 2016-11-13
 ---------------------
 ### Added
@@ -910,7 +945,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Initial release.
 
 
-[Unpublished]: https://github.com/DanBrooker/file-icons/compare/v1.7.25...HEAD
+[Unpublished]: https://github.com/DanBrooker/file-icons/compare/v2.0.2...HEAD
+[2.0.2]:  https://github.com/DanBrooker/file-icons/releases/tag/v2.0.2
+[2.0.1]:  https://github.com/DanBrooker/file-icons/releases/tag/v2.0.1
+[2.0.0]:  https://github.com/DanBrooker/file-icons/releases/tag/v2.0.0
 [1.7.25]: https://github.com/DanBrooker/file-icons/releases/tag/v1.7.25
 [1.7.24]: https://github.com/DanBrooker/file-icons/releases/tag/v1.7.24
 [1.7.23]: https://github.com/DanBrooker/file-icons/releases/tag/v1.7.23

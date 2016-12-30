@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6729-k36oba/package.tgz",
+        "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6758-igpvlr/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6729-k36oba/package.tgz",
-        "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6729-k36oba/package.tgz",
+        "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6758-igpvlr/package.tgz",
+        "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6758-igpvlr/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-1161127-6729-hb43fb"
+      "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-1161127-6758-8v24dp"
     ]
   ],
-  "_from": "../d-1161127-6729-k36oba/package.tgz",
+  "_from": "../d-1161127-6758-igpvlr/package.tgz",
   "_id": "js-hyperclick@1.10.0",
   "_inCache": true,
   "_installable": true,
   "_location": "/js-hyperclick",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6729-k36oba/package.tgz",
+    "raw": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6758-igpvlr/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6729-k36oba/package.tgz",
-    "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6729-k36oba/package.tgz",
+    "rawSpec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6758-igpvlr/package.tgz",
+    "spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6758-igpvlr/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-1161127-6729-k36oba/package.tgz",
+  "_resolved": "file:../d-1161127-6758-igpvlr/package.tgz",
   "_shasum": "63af30303e20190ac6faf677d04dd72873026843",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6729-k36oba/package.tgz",
-  "_where": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-1161127-6729-hb43fb",
+  "_spec": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/d-1161127-6758-igpvlr/package.tgz",
+  "_where": "/private/var/folders/yw/jw87r5_50bg5lrqy6_12mgc00000gn/T/apm-install-dir-1161127-6758-8v24dp",
   "bugs": {
     "url": "https://github.com/AsaAyers/js-hyperclick/issues"
   },
