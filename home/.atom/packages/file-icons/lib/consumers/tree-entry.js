@@ -2,57 +2,64 @@
 
 const {CompositeDisposable, Emitter} = require("atom");
 const IconDelegate = require("../service/icon-delegate.js");
-const FileRegistry = require("../filesystem/file-registry.js");
-const Resource     = require("../filesystem/resource.js");
+const FileSystem   = require("../filesystem/filesystem.js");
 const System       = require("../filesystem/system.js");
 const IconNode     = require("../service/icon-node.js");
+const Log          = require("../log.js").tag("TREE ENTRY");
 
 
-class TreeEntry extends Resource {
+class TreeEntry{
 	
-	constructor(source, element, isDirectory = false){
-		super(source.path);
-		this.entrySource = source;
+	constructor(source, element){
+		this.disposables = new CompositeDisposable();
+		this.emitter = new Emitter();
+		this.path = source.path;
+		this.source = source;
 		this.element = element;
-		this.symlink = source.symlink;
+		
+		const iconEl = element.directoryName || element.fileName;
+		iconEl.className = "name icon";
+		
+		this.resource = FileSystem.get(this.path);
+		this.iconNode = new IconNode(this.resource, iconEl);
+		this.disposables.add(this.resource.onDidDestroy(() => this.destroy()));
 		
 		// Directory
-		if(this.isDirectory = isDirectory){
-			this.submodule = !!source.submodule;
-			this.icon      = new IconDelegate(this);
-			this.iconNode  = new IconNode(this, element.directoryName);
-			this.entries   = new WeakSet();
+		if(this.resource.isDirectory){
+			this.resource.isSubmodule = !!source.submodule;
+			this.entries = new WeakSet();
 			
-			this.disposables.add(
-				source.onDidDestroy(_=> this.destroy()),
-				source.onDidExpand(_=> this.scanEntries()),
-				source.onDidAddEntries(_=> this.scanEntries())
-			);
-		}
-		
-		// File
-		else{
-			const file = FileRegistry.get(this.path);
-			this.entries = null;
-			this.iconNode = new IconNode(file, element.fileName);
-			this.disposables.add(file.onDidDestroy(_=> this.destroy()));
+			"function" === typeof source.onDidExpand
+				? this.disposables.add(source.onDidExpand(() => this.scanEntries()))
+				: Log.error("Oddball - `onDidExpand` expected on directory", this.path, source);
+			
+			"function" === typeof source.onDidAddEntries
+				? this.disposables.add(source.onDidAddEntries(() => this.scanEntries()))
+				: Log.error("Oddball - `onDidAddEntries` expected on directory", this.path, source);
 		}
 	}
 	
 	
 	destroy(){
 		if(!this.destroyed){
+			this.destroyed = true;
+			
+			this.emitter.emit("did-destroy");
+			this.emitter.dispose();
 			this.iconNode.destroy();
-			super.destroy();
-			this.entrySource = null;
-			this.iconNode = null;
-			this.entries = null;
+			this.disposables.dispose();
+
+			this.disposables = null;
+			this.emitter     = null;
+			this.iconNode    = null;
+			this.source      = null;
+			this.entries     = null;
 		}
 	}
 	
 	
 	onDidFindEntries(fn){
-		return this.subscribe("did-find-entries", fn);
+		return this.emitter.on("did-find-entries", fn);
 	}
 	
 	
@@ -62,7 +69,7 @@ class TreeEntry extends Resource {
 	
 	
 	get isExpanded(){
-		return this.isDirectory && this.entrySource.expansionState.isExpanded;
+		return this.resource.isDirectory && this.source.expansionState.isExpanded;
 	}
 	
 	
@@ -98,7 +105,7 @@ class TreeEntry extends Resource {
 	scanEntries(){
 		const newEntries = [];
 
-		const {entries} = this.entrySource;
+		const {entries} = this.source;
 		for(const name in entries){
 			const entry = entries[name];
 			
@@ -108,8 +115,8 @@ class TreeEntry extends Resource {
 			}
 		}
 		
-		if(newEntries.length)
-			this.emit("did-find-entries", newEntries);
+		if(newEntries.length && this.emitter)
+			 this.emitter.emit("did-find-entries", newEntries);
 	}
 }
 

@@ -71,7 +71,7 @@ class IconDelegate{
 			? icon.getClass(colourMode, true)
 			: this.getFallbackClasses();
 		
-		if(resource.symlink){
+		if(resource.isSymlink){
 			const type = resource.isDirectory ? "directory" : "file";
 			const linkClass = "icon-file-symlink-" + type;
 			classes
@@ -79,12 +79,12 @@ class IconDelegate{
 				: classes = [linkClass];
 		}
 		
-		/**
-		 * HACK: `appliedClasses` is only stored because we have no control over
-		 * when the service consumes icons, and IconNodes need to know which classes
-		 * to remove when delegates change.
-		 */
-		this.appliedClasses = classes;
+		else if(resource.isSubmodule){
+			const moduleClass = "icon-file-submodule";
+			classes
+				? classes[0] = moduleClass
+				: classes = [moduleClass];
+		}
 		
 		return classes;
 	}
@@ -98,8 +98,11 @@ class IconDelegate{
 	getFallbackClasses(){
 		const {resource} = this;
 		
+		// Show default directory icons
 		if(resource.isDirectory)
-			return null;
+			return resource.isRepo
+				? ["icon-repo"]
+				: ["icon-file-directory"];
 		
 		if(resource.isBinary)
 			return ["icon-file-binary"];

@@ -1,7 +1,7 @@
 "use strict";
 
 const {CompositeDisposable, Disposable} = require("atom");
-const FileRegistry = require("../filesystem/file-registry.js");
+const FileSystem = require("../filesystem/filesystem.js");
 const IconService = require("./icon-service.js");
 
 
@@ -145,8 +145,11 @@ class Strategy{
 	 * @param {Boolean} useExisting - Discard existing matches
 	 */
 	checkAll(useExisting = true){
-		for(const [_, file] of FileRegistry.files)
-			this.check(file, useExisting);
+		for(const [_, resource] of FileSystem.paths){
+			if(resource.isDirectory && !this.matchesDirs)
+				continue;
+			this.check(resource, useExisting);
+		}
 	}
 	
 	
