@@ -18,8 +18,18 @@ class FileSystem {
 		this.emitter = new Emitter();
 		
 		this.disposables = new CompositeDisposable(
-			UI.onOpenFile(editor => this.get(editor.getPath()).addEditor(editor)),
-			UI.onSaveNewFile(args => this.get(args.file).addEditor(args.editor))
+			UI.onSaveNewFile(args => this.get(args.file).addEditor(args.editor)),
+			UI.onOpenFile(editor => {
+				const path = editor.getPath();
+				let entity = this.get(path);
+				
+				if("function" !== typeof entity.addEditor){
+					this.paths.delete(path);
+					entity = this.get(path);
+				}
+				
+				entity.addEditor(editor);
+			})
 		);
 	}
 	
@@ -53,9 +63,6 @@ class FileSystem {
 		
 		if(resource)
 			return resource;
-		
-		else if(!path)
-			throw new TypeError("Path cannot be empty");
 		
 		else{
 			lstat.lastError = null;
