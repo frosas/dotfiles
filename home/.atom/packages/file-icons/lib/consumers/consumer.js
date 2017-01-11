@@ -18,6 +18,26 @@ class Consumer{
 	constructor(name){
 		if(!(this.name = name))
 			throw new TypeError("Consumer subclasses must specify a package name");
+		
+		const pkg = atom.packages.loadedPackages[name];
+		if(pkg){
+			this.package     = pkg;
+			this.packagePath = pkg.path;
+			this.packageMeta = pkg.metadata;
+			
+			if(this.packagePath)
+				try{ this.preempt(); }
+				catch(error){
+					const name = this.packagePath.replace(/(?:^|[-_])(\w)/g, s => s.toUpperCase());
+					console.error("FILE-ICONS: Error patching " + name, error);
+				}
+		}
+	}
+	
+	
+	/** Execute logic before target package has activated. */
+	preempt(){
+		
 	}
 	
 	
@@ -235,4 +255,5 @@ class Consumer{
 }
 
 
+Consumer.prototype.stillNeeded = true;
 module.exports = Consumer;

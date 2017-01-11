@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117011-60943-1avzgc/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
-        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117011-60943-1avzgc/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117011-60943-1avzgc/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116910-39011-13g52i4"
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-117011-60943-14ypbfg"
     ]
   ],
-  "_from": "../d-116910-39011-pwzwyy/package.tgz",
-  "_id": "export-html@3.0.0",
+  "_from": "../d-117011-60943-1avzgc/package.tgz",
+  "_id": "export-html@3.1.0",
   "_inCache": true,
   "_installable": true,
   "_location": "/export-html",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117011-60943-1avzgc/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
-    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117011-60943-1avzgc/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117011-60943-1avzgc/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-116910-39011-pwzwyy/package.tgz",
-  "_shasum": "adefaef240fcf7eddf29bb63bd15f0f54b5b0b38",
+  "_resolved": "file:../d-117011-60943-1avzgc/package.tgz",
+  "_shasum": "5f9bd4c69091121ac1f32bda5b56643a266c0366",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-116910-39011-pwzwyy/package.tgz",
-  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-116910-39011-13g52i4",
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117011-60943-1avzgc/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-117011-60943-14ypbfg",
   "activationCommands": {
     "atom-workspace": "export-html:export"
   },
@@ -75,6 +75,10 @@
           "default": "opacity: 0.5;"
         }
       }
+    },
+    "tabWidth": {
+      "type": "integer",
+      "default": 4
     }
   },
   "dependencies": {
@@ -100,5 +104,5 @@
     "type": "git",
     "url": "git+https://github.com/nobuhito/atom-export-html.git"
   },
-  "version": "3.0.0"
+  "version": "3.1.0"
 }

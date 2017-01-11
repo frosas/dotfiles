@@ -153,6 +153,9 @@ module.exports = ExportHtml =
         .ln {
           #{atom.config.get("export-html.lineNumber.styles")}
         }
+        pre {
+          tab-size:      #{atom.config.get("export-html.tabWidth")};
+        }
       </style>
     </head>
     <body>
