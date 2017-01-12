@@ -1,3 +1,10 @@
+<a name="v4.26.6"></a>
+# v4.26.6 (2017-01-12)
+
+## :bug: Bug Fixes
+
+- No longer use getScreenRange to retrieve a marker's range when destroyed
+
 <a name="v4.26.5"></a>
 # v4.26.5 (2016-12-19)
 
@@ -47,6 +54,14 @@ This version will only supports Atom `>= 1.13.0` and drops support of shadow DOM
 ## :arrow_up: Dependencies Update
 
 - Bump atom engine version ([573f7f76](https://github.com/atom-minimap/minimap/commit/573f7f76164049013ca4c068da9177cb1ec29d55))
+>>>>>>> d14caff3927634722a50ad3f348c676a88848ea3
+
+<a name="v4.25.7"></a>
+# v4.25.7 (2016-11-30)
+
+## :bug: Bug Fixes
+
+- Fix error raised when a pane is destroyed ([c5717e84](https://github.com/atom-minimap/minimap/commit/c5717e8431352bfe5c88cc206afb0d6e718d73b6), [#489](https://github.com/atom-minimap/minimap/issues/489))
 
 <a name="v4.25.5"></a>
 # v4.25.5 (2016-10-20)
