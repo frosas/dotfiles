@@ -95,6 +95,8 @@
   "minimap-codeglance":
     numberOfLines: 10
     showLineNumbers: false
+  "prettier-atom":
+    singleQuote: true
   "recent-files":
     updated: false
   "release-notes":
