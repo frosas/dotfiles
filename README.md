@@ -45,6 +45,10 @@ Enable "Load preferences from a custom folder" and point to `iterm` directory.
 - https://justgetflux.com/
 - https://bjango.com/mac/istatmenus/
 
+# Shortcuts cheatsheet
+
+- `shift` `ctrl` `⎋` locks the computer
+
 ### TODO
 
 - Use Ansible?
