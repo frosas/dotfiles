@@ -3,6 +3,6 @@
 set -xe
 
 brew install bash-completion node npm the_silver_searcher trash wget git ag tree \
-    coreutils pstree hub
+    coreutils pstree hub bash
 
 brew linkapps
