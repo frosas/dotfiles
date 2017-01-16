@@ -2,6 +2,7 @@
 
 const {join, sep}  = require("path");
 const {CompositeDisposable, Disposable, Emitter} = require("atom");
+const MappedDisposable = require("../utils/mapped-disposable.js");
 const {punch}      = require("../utils/general.js");
 const FileSystem   = require("../filesystem/filesystem.js");
 const IconNode     = require("../service/icon-node.js");
@@ -19,6 +20,10 @@ class Consumer{
 		if(!(this.name = name))
 			throw new TypeError("Consumer subclasses must specify a package name");
 		
+		this.disposables = new MappedDisposable();
+		this.iconNodes   = new Set();
+		this.emitter     = new Emitter();
+		
 		const pkg = atom.packages.loadedPackages[name];
 		if(pkg){
 			this.package     = pkg;
@@ -35,21 +40,13 @@ class Consumer{
 	}
 	
 	
-	/** Execute logic before target package has activated. */
-	preempt(){
-		
-	}
-	
-	
 	/** Register handlers to monkey-patch target package. */
 	init(){
 		this.active    = false;
 		this.package   = null;
-		this.iconNodes = new Set();
-		this.emitter   = new Emitter();
 		
 		setImmediate(() => this.updateStatus());
-		this.disposables = new CompositeDisposable(
+		this.disposables.add(
 			atom.packages.onDidActivatePackage(() => this.updateStatus()),
 			atom.packages.onDidDeactivatePackage(() => this.updateStatus()),
 			atom.packages.onDidActivateInitialPackages(() => this.updateStatus())
@@ -85,30 +82,6 @@ class Consumer{
 	
 	
 	/**
-	 * Execute the necessary logic when target package is activated.
-	 *
-	 * This method exists solely as an extension point for subclasses.
-	 * @abstract
-	 * @private
-	 */
-	activate(){
-		
-	}
-	
-	
-	/**
-	 * Execute any necessary logic after the target package is deactivated.
-	 *
-	 * Extension point for subclasses; this method does nothing on its own.
-	 * @abstract
-	 * @private
-	 */
-	deactivate(){
-		
-	}
-	
-	
-	/**
 	 * Wipe all {IconNode} instances the {Consumer} has generated.
 	 *
 	 * @private
@@ -130,17 +103,12 @@ class Consumer{
 	 * @private
 	 */
 	punch(object, method, fn){
-		if(!this.punchedMethods){
-			this.punchedMethods = new CompositeDisposable(
-				new Disposable(() => this.punchedMethods = null)
-			);
-			this.disposables.add(this.punchedMethods);
-		}
+		const key = "punched-methods";
+		if(!this.disposables.has(key))
+			this.disposables.add(key, new Disposable(() => this.disposables.dispose(key)));
 		
 		const [originalMethod] = punch(object, method, fn);
-		this.punchedMethods.add(new Disposable(() => {
-			object[method] = originalMethod;
-		}));
+		this.disposables.add(key, new Disposable(() => object[method] = originalMethod));
 	}
 	
 	
@@ -205,10 +173,6 @@ class Consumer{
 			this.packagePath   = null;
 			this.packageModule = null;
 			this.resetNodes();
-			if(this.punchedMethods){
-				this.punchedMethods.dispose();
-				this.punchedMethods = null;
-			}
 			this.deactivate();
 			return false;
 		}
@@ -251,6 +215,42 @@ class Consumer{
 	emit(event, value){
 		if(this.emitter)
 			this.emitter.emit(event, value);
+	}
+
+
+	/**
+	 * Execute necessary logic before target package has activated.
+	 *
+	 * Extension point for subclasses; this method is a noop by default.
+	 * @abstract
+	 * @private
+	 */
+	preempt(){
+		
+	}
+	
+	
+	/**
+	 * Execute the necessary logic when target package is activated.
+	 *
+	 * This method exists solely as an extension point for subclasses.
+	 * @abstract
+	 * @private
+	 */
+	activate(){
+		
+	}
+	
+	
+	/**
+	 * Execute any necessary logic after the target package is deactivated.
+	 *
+	 * Extension point for subclasses; this method does nothing on its own.
+	 * @abstract
+	 * @private
+	 */
+	deactivate(){
+		
 	}
 }
 

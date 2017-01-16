@@ -4,6 +4,19 @@ All notable changes to the project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+[2.0.9] - 2017-01-13
+--------------------
+### Fixed
+- [[`#497`][]] Tree-view not showing when adding new project in empty window
+- [[`#509`][]] Breakage with hashbangs with `#!/usr/bin/env` but no interpreter
+- [[`#514`][]] Breakage if `document.styleSheets` is null
+- Submodule icons not showing
+
+[`#497`]: https://github.com/file-icons/atom/issues/497
+[`#509`]: https://github.com/file-icons/atom/issues/509
+[`#514`]: https://github.com/file-icons/atom/issues/514
+
+
 [2.0.8] - 2017-01-11
 --------------------
 ### Added
@@ -1020,7 +1033,8 @@ Contributors should take heed of the new [submission process](https://github.com
 Initial release.
 
 
-[Unpublished]: https://github.com/file-icons/atom/compare/v2.0.8...HEAD
+[Unpublished]: https://github.com/file-icons/atom/compare/v2.0.9...HEAD
+[2.0.9]:  https://github.com/file-icons/atom/releases/tag/v2.0.9
 [2.0.8]:  https://github.com/file-icons/atom/releases/tag/v2.0.8
 [2.0.7]:  https://github.com/file-icons/atom/releases/tag/v2.0.7
 [2.0.6]:  https://github.com/file-icons/atom/releases/tag/v2.0.6
