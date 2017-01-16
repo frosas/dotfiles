@@ -393,13 +393,13 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>0 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>506 253 918 495 0 0 1440 877 </string>
+	<string>275 233 1016 502 0 0 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-805 907 1018 1433 -805 900 2560 1440 </string>
+	<string>-805 924 1018 1412 -805 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 130 1210 747 0 0 1440 877 </string>
+	<string>-805 1532 1210 787 -805 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>-805 902 1018 1438 -805 900 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -963,11 +963,11 @@
 			<key>Normal Font</key>
 			<string>Hack 14</string>
 			<key>Option Key Sends</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
 			<integer>0</integer>
 			<key>Right Option Key Sends</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Rows</key>
 			<integer>40</integer>
 			<key>Screen</key>
@@ -1196,6 +1196,8 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
+	<key>OptionIsMetaForSpecialChars</key>
+	<true/>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
 	<key>PassOnControlClick</key>
@@ -1256,7 +1258,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-10-25T16:12:26Z</date>
+	<date>2017-01-16T12:45:12Z</date>
 	<key>SUSkippedVersion</key>
 	<string>2.0.0.20141103</string>
 	<key>SavePasteHistory</key>
@@ -1308,7 +1310,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.11</string>
+	<string>3.0.13</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
