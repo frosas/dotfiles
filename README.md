@@ -47,9 +47,17 @@ Enable "Load preferences from a custom folder" and point to `iterm` directory.
 
 # Shortcuts cheatsheet
 
-- `shift` `ctrl` `⎋` locks the computer
+- `shift-ctrl-⎋` locks the computer
+- Bash
+  - `ctrl-a` - move the cursor to the beginning of the current line
+  - `ctrl-e` - move the cursor to the end of the current line
+  - `alt-b` - move the cursor backwards one word
+  - `alt-f` - move the cursor forward one word
+  - `ctrl-k` - delete from cursor to the end of the line
+  - `ctrl-u` - delete from cursor to the beginning of the line
+  - `alt-d` - delete the word in front of the cursor
+  - `ctrl-w` - delete the word behind of the cursor
 
 ### TODO
 
 - Use Ansible?
-
