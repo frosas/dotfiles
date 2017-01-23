@@ -61,3 +61,4 @@ Enable "Load preferences from a custom folder" and point to `iterm` directory.
 ### TODO
 
 - Use Ansible?
+- Use [Homebrew Bundler](https://github.com/Homebrew/homebrew-bundle)?
