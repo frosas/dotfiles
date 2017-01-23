@@ -62,3 +62,4 @@ Enable "Load preferences from a custom folder" and point to `iterm` directory.
 
 - Use Ansible?
 - Use [Homebrew Bundler](https://github.com/Homebrew/homebrew-bundle)?
+- https://github.com/atom-community/sync-settings
