@@ -11,13 +11,12 @@ import packageConfig from './atom-ternjs-package-config';
 import type from './atom-ternjs-type';
 import config from './atom-ternjs-config';
 import {
-  accessKey,
   isDirectory,
-  markerCheckpointBack,
   disposeAll
 } from './atom-ternjs-helper';
 import provider from './atom-ternjs-provider';
 import rename from './atom-ternjs-rename';
+import navigation from './services/navigation';
 
 class Manager {
 
@@ -301,61 +300,6 @@ class Manager {
         this.init();
       }
 
-      let editorView = atom.views.getView(editor);
-
-      if (editorView) {
-
-        this.disposables.push(editorView.addEventListener('click', (e) => {
-
-          if (
-            !e[accessKey] ||
-            editor.getSelectedText() !== ''
-          ) {
-
-            return;
-          }
-
-          if (this.client) {
-
-            this.client.definition();
-          }
-        }));
-      }
-
-      let scrollView;
-
-      if (!editorView.shadowRoot) {
-
-        scrollView = editorView.querySelector('.scroll-view');
-
-      } else {
-
-        scrollView = editorView.shadowRoot.querySelector('.scroll-view');
-      }
-
-      if (scrollView) {
-
-        this.disposables.push(scrollView.addEventListener('mousemove', (e) => {
-
-          if (!e[accessKey]) {
-
-            return;
-          }
-
-          if (e.target.classList.contains('line')) {
-
-            return;
-          }
-
-          e.target.classList.add('atom-ternjs-hover');
-        }));
-
-        this.disposables.push(scrollView.addEventListener('mouseout', (e) => {
-
-          e.target.classList.remove('atom-ternjs-hover');
-        }));
-      }
-
       this.disposables.push(editor.onDidChangeCursorPosition((e) => {
 
         emitter.emit('type-destroy-overlay');
@@ -426,9 +370,14 @@ class Manager {
       }
     }));
 
-    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:markerCheckpointBack', (e) => {
+    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:navigateBack', (e) => {
 
-      markerCheckpointBack();
+      navigation.goTo(-1);
+    }));
+
+    this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:navigateForward', (e) => {
+
+      navigation.goTo(1);
     }));
 
     this.disposables.push(atom.commands.add('atom-text-editor', 'atom-ternjs:definition', (e) => {

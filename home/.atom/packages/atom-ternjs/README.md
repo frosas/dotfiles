@@ -33,6 +33,7 @@ Example `.tern-project` file (customize to your own needs):
     "path/to/your/js/**/*.js"
   ],
   "dontLoad": [
+    "node_modules/**",
     "path/to/your/js/**/*.js"
   ],
   "plugins": {
@@ -149,12 +150,12 @@ Click any item in the generated reference-list and navigate directly to file and
   * Also displayed if a suggestion with a valid documentation is selected in the autocomplete-plus select-list
 
 * Find definition (set your cursor position to one of variable, function or instance -> open context-menu and trigger "Find definition") or use the keybindings:
-  * <kbd>alt+click</kbd> (mac, windows, linux)
+  * <kbd>cmd+click</kbd> (mac, windows, linux), requires https://atom.io/packages/hyperclick
   * <kbd>ctrl+alt+shift+d</kbd> (mac, windows, linux)
 
-* Back from definition
-  * <kbd>ctrl+alt+z</kbd> (mac, windows)
-  * <kbd>ctrl+alt+shift+z</kbd> (linux)
+* Navigate back or forward
+  * <kbd>ctrl+shift+cmd+left</kbd> (mac, windows, linux)
+  * <kbd>ctrl+shift+cmd+right</kbd> (mac, windows, linux)
 
 * Rename variable (set your cursor position to a variable -> open context-menu and trigger "Rename") or use the keybindings:
   * <kbd>ctrl+alt+c</kbd> (mac, windows)

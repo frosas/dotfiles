@@ -4,8 +4,7 @@ import manager from './atom-ternjs-manager';
 import packageConfig from './atom-ternjs-package-config';
 import path from 'path';
 import fs from 'fs';
-
-let checkpointsDefinition = [];
+import navigation from './services/navigation';
 
 const tags = {
 
@@ -13,8 +12,6 @@ const tags = {
   '<': '&lt;',
   '>': '&gt;'
 };
-
-export const accessKey = 'altKey';
 
 export function focusEditor() {
 
@@ -78,8 +75,8 @@ export function prepareInlineDocs(data) {
 
   return data
     .replace(/@param/, '<span class="doc-param-first">@param</span>')
-    .replace(/@param/g, '<span class="storage type doc-param">@param</span>')
-    .replace(/@return/, '<span class="storage type doc-return">@return</span>')
+    .replace(/@param/g, '<span class="text-info doc-param">@param</span>')
+    .replace(/@return/, '<span class="text-info doc-return">@return</span>')
     ;
 }
 
@@ -318,7 +315,12 @@ export function openFileAndGoTo(start, file) {
       return;
     }
 
+    const bufferPosition = buffer.positionForCharacterIndex(start);
+
     cursor.setBufferPosition(buffer.positionForCharacterIndex(start));
+
+    navigation.append(textEditor, buffer, bufferPosition);
+
     markDefinitionBufferRange(cursor, textEditor);
   });
 }
@@ -403,38 +405,6 @@ export function getFileContent(filePath, root) {
 export function readFile(path) {
 
   return fs.readFileSync(path, 'utf8');
-}
-
-export function setMarkerCheckpoint() {
-
-  const editor = atom.workspace.getActiveTextEditor();
-  const buffer = editor.getBuffer();
-  const cursor = editor.getLastCursor();
-
-  if (!cursor) {
-
-    return;
-  }
-
-  const marker = buffer.markPosition(cursor.getBufferPosition(), {});
-
-  checkpointsDefinition.push({
-
-    marker: marker,
-    editor: editor
-  });
-}
-
-export function markerCheckpointBack() {
-
-  if (!checkpointsDefinition.length) {
-
-    return;
-  }
-
-  const checkpoint = checkpointsDefinition.pop();
-
-  openFileAndGoToPosition(checkpoint.marker.getRange().start, checkpoint.editor.getURI());
 }
 
 export function markDefinitionBufferRange(cursor, editor) {
