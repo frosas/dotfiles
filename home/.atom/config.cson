@@ -56,7 +56,6 @@
     nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
-    tabLength: 4
     undoGroupingInterval: 50
   emmet: {}
   "exception-reporting":
