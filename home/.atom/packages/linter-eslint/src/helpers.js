@@ -72,8 +72,14 @@ export async function getDebugInfo(worker) {
   const textEditor = atom.workspace.getActiveTextEditor()
   const filePath = textEditor.getPath()
   const packagePath = atom.packages.resolvePackagePath('linter-eslint')
-  // eslint-disable-next-line import/no-dynamic-require
-  const linterEslintMeta = require(join(packagePath, 'package.json'))
+  let linterEslintMeta
+  if (packagePath === undefined) {
+    // Apparently for some users the package path fails to resolve
+    linterEslintMeta = { version: 'unknown!' }
+  } else {
+    // eslint-disable-next-line import/no-dynamic-require
+    linterEslintMeta = require(join(packagePath, 'package.json'))
+  }
   const config = atom.config.get('linter-eslint')
   const hoursSinceRestart = Math.round((process.uptime() / 3600) * 10) / 10
   let returnVal
@@ -230,9 +236,8 @@ export async function processESLintMessages(response, textEditor, showRule, work
 
       if (showRule) {
         const elName = ruleId ? 'a' : 'span'
-        const href = ruleId ? ` href=${ruleURI(ruleId).url}` : ''
-        ret.html = `<${elName}${href} class="badge badge-flexible eslint">` +
-          `${ruleId || 'Fatal'}</${elName}> ${escapeHTML(message)}`
+        const href = ruleId ? ` href="${ruleURI(ruleId).url}"` : ''
+        ret.html = `${escapeHTML(message)} (<${elName}${href}>${ruleId || 'Fatal'}</${elName}>)`
       } else {
         ret.text = message
       }

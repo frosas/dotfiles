@@ -11,8 +11,14 @@ let getDebugInfo = exports.getDebugInfo = (() => {
     const textEditor = atom.workspace.getActiveTextEditor();
     const filePath = textEditor.getPath();
     const packagePath = atom.packages.resolvePackagePath('linter-eslint');
-    // eslint-disable-next-line import/no-dynamic-require
-    const linterEslintMeta = require((0, _path.join)(packagePath, 'package.json'));
+    let linterEslintMeta;
+    if (packagePath === undefined) {
+      // Apparently for some users the package path fails to resolve
+      linterEslintMeta = { version: 'unknown!' };
+    } else {
+      // eslint-disable-next-line import/no-dynamic-require
+      linterEslintMeta = require((0, _path.join)(packagePath, 'package.json'));
+    }
     const config = atom.config.get('linter-eslint');
     const hoursSinceRestart = Math.round(process.uptime() / 3600 * 10) / 10;
     let returnVal;
@@ -129,8 +135,8 @@ let processESLintMessages = exports.processESLintMessages = (() => {
 
           if (showRule) {
             const elName = ruleId ? 'a' : 'span';
-            const href = ruleId ? ` href=${(0, _eslintRuleDocumentation2.default)(ruleId).url}` : '';
-            ret.html = `<${elName}${href} class="badge badge-flexible eslint">` + `${ruleId || 'Fatal'}</${elName}> ${(0, _escapeHtml2.default)(message)}`;
+            const href = ruleId ? ` href="${(0, _eslintRuleDocumentation2.default)(ruleId).url}"` : '';
+            ret.html = `${(0, _escapeHtml2.default)(message)} (<${elName}${href}>${ruleId || 'Fatal'}</${elName}>)`;
           } else {
             ret.text = message;
           }
