@@ -9,6 +9,7 @@ import {
   replaceTags,
   formatType
 } from '././atom-ternjs-helper';
+import debug from './services/debug';
 
 class Documentation {
 
@@ -36,7 +37,10 @@ class Documentation {
 
     let editor = atom.workspace.getActiveTextEditor();
 
-    if (!editor) {
+    if (
+      !editor ||
+      !manager.client
+    ) {
 
       return;
     }
@@ -68,48 +72,37 @@ class Documentation {
 
         this.show();
       });
+    })
+    .catch((err) => {
+
+      err && debug.handleReject(err.type, err.message);
     });
   }
 
   show() {
 
-    if (!this.marker) {
+    const editor = atom.workspace.getActiveTextEditor();
 
-      let editor = atom.workspace.getActiveTextEditor();
-      let cursor = editor.getLastCursor();
+    if (!editor) {
 
-      if (!editor || !cursor) {
-
-        return;
-      }
-
-      this.marker = cursor.getMarker();
-
-      if (!this.marker) {
-
-        return;
-      }
-
-      this.overlayDecoration = editor.decorateMarker(this.marker, {
-
-        type: 'overlay',
-        item: this.view,
-        class: 'atom-ternjs-documentation',
-        position: 'tale',
-        invalidate: 'touch'
-      });
-
-    } else {
-
-      this.marker.setProperties({
-
-        type: 'overlay',
-        item: this.view,
-        class: 'atom-ternjs-documentation',
-        position: 'tale',
-        invalidate: 'touch'
-      });
+      return;
     }
+
+    const marker = editor.getLastCursor && editor.getLastCursor().getMarker();
+
+    if (!marker) {
+
+      return;
+    }
+
+    this.overlayDecoration = editor.decorateMarker(marker, {
+
+      type: 'overlay',
+      item: this.view,
+      class: 'atom-ternjs-documentation',
+      position: 'tale',
+      invalidate: 'touch'
+    });
   }
 
   destroyOverlay() {
@@ -120,7 +113,6 @@ class Documentation {
     }
 
     this.overlayDecoration = null;
-    this.marker = null;
   }
 
   destroy() {

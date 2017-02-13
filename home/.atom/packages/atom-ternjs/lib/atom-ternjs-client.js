@@ -1,11 +1,13 @@
 'use babel';
 
+import path from 'path';
 import manager from './atom-ternjs-manager';
 import packageConfig from './atom-ternjs-package-config';
 import {
   openFileAndGoTo
 } from './atom-ternjs-helper';
 import navigation from './services/navigation';
+import {messages} from './services/debug';
 
 export default class Client {
 
@@ -100,7 +102,14 @@ export default class Client {
   update(editor) {
 
     const editorMeta = manager.getEditor(editor);
-    const file = atom.project.relativizePath(editor.getURI())[1].replace(/\\/g, '/');
+    const uRI = editor.getURI();
+
+    if (!uRI) {
+
+      return Promise.reject({type: 'info', message: messages.noURI});
+    }
+
+    const file = atom.project.relativizePath(uRI)[1].replace(/\\/g, '/');
 
     // check if this file is excluded via dontLoad
     if (
@@ -220,7 +229,8 @@ export default class Client {
 
         if (navigation.set(data)) {
 
-          openFileAndGoTo(data.start, `${project}/${data.file}`);
+          const path_to_go = path.isAbsolute(data.file) ? data.file : `${project}/${data.file}`;
+          openFileAndGoTo(data.start, path_to_go);
         }
       }
     }).catch((err) => {

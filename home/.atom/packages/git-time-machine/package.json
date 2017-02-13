@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67479-12eqxft/package.tgz",
+        "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117113-51866-1ykumro/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67479-12eqxft/package.tgz",
-        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67479-12eqxft/package.tgz",
+        "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117113-51866-1ykumro/package.tgz",
+        "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117113-51866-1ykumro/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161014-67479-1kc0wwl"
+      "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-117113-51866-ou70pw"
     ]
   ],
-  "_from": "../d-1161014-67479-12eqxft/package.tgz",
-  "_id": "git-time-machine@1.5.4",
+  "_from": "../d-117113-51866-1ykumro/package.tgz",
+  "_id": "git-time-machine@1.5.6",
   "_inCache": true,
   "_installable": true,
   "_location": "/git-time-machine",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67479-12eqxft/package.tgz",
+    "raw": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117113-51866-1ykumro/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67479-12eqxft/package.tgz",
-    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67479-12eqxft/package.tgz",
+    "rawSpec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117113-51866-1ykumro/package.tgz",
+    "spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117113-51866-1ykumro/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-1161014-67479-12eqxft/package.tgz",
-  "_shasum": "d5071a7be3fa83f97b3363a5f6a404342dd2b11c",
+  "_resolved": "file:../d-117113-51866-1ykumro/package.tgz",
+  "_shasum": "c3f02f027cf52a056b76bfde2a520035c4f13500",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-1161014-67479-12eqxft/package.tgz",
-  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-1161014-67479-1kc0wwl",
+  "_spec": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/d-117113-51866-1ykumro/package.tgz",
+  "_where": "/private/var/folders/mx/gv00p16j39s1z7yd8kyv_f44lnzc02/T/apm-install-dir-117113-51866-ou70pw",
   "activationCommands": {
     "atom-workspace": "git-time-machine:toggle"
   },
@@ -48,7 +48,7 @@
     "d3": "3.5.6",
     "git-log-utils": "0.2.3",
     "moment": "2.10.6",
-    "split-diff": "https://github.com/mupchrch/split-diff/archive/v0.8.3.tar.gz",
+    "split-diff": "https://github.com/mupchrch/split-diff/archive/v1.1.1.tar.gz",
     "underscore-plus": "1.x"
   },
   "description": "Visually interact with git commit history for a file",
@@ -75,5 +75,5 @@
     "type": "git",
     "url": "git+https://github.com/littlebee/git-time-machine.git"
   },
-  "version": "1.5.4"
+  "version": "1.5.6"
 }

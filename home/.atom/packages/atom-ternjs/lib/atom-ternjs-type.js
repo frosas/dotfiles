@@ -20,7 +20,6 @@ class Type {
 
     this.view = undefined;
     this.overlayDecoration = undefined;
-    this.marker = undefined;
 
     this.view = new TypeView();
     this.view.initialize(this);
@@ -34,45 +33,35 @@ class Type {
 
   setPosition() {
 
-    if (!this.marker) {
+    this.destroyOverlay();
 
-      const editor = atom.workspace.getActiveTextEditor();
+    const editor = atom.workspace.getActiveTextEditor();
 
-      if (!editor) {
+    if (!editor) {
 
-        return;
-      }
-
-      this.marker = editor.getLastCursor && editor.getLastCursor().getMarker();
-
-      if (!this.marker) {
-
-        return;
-      }
-
-      this.overlayDecoration = editor.decorateMarker(this.marker, {
-
-        type: 'overlay',
-        item: this.view,
-        class: 'atom-ternjs-type',
-        position: 'tale',
-        invalidate: 'touch'
-      });
-
-    } else {
-
-      this.marker.setProperties({
-
-        type: 'overlay',
-        item: this.view,
-        class: 'atom-ternjs-type',
-        position: 'tale',
-        invalidate: 'touch'
-      });
+      return;
     }
+
+    const marker = editor.getLastCursor && editor.getLastCursor().getMarker();
+
+    if (!marker) {
+
+      return;
+    }
+
+    this.overlayDecoration = editor.decorateMarker(marker, {
+
+      type: 'overlay',
+      item: this.view,
+      class: 'atom-ternjs-type',
+      position: 'tale',
+      invalidate: 'touch'
+    });
   }
 
   queryType(editor, cursor) {
+
+    this.destroyOverlay();
 
     if (
       !packageConfig.options.inlineFnCompletion ||
@@ -87,8 +76,6 @@ class Type {
     const scopeDescriptor = cursor.getScopeDescriptor();
 
     if (scopeDescriptor.scopes.join().match(/comment/)) {
-
-      this.destroyOverlay();
 
       return;
     }
@@ -211,7 +198,6 @@ class Type {
 
     if (!rangeBefore) {
 
-      this.destroyOverlay();
       return;
     }
 
@@ -220,8 +206,6 @@ class Type {
       manager.client.type(editor, rangeBefore.start).then((data) => {
 
         if (!data || data.type === '?' || !data.exprName) {
-
-          this.destroyOverlay();
 
           return;
         }
@@ -267,13 +251,12 @@ class Type {
 
   destroyOverlay() {
 
-    this.marker = undefined;
-
     if (this.overlayDecoration) {
 
       this.overlayDecoration.destroy();
-      this.overlayDecoration = undefined;
     }
+
+    this.overlayDecoration = null;
   }
 }
 
