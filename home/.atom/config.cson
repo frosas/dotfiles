@@ -51,8 +51,10 @@
     ]
     telemetryConsent: "limited"
   editor:
-    fontFamily: "Hack"
+    fontFamily: "Inconsolata"
+    fontSize: 16
     invisibles: {}
+    lineHeight: 1.3
     nonWordCharacters: "/\\()\"':,.;<>~!@#%^&*|+=[]{}`?-…"
     showIndentGuide: true
     softWrapAtPreferredLineLength: true
