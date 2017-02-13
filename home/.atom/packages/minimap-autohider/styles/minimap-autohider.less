@@ -1,0 +1,29 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+
+// @import "ui-variables"; // not currently used
+@import "./custom";
+
+atom-text-editor {
+  atom-text-editor-minimap {
+    background: rgba(0,0,0,0.2);
+    position: absolute;
+    transform: translateX(0);
+    transition: transform @TransitionDuration, opacity @TransitionDuration * 2;
+    opacity: 0.05;
+    left: 100%;
+    &.left {
+      left: 0;
+      transform: translateX(-100%);
+    }
+    &.scrolling, &:hover {
+      transform: translateX(-100%);
+      opacity: 1;
+    }
+    &.left.scrolling, .left:hover {
+      transform: translateX(0);
+    }
+  }
+}
