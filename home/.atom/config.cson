@@ -32,7 +32,6 @@
     includeCompletionsFromAllBuffers: true
   "copy-as-rtf": {}
   core:
-    allowPendingPaneItems: false
     audioBeep: false
     disabledPackages: [
       "spell-check"
