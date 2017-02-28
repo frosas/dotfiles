@@ -42,5 +42,3 @@
     # Usage: $ g quick-bisect sh -c '! ag <my-string> -l'
     quick-bisect = ! git bisect start HEAD $(git rev-list --max-parents=0 HEAD) -- && git bisect run
     show-commit-files = "show --name-only --pretty=''"
-[hub]
-	host = ewegithub.sb.karmalab.net
