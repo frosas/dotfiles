@@ -15,8 +15,11 @@ declare -a on_prompt
 
 git_ps1 () {
     if [ `type -t __git_ps1` ]; then
-        __git_ps1 "\[$DARK_GRAY\]🌿  %s" |
-            sed -e 's/\*/✏️ /' -e 's/\$/🎁 /' -e 's/%/❓/' -e 's/\+/📤 /'
+        __git_ps1 "\[$DARK_GRAY\]%s" |
+            sed 's/%/❓/' | # New files
+            sed 's/\*/✏️ /' | # Changed files
+            sed 's/\$/🎁 /' | # Stashed files
+            sed 's/\+/📤 /' # Staged files
     fi
 }
 
@@ -27,8 +30,8 @@ prompt_command () {
         tput bel
     fi
 
-    # GIT_PS1_SHOWDIRTYSTATE=1
-    # GIT_PS1_SHOWUNTRACKEDFILES=1 # It's just too slow in big repos
+    # GIT_PS1_SHOWDIRTYSTATE=1 # It's just too slow
+    # GIT_PS1_SHOWUNTRACKEDFILES=1 # It's just too slow
     GIT_PS1_SHOWSTASHSTATE=1
 
     # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
