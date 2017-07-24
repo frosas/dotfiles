@@ -5,6 +5,7 @@ set -x
 brew update >/dev/null
 brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
 brew outdated
+brew leaves
 
 npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
 
