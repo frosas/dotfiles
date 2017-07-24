@@ -3,8 +3,8 @@
 set -x
 
 brew update >/dev/null
-brew doctor # We update first to avoid the "Your Homebrew is outdated" warning
-brew outdated || echo "Update with \`brew upgrade\`"
+brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
+brew outdated
 
 npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
 
