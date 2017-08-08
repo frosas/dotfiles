@@ -12,3 +12,6 @@
 # IntelliJ
 .idea
 *.iml
+
+# Visual Studio Code
+.vscode
