@@ -5,3 +5,6 @@ set -xe
 brew install bash-completion node npm the_silver_searcher trash wget git ag tree \
     coreutils pstree hub bash
 
+brew cask install disk-inventory-x google-chrome google-chrome-canary firefox \
+    gimp iterm2 kdiff3 slate the-unarchiver transmission istat-menus skype \
+    visual-studio-code vlc flux spotify android-file-transfer netspot
