@@ -10,5 +10,6 @@ HOME_DIR=$(cd $(dirname $0) >/dev/null && pwd)/../home
     (ln -s $HOME_DIR/.ssh/config ~/.ssh || true)
     if [[ `uname` = Darwin ]]; then
         (cd ~/Library/Preferences && ln -s $HOME_DIR/Library/Preferences/* || true)
+        (cd ~/Library/Application\ Support && ln -s $HOME_DIR/Library/Application\ Support/* || true)
     fi
 )
