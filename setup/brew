@@ -7,4 +7,4 @@ brew install bash-completion node npm the_silver_searcher trash wget git ag tree
 
 brew cask install disk-inventory-x google-chrome google-chrome-canary firefox \
     gimp iterm2 kdiff3 slate the-unarchiver transmission istat-menus skype \
-    visual-studio-code vlc flux spotify android-file-transfer 
+    visual-studio-code vlc flux spotify android-file-transfer spectacle
