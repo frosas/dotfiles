@@ -15,7 +15,7 @@ In ~/.bashrc
 
 ```bash
 source .../dotfiles/bash/.bashrc
-export CDPATH=.:~/.dir-shortcuts:~/projects
+CDPATH=.:~/.dir-shortcuts:~/projects
 ```
 
 Symlink arbitrary dirs to ~/.dir-shortcuts
