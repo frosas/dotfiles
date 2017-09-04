@@ -7,5 +7,6 @@ Host *
     # http://askubuntu.com/questions/127369/how-to-prevent-write-failed-broken-pipe-on-ssh-connection)
     ServerAliveInterval 30
 
-Host aws-misc-v2.frosas.net
-    User ubuntu
+# Host aws-misc-v2.frosas.net *.eu-west-1.compute.amazonaws.com
+#     User ubuntu
+#     IdentityFile ".../aws-ec2-eu-west-1.pem"

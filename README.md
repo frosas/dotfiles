@@ -20,6 +20,14 @@ CDPATH=.:~/.dir-shortcuts:~/projects
 
 Symlink arbitrary dirs to ~/.dir-shortcuts
 
+**SSH**
+
+In ~/.ssh/config
+
+```
+Include .../dotfiles/ssh/config
+```
+
 **Cron tasks**
 
 ```bash
