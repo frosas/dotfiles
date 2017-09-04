@@ -1,13 +1,14 @@
 bash-completion
 node
-npm
-the_silver_searcher
 trash
 wget
 git
-ag
+the_silver_searcher
 tree
 coreutils
 pstree
 hub
 bash
+htop
+jq
+nvm

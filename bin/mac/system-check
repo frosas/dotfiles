@@ -2,10 +2,14 @@
 
 set -x
 
+# TODO Run in parallel with screen
+
 brew update >/dev/null
 brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
 brew outdated
-brew leaves
+echo "Unknown installed formulas (-) and missing known ones (+)"
+diff -u <(brew leaves) <(cat "$(dirname $0)/../../setup/brew-formulas" | sort)
+diff -u <(brew cask list) <(cat "$(dirname $0)/../../setup/brew-cask-formulas" | sort)
 
 npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
 
