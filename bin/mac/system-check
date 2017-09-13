@@ -7,9 +7,9 @@ set -x
 brew update >/dev/null
 brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
 brew outdated
-echo "Unknown installed formulas (-) and missing known ones (+)"
-diff -u <(brew leaves) <(cat "$(dirname $0)/../../setup/brew-formulas" | sort)
-diff -u <(brew cask list) <(cat "$(dirname $0)/../../setup/brew-cask-formulas" | sort)
+echo "Unknown installed formulas (<) and missing known ones (>):"
+diff --suppress-common-lines <(brew leaves) <(cat "$(dirname $0)/../../setup/brew-formulas" | sort)
+diff --suppress-common-lines <(brew cask list) <(cat "$(dirname $0)/../../setup/brew-cask-formulas" | sort)
 
 npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
 
