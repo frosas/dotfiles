@@ -16,6 +16,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -348,7 +350,9 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 4</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/projects/dotfiles/iterm</string>
+	<string>~/Documents</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -394,13 +398,13 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>290 118 700 622 0 0 1280 778 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>221 180 1018 447 0 0 1280 778 </string>
+	<string>221 180 796 473 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 4 1280 774 0 0 1280 778 </string>
+	<string>0 27 1280 751 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>512 4 762 774 0 0 1280 778 </string>
+	<string>0 4 1280 774 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>70 31 1210 747 0 0 1280 778 </string>
+	<string>0 4 1280 774 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>54 23 1210 747 0 0 1280 778 </string>
 	<key>NeverWarnAboutShortLivedSessions_895496E5-9F49-4699-BE85-016853DB80AF</key>
@@ -1256,13 +1260,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-08-22T05:21:20Z</date>
+	<date>2017-09-27T10:52:09Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>
@@ -1306,7 +1310,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.beta.5</string>
+	<string>3.1.3.beta.1</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
