@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -ex
-
-cd dotfiles
-git a home/.atom
-git ci -m 'Update Atom'
-git push
