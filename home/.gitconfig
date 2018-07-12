@@ -34,7 +34,7 @@
     c = clean -df # Cleans untracked (but not ignored) files
     h = help
     r = rebase
-    ci-wip-all = ! git a . && git ci -m WIP # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
+    ci-wip-all = ! git a . && git ci -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
     co-tmp-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-tmp-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
     browse = ! hub browse # Opens current repo and branch in GitHub
     bi = bisect
