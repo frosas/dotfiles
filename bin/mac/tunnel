@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# From https://hackernoon.com/use-a-ssh-tunnel-to-create-a-simple-vpn-in-osx-to-watch-country-blocked-streaming-via-script-89df0a9f6af1
+
+HOST="ubuntu@misc-2.frosas.net"
+NETWORK="Wi-Fi"
+CONTROL_SOCKET=/tmp/.ctl-ssh-tunnel 
+
+case "$1" in
+'start')
+  ssh -fNy -D 8000 $HOST -M -S $CONTROL_SOCKET && \
+  sudo networksetup -setsocksfirewallproxy $NETWORK localhost 8000
+  ;;
+'stop')
+  ssh -S $CONTROL_SOCKET -O exit $HOST && \
+  sudo networksetup -setsocksfirewallproxystate $NETWORK off
+  ;;
+*)
+  echo "usage: $0 { start | stop }"
+  ;;
+esac
