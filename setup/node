@@ -2,4 +2,4 @@
 
 set -ex
 
-npm install -g eslint jshint htmlhint
+npm install -g eslint eslint-config-prettier eslint-plugin-prettier prettier
