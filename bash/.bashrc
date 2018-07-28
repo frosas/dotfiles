@@ -53,6 +53,7 @@ alias ag="ag --hidden --ignore .git"
 alias lt="ls -lt"
 alias ll="ls -l"
 alias d="docker"
+alias dc="docker-compose"
 
 function h { history | tail -${1:-20}; }
 
