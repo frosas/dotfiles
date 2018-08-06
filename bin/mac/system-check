@@ -1,16 +1,61 @@
 #!/bin/bash
 
-set -x
+set -e
 
 # TODO Run in parallel with screen
 
-brew update >/dev/null
-brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
-brew outdated
-echo "Unknown installed formulas (<) and missing known ones (>):"
-diff --suppress-common-lines <(brew leaves) <(cat "$(dirname $0)/../../setup/brew-formulas" | sort)
-diff --suppress-common-lines <(brew cask list) <(cat "$(dirname $0)/../../setup/brew-cask-formulas" | sort)
+diff-new() {
+  diff \
+    --new-line-format="- %L" \
+    --old-line-format="" \
+    --unchanged-line-format="" \
+    "$1" "$2" \
+  || true
+}
 
+title() {
+  local PURPLE=$(tput setaf 125)
+  local RESET=$(tput sgr0)
+  echo -e "$PURPLE## $1$RESET\n"
+}
+
+BASE_PATH="$(dirname $0)/../.."
+
+title "Homebrew"
+
+echo "brew update..."
+brew update >/dev/null
+
+echo -e "\nbrew doctor..."
+brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
+
+echo -e "\nbrew outdated..."
+brew outdated
+
+echo
+
+# TODO Call each command once
+
+# We use `brew leaves` to not include dependencies
+echo "Unknown installed formulas:"
+diff-new <(cat "$BASE_PATH/setup/brew-formulas" | sort) <(brew leaves) 
+echo -e "\nMissing known formulas:"
+diff-new <(brew list) <(cat "$BASE_PATH/setup/brew-formulas" | sort)
+
+echo -e "\nUnknown installed cask formulas:"
+diff-new <(cat "$BASE_PATH/setup/brew-cask-formulas" | sort) <(brew cask list) 
+echo -e "\nMissing known cask formulas:"
+diff-new <(brew cask list) <(cat "$BASE_PATH/setup/brew-cask-formulas" | sort)
+
+echo
+
+title "npm"
+
+echo "Outdated packages:"
 npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
+
+echo
+
+title "macOS Software Update"
 
 softwareupdate -l
