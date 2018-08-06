@@ -4,7 +4,6 @@ bash-completion
 coreutils
 fzf
 git
-git-lfs
 htop
 hub
 imagemagick
