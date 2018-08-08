@@ -22,7 +22,7 @@
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
     m = merge
     # merge-upstream = merge --ff-only @{u} # Rarely used
-    s = stash save -u # Stashes tracked and untracked (but not ignored) files
+    s = stash push -u # Stashes tracked and untracked (but not ignored) files
     sp = stash pop
     ss = stash show -v # Shows changes in a stashed state
     sl = stash list
