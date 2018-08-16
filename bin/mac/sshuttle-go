@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sshuttle --dns -r ubuntu@misc-2.frosas.net 0/0
