@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Runs node after setting the env vars according to .env
-
-# `npm i -g dotenv` first.
-
-node -r $(npm root -g)/dotenv/config "$@"
