@@ -29,7 +29,7 @@ brew update >/dev/null
 echo -e "\nbrew doctor..."
 brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
 
-echo -e "\nbrew outdated..."
+echo -e "\nbrew outdated (upgrade with \`brew upgrade\`)..."
 brew outdated
 
 echo
