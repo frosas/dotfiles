@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# For commands that don't support resolving an AWS profile to its actual credentials.
+#
+# Usage example: AWS_PROFILE=acme resolve-aws-profile docker run ...
+#
+# Based on https://gist.github.com/mjul/f93ee7d144c5090e6e3c463f5f312587
+
+PROFILE="${AWS_PROFILE:=default}"
+
+(
+  export AWS_ACCESS_KEY_ID="$(aws configure get aws_access_key_id --profile $PROFILE)" &&
+  export AWS_SECRET_ACCESS_KEY="$(aws configure get aws_secret_access_key --profile $PROFILE)" &&
+  "$@"
+)
