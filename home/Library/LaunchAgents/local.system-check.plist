@@ -1,0 +1,32 @@
+<!-- See http://www.launchd.info/ -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>local.system-check</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>bash</string>
+      <string>-lc</string>
+      <string>system-check | mac-to-slack</string>
+    </array>
+
+    <key>Nice</key>
+    <integer>20</integer>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Weekday</key>
+      <integer>5</integer> <!-- Friday -->
+      
+      <key>Hour</key>
+      <integer>12</integer>
+      
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+  </dict>
+</plist>

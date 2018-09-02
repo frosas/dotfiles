@@ -17,3 +17,5 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+launchctl load ~/Library/LaunchAgents/local.system-check.plist
