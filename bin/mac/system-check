@@ -14,9 +14,7 @@ diff-new() {
 }
 
 title() {
-  local PURPLE=$(tput setaf 125)
-  local RESET=$(tput sgr0)
-  echo -e "$PURPLE## $1$RESET\n"
+  echo -e "## $1\n"
 }
 
 BASE_PATH="$(dirname $0)/../.."
