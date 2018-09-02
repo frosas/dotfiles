@@ -22,7 +22,6 @@ source $SCRIPT_DIR/history
 update_iterm () { (echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007" &) }
 on_prompt=("${on_prompt[@]}" update_iterm)
 
-export PATH=/usr/local/sbin:/usr/local/bin:$PATH # Recommended by Homebrew
 export PATH=$SCRIPT_DIR/../bin:$PATH
 export PATH=node_modules/.bin:$PATH
 export EDITOR=vim
