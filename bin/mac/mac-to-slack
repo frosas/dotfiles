@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Tool for this Mac to notify me something on Slack
+#
+# Usage: $ echo "Hi there!" | mac-to-slack
+
+exec slack chat send -ch @frosas
