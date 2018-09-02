@@ -2,10 +2,10 @@ awscli
 bash
 bash-completion
 coreutils
+drone
 fzf
 git
 htop
-hub
 imagemagick
 jq
 nmap
@@ -13,8 +13,9 @@ node
 nvm
 plantuml
 pstree
+slack-cli
 sshuttle
-terraform
+tfenv
 the_silver_searcher
 trash
 tree
