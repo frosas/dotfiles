@@ -2,20 +2,41 @@
 
 set -xe
 
-# From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# From https://github.com/mathiasbynens/dotfiles/blob/master/.osx and
+# https://github.com/geerlingguy/dotfiles/blob/master/.osx
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+# Set a blazingly fast keyboard repeat rate, and make it happen more quickly.
+defaults write NSGlobalDomain InitialKeyRepeat -int 20
+defaults write NSGlobalDomain KeyRepeat -int 1
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Save screenshots to Downloads
+defaults write com.apple.screencapture location -string "${HOME}/Downloads"
+
+# Enable the 'reduce transparency' option on Yosemite. Save GPU cycles.
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+#
+# Finder
+#
+
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+#
 
 launchctl load ~/Library/LaunchAgents/local.system-check.plist
