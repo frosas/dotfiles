@@ -14,56 +14,56 @@ DARK_GRAY=$(tput setaf 8)
 declare -a on_prompt
 
 git_ps1 () {
-    if [ `type -t __git_ps1` ]; then
-        __git_ps1 "\[$DARK_GRAY\]%s" |
-            sed 's/%/❓/' | # New files
-            sed 's/\*/✏️ /' | # Changed files
-            sed 's/\$/🎁 /' | # Stashed files
-            sed 's/\+/📤 /' # Staged files
-    fi
+	if [ `type -t __git_ps1` ]; then
+		__git_ps1 "\[$DARK_GRAY\]%s" |
+			sed 's/%/❓/' | # New files
+			sed 's/\*/✏️ /' | # Changed files
+			sed 's/\$/🎁 /' | # Stashed files
+			sed 's/\+/📤 /' # Staged files
+	fi
 }
 
 prompt_command () {
-    local LAST_EXIT_CODE=$?
-    if [[ $LAST_EXIT_CODE != 0 ]]; then
-        echo "${RED}✖ $DARK_GRAY($LAST_EXIT_CODE)$RESET"
-        tput bel
-    fi
+	local LAST_EXIT_CODE=$?
+	if [[ $LAST_EXIT_CODE != 0 ]]; then
+		echo "${RED}✖ $DARK_GRAY($LAST_EXIT_CODE)$RESET"
+		tput bel
+	fi
 
-    # GIT_PS1_SHOWDIRTYSTATE=1 # It's just too slow
-    # GIT_PS1_SHOWUNTRACKEDFILES=1 # It's just too slow
-    GIT_PS1_SHOWSTASHSTATE=1
+	# GIT_PS1_SHOWDIRTYSTATE=1 # It's just too slow
+	# GIT_PS1_SHOWUNTRACKEDFILES=1 # It's just too slow
+	GIT_PS1_SHOWSTASHSTATE=1
 
-    # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
+	# \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)
 
-    PS1="\[$RESET\]\n"
-    PS1="$PS1\[$GREEN\]\w"
+	PS1="\[$RESET\]\n"
+	PS1="$PS1\[$GREEN\]\w"
 
-    local PS1_MISC=""
-    if [[ ! $(whoami) =~ ^(frosas|frosasbosque)$ ]]; then 
-        if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
-        PS1_MISC="${PS1_MISC}👤  \u"
-    fi
-    if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
-    PS1_MISC="${PS1_MISC}$(git_ps1)"
-    if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
-    PS1_MISC="${PS1_MISC}Node $(node -v)"
-    if [[ "$PS1_MISC" != "" ]]; then PS1="$PS1 \[$DARK_GRAY\]($PS1_MISC)"; fi
+	local PS1_MISC=""
+	if [[ ! $(whoami) =~ ^(frosas|frosasbosque)$ ]]; then 
+		if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
+		PS1_MISC="${PS1_MISC}👤  \u"
+	fi
+	if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
+	PS1_MISC="${PS1_MISC}$(git_ps1)"
+	if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
+	PS1_MISC="${PS1_MISC}Node $(node -v)"
+	if [[ "$PS1_MISC" != "" ]]; then PS1="$PS1 \[$DARK_GRAY\]($PS1_MISC)"; fi
 
-    PS1="$PS1\n"
-    PS1="$PS1\[$DARK_GRAY\]$"
-    PS1="$PS1\[$RESET\] "
+	PS1="$PS1\n"
+	PS1="$PS1\[$DARK_GRAY\]$"
+	PS1="$PS1\[$RESET\] "
 
-    # For anything else we may want to do at every command
-    for callback in "${on_prompt[@]}"; do $callback; done
+	# For anything else we may want to do at every command
+	for callback in "${on_prompt[@]}"; do $callback; done
 }
 
 join () {
-    local array=("$@")
-    for i in ${!array[@]}; do
-        if [[ "$i" != "0" ]]; then echo -n "xxx "; fi
-        echo -n ${array[$i]}
-    done
+	local array=("$@")
+	for i in ${!array[@]}; do
+		if [[ "$i" != "0" ]]; then echo -n "xxx "; fi
+		echo -n ${array[$i]}
+	done
 }
 
 PROMPT_COMMAND=prompt_command
