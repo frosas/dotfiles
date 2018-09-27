@@ -30,6 +30,9 @@ brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
 echo -e "\nbrew outdated (upgrade with \`brew upgrade\`)..."
 brew outdated
 
+echo -e "\nbrew cleanup --dry-run (delete with \`brew cleanup\`)..."
+brew cleanup
+
 echo
 
 # TODO Call each command once
