@@ -8,15 +8,16 @@ git
 htop
 imagemagick
 jq
+ncdu
 nmap
 node
 nvm
 plantuml
 pstree
+ripgrep
 slack-cli
 sshuttle
 tfenv
-the_silver_searcher
 trash
 tree
 wget
