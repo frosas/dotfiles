@@ -25,14 +25,14 @@ DIFF="git diff --color -b -C"
     echo-info "Note: spaces are ignored."
 
     title STAGED
-    $DIFF --cached "$@"
+    $DIFF --cached "$@" | diff-so-fancy
 
     title UNSTAGED
-    $DIFF "$@"
+    $DIFF "$@" | diff-so-fancy
 
     title UNTRACKED
     git ls-files --others --exclude-standard -z "$@" | while read -d $'\0' FILE; do
         $DIFF /dev/null "$FILE"
-    done
+    done | diff-so-fancy
 
-) | less -R # TODO --quit-if-one-screen doesn't work
+) | less --tabs=2 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS

@@ -2,6 +2,7 @@ awscli
 bash
 bash-completion
 coreutils
+diff-so-fancy
 drone
 fzf
 git
