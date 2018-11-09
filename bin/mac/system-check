@@ -21,11 +21,12 @@ BASE_PATH="$(dirname $0)/../.."
 
 title "Homebrew"
 
+# Update before running `brew doctor` to avoid the "Your Homebrew is outdated" warning
 echo "brew update..."
 brew update >/dev/null
 
 echo -e "\nbrew doctor..."
-brew doctor # We updated first to avoid the "Your Homebrew is outdated" warning
+brew doctor || true
 
 echo -e "\nbrew outdated (upgrade with \`brew upgrade\`)..."
 brew outdated
