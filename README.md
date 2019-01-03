@@ -1,32 +1,25 @@
 # Setup
 
+Install latest macOS version.
+
+Install [Homebrew](https://brew.sh/).
+
+Clone this repo. It's fine to use its public (non-authenticated) HTTPS URL until I have to make changes to it.
+
 ```bash
-$ git clone git@github.com:frosas/dotfiles.git
-$ cd dotfiles
 $ git submodule update --init
-$ setup/all
+$ setup/all # Or run each of its steps manually
+# Review output for errors and manual steps
+```
+
+Update these files as needed:
+
+```bash
+$ vi -o ~/.bashrc home-examples/.bashrc
+$ vi -o ~/.ssh/config home-examples/.ssh/config
 ```
 
 ## Manual steps
-
-**Terminal**
-
-In ~/.bashrc
-
-```bash
-source .../dotfiles/bash/.bashrc
-CDPATH=.:~/.dir-shortcuts:~/projects
-```
-
-Symlink arbitrary dirs to ~/.dir-shortcuts
-
-**SSH**
-
-In ~/.ssh/config
-
-```
-Include .../dotfiles/ssh/config
-```
 
 **Cron tasks**
 
