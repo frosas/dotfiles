@@ -21,14 +21,6 @@ $ vi -o ~/.ssh/config home-examples/.ssh/config
 
 ## Manual steps
 
-**Cron tasks**
-
-```bash
-$ crontab -e
-PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-@weekly /home/.../dotfiles/bin/mac/system-check
-```
-
 **iTerm**
 
 Enable "Load preferences from a custom folder" and point to `iterm` directory.
