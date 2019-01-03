@@ -5,7 +5,7 @@
 set -e
 
 SOURCE="$1"
-DESTINATION="$HOME/Dropbox/Archived/$(date +%Y)/$(basename "$SOURCE").zip"
+DESTINATION="$HOME/Google Drive/Archived/$(date +%Y)/$(basename "$SOURCE").zip"
 
 mkdir -p "$(dirname "$DESTINATION")"
 zip -r "$DESTINATION" "$SOURCE"
