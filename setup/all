@@ -4,7 +4,7 @@ set -xe
 
 HERE=$(cd $(dirname $0) >/dev/null && pwd)
 
-$HERE/symlinks
+$HERE/home
 $HERE/vim
 
 if [[ `uname` = Darwin ]]; then 
