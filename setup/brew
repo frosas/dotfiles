@@ -3,5 +3,6 @@
 set -xe
 
 for tap in $(cat "$(dirname $0)/brew-taps"); do brew tap $tap; done
-brew install $(cat "$(dirname $0)/brew-formulas") || true
+# Install casks first as "java" (a cask) is required by "plantuml"
 brew cask install $(cat "$(dirname $0)/brew-cask-formulas") || true
+brew install $(cat "$(dirname $0)/brew-formulas") || true

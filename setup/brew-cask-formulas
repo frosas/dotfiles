@@ -1,7 +1,6 @@
 android-file-transfer
 android-platform-tools
 ccmenu
-disk-inventory-x
 docker
 firefox
 flux
@@ -18,17 +17,16 @@ font-roboto-slab
 font-source-code-pro
 font-ubuntu
 gimp
+google-backup-and-sync
 google-chrome
-google-chrome-canary
-hyper
 istat-menus
 iterm2
 java
 kdiff3
 linkliar
 meld
+omnidisksweeper
 skype
-slate
 sourcetree
 spectacle
 spotify
