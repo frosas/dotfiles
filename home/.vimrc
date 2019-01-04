@@ -65,7 +65,7 @@ endif
 " Color scheme
 " set t_Co=256
 set background=dark
-colorscheme base16-default
+colorscheme base16-default-dark
 " Ensure we use the same background as in the console
 hi Normal ctermbg=NONE
 
