@@ -11,10 +11,6 @@ if [ `uname` = Darwin ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
-# Completion for `g` alias
-# From https://gist.github.com/JuggoPop/10706934
-__git_complete g __git_main
-
 source $SCRIPT_DIR/prompt
 
 HISTSIZE="50000"
@@ -38,25 +34,28 @@ if [ `uname` = Linux ]; then
     alias ls="ls -FAh --color"
 fi
 
-alias g="git" # See completion for `g` above
-alias gs="git status --short"
+alias cd="cd -P"
+alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
+alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
+alias g="git"
+alias gb="git branches-by-date"
+alias gbd="git-branch-diff"
+alias gbl="git-branch-log"
 alias gd="git-uncommitted-diff"
 alias gl="git l"
 alias gla="git l --all"
-alias gb="git branches-by-date"
-alias gbl="git-branch-log"
-alias gbd="git-branch-diff"
-alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
-alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
-alias cd="cd -P"
-alias t="trash"
-alias ag="ag --hidden --ignore .git"
+alias gs="git status --short"
 alias l="ls"
 alias ll="ls -l"
 alias lt="ls -lt"
 alias d="docker"
 alias dc="docker-compose"
+alias t="trash"
 alias tf="terraform"
+
+# Bash completion for `g` alias
+# From https://gist.github.com/JuggoPop/10706934
+__git_complete g __git_main
 
 function h { history | tail -${1:-20}; }
 
