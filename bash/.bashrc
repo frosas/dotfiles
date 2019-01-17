@@ -64,8 +64,3 @@ source /usr/local/opt/nvm/nvm.sh
 
 # "general-purpose command-line fuzzy finder"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# Default to the latest visited directory
-# [[ -e ~/.last-cwd ]] && cd "$(cat ~/.last-cwd)"
-# save-cwd () { pwd > ~/.last-cwd; }
-# on_prompt=("${on_prompt[@]}" save-cwd)
