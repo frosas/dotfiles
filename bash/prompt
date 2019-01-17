@@ -11,8 +11,6 @@ CYAN=$(tput setaf 6)
 WHITE=$(tput setaf 7)
 DARK_GRAY=$(tput setaf 8)
 
-declare -a on_prompt
-
 git_ps1 () {
 	if [ `type -t __git_ps1` ]; then
 		__git_ps1 "\[$DARK_GRAY\]%s" |
@@ -53,9 +51,6 @@ prompt_command () {
 	PS1="$PS1\n"
 	PS1="$PS1\[$DARK_GRAY\]$"
 	PS1="$PS1\[$RESET\] "
-
-	# For anything else we may want to do at every command
-	for callback in "${on_prompt[@]}"; do $callback; done
 }
 
-PROMPT_COMMAND=prompt_command
+PROMPT_COMMAND="prompt_command; $PROMPT_COMMAND"

@@ -20,7 +20,7 @@ source $SCRIPT_DIR/history
 
 # Add the current directory to the iTerm tab title
 update_iterm () { (echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007" &) }
-on_prompt=("${on_prompt[@]}" update_iterm)
+PROMPT_COMMAND="update_iterm; $PROMPT_COMMAND"
 
 export PATH=$SCRIPT_DIR/../bin:$PATH
 export PATH=node_modules/.bin:$PATH
