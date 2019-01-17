@@ -58,12 +58,4 @@ prompt_command () {
 	for callback in "${on_prompt[@]}"; do $callback; done
 }
 
-join () {
-	local array=("$@")
-	for i in ${!array[@]}; do
-		if [[ "$i" != "0" ]]; then echo -n "xxx "; fi
-		echo -n ${array[$i]}
-	done
-}
-
 PROMPT_COMMAND=prompt_command
