@@ -16,7 +16,9 @@ fi
 __git_complete g __git_main
 
 source $SCRIPT_DIR/prompt
-source $SCRIPT_DIR/history
+
+HISTSIZE="50000"
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND" # Update history file immediately
 
 # Add the current directory to the iTerm tab title
 update_iterm () { (echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007" &) }
