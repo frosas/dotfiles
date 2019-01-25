@@ -2,11 +2,13 @@
 
 # Starts a clean Chrome
 #
-# Based on https://github.com/karma-runner/karma-chrome-launcher/blob/4110f87beb51ec45e23b4fc186957c2789a93b9a/index.js#L85-L91
+# Based on https://github.com/karma-runner/karma-chrome-launcher/blob/11156d784a2b91ff40887fd0740763cb9a2f6e8d/index.js#L36-L47
 
-chrome \
-    --user-data-dir=$(mktemp -d) \
-    --no-default-browser-check \
-    --no-first-run \
-    --disable-default-apps \
-    "$@"
+open -a "Google Chrome" \
+  --new \
+  --args \
+  --user-data-dir=$(mktemp -d) \
+  --no-default-browser-check \
+  --no-first-run \
+  --disable-default-apps \
+  "$@"
