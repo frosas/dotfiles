@@ -1,3 +1,3 @@
 #!/bin/bash
 
-watchdog sshuttle --dns -r ubuntu@misc-2.frosas.net 0/0 -v
+watchdog sshuttle --dns -r ubuntu@misc-2.frosas.net 0/0 "$@"
