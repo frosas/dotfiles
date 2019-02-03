@@ -2,14 +2,20 @@
 
 set -ex
 
-HOME_DIR=$(cd $(dirname $0) >/dev/null && pwd)/../home
+DOTFILES_HOME=$(cd $(dirname $0) >/dev/null && pwd)/../home
+
+symlink_home_dir_files () {
+    DIR="$1" # Path relative to home
+    mkdir -p "$HOME/$DIR"
+    (cd "$HOME/$DIR" && ln -s "$DOTFILES_HOME/$DIR"/*)
+}
 
 (
     # TODO Link only the files and create the dirs if they don't exist
-    (cd ~ && find $HOME_DIR -depth 1 -exec ln -s {} \;)
-    (ln -s $HOME_DIR/.ssh/config ~/.ssh || true)
+    (cd ~ && find $DOTFILES_HOME -depth 1 -exec ln -s {} \;)
+    (ln -s $DOTFILES_HOME/.ssh/config ~/.ssh || true)
     if [[ `uname` = Darwin ]]; then
-        (cd ~/Library/Preferences && ln -s $HOME_DIR/Library/Preferences/* || true)
-        (cd ~/Library/Application\ Support && ln -s $HOME_DIR/Library/Application\ Support/* || true)
+        symlink_home_dir_files "Library/Application Support/Spectacle"
+        symlink_home_dir_files "Library/LaunchAgents"
     fi
 )
