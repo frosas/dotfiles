@@ -28,8 +28,13 @@ brew update >/dev/null
 echo -e "\nbrew doctor..."
 brew doctor || true
 
+# TODO Is this necessary having `brew bundle check`?
 echo -e "\nbrew outdated (upgrade with \`brew upgrade\`)..."
 brew outdated
+
+# TODO Is this necessary having `brew bundle check`?
+echo -e "\nbrew cask outdated (upgrade with \`brew cask upgrade\`)..."
+brew cask outdated
 
 echo -e "\nbrew cleanup..."
 brew cleanup
