@@ -14,7 +14,7 @@ diff-new() {
 }
 
 title() {
-  echo -e "## $1\n"
+  echo -e "\n## $1\n"
 }
 
 BASE_PATH="$(dirname $0)/../.."
@@ -31,32 +31,19 @@ brew doctor || true
 echo -e "\nbrew outdated (upgrade with \`brew upgrade\`)..."
 brew outdated
 
-echo -e "\nbrew cleanup --dry-run (delete with \`brew cleanup\`)..."
+echo -e "\nbrew cleanup..."
 brew cleanup
 
-echo
+echo -e "\nUnknown installed formulae and casks:"
+brew bundle cleanup --global
 
-# TODO Call each command once
-
-# We use `brew leaves` to not include dependencies
-echo "Unknown installed formulas:"
-diff-new <(cat "$BASE_PATH/setup/brew-formulas" | sort) <(brew leaves) 
-echo -e "\nMissing known formulas:"
-diff-new <(brew list) <(cat "$BASE_PATH/setup/brew-formulas" | sort)
-
-echo -e "\nUnknown installed cask formulas:"
-diff-new <(cat "$BASE_PATH/setup/brew-cask-formulas" | sort) <(brew cask list) 
-echo -e "\nMissing known cask formulas:"
-diff-new <(brew cask list) <(cat "$BASE_PATH/setup/brew-cask-formulas" | sort)
-
-echo
+echo -e "\nMissing known formulae and casks:"
+brew bundle check --global --verbose
 
 title "npm"
 
 echo "Outdated packages:"
 npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
-
-echo
 
 title "macOS Software Update"
 
