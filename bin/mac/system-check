@@ -34,7 +34,7 @@ brew outdated
 echo -e "\nbrew cleanup..."
 brew cleanup
 
-echo -e "\nUnknown installed formulae and casks:"
+echo -e "\nUnknown installed formulae and casks (update with \`brew bundle dump --global --force\`):"
 brew bundle cleanup --global
 
 echo -e "\nMissing known formulae and casks:"
