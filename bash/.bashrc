@@ -34,6 +34,7 @@ if [ `uname` = Linux ]; then
     alias ls="ls -FAh --color"
 fi
 
+alias ag="ag --hidden --ignore .git"
 alias cd="cd -P"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
