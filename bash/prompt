@@ -22,7 +22,6 @@ git_ps1 () {
 }
 
 prompt_command () {
-	local LAST_EXIT_CODE=$?
 	if [[ $LAST_EXIT_CODE != 0 ]]; then
 		echo "${RED}✖ $DARK_GRAY($LAST_EXIT_CODE)$RESET"
 		tput bel
@@ -53,4 +52,4 @@ prompt_command () {
 	PS1="$PS1\[$RESET\] "
 }
 
-PROMPT_COMMAND="prompt_command; $PROMPT_COMMAND"
+PROMPT_COMMAND="$PROMPT_COMMAND; prompt_command"

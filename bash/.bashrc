@@ -11,14 +11,17 @@ if [ `uname` = Darwin ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
+# Ensure we first of all get the exit code of the last command
+PROMPT_COMMAND="LAST_EXIT_CODE=\$?"
+
 source $SCRIPT_DIR/prompt
 
 HISTSIZE="50000"
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND" # Update history file immediately
+PROMPT_COMMAND="$PROMPT_COMMAND; history -a" # Update history file immediately
 
 # Add the current directory to the iTerm tab title
 update_iterm () { (echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007" &) }
-PROMPT_COMMAND="update_iterm; $PROMPT_COMMAND"
+PROMPT_COMMAND="$PROMPT_COMMAND; update_iterm"
 
 export PATH=$SCRIPT_DIR/../bin:$PATH
 export PATH=node_modules/.bin:$PATH
