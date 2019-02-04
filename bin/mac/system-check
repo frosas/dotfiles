@@ -2,8 +2,6 @@
 
 set -e
 
-# TODO Run in parallel with screen
-
 diff-new() {
   diff \
     --new-line-format="- %L" \
