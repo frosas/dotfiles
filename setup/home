@@ -13,7 +13,6 @@ symlink_home_dir_files () {
 (
     # TODO Link only the files and create the dirs if they don't exist
     (cd ~ && find $DOTFILES_HOME -depth 1 -exec ln -s {} \;)
-    (ln -s $DOTFILES_HOME/.ssh/config ~/.ssh || true)
     if [[ `uname` = Darwin ]]; then
         symlink_home_dir_files "Library/Application Support/Spectacle"
         symlink_home_dir_files "Library/LaunchAgents"
