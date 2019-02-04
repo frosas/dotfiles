@@ -35,7 +35,7 @@ echo -e "\nUnknown installed packages (set Brewfile from installed packages with
 brew bundle cleanup --global
 
 echo -e "\nMissing known packages:"
-brew bundle check --global --verbose
+brew bundle check --global --verbose || true
 
 title "npm"
 
