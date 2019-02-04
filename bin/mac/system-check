@@ -2,15 +2,6 @@
 
 set -e
 
-diff-new() {
-  diff \
-    --new-line-format="- %L" \
-    --old-line-format="" \
-    --unchanged-line-format="" \
-    "$1" "$2" \
-  || true
-}
-
 title() {
   echo -e "\n## $1\n"
 }
