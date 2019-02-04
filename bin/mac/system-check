@@ -28,8 +28,8 @@ brew outdated
 echo -e "\nbrew cask outdated (upgrade with \`brew cask upgrade\`)..."
 brew cask outdated
 
-echo -e "\nbrew cleanup..."
-brew cleanup
+echo -e "\nFreeable space (apply with \`brew cleanup -s\`)..."
+brew cleanup -s --dry-run
 
 echo -e "\nUnknown installed formulae and casks (update with \`brew bundle dump --global --force\`):"
 brew bundle cleanup --global
