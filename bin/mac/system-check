@@ -31,10 +31,10 @@ brew cask outdated
 echo -e "\nFreeable space (apply with \`brew cleanup -s\`)..."
 brew cleanup -s --dry-run
 
-echo -e "\nUnknown installed formulae and casks (update with \`brew bundle dump --global --force\`):"
+echo -e "\nUnknown installed packages (set Brewfile from installed packages with \`brew bundle dump --global --force\`, or uninstall unknown packages with \`brew bundle cleanup --global --force\`):"
 brew bundle cleanup --global
 
-echo -e "\nMissing known formulae and casks:"
+echo -e "\nMissing known packages:"
 brew bundle check --global --verbose
 
 title "npm"
