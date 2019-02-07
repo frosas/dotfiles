@@ -3,62 +3,186 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<real>633</real>
+	<string>1090</string>
+	<key>license</key>
+	<dict>
+		<key>email</key>
+		<string>francescrosasbosque@gmail.com</string>
+		<key>serial</key>
+		<string>GAXAE-F9A3U-E2Z4Z-6AGQM-Q2ENX-WA8PU-FUNE7-MDF6X-A9KQB-AGVZP-V5PEQ-3AVCY-8R3ES-5BJTE-PUEXU-4A</string>
+	</dict>
 	<key>preferences</key>
 	<dict>
-		<key>Battery_Notifications</key>
+		<key>Battery_DropdownOrderDisabled</key>
+		<string>buttons</string>
+		<key>Battery_MenubarCustomizeStates</key>
+		<integer>0</integer>
+		<key>CPU_AppFormat</key>
+		<integer>0</integer>
+		<key>CPU_CombineLogicalCores</key>
+		<integer>0</integer>
+		<key>CPU_DropdownOrderDisabled</key>
+		<string>buttons</string>
+		<key>CPU_MenubarCombineCores</key>
+		<integer>1</integer>
+		<key>CPU_MenubarGraphBreakdowns</key>
+		<integer>0</integer>
+		<key>CPU_MenubarGraphCustomColors</key>
+		<integer>0</integer>
+		<key>CPU_MenubarGroupItems</key>
+		<integer>0</integer>
+		<key>CPU_MenubarMode</key>
 		<array>
 			<dict>
-				<key>level</key>
-				<integer>20</integer>
-				<key>style</key>
-				<integer>0</integer>
-				<key>type</key>
-				<integer>0</integer>
+				<key>key</key>
+				<string>0</string>
 				<key>uuid</key>
-				<string>F1900329-7476-4A74-91B1-82E01DED5C78</string>
+				<string>B069B986-15AE-4A79-B508-0BE688C9F614</string>
 			</dict>
 		</array>
-		<key>CPU_MenubarMode</key>
-		<string>0</string>
+		<key>CPU_MenubarSingleHistoryGraph</key>
+		<integer>0</integer>
+		<key>CPU_ProcessCount</key>
+		<integer>5</integer>
 		<key>CombinedDropdownDisplayMode</key>
-		<string>1,4,2,6</string>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>1</string>
+				<key>uuid</key>
+				<string>111AC2C2-BB0D-4273-9370-DE13C902B03F</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>4</string>
+				<key>uuid</key>
+				<string>ECCD0F33-1320-41DF-B259-1A63CE3453EF</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>2</string>
+				<key>uuid</key>
+				<string>940369FD-00B6-4D80-ACF2-4E6349CA4E1D</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>6</string>
+				<key>uuid</key>
+				<string>970EB648-6EAA-4A04-9E9F-5982F973DBC5</string>
+			</dict>
+		</array>
 		<key>CombinedMenubarDisplayMode</key>
-		<string>1,4,6</string>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>1</string>
+				<key>uuid</key>
+				<string>3AE97EAE-BCA2-420E-BAF6-4B9D738BBC09</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>2</string>
+				<key>uuid</key>
+				<string>2F76C996-0B74-47D8-834C-8444F7E0C777</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>4</string>
+				<key>uuid</key>
+				<string>5F1FA0FF-4C0B-47C2-B367-5214E74ED517</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>6</string>
+				<key>uuid</key>
+				<string>ABD1F107-8B2B-4894-93B8-65ADB86C7681</string>
+			</dict>
+		</array>
 		<key>Diagnostics_Enabled</key>
 		<integer>1</integer>
 		<key>Diagnostics_Sent_3.2</key>
 		<true/>
+		<key>Diagnostics_Sent_3.3</key>
+		<true/>
+		<key>Diagnostics_Sent_3.5</key>
+		<true/>
+		<key>Diagnostics_Sent_4.0</key>
+		<true/>
 		<key>Disks_ActivityGraphMode</key>
 		<integer>1</integer>
-		<key>Disks_DropdownDisplayMode</key>
-		<integer>1</integer>
-		<key>Disks_DropdownShowNetwork</key>
+		<key>Disks_DropdownActivityDisplayMode</key>
 		<integer>0</integer>
+		<key>Disks_DropdownOrderDisabled</key>
+		<string>buttons</string>
+		<key>Disks_MenubarItems</key>
+		<array>
+			<dict>
+				<key>boot</key>
+				<true/>
+				<key>key</key>
+				<string>853F146D-63CF-3285-851D-B5F98064AD4E</string>
+			</dict>
+		</array>
 		<key>Disks_MenubarMode</key>
-		<string>0</string>
-		<key>DropdownShowLauncher</key>
-		<integer>0</integer>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>0</string>
+				<key>uuid</key>
+				<string>EDB54080-5375-4D85-9A2B-DB89F1534CEB</string>
+			</dict>
+		</array>
 		<key>DropdownTheme</key>
+		<string>3</string>
+		<key>DropdownTheme-Dark</key>
 		<integer>1</integer>
+		<key>FanControl_Sets</key>
+		<array/>
 		<key>Memory_AppFormat</key>
 		<integer>0</integer>
 		<key>Memory_DisplayFormat</key>
 		<integer>0</integer>
+		<key>Memory_DropdownOrderDisabled</key>
+		<string></string>
+		<key>Memory_IgnoreInactive</key>
+		<integer>1</integer>
 		<key>Memory_MenubarMode</key>
-		<string>1</string>
-		<key>MenubarGraphOpacity-DarkMode</key>
-		<real>1</real>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>0</string>
+				<key>uuid</key>
+				<string>9DF34615-8E8E-4949-9588-311261F88A9D</string>
+			</dict>
+		</array>
+		<key>MenubarGraphOpacity-Dark</key>
+		<real>0.14307087659835815</real>
 		<key>MenubarSkinColor</key>
+		<integer>8</integer>
+		<key>MenubarSkinColor-Dark</key>
+		<integer>5</integer>
+		<key>MenubarSkinColor-Light</key>
 		<integer>8</integer>
 		<key>MenubarTheme</key>
 		<integer>1</integer>
+		<key>MigratedExtras_5.0</key>
+		<true/>
+		<key>MigratedExtras_5.1</key>
+		<true/>
+		<key>MigratedExtras_5.11</key>
+		<true/>
+		<key>Migrated_6.0</key>
+		<true/>
+		<key>Migrated_6.22</key>
+		<true/>
 		<key>Network_AppSort</key>
 		<integer>0</integer>
 		<key>Network_DataFormat</key>
 		<integer>1</integer>
 		<key>Network_DecimalLevel</key>
 		<integer>2</integer>
+		<key>Network_DropdownOrderDisabled</key>
+		<string>buttons</string>
 		<key>Network_GraphCustomColors</key>
 		<integer>0</integer>
 		<key>Network_GraphMode</key>
@@ -66,19 +190,116 @@
 		<key>Network_GraphShowBackground</key>
 		<integer>1</integer>
 		<key>Network_MenubarMode</key>
-		<string>1,0</string>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>1</string>
+				<key>uuid</key>
+				<string>FD817A49-E913-474D-A49F-BEB92CB7D100</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>0</string>
+				<key>uuid</key>
+				<string>48630E63-333B-4780-9C58-E7B99F942FBE</string>
+			</dict>
+		</array>
+		<key>Notifications-Items</key>
+		<array>
+			<dict>
+				<key>duration</key>
+				<string>60.00</string>
+				<key>enabled</key>
+				<true/>
+				<key>notification-type</key>
+				<string>0</string>
+				<key>rule-type</key>
+				<string>4</string>
+				<key>uuid</key>
+				<string>A16B8642-6970-449F-A774-97362FCF7D7F</string>
+				<key>value</key>
+				<string>1000.00</string>
+			</dict>
+			<dict>
+				<key>enabled</key>
+				<true/>
+				<key>notification-type</key>
+				<string>0</string>
+				<key>rule-type</key>
+				<string>9</string>
+				<key>uuid</key>
+				<string>2517B95F-0D78-4A15-A43F-E70514C211AD</string>
+			</dict>
+			<dict>
+				<key>duration</key>
+				<string>120.00</string>
+				<key>enabled</key>
+				<true/>
+				<key>notification-type</key>
+				<string>0</string>
+				<key>rule-type</key>
+				<string>1</string>
+				<key>uuid</key>
+				<string>C269D7D4-5F70-435D-B05D-07F47418E376</string>
+				<key>value</key>
+				<string>5.00</string>
+			</dict>
+			<dict>
+				<key>duration</key>
+				<string>30.00</string>
+				<key>enabled</key>
+				<true/>
+				<key>notification-type</key>
+				<string>0</string>
+				<key>rule-type</key>
+				<string>3</string>
+				<key>uuid</key>
+				<string>302643EB-E1B5-4510-A9B7-737C3AC33F92</string>
+				<key>value</key>
+				<string>80.00</string>
+			</dict>
+		</array>
+		<key>Sensors_DropdownOrderDisabled</key>
+		<string>buttons</string>
 		<key>Sensors_MenubarMode</key>
-		<string>0</string>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>0</string>
+				<key>uuid</key>
+				<string>0033635E-DB70-4AE1-BB48-7A9F36B4C552</string>
+			</dict>
+		</array>
 		<key>StatusItems-Order</key>
 		<array>
 			<integer>8</integer>
 		</array>
 		<key>Theme-SeperateStyles</key>
-		<integer>0</integer>
+		<false/>
+		<key>Time_MenubarFormat</key>
+		<array>
+			<dict>
+				<key>format</key>
+				<array>
+					<array>
+						<string>EE</string>
+						<string>' '</string>
+						<string>HH</string>
+						<string>:</string>
+						<string>mm</string>
+					</array>
+				</array>
+			</dict>
+		</array>
 		<key>TimerFrequency</key>
 		<integer>1</integer>
+		<key>Updater_Attempts</key>
+		<dict>
+			<key>1086</key>
+			<string>1</string>
+		</dict>
 	</dict>
 	<key>version</key>
-	<real>5.1100001335144043</real>
+	<string>6.31</string>
 </dict>
 </plist>
