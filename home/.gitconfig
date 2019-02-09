@@ -1,47 +1,47 @@
 [user]
-	name = Francesc Rosas
-	email = francescrosasbosque@gmail.com
+  name = Francesc Rosas
+  email = francescrosasbosque@gmail.com
 [color]
-    ui = true
+  ui = true
 [core]
-	excludesfile = ~/.gitignore
-	pager = diff-so-fancy | less --tabs=2 -RFX
+  excludesfile = ~/.gitignore
+  pager = diff-so-fancy | less --tabs=2 -RFX
 [github]
-	user = frosas
+  user = frosas
 [push]
-	default = simple
+  default = simple
 [rebase]
-    autosquash = true
+  autosquash = true
 [alias]
-    # Check git-* for other commands
-    ci = commit -v # Commits showing the changes
-    amend = commit -v --amend # Adds indexed changes to the last commit 
-    co = checkout
-    cp = checkout -p # Checkouts interactively
-    b = branch
-    # fetch-all = fetch --all --prune # Rarely used
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
-    m = merge
-    # merge-upstream = merge --ff-only @{u} # Rarely used
-    s = stash push -u # Stashes tracked and untracked (but not ignored) files
-    sp = stash pop
-    ss = stash show -v # Shows changes in a stashed state
-    sl = stash list
-    untracked-files = ls-files -o --exclude-standard
-    a = add
-    ap = add -p # Adds interactively
-    p = pull --ff-only # Safe pull (it fails in case of having to create a merge commit)
-    # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
-    c = clean -df # Cleans untracked (but not ignored) files
-    h = help
-    r = rebase
-    ci-wip-all = ! git a . && git ci -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
-    co-tmp-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-tmp-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
-    browse = ! hub browse # Opens current repo and branch in GitHub
-    bi = bisect
+  # Check git-* for other commands
+  ci = commit -v # Commits showing the changes
+  amend = commit -v --amend # Adds indexed changes to the last commit 
+  co = checkout
+  cp = checkout -p # Checkouts interactively
+  b = branch
+  # fetch-all = fetch --all --prune # Rarely used
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
+  m = merge
+  # merge-upstream = merge --ff-only @{u} # Rarely used
+  s = stash push -u # Stashes tracked and untracked (but not ignored) files
+  sp = stash pop
+  ss = stash show -v # Shows changes in a stashed state
+  sl = stash list
+  untracked-files = ls-files -o --exclude-standard
+  a = add
+  ap = add -p # Adds interactively
+  p = pull --ff-only # Safe pull (it fails in case of having to create a merge commit)
+  # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
+  c = clean -df # Cleans untracked (but not ignored) files
+  h = help
+  r = rebase
+  ci-wip-all = ! git a . && git ci -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
+  co-tmp-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-tmp-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
+  browse = ! hub browse # Opens current repo and branch in GitHub
+  bi = bisect
 
-    # Usage: $ g quick-bisect sh -c '! ag <my-string> -l'
-    quick-bisect = ! git bisect start HEAD $(git rev-list --max-parents=0 HEAD) -- && git bisect run
-    show-commit-files = "show --name-only --pretty=''"
+  # Usage: $ g quick-bisect sh -c '! ag <my-string> -l'
+  quick-bisect = ! git bisect start HEAD $(git rev-list --max-parents=0 HEAD) -- && git bisect run
+  show-commit-files = "show --name-only --pretty=''"
 [credential]
-    helper = osxkeychain
+  helper = osxkeychain
