@@ -38,6 +38,7 @@ if [ `uname` = Linux ]; then
 fi
 
 alias ag="ag --hidden --ignore .git"
+alias c="code"
 alias cd="cd -P"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
