@@ -29,6 +29,11 @@ $ vi -o ~/.ssh/config home-examples/.ssh/config # Edit as needed
 $ (cd ~/.ssh && ln -s .../SSH/id_rsa* .)
 ```
 
+## Visual Studio Code
+
+Install https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync
+and follow the instructions to download the settings.
+
 # Shortcuts cheatsheet
 
 - `shift-ctrl-⎋` locks the computer
