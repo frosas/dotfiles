@@ -45,3 +45,6 @@
   show-commit-files = "show --name-only --pretty=''"
 [credential]
   helper = osxkeychain
+[include]
+  # Create and edit this file to customize the settings for a specific machine
+  path = .gitconfig-local
