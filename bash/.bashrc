@@ -64,12 +64,7 @@ __git_complete g __git_main
 
 function h { history | tail -${1:-20}; }
 
-# Node Version Manager
-export NVM_DIR=~/.nvm
-source /usr/local/opt/nvm/nvm.sh
-
-# Automatic Version Switching for Node
-source "$HOME/.avn/bin/avn.sh"
-
 # "general-purpose command-line fuzzy finder"
 source "/usr/local/opt/fzf/shell/key-bindings.bash"
+
+source $SCRIPT_DIR/nvm
