@@ -20,14 +20,6 @@ brew doctor || true
 echo -e "\nbrew cask doctor..."
 brew cask doctor
 
-# TODO Is this necessary having `brew bundle check`?
-echo -e "\nbrew outdated (upgrade with \`brew upgrade\`)..."
-brew outdated
-
-# TODO Is this necessary having `brew bundle check`?
-echo -e "\nbrew cask outdated (upgrade with \`brew cask upgrade\`)..."
-brew cask outdated
-
 echo -e "\nFreeable space (apply with \`brew cleanup -s\`)..."
 brew cleanup -s --dry-run
 
