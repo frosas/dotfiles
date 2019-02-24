@@ -69,4 +69,4 @@ export NVM_DIR=~/.nvm
 source /usr/local/opt/nvm/nvm.sh
 
 # "general-purpose command-line fuzzy finder"
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source "/usr/local/opt/fzf/shell/key-bindings.bash"
