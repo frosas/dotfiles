@@ -1,9 +1,5 @@
 # vim: filetype=bash
 
-# Node Version Manager
-export NVM_DIR=~/.nvm
-source /usr/local/opt/nvm/nvm.sh --no-use
-
 # From https://github.com/creationix/nvm#automatically-call-nvm-use
 
 find-up () {
@@ -56,6 +52,7 @@ cdnvm () {
     fi
 }
 
+export NVM_DIR=~/.nvm
+source /usr/local/opt/nvm/nvm.sh --no-use
 alias cd="cdnvm"
-
 cd . # Set Node version according to the current directory
