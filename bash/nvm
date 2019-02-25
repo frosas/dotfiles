@@ -57,3 +57,5 @@ cdnvm () {
 }
 
 alias cd="cdnvm"
+
+cd . # Set Node version according to the current directory
