@@ -2,11 +2,6 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ `uname` = Darwin ]; then 
-  # __git_ps1 is defined here
-  . `brew --prefix`/etc/bash_completion
-fi
-
 # Ensure we first of all get the exit code of the last command
 PROMPT_COMMAND="LAST_EXIT_CODE=\$?"
 
@@ -53,6 +48,11 @@ alias d="docker"
 alias dc="docker-compose"
 alias t="trash"
 alias tf="terraform"
+
+if [ `uname` = Darwin ]; then 
+  # __git_ps1 is defined here
+  . `brew --prefix`/etc/bash_completion
+fi
 
 # Bash completion for `g` alias
 # From https://gist.github.com/JuggoPop/10706934
