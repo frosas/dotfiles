@@ -2,10 +2,6 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-######################################################################
-# Bash completion
-######################################################################
-
 if [ `uname` = Darwin ]; then 
     # __git_ps1 is defined here
     . `brew --prefix`/etc/bash_completion
