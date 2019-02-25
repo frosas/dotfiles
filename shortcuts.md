@@ -36,3 +36,8 @@ See more at https://jblevins.org/log/kbd
 - `ctrl-R` replaces the command line with the selected command from history
 - `ctrl-T` pastes the selected file path (provided by fzf)
 - `alt-C` changes to the selected sub-directory (provided by fzf)
+
+### VS Code
+
+- `ctrl--` jumps to previous location (i.e. file, line and column)
+- `shift-ctrl--` jumps to next location
