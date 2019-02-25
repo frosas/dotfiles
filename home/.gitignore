@@ -4,15 +4,6 @@
 # Mac
 .DS_Store
 
-# Eclipse
-# .settings
-# .buildpath
-# .project
-
-# IntelliJ
-.idea
-*.iml
-
 # Visual Studio Code
 .vscode
 

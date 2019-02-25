@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# From http://apple.stackexchange.com/questions/11959/how-can-i-launch-screensaver-with-a-keyboard-shortcut
-
-open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app
-
