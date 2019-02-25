@@ -8,10 +8,10 @@ $HERE/home
 $HERE/vim
 
 if [[ `uname` = Darwin ]]; then 
-    $HERE/mac-preferences
-    brew bundle --global
-    $HERE/iterm
-    $HERE/ruby
+	$HERE/mac-preferences
+	brew bundle --global
+	$HERE/iterm
+	$HERE/ruby
 fi
 
 $HERE/node

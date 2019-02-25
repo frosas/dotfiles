@@ -5,34 +5,34 @@
 # Based on http://stackoverflow.com/a/4864668/337172
 
 function echo-info {
-    DARK_GRAY="\033[1;30m"
-    echo -e "$DARK_GRAY$1"
+	DARK_GRAY="\033[1;30m"
+	echo -e "$DARK_GRAY$1"
 }
 
 function title {
-    echo-info
-    echo-info "################################################################################"
-    echo-info "#"
-    echo-info "# $1"
-    echo-info "#"
-    echo-info "################################################################################"
-    echo-info
+	echo-info
+	echo-info "################################################################################"
+	echo-info "#"
+	echo-info "# $1"
+	echo-info "#"
+	echo-info "################################################################################"
+	echo-info
 }
 
 DIFF="git diff --color -b -C"
 
 (
-    echo-info "Note: spaces are ignored."
+	echo-info "Note: spaces are ignored."
 
-    title STAGED
-    $DIFF --cached "$@" | diff-so-fancy
+	title STAGED
+	$DIFF --cached "$@" | diff-so-fancy
 
-    title UNSTAGED
-    $DIFF "$@" | diff-so-fancy
+	title UNSTAGED
+	$DIFF "$@" | diff-so-fancy
 
-    title UNTRACKED
-    git ls-files --others --exclude-standard -z "$@" | while read -d $'\0' FILE; do
-        $DIFF /dev/null "$FILE"
-    done | diff-so-fancy
+	title UNTRACKED
+	git ls-files --others --exclude-standard -z "$@" | while read -d $'\0' FILE; do
+		$DIFF /dev/null "$FILE"
+	done | diff-so-fancy
 
 ) | less --tabs=2 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS

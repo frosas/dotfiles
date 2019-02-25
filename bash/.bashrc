@@ -3,8 +3,8 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ `uname` = Darwin ]; then 
-    # __git_ps1 is defined here
-    . `brew --prefix`/etc/bash_completion
+  # __git_ps1 is defined here
+  . `brew --prefix`/etc/bash_completion
 fi
 
 # Ensure we first of all get the exit code of the last command
@@ -25,12 +25,12 @@ export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
 if [ `uname` = Darwin ]; then 
-    alias ls="ls -FAGh"
-    export PATH=$SCRIPT_DIR/../bin/mac:$PATH
+  alias ls="ls -FAGh"
+  export PATH=$SCRIPT_DIR/../bin/mac:$PATH
 fi
 
 if [ `uname` = Linux ]; then 
-    alias ls="ls -FAh --color"
+  alias ls="ls -FAh --color"
 fi
 
 alias ag="ag --hidden --ignore .git"

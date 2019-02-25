@@ -56,9 +56,9 @@ set wildmode=list:longest
 set laststatus=2
 set scrolloff=2
 if has("gui_running")
-    set guifont=Monaco:h12
-    set lines=45
-    set columns=135
+	set guifont=Monaco:h12
+	set lines=45
+	set columns=135
 endif
 
 " Color scheme
