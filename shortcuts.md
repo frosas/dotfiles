@@ -41,3 +41,12 @@ See more at https://jblevins.org/log/kbd
 
 - `ctrl--` jumps to previous location (i.e. file, line and column)
 - `shift-ctrl--` jumps to next location
+
+### Slack
+
+- `shift-cmd-A` jumps to "All Unreads"
+- `shift-cmd-S` shows "Starred Items"
+- `cmd-.` toggles the right sidebar
+- `cmd-?` shows the available shortcuts
+- In "All Unreads", `r` marks the messages in a channel as read
+- `↑` edits the last written message
