@@ -2,4 +2,12 @@
 
 set -ex
 
-npm install -g eslint eslint-config-prettier eslint-plugin-prettier prettier
+npm install -g \
+  concurrently \
+  eslint \
+  eslint-config-prettier \
+  eslint-plugin-prettier \
+  git-open \
+  on-change \
+  serve \
+  prettier
