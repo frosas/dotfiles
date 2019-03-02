@@ -14,4 +14,4 @@ if [[ `uname` = Darwin ]]; then
 	$HERE/ruby
 fi
 
-$HERE/node
+$HERE/npm
