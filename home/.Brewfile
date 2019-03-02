@@ -70,5 +70,5 @@ cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
 cask "wireshark"
+mas "iMovie", id: 408981434
 mas "Push Mic Control", id: 1155850258
-mas "Xcode", id: 497799835
