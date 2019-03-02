@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Outdated packages:"
+npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"

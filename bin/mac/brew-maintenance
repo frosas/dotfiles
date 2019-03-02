@@ -2,14 +2,6 @@
 
 set -e
 
-title() {
-  echo -e "\n## $1\n"
-}
-
-BASE_PATH="$(dirname $0)/../.."
-
-title "Homebrew"
-
 # Update before running `brew doctor` to avoid the "Your Homebrew is outdated" warning
 echo "brew update..."
 brew update >/dev/null
@@ -20,20 +12,11 @@ brew doctor || true
 echo -e "\nbrew cask doctor..."
 brew cask doctor
 
-echo -e "\nFreeable space (apply with \`brew cleanup -s\`)..."
-brew cleanup -s --dry-run
-
 echo -e "\nUnknown installed packages (set Brewfile from installed packages with \`brew bundle dump --global --force\`, or uninstall unknown packages with \`brew bundle cleanup --global --force\`):"
 brew bundle cleanup --global
 
-echo -e "\nMissing known packages:"
+echo -e "\nMissing known and outdated packages (fix with \`brew bundle install --global\`):"
 brew bundle check --global --verbose || true
 
-title "npm"
-
-echo "Outdated packages:"
-npm outdated -g --depth 0 || echo "Update with \`npm update -g\`"
-
-title "macOS Software Update"
-
-softwareupdate -l
+echo -e "\nFreeable space (apply with \`brew cleanup -s\`)..."
+brew cleanup -s --dry-run
