@@ -11,10 +11,10 @@ source $SCRIPT_DIR/prompt
 update_iterm () { (echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007" &) }
 PROMPT_COMMAND="$PROMPT_COMMAND; update_iterm"
 
-export PATH=$SCRIPT_DIR/../bin:node_modules/.bin:$PATH
 export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
+export PATH=$SCRIPT_DIR/../bin:$PATH
 if [ `uname` = Darwin ]; then 
   export PATH=$SCRIPT_DIR/../bin/mac:$PATH
 fi
@@ -66,3 +66,4 @@ function h { history | tail -${1:-20}; }
 source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
 source $SCRIPT_DIR/nvm
+export PATH=node_modules/.bin:$PATH
