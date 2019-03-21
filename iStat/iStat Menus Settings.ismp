@@ -24,7 +24,7 @@
 		<key>CPU_DropdownOrderDisabled</key>
 		<string>buttons</string>
 		<key>CPU_MenubarCombineCores</key>
-		<integer>1</integer>
+		<integer>0</integer>
 		<key>CPU_MenubarGraphBreakdowns</key>
 		<integer>0</integer>
 		<key>CPU_MenubarGraphCustomColors</key>
@@ -35,9 +35,9 @@
 		<array>
 			<dict>
 				<key>key</key>
-				<string>0</string>
+				<string>6</string>
 				<key>uuid</key>
-				<string>B069B986-15AE-4A79-B508-0BE688C9F614</string>
+				<string>9B3E8DE2-D98A-450A-AFFE-80E30F743DC9</string>
 			</dict>
 		</array>
 		<key>CPU_MenubarSingleHistoryGraph</key>
@@ -157,6 +157,8 @@
 		</array>
 		<key>MenubarGraphOpacity-Dark</key>
 		<real>0.14307087659835815</real>
+		<key>MenubarGraphSize</key>
+		<integer>0</integer>
 		<key>MenubarSkinColor</key>
 		<integer>8</integer>
 		<key>MenubarSkinColor-Dark</key>
