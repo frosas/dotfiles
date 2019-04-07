@@ -1501,11 +1501,11 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>1144 1516 918 514 875 1200 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>2155 1200 640 1057 875 1200 1920 1057 </string>
+	<string>1280 24 640 1153 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>2195 1200 640 1057 915 1200 1920 1057 </string>
+	<string>2155 1200 640 1057 875 1200 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>-1003 1200 955 1057 -1005 1200 1920 1057 </string>
+	<string>1070 548 850 626 0 0 1920 1177 </string>
 	<key>NeverWarnAboutShortLivedSessions_895496E5-9F49-4699-BE85-016853DB80AF</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -2504,7 +2504,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>9EB30E4F-BC2A-4BCE-9AB2-7CC1F9D60244</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>10</integer>
+	<integer>12</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3170,7 +3170,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-03-26T09:42:35Z</date>
+	<date>2019-03-27T09:42:36Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3198,7 +3198,7 @@
 	<key>TabStyle</key>
 	<integer>0</integer>
 	<key>TabStyleWithAutomaticOption</key>
-	<integer>5</integer>
+	<integer>4</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>ThreeFingerEmulates</key>
