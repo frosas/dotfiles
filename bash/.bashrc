@@ -7,10 +7,6 @@ PROMPT_COMMAND="LAST_EXIT_CODE=\$?"
 
 source $SCRIPT_DIR/prompt
 
-# Add the current directory to the iTerm tab title
-update_iterm () { (echo -ne "\033]0;$(pwd | sed "s|^$HOME|~|")\007" &) }
-PROMPT_COMMAND="$PROMPT_COMMAND; update_iterm"
-
 export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
