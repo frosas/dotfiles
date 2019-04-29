@@ -22,8 +22,8 @@ git_ps1 () {
 }
 
 prompt_command () {
-  if [[ $LAST_EXIT_CODE != 0 ]]; then
-    echo "${RED}✖ $DARK_GRAY($LAST_EXIT_CODE)$RESET"
+  if [[ $LAST_EXIT_CODE != 0 ]]; then    
+    echo "☠️  $DARK_GRAY($LAST_EXIT_CODE)$RESET"
     tput bel
   fi
 
