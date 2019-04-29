@@ -17,6 +17,8 @@ cdnvm () {
   # If there are no .nvmrc file, use the default nvm version
   if [[ ! $nvm_path = *[^[:space:]]* ]]; then
 
+    # echo "No .nvmrc found"
+
     declare default_version;
     default_version=$(nvm version default);
 
@@ -33,6 +35,8 @@ cdnvm () {
     fi
 
   elif [[ -s $nvm_path/.nvmrc && -r $nvm_path/.nvmrc ]]; then
+
+    # echo "Using $nvm_path/.nvmrc"
 
     declare nvm_version
     nvm_version=$(<"$nvm_path"/.nvmrc)
