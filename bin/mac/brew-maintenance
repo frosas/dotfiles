@@ -2,21 +2,23 @@
 
 set -e
 
+source "$(dirname $0)/_util"
+
 # Update before running `brew doctor` to avoid the "Your Homebrew is outdated" warning
-echo "brew update..."
+echo "$(info "brew update...")"
 brew update >/dev/null
 
-echo -e "\nbrew doctor..."
+echo -e "\n$(info "brew doctor...")"
 brew doctor || true
 
-echo -e "\nbrew cask doctor..."
+echo -e "\n$(info "brew cask doctor...")"
 brew cask doctor
 
-echo -e "\nUnknown installed packages (set Brewfile from installed packages with \`brew bundle dump --global --force\`, or uninstall unknown packages with \`brew bundle cleanup --global --force\`):"
+echo -e "\n$(info "Unknown installed packages (set Brewfile from installed packages with \`brew bundle dump --global --force\`, or uninstall unknown packages with \`brew bundle cleanup --global --force\`):")"
 brew bundle cleanup --global
 
-echo -e "\nMissing known and outdated packages (fix with \`brew bundle install --global\`):"
+echo -e "\n$(info "Missing known and outdated packages (fix with \`brew bundle install --global\`):")"
 brew bundle check --global --verbose || true
 
-echo -e "\nFreeable space (apply with \`brew cleanup -s\`)..."
+echo -e "\n$(info "Freeable space (apply with \`brew cleanup -s\`)...")"
 brew cleanup -s --dry-run
