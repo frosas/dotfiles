@@ -4,6 +4,6 @@ set -e
 
 source "$(dirname $0)/_util"
 
-echo "Outdated packages:"
+echo "$(info "Outdated packages:")"
 # This may fail. See https://npm.community/t/npm-outdated-throw-an-error-cannot-read-property-length-of-undefined/5929
-npm outdated -g --depth 0 || echo "$(info "Update with \`npm update -g\`")"
+npm outdated -g --depth 0 || echo "$(info "Update with \`npm update -g\` or \`npm i -g <package>@latest\`")"
