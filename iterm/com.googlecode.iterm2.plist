@@ -1503,11 +1503,11 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>1144 1516 918 514 875 1200 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1838 1224 954 1033 875 1200 1920 1057 </string>
+	<string>1283 24 634 1153 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1838 1200 954 1057 875 1200 1920 1057 </string>
+	<string>1283 0 634 1177 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1070 540 850 626 0 0 1920 1177 </string>
+	<string>1283 0 634 1177 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>2155 1200 640 1057 875 1200 1920 1057 </string>
 	<key>NeverWarnAboutShortLivedSessions_895496E5-9F49-4699-BE85-016853DB80AF</key>
@@ -2463,7 +2463,7 @@
 					<key>partial</key>
 					<false/>
 					<key>regex</key>
-					<string>(^|\W)((?i)error|warn(ing)?)($|\W)</string>
+					<string>(?i)warn(ing)?</string>
 				</dict>
 				<dict>
 					<key>action</key>
@@ -2473,7 +2473,7 @@
 					<key>partial</key>
 					<false/>
 					<key>regex</key>
-					<string>(^|\W)(((?i)error)|ERR)($|\W)</string>
+					<string>(?i)(error|(^|[^a-z])ERR([^a-z]|$))</string>
 				</dict>
 				<dict>
 					<key>action</key>
@@ -2533,7 +2533,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>9EB30E4F-BC2A-4BCE-9AB2-7CC1F9D60244</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>37</integer>
+	<integer>45</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3201,7 +3201,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-05-16T12:25:08Z</date>
+	<date>2019-05-28T09:36:20Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
