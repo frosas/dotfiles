@@ -18,7 +18,10 @@ echo -e "\n$(info "Unknown installed packages (set Brewfile from installed packa
 brew bundle cleanup --global
 
 echo -e "\n$(info "Missing known and outdated packages (fix with \`brew bundle install --global\`):")"
-brew bundle check --global --verbose || true
+brew bundle check --global --no-upgrade --verbose || true
+
+echo -e "\n$(info "Outdated packages (fix with \`brew upgrade\`):")"
+brew outdated --verbose
 
 echo -e "\n$(info "Freeable space (apply with \`brew cleanup -s\`)...")"
 brew cleanup -s --dry-run
