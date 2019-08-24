@@ -22,6 +22,3 @@ brew bundle check --global --no-upgrade --verbose || true
 
 echo -e "\n$(info "Outdated packages (fix with \`brew upgrade\`):")"
 brew outdated --verbose
-
-echo -e "\n$(info "Freeable space (apply with \`brew cleanup -s\`)...")"
-brew cleanup -s --dry-run
