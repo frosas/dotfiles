@@ -20,7 +20,7 @@
 		<key>CPU_AppFormat</key>
 		<integer>0</integer>
 		<key>CPU_CombineLogicalCores</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>CPU_DropdownOrderDisabled</key>
 		<string>buttons</string>
 		<key>CPU_MenubarCombineCores</key>
@@ -234,7 +234,7 @@
 			</dict>
 			<dict>
 				<key>duration</key>
-				<string>120.00</string>
+				<string>600.00</string>
 				<key>enabled</key>
 				<true/>
 				<key>notification-type</key>
@@ -244,7 +244,21 @@
 				<key>uuid</key>
 				<string>C269D7D4-5F70-435D-B05D-07F47418E376</string>
 				<key>value</key>
-				<string>5.00</string>
+				<string>2.00</string>
+			</dict>
+			<dict>
+				<key>duration</key>
+				<string>60.00</string>
+				<key>enabled</key>
+				<true/>
+				<key>notification-type</key>
+				<string>0</string>
+				<key>rule-type</key>
+				<string>3</string>
+				<key>uuid</key>
+				<string>302643EB-E1B5-4510-A9B7-737C3AC33F92</string>
+				<key>value</key>
+				<string>80.00</string>
 			</dict>
 			<dict>
 				<key>duration</key>
@@ -254,9 +268,9 @@
 				<key>notification-type</key>
 				<string>0</string>
 				<key>rule-type</key>
-				<string>3</string>
+				<string>0</string>
 				<key>uuid</key>
-				<string>302643EB-E1B5-4510-A9B7-737C3AC33F92</string>
+				<string>91AAF2FB-CF76-4AAE-9F3B-1F6EAEA48CE7</string>
 				<key>value</key>
 				<string>80.00</string>
 			</dict>
