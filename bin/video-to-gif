@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Usage: video-to-gif <file> [width]
 # Based on http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality
 
 set -e
@@ -7,7 +8,8 @@ set -e
 input_file="$1"
 output_file="${input_file%.*}.gif"
 source_palette="/tmp/$input_file-palette.png"
-common_filter="fps=10,scale=-1:-1"
+width=${2:--1}
+common_filter="fps=10,scale=-1:$width"
 
 ffmpeg -i "$input_file" -vf "$common_filter,palettegen" -y "$source_palette"
 ffmpeg -i "$input_file" -i "$source_palette" -filter_complex "$common_filter,paletteuse" "$output_file"
