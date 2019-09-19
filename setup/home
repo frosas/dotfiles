@@ -15,6 +15,5 @@ symlink_home_dir_files () {
 	(cd ~ && find $DOTFILES_HOME -depth 1 -exec ln -s {} \;)
 	if [[ `uname` = Darwin ]]; then
 		symlink_home_dir_files "Library/Application Support/Spectacle"
-		symlink_home_dir_files "Library/LaunchAgents"
 	fi
 )
