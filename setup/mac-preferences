@@ -8,10 +8,6 @@ set -xe
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Set a blazingly fast keyboard repeat rate, and make it happen more quickly.
-defaults write NSGlobalDomain InitialKeyRepeat -int 20
-defaults write NSGlobalDomain KeyRepeat -int 1
-
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
@@ -25,6 +21,19 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 
 #
+# Preferences
+#
+
+# Keyboard → Keyboard → Key Repeat
+defaults write NSGlobalDomain KeyRepeat -int 1
+
+# Keyboard → Keyboard → Delay Until Repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 20
+
+# Accessibility → Mouse & Trackpad → Trackpad options → Enable dragging → three finger drag
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
+
+#
 # Finder
 #
 
@@ -35,5 +44,18 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 #
+# Dock
+#
 
-launchctl load ~/Library/LaunchAgents/local.system-check.plist
+defaults write com.apple.dock autohide -int 1
+
+defaults write com.apple.dock show-recents -int 0
+
+killall Dock
+
+#
+# Flux
+#
+
+defaults write org.herf.Flux offlineMode -int 1
+defaults write org.herf.Flux wakeNotifyDisable -int 1
