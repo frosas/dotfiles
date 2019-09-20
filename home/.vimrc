@@ -15,7 +15,6 @@ Bundle 'go.vim'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Raimondi/delimitMate'
-Bundle 'chriskempson/base16-vim'
 Bundle 'bling/vim-airline'
 " Notice it's slow for java files
 " Bundle 'scrooloose/syntastic'
@@ -62,11 +61,7 @@ if has("gui_running")
 endif
 
 " Color scheme
-" set t_Co=256
 set background=dark
-colorscheme base16-default-dark
-" Ensure we use the same background as in the console
-hi Normal ctermbg=NONE
 
 " Key mappings
 nmap <silent> <c-t> :split +ConqueTerm\ bash<CR>
