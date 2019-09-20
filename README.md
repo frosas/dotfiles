@@ -40,9 +40,10 @@ $ vi -o ~/.bashrc home-examples/.bashrc # Update as needed
 $ brew bundle --global
 ```
 
-## npm
+## Node.js
 
 ```bash
+$ nvm alias default system
 $ setup/npm
 ```
 
