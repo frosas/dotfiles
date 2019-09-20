@@ -2,8 +2,11 @@
 
 set -xe
 
-# From https://github.com/mathiasbynens/dotfiles/blob/master/.osx and
-# https://github.com/geerlingguy/dotfiles/blob/master/.osx
+# Reference
+# - https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# - https://github.com/geerlingguy/dotfiles/blob/master/.osx
+# - https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
+# - https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
@@ -24,14 +27,42 @@ defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 # Preferences
 #
 
-# Keyboard → Keyboard → Key Repeat
-defaults write NSGlobalDomain KeyRepeat -int 1
-
-# Keyboard → Keyboard → Delay Until Repeat
-defaults write NSGlobalDomain InitialKeyRepeat -int 20
-
 # Accessibility → Mouse & Trackpad → Trackpad options → Enable dragging → three finger drag
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
+
+# Desktop & Screen Saver → Start after: Never
+defaults -currentHost write com.apple.screensaver idleTime -int 0
+
+# Displays → Show mirroring options in the menu bar when available
+defaults write com.apple.airplay showInMenuBarIfPresent -int 0
+
+# Dock → Automatically hide and show the Dock
+defaults write com.apple.dock autohide -int 1
+
+# System Preferences > Dock > Automatically hide and show the Dock (duration)
+defaults write com.apple.dock autohide-time-modifier -float 0.2
+
+# Dock → Show recent applications in Dock
+defaults write com.apple.dock show-recents -int 0
+
+killall Dock
+
+# Keyboard → Keyboard → Key Repeat
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# Keyboard → Keyboard → Delay Until Repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Sound → Play user interface sound effects
+defaults write com.apple.sound.uiaudio.enabled -int 0
+
+# Trackpad → Point & Click → Tracking speed
+defaults write NSGlobalDomain com.apple.trackpad.scaling -float 0.875
+
+# Enable subpixel font rendering on non-Apple LCDs
+# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
+defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
 #
 # Finder
@@ -40,18 +71,16 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
-# Finder: show all filename extensions
+# Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-#
-# Dock
-#
+# Show wraning before changing an extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-defaults write com.apple.dock autohide -int 1
+# Show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
 
-defaults write com.apple.dock show-recents -int 0
-
-killall Dock
+killall Finder
 
 #
 # Flux
@@ -59,3 +88,11 @@ killall Dock
 
 defaults write org.herf.Flux offlineMode -int 1
 defaults write org.herf.Flux wakeNotifyDisable -int 1
+
+#
+
+killall cfprefsd
+
+#
+
+echo "⚠️  Some preferences won't be applied until logging out or rebooting"

@@ -16,6 +16,17 @@ $ git submodule update --init
 $ setup/mac-preferences
 ```
 
+- _Preferences_
+  - _General_
+    - Disable _Use font smoothing when available_
+  - _Desktop & Screen Saver_
+    - _Desktop_
+      - Add Google Drive _Wallpapers_ folder
+    - _Screen Saver_
+      - Set _Start after_ to _Never_
+  - _iCloud_
+    - Disable everything but _Keychain_ and _Find My Mac_
+
 ## Home dir
 
 ```bash
@@ -47,9 +58,9 @@ $ setup/vim
 $ setup/iterm
 ```
 
-- Go to "Preferences" → "General" → "Preferences"
-  - Enable "Load preferences from a custom folder" and point to `iterm` directory"
-  - Enable "Save changes to folder when iTerm2 quits"
+- Go to _Preferences_ → _General_ → _Preferences_
+  - Enable _Load preferences from a custom folder_ and point to `iterm` directory_
+  - Enable _Save changes to folder when iTerm2 quits_
 
 ## SSH
 
