@@ -2,6 +2,10 @@
 
 set -xe
 
+# Use a command like this to see what has changed since its last execution:
+#
+#   $ defaults read > defaults-`date +%s` && c --diff `ls -t defaults-* | head -2`
+
 # Reference
 # - https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 # - https://github.com/geerlingguy/dotfiles/blob/master/.osx

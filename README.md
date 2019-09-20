@@ -75,6 +75,10 @@ $ (cd ~/.ssh && ln -s .../SSH/id_rsa* .)
 Install https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync
 and follow the instructions to download the settings.
 
+## Chrome
+
+Install https://github.com/frosas/chrome-customizations-extension
+
 ## Misc
 
 Config the other installed apps as needed (`brew cask ls`)
