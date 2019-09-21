@@ -27,6 +27,19 @@ $ setup/mac-preferences
   - _iCloud_
     - Disable everything but _Keychain_ and _Find My Mac_
 
+## Dock
+
+- Add _Downloads_ folder
+
+  ```bash
+  $ ln -s Downloads .Downloads
+  ```
+
+  - Open Finder
+  - Show hidden files (shift-command-.)
+  - Drag _.Downloads_ file to the Dock
+
+
 ## Home dir
 
 ```bash
