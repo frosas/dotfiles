@@ -5,9 +5,8 @@ Install latest macOS version
 Install [Homebrew](https://brew.sh/)
 
 ```bash
-$ git clone https://github.com/frosas/dotfiles.git projects/dotfiles
+$ git clone --recursive https://github.com/frosas/dotfiles.git ~/projects/dotfiles
 $ cd $_
-$ git submodule update --init
 ```
 
 ## macOS preferences
@@ -24,6 +23,8 @@ $ setup/mac-preferences
       - Add Google Drive _Wallpapers_ folder
     - _Screen Saver_
       - Set _Start after_ to _Never_
+  - _Security & Privacy_
+    - _Require password <u>immediately</u> after ..._
   - _iCloud_
     - Disable everything but _Keychain_ and _Find My Mac_
 
