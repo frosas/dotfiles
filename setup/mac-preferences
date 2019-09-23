@@ -13,12 +13,12 @@ set -xe
 # - https://github.com/pawelgrzybek/dotfiles/blob/master/setup-macos.sh
 
 # Disable press-and-hold for keys in favor of key repeat
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
+defaults write -g com.apple.mouse.tapBehavior -int 1
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
@@ -53,20 +53,20 @@ defaults write com.apple.dock show-recents -int 0
 killall Dock
 
 # Keyboard → Keyboard → Key Repeat
-defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write -g KeyRepeat -int 2
 
 # Keyboard → Keyboard → Delay Until Repeat
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write -g InitialKeyRepeat -int 15
 
 # Sound → Play user interface sound effects
 defaults write com.apple.sound.uiaudio.enabled -int 0
 
 # Trackpad → Point & Click → Tracking speed
-defaults write NSGlobalDomain com.apple.trackpad.scaling -float 0.875
+defaults write -g com.apple.trackpad.scaling -float 0.875
 
 # Enable subpixel font rendering on non-Apple LCDs
 # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
-defaults write NSGlobalDomain AppleFontSmoothing -int 1
+defaults write -g AppleFontSmoothing -int 1
 
 #
 # Finder
@@ -76,7 +76,7 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 1
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 # Show all filename extensions
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write -g AppleShowAllExtensions -bool true
 
 # Show wraning before changing an extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
