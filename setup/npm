@@ -4,11 +4,7 @@ set -ex
 
 npm install -g \
   concurrently \
-  eslint \
-  eslint-config-prettier \
-  eslint-plugin-prettier \
   flow-bin \
   git-open \
   on-change \
-  serve \
-  prettier
+  serve
