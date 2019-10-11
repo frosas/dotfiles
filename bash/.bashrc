@@ -63,3 +63,6 @@ source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
 source $SCRIPT_DIR/nvm
 export PATH=node_modules/.bin:$PATH
+
+# https://support.apple.com/en-gb/HT208050
+export BASH_SILENCE_DEPRECATION_WARNING=1
