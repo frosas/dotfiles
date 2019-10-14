@@ -15,7 +15,6 @@ if [ `uname` = Darwin ]; then
   export PATH=$SCRIPT_DIR/../bin/mac:$PATH
 fi
 
-alias ag="ag --hidden --ignore .git"
 alias c="code"
 alias cd="cd -P"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
