@@ -48,7 +48,7 @@ prompt_command () {
   if [[ "$PS1_MISC" != "" ]]; then PS1="$PS1 \[$DARK_GRAY\]($PS1_MISC)"; fi
 
   PS1="$PS1\n"
-  PS1="$PS1\[$DARK_GRAY\]$"
+  PS1="$PS1\[$MAGENTA\]❯"
   PS1="$PS1\[$RESET\] "
 }
 
