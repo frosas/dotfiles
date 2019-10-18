@@ -13,32 +13,35 @@
 [rebase]
   autosquash = true
 [alias]
-  # Check git-* for other commands
-  ci = commit -v # Commits showing the changes
-  amend = commit -v --amend # Adds indexed changes to the last commit 
-  co = checkout
-  cp = checkout -p # Checkouts interactively
-  b = branch
-  # fetch-all = fetch --all --prune # Rarely used
-  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
-  m = merge
-  # merge-upstream = merge --ff-only @{u} # Rarely used
-  s = stash push -u # Stashes tracked and untracked (but not ignored) files
-  sp = stash pop
-  ss = stash show -v # Shows changes in a stashed state
-  sl = stash list
-  untracked-files = ls-files -o --exclude-standard
+  # Also check git-* for other commands
   a = add
+  amend = commit -v --amend # Adds indexed changes to the last commit 
   ap = add -p # Adds interactively
-  p = pull --ff-only # Safe pull (it fails in case of having to create a merge commit)
-  # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
+  b = branch
+  bd = branch-diff
+  bl = branch-log
   c = clean -df # Cleans untracked (but not ignored) files
-  h = help
-  r = rebase
+  ci = commit -v # Commits showing the changes
   ci-wip-all = ! git a . && git ci -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
+  co = checkout
   co-tmp-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-tmp-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
-  browse = ! hub browse # Opens current repo and branch in GitHub
-  bi = bisect
+  cp = checkout -p # Checkouts interactively
+  d = diff
+  du = diff-uncommitted
+  h = help
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
+  la = l --all # All branches log
+  lb = l --branches # Local branches log
+  m = merge
+  p = pull --ff-only # Safe pull (it fails in case of having to create a merge commit)
+  r = rebase
+  # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
+  s = status --short
+  st = stash push -u # Stashes tracked and untracked (but not ignored) files
+  stl = stash list
+  stp = stash pop
+  sts = stash show -v # Shows changes in a stashed state
+  untracked-files = ls-files -o --exclude-standard
 
   # Usage: $ g quick-bisect sh -c '! ag <my-string> -l'
   quick-bisect = ! git bisect start HEAD $(git rev-list --max-parents=0 HEAD) -- && git bisect run
