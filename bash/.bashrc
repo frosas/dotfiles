@@ -60,6 +60,9 @@ function h { history | tail -${1:-20}; }
 # "general-purpose command-line fuzzy finder"
 source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
+# https://www.iterm2.com/documentation-shell-integration.html
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
 source $SCRIPT_DIR/nvm
 export PATH=node_modules/.bin:$PATH
 
