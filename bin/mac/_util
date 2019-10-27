@@ -1,3 +1,11 @@
+# vim: filetype=bash
+
 function info () {
   echo "ℹ️  $@"
+}
+
+function run_silently_unless_error () {
+  local command=$1
+  local out
+  out=$($command 2>&1) || echo "⚠️️  $out"
 }

@@ -6,19 +6,19 @@ source "$(dirname $0)/_util"
 
 # Update before running `brew doctor` to avoid the "Your Homebrew is outdated" warning
 echo "$(info "brew update...")"
-brew update >/dev/null
+run_silently_unless_error "brew update"
 
 echo -e "\n$(info "brew doctor...")"
-brew doctor || true
+run_silently_unless_error "brew doctor"
 
 echo -e "\n$(info "brew cask doctor...")"
-brew cask doctor
+run_silently_unless_error "brew cask doctor"
 
 echo -e "\n$(info "Unknown installed packages (set Brewfile from installed packages with \`brew bundle dump --global --force\`, or uninstall unknown packages with \`brew bundle cleanup --global --force\`):")"
-brew bundle cleanup --global
+run_silently_unless_error "brew bundle cleanup --global"
 
 echo -e "\n$(info "Missing known and outdated packages (fix with \`brew bundle install --global\`):")"
-brew bundle check --global --no-upgrade --verbose || true
+run_silently_unless_error "brew bundle check --global --no-upgrade --verbose"
 
 echo -e "\n$(info "Outdated packages (fix with \`brew upgrade\`):")"
-brew outdated --verbose
+run_silently_unless_error "brew outdated --verbose"
