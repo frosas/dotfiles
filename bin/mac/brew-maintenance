@@ -15,10 +15,10 @@ echo -e "\n$(info "brew cask doctor...")"
 run_silently_unless_error "brew cask doctor"
 
 echo -e "\n$(info "Unknown installed packages (set Brewfile from installed packages with \`brew bundle dump --global --force\`, or uninstall unknown packages with \`brew bundle cleanup --global --force\`):")"
-run_silently_unless_error "brew bundle cleanup --global"
+brew bundle cleanup --global
 
 echo -e "\n$(info "Missing known and outdated packages (fix with \`brew bundle install --global\`):")"
-run_silently_unless_error "brew bundle check --global --no-upgrade --verbose"
+brew bundle check --global --no-upgrade --verbose
 
 echo -e "\n$(info "Outdated packages (fix with \`brew upgrade\`):")"
-run_silently_unless_error "brew outdated --verbose"
+brew outdated --verbose
