@@ -66,7 +66,9 @@ source "/usr/local/opt/fzf/shell/key-bindings.bash"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 source $SCRIPT_DIR/nvm
-export PATH=node_modules/.bin:$PATH
+# This has been causing issues since node_modules/.bin/npm exists 
+# TODO What to do about it? Is this that useful?
+# export PATH=node_modules/.bin:$PATH
 
 # https://support.apple.com/en-gb/HT208050
 export BASH_SILENCE_DEPRECATION_WARNING=1
