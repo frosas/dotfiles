@@ -58,6 +58,8 @@ PROMPT_COMMAND="$PROMPT_COMMAND; history -a" # Update history file immediately
 function h { history | tail -${1:-20}; }
 
 # "general-purpose command-line fuzzy finder"
+export FZF_DEFAULT_COMMAND="rg --hidden --files -l"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
 # https://www.iterm2.com/documentation-shell-integration.html
