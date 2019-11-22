@@ -266,7 +266,7 @@
 				<key>enabled</key>
 				<true/>
 				<key>notification-type</key>
-				<string>1</string>
+				<string>0</string>
 				<key>rule-type</key>
 				<string>0</string>
 				<key>uuid</key>
