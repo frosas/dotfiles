@@ -5,4 +5,4 @@
 BRANCH=${1:-"HEAD"}
 PARENT_BRANCH=${2:-"origin/master"} # TODO How to obtain it automatically?
 
-git l $PARENT_BRANCH...$BRANCH --right-only "${@:3}"
+git l $PARENT_BRANCH..$BRANCH --right-only "${@:3}"
