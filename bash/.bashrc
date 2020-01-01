@@ -10,6 +10,7 @@ source $SCRIPT_DIR/prompt
 export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
+export PATH=/usr/local/sbin:$PATH
 export PATH=$SCRIPT_DIR/../bin:$PATH
 if [ `uname` = Darwin ]; then 
   export PATH=$SCRIPT_DIR/../bin/mac:$PATH
