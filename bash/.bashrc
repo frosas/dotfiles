@@ -10,10 +10,10 @@ source $SCRIPT_DIR/prompt
 export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
-export PATH=/usr/local/sbin:$PATH
-export PATH=$SCRIPT_DIR/../bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$SCRIPT_DIR/../bin:$PATH"
 if [ `uname` = Darwin ]; then 
-  export PATH=$SCRIPT_DIR/../bin/mac:$PATH
+  export PATH="$SCRIPT_DIR/../bin/mac:$PATH"
 fi
 
 alias c="code"
@@ -67,7 +67,7 @@ source "/usr/local/opt/fzf/shell/key-bindings.bash"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 source $SCRIPT_DIR/nvm
-export PATH=node_modules/.bin:$PATH
+export PATH="node_modules/.bin:$PATH"
 
 # https://support.apple.com/en-gb/HT208050
 export BASH_SILENCE_DEPRECATION_WARNING=1
