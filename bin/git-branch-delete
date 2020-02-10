@@ -2,4 +2,4 @@
 
 BRANCH="$1"
 git branch -D "$BRANCH"
-git push origin ":$BRANCH"
+git push origin --delete $BRANCH
