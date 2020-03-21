@@ -62,7 +62,7 @@ defaults write -g InitialKeyRepeat -int 15
 defaults write -g com.apple.sound.uiaudio.enabled -int 0
 
 # Trackpad → Point & Click → Tracking speed
-defaults write -g com.apple.trackpad.scaling -float 0.875
+defaults write -g com.apple.trackpad.scaling -float 1
 
 # Disable font smoothing, enable font anti-aliasing
 # See https://www.howtogeek.com/358596/how-to-fix-blurry-fonts-on-macos-mojave-with-subpixel-antialiasing/
