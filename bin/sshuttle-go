@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo -E watchdog sshuttle --dns -r frosas@34.89.60.229 0/0 "$@"
