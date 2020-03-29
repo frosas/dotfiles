@@ -1380,7 +1380,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>842 0 954 1027 0 0 1680 1027 </string>
+	<string>710 359 970 668 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>2 399 850 628 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1563,13 +1563,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.0</real>
+				<real>0.10760498046875</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.0</real>
+				<real>0.10760498046875</real>
 				<key>Red Component</key>
-				<real>0.0</real>
+				<real>0.10760498046875</real>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
@@ -2433,7 +2433,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>598400693.60997403</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>148</integer>
+	<integer>154</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
