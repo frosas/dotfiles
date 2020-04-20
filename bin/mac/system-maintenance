@@ -5,4 +5,4 @@ concurrently --kill-on-fail \
   --prefix-colors "red,green,yellow,blue,magenta,cyan,white" \
   "brew-maintenance" \
   "npm-maintenance" \
-  "softwareupdate -l"
+  "softwareupdate --list"
