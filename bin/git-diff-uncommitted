@@ -21,18 +21,20 @@ function title {
 
 DIFF="git diff --color -b -C"
 
+PAGER=$(git config --get core.pager)
+
 (
 	echo-info "Note: spaces are ignored."
 
 	title STAGED
-	$DIFF --cached "$@" | diff-so-fancy
+	$DIFF --cached "$@" | $PAGER
 
 	title UNSTAGED
-	$DIFF "$@" | diff-so-fancy
+	$DIFF "$@" | $PAGER
 
 	title UNTRACKED
 	git ls-files --others --exclude-standard -z "$@" | while read -d $'\0' FILE; do
 		$DIFF /dev/null "$FILE"
-	done | diff-so-fancy
+	done | $PAGER
 
 ) | less --tabs=2 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS
