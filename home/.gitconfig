@@ -19,6 +19,7 @@
   ap = add -p # Adds interactively
   b = branch
   bbd = branches-by-date
+  bf = db \"\" \"\" --name-only # Branch files
   bl = ! echo "Deprecated, use \\`g lb\\`"
   c = clean -df # Cleans untracked (but not ignored) files
   ci = commit -v # Commits showing the changes
