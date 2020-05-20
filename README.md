@@ -44,7 +44,7 @@ $ setup/vim
 ## Homebrew
 
 ```bash
-$ brew bundle --global
+$ brew bundle --global --verbose
 ```
 
 ## Node.js
