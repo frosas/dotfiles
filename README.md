@@ -28,23 +28,18 @@ $ setup/mac-preferences
   - _iCloud_
     - Disable everything but _Keychain_ and _Find My Mac_
 
-## Dock
-
-- Add _Downloads_ folder
-
-  ```bash
-  $ (cd && ln -s Downloads .Downloads && open .)
-  ```
-
-  - Show hidden files (shift-command-.)
-  - Drag _.Downloads_ file to the Dock
-
 ## Home dir
 
 ```bash
 $ setup/home
 $ vi -o ~/.bashrc home-examples/.bashrc # Update as needed
 $ vi ...
+```
+
+## Vim
+
+```bash
+$ setup/vim
 ```
 
 ## Homebrew
@@ -58,12 +53,6 @@ $ brew bundle --global
 ```bash
 $ nvm alias default system
 $ setup/npm
-```
-
-## Vim
-
-```bash
-$ setup/vim
 ```
 
 ## iTerm2
@@ -92,6 +81,17 @@ and follow the instructions to download the settings.
 ## Chrome
 
 Install https://github.com/frosas/chrome-customizations-extension
+
+## Dock
+
+- Add _Downloads_ folder
+
+  ```bash
+  $ (cd && ln -s Downloads .Downloads && open .)
+  ```
+
+  - Show hidden files (shift-command-.)
+  - Drag _.Downloads_ file to the Dock
 
 ## Misc
 
