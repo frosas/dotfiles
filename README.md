@@ -33,7 +33,6 @@ $ setup/mac-preferences
 ```bash
 $ setup/home
 $ vi -o ~/.bashrc home-examples/.bashrc # Update as needed
-$ vi ...
 ```
 
 ## Vim
