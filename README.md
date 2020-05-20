@@ -33,9 +33,7 @@ $ setup/mac-preferences
 - Add _Downloads_ folder
 
   ```bash
-  $ cd
-  $ ln -s Downloads .Downloads
-  $ open .
+  $ (cd && ln -s Downloads .Downloads && open .)
   ```
 
   - Show hidden files (shift-command-.)
