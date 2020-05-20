@@ -33,10 +33,11 @@ $ setup/mac-preferences
 - Add _Downloads_ folder
 
   ```bash
+  $ cd
   $ ln -s Downloads .Downloads
+  $ open .
   ```
 
-  - Open Finder
   - Show hidden files (shift-command-.)
   - Drag _.Downloads_ file to the Dock
 
