@@ -79,7 +79,7 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 # Show all filename extensions
 defaults write -g AppleShowAllExtensions -bool true
 
-# Show wraning before changing an extension
+# Show warning before changing an extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 # Show status bar
