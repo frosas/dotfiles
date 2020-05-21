@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -ex
-
-HERE=$(cd $(dirname $0) >/dev/null && pwd)
-
-open -a iterm "$HERE/../base16-iterm2/base16-default.dark.itermcolors"
