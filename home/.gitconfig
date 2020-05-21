@@ -44,6 +44,7 @@
   stl = stash list
   stp = stash pop
   sts = stash show -v # Shows changes in a stashed state
+  uncommit = reset HEAD^
   untracked-files = ls-files -o --exclude-standard
 
   # Usage: $ g quick-bisect sh -c '! ag <my-string> -l'
