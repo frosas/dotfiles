@@ -4,6 +4,6 @@ set -ex
 
 npm install -g \
   concurrently \
-  flow-bin \
   git-open \
-  on-change
+  on-change \
+  typescript
