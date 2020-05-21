@@ -92,6 +92,11 @@ Install https://github.com/frosas/chrome-customizations-extension
   - Show hidden files (shift-command-.)
   - Drag _.Downloads_ file to the Dock
 
+## iStat Menus
+
+- _File_ → _Import Settings…_
+- Select `iStat/iStat Menus Settings.ismp`
+
 ## Misc
 
 Config the other installed apps as needed (`brew cask ls`)
