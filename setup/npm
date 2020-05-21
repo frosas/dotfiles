@@ -6,4 +6,5 @@ npm install -g \
   concurrently \
   git-open \
   on-change \
-  typescript
+  typescript \
+  ts-node
