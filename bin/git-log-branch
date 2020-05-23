@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# A `git log` of $BRANCH (`HEAD` by default) against $PARENT_BRANCH ('origin/master' by default)
+# Prints the commits in $BRANCH relative to $REF_BRANCH
 
-BRANCH=${1:-"HEAD"}
-PARENT_BRANCH=${2:-"origin/master"} # TODO How to obtain it automatically?
+REF_BRANCH=${1:-"origin/master"} # TODO How to obtain it automatically?
+BRANCH=${2:-""} # HEAD by default
 
-git l $PARENT_BRANCH..$BRANCH "${@:3}"
+# TODO Should it be like `git log A...B` instead?
+git log $REF_BRANCH..$BRANCH "${@:3}"
