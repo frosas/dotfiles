@@ -19,7 +19,6 @@
   ap = add -p # Adds interactively
   b = branch
   bbd = branches-by-date
-  bf = db \"\" \"\" --name-only # Branch files
   bl = ! echo "Deprecated, use \\`g lb\\`"
   c = clean -df # Cleans untracked (but not ignored) files
   ci = commit -v # Commits showing the changes
@@ -29,6 +28,7 @@
   cp = checkout -p # Checkouts interactively
   d = diff
   db = diff-branch
+  dbf = db \"\" \"\" --name-only # Diff branch files
   du = diff-uncommitted
   h = help
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
