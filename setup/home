@@ -5,15 +5,15 @@ set -ex
 DOTFILES_HOME=$(cd $(dirname $0) >/dev/null && pwd)/../home
 
 symlink_deep_file () {
-	local RELATIVE_PATH="$1"
+  local RELATIVE_PATH="$1"
   local DIR="$(dirname "$HOME/$RELATIVE_PATH")"
   mkdir -p "$DIR"
-	(cd "$DIR" && ln -s "$DOTFILES_HOME/$RELATIVE_PATH")
+  (cd "$DIR" && ln -s "$DOTFILES_HOME/$RELATIVE_PATH")
 }
 
 (
-	(cd ~ && find $DOTFILES_HOME -depth 1 -exec ln -s {} \;)
-	if [[ `uname` = Darwin ]]; then
-		symlink_deep_file "Library/Preferences/com.knollsoft.Rectangle.plist"
-	fi
+  (cd ~ && find $DOTFILES_HOME -depth 1 -exec ln -s {} \;)
+  if [[ `uname` = Darwin ]]; then
+    symlink_deep_file "Library/Preferences/com.knollsoft.Rectangle.plist"
+  fi
 )
