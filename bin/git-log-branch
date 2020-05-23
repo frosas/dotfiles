@@ -6,4 +6,4 @@ REF_BRANCH=${1:-"origin/master"} # TODO How to obtain it automatically?
 BRANCH=${2:-""} # HEAD by default
 
 # TODO Should it be like `git log A...B` instead?
-git log $REF_BRANCH..$BRANCH "${@:3}"
+git l $REF_BRANCH..$BRANCH "${@:3}"
