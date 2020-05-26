@@ -23,10 +23,16 @@ $ setup/mac-preferences
       - Add Google Drive _Wallpapers_ folder
     - _Screen Saver_
       - Set _Start after_ to _Never_
+  - _Accessibility_
+    - _Zoom_
+      - _Use scroll gesture with modifier keys to zoom:_
   - _Security & Privacy_
     - _Require password <u>immediately</u> after ..._
   - _iCloud_
     - Disable everything but _Keychain_ and _Find My Mac_
+  - _Keyboard_
+    - _Shortcuts_
+      - _Use keyboard navigation to move focus between controls_
 
 ## Home dir
 
