@@ -33,6 +33,10 @@ $ setup/mac-preferences
   - _Keyboard_
     - _Shortcuts_
       - _Use keyboard navigation to move focus between controls_
+    - _Input Sources_
+      - Add _U.S._
+      - Temporarily enable _Show Input menu in menu bar_
+      - Select _U.S._
 
 ## Home dir
 
