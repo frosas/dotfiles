@@ -45,6 +45,8 @@ prompt_command () {
   PS1_MISC="${PS1_MISC}$(git_ps1)"
   if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
   PS1_MISC="${PS1_MISC}Node $(node -v)"
+  if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
+  PS1_MISC="${PS1_MISC}$(date "+%H:%M:%S")"
   if [[ "$PS1_MISC" != "" ]]; then PS1="$PS1 \[$DARK_GRAY\]($PS1_MISC)"; fi
 
   PS1="$PS1\n"
