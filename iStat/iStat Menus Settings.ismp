@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<string>1113</string>
+	<string>1116</string>
 	<key>license</key>
 	<dict>
 		<key>email</key>
@@ -283,11 +283,12 @@
 				<key>key</key>
 				<string>0</string>
 				<key>uuid</key>
-				<string>0033635E-DB70-4AE1-BB48-7A9F36B4C552</string>
+				<string>48B8FE09-C6C3-47B9-97FD-7B254BC77291</string>
 			</dict>
 		</array>
 		<key>StatusItems-Order</key>
 		<array>
+			<integer>5</integer>
 			<integer>8</integer>
 		</array>
 		<key>Theme-SeperateStyles</key>
