@@ -37,10 +37,6 @@ prompt_command () {
   PS1="$PS1\[$GREEN\]\w"
 
   local PS1_MISC=""
-  if [[ ! $(whoami) = frosas ]]; then 
-    if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
-    PS1_MISC="${PS1_MISC}👤 \u"
-  fi
   if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
   PS1_MISC="${PS1_MISC}$(git_ps1)"
   if [[ "$PS1_MISC" != "" ]]; then PS1_MISC="$PS1_MISC, "; fi
