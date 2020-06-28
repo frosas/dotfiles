@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<string>1116</string>
+	<string>1113</string>
 	<key>license</key>
 	<dict>
 		<key>email</key>
@@ -24,9 +24,9 @@
 		<key>CPU_DropdownOrderDisabled</key>
 		<string>buttons</string>
 		<key>CPU_MenubarCombineCores</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>CPU_MenubarGraphBreakdowns</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>CPU_MenubarGraphCustomColors</key>
 		<integer>0</integer>
 		<key>CPU_MenubarGroupItems</key>
@@ -35,9 +35,9 @@
 		<array>
 			<dict>
 				<key>key</key>
-				<string>6</string>
+				<string>0</string>
 				<key>uuid</key>
-				<string>9B3E8DE2-D98A-450A-AFFE-80E30F743DC9</string>
+				<string>FEA46C68-C782-4CBB-86DD-E80F2DC9B3DE</string>
 			</dict>
 		</array>
 		<key>CPU_MenubarSingleHistoryGraph</key>
@@ -136,6 +136,8 @@
 		<string>3</string>
 		<key>DropdownTheme-Dark</key>
 		<integer>1</integer>
+		<key>FanControl_Enabled</key>
+		<false/>
 		<key>FanControl_Sets</key>
 		<array/>
 		<key>Memory_AppFormat</key>
@@ -275,6 +277,8 @@
 				<string>10.00</string>
 			</dict>
 		</array>
+		<key>Sensors-Limits-Updated</key>
+		<true/>
 		<key>Sensors_DropdownOrderDisabled</key>
 		<string>buttons</string>
 		<key>Sensors_MenubarMode</key>
