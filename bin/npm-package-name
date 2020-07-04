@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# TODO This doesn't fail gracefully when a package.json is not found
+
+get_package_json_file () {
+  local dir="$1"
+  local file="$dir/package.json"
+  if [[ -e "$file" ]]; then
+    echo $file
+  else
+    if [[ "$dir" == "/" ]]; then
+      echo "No package.json found" >&2
+      exit 1
+    fi
+    get_package_json_file $(dirname "$dir")
+  fi
+}
+
+get_package_name () {
+  local package_json_file="$1"
+  jq '.name' < $(get_package_json_file)
+}
+
+get_package_name $(get_package_json_file $(pwd))
