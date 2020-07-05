@@ -4,6 +4,8 @@
 
 # TODO This doesn't fail gracefully when a package.json is not found
 
+# set -x
+
 get_package_json_file () {
   local path="$1"
   local package_json_file="$path/package.json"
