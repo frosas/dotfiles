@@ -22,7 +22,7 @@ get_package_json_file () {
 
 get_package_name () {
   local package_json_file="$1"
-  jq '.name' < $package_json_file
+  jq -r '.name' < $package_json_file
 }
 
 path="${1:-$(pwd)}"
