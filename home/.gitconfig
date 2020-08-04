@@ -17,7 +17,7 @@
   a = add
   amend = commit -v --amend # Adds indexed changes to the last commit 
   ap = add -p # Adds interactively
-  b = branch
+  b = branch --sort=-committerdate
   bbd = branches-by-date
   bl = ! echo "Deprecated, use \\`g lb\\`"
   c = clean -df # Cleans untracked (but not ignored) files
