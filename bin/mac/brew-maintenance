@@ -11,9 +11,6 @@ run_silently_unless_error "brew update"
 echo -e "\n$(info "brew doctor...")"
 run_silently_unless_error "brew doctor"
 
-echo -e "\n$(info "brew cask doctor...")"
-run_silently_unless_error "brew cask doctor"
-
 echo -e "\n$(info "Extraneous installed packages (update Brewfile with \`brew" \
   "bundle dump --global --force\`, or uninstall unknown packages with \`brew" \
   "bundle cleanup --global --force\`):")"
