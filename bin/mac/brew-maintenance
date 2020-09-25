@@ -21,7 +21,7 @@ echo -e "\n$(info "Extraneous installed packages (update Brewfile with \`brew" \
 brew bundle cleanup --global
 
 echo -e "\n$(info "Missing packages (fix with \`brew bundle --global\`):")"
-brew bundle check --global --no-upgrade --verbose
+brew bundle check --global --no-upgrade --verbose || true
 
 echo -e "\n$(info "Outdated packages (fix with \`brew upgrade\`):")"
 brew outdated --verbose
