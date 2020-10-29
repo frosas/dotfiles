@@ -3,5 +3,5 @@
 set -e
 
 ID=$(docker ps -lq)
-echo $ID
+echo "$ID"
 echo "Using container $ID" 1>&2

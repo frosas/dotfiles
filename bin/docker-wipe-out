@@ -3,7 +3,7 @@
 set -e
 
 container_ids="$(docker ps -qa)"
-if [[ -n "$container_ids" ]]; then docker rm $container_ids; fi
+if [[ -n "$container_ids" ]]; then docker rm "$container_ids"; fi
 
 image_ids="$(docker images -q)"
-if [[ -n "$image_ids" ]]; then docker rmi $image_ids; fi
+if [[ -n "$image_ids" ]]; then docker rmi "$image_ids"; fi

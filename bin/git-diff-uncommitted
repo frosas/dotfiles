@@ -33,7 +33,7 @@ PAGER=$(git config --get core.pager)
 	$DIFF "$@" | $PAGER
 
 	title UNTRACKED
-	git ls-files --others --exclude-standard -z "$@" | while read -d $'\0' FILE; do
+	git ls-files --others --exclude-standard -z "$@" | while read -dr $'\0' FILE; do
 		$DIFF /dev/null "$FILE"
 	done | $PAGER
 

@@ -10,21 +10,21 @@ get_package_json_file () {
   local path="$1"
   local package_json_file="$path/package.json"
   if [[ -e "$package_json_file" ]]; then
-    echo $package_json_file
+    echo "$package_json_file"
   else
     if [[ "$path" == "/" ]]; then
       echo "No package.json found" >&2
       exit 1
     fi
-    get_package_json_file $(dirname "$path")
+    get_package_json_file "$(dirname "$path")"
   fi
 }
 
 get_package_name () {
   local package_json_file="$1"
-  jq -r '.name' < $package_json_file
+  jq -r '.name' < "$package_json_file"
 }
 
 path="${1:-$(pwd)}"
 
-get_package_name $(get_package_json_file "$path")
+get_package_name "$(get_package_json_file "$path")"

@@ -2,5 +2,5 @@
 
 set -e
 
-cd ./$GIT_PREFIX
+cd "./$GIT_PREFIX"
 git status -s "$@" | sed 's/^.. //'

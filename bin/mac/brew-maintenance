@@ -2,23 +2,27 @@
 
 set -e
 
-source "$(dirname $0)/_util"
+source "$(dirname "$0")/_util"
 
 # Update before running `brew doctor` to avoid the "Your Homebrew is outdated" warning
-echo "$(info "brew update...")"
+info "brew update..."
 run_silently_unless_error "brew update"
 
-echo -e "\n$(info "brew doctor...")"
+echo
+info "brew doctor..."
 run_silently_unless_error "brew doctor"
 
-echo -e "\n$(info "Extraneous installed packages (update Brewfile with \`brew" \
+echo
+info "Extraneous installed packages (update Brewfile with \`brew" \
   "bundle dump --global --force\`, or uninstall unknown packages with \`brew" \
-  "bundle cleanup --global --force\`):")"
+  "bundle cleanup --global --force\`):"
 # TODO How to make mas list any extraneous Mac App Store app?
 brew bundle cleanup --global
 
-echo -e "\n$(info "Missing packages (fix with \`brew bundle --global\`):")"
+echo
+info "Missing packages (fix with \`brew bundle --global\`):"
 brew bundle check --global --no-upgrade --verbose || true
 
-echo -e "\n$(info "Outdated packages (fix with \`brew upgrade\`):")"
+echo
+info "Outdated packages (fix with \`brew upgrade\`):"
 brew outdated --verbose

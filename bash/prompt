@@ -1,18 +1,19 @@
+# shellcheck shell=bash
 # vim: filetype=bash
 
 RESET=$(tput sgr0)
-BLACK=$(tput setaf 0)
-RED=$(tput setaf 1)
+# BLACK=$(tput setaf 0)
+# RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
-YELLOW=$(tput setaf 3)
-BLUE=$(tput setaf 4)
+# YELLOW=$(tput setaf 3)
+# BLUE=$(tput setaf 4)
 MAGENTA=$(tput setaf 5)
-CYAN=$(tput setaf 6)
-WHITE=$(tput setaf 7)
+# CYAN=$(tput setaf 6)
+# WHITE=$(tput setaf 7)
 DARK_GRAY=$(tput setaf 8)
 
 git_ps1 () {
-  if [ `type -t __git_ps1` ]; then
+  if [ "$(type -t __git_ps1)" ]; then
     __git_ps1 "\[$DARK_GRAY\]%s" |
       sed 's/%/❓/' | # New files
       sed 's/\*/✏️ /' | # Changed files
@@ -29,6 +30,7 @@ prompt_command () {
 
   # GIT_PS1_SHOWDIRTYSTATE=1 # It's just too slow
   # GIT_PS1_SHOWUNTRACKEDFILES=1 # It's just too slow
+  # shellcheck disable=SC2034
   GIT_PS1_SHOWSTASHSTATE=1
 
   # \[...\] is to don't count escape sequences (see http://mywiki.wooledge.org/BashFAQ/053)

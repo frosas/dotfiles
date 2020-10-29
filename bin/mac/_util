@@ -1,8 +1,9 @@
+# shellcheck shell=bash
 # vim: filetype=bash
 
 function info () {
   # TODO Colorize text
-  echo "ℹ️  $@"
+  echo "ℹ️ " "$@"
 }
 
 function run_silently_unless_error () {

@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # set -x
 
 source ~/projects/dotfiles/bash/.bashrc
