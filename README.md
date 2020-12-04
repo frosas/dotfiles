@@ -16,13 +16,9 @@ $ setup/mac-preferences
 ```
 
 - _Preferences_
-  - _General_
-    - Disable _Use font smoothing when available_
   - _Desktop & Screen Saver_
     - _Desktop_
       - Add Google Drive _Wallpapers_ folder
-    - _Screen Saver_
-      - Set _Start after_ to _Never_
   - _Accessibility_
     - _Zoom_
       - _Use scroll gesture with modifier keys to zoom:_
@@ -35,13 +31,18 @@ $ setup/mac-preferences
       - _Use keyboard navigation to move focus between controls_
     - _Input Sources_
       - Add _U.S._
-      - Temporarily enable _Show Input menu in menu bar_
-      - Select _U.S._
+      - Delete _British_
 
 ## Home dir
 
 ```bash
 $ setup/home
+```
+
+## Shell
+
+```bash
+$ chsh -s /bin/bash
 $ vi -o ~/.bashrc home-examples/.bashrc # Update as needed
 ```
 
@@ -80,8 +81,7 @@ $ (cd ~/.ssh && ln -s .../SSH/id_rsa* .)
 
 ## Visual Studio Code
 
-Install https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync
-and follow the instructions to download the settings.
+- Turn _Settings Sync_ on
 
 ## Chrome
 

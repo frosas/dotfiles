@@ -13,6 +13,7 @@ symlink_deep_file () {
 }
 
 (
+  # TODO Ignore ln warnings
   (cd ~ && find "$DOTFILES_HOME" -depth 1 -exec ln -s {} \;)
   if [[ $(uname) = Darwin ]]; then
     symlink_deep_file "Library/Preferences/com.knollsoft.Rectangle.plist"

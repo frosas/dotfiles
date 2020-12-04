@@ -54,7 +54,6 @@ cask "google-chrome"
 cask "google-cloud-sdk"
 cask "google-earth-pro"
 cask "iina"
-cask "intel-power-gadget"
 cask "istat-menus"
 cask "iterm2"
 cask "linkliar"
@@ -77,4 +76,3 @@ cask "wireshark"
 mas "iMovie", id: 408981434
 mas "NextDNS", id: 1464122853
 mas "Slack", id: 803453959
-mas "Xcode", id: 497799835
