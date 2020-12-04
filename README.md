@@ -107,11 +107,4 @@ Install https://github.com/frosas/chrome-customizations-extension
 
 Config the other installed apps as needed (`brew cask ls`)
 
-Update this repo remote to its authenticated version:
-
-```bash
-$ git remote set-url origin git@github.com:frosas/dotfiles.git
-$ git branch --set-upstream-to=origin/master master
-```
-
 # [Shortcuts cheatsheet](shortcuts.md)
