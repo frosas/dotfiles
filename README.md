@@ -105,6 +105,6 @@ Install https://github.com/frosas/chrome-customizations-extension
 
 ## Misc
 
-Config the other installed apps as needed (`brew cask ls`)
+Config the other installed apps as needed (`brew list --cask`)
 
 # [Shortcuts cheatsheet](shortcuts.md)
