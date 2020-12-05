@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<string>1113</string>
+	<string>1157</string>
 	<key>license</key>
 	<dict>
 		<key>email</key>
@@ -13,10 +13,27 @@
 	</dict>
 	<key>preferences</key>
 	<dict>
+		<key>Battery_DisableBluetooth</key>
+		<integer>0</integer>
 		<key>Battery_DropdownOrderDisabled</key>
 		<string>buttons</string>
 		<key>Battery_MenubarCustomizeStates</key>
 		<integer>0</integer>
+		<key>Battery_MenubarMode</key>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>2</string>
+				<key>uuid</key>
+				<string>0A89CB80-F5A1-465C-B371-6AA2BB47112D</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>1</string>
+				<key>uuid</key>
+				<string>3709CF05-B6D3-4D03-8E34-FC7992E70E7D</string>
+			</dict>
+		</array>
 		<key>CPU_AppFormat</key>
 		<integer>0</integer>
 		<key>CPU_CombineLogicalCores</key>
@@ -77,25 +94,25 @@
 				<key>key</key>
 				<string>1</string>
 				<key>uuid</key>
-				<string>3AE97EAE-BCA2-420E-BAF6-4B9D738BBC09</string>
+				<string>2626ACF4-DCAD-400A-B750-35F2A3270A17</string>
 			</dict>
 			<dict>
 				<key>key</key>
 				<string>2</string>
 				<key>uuid</key>
-				<string>2F76C996-0B74-47D8-834C-8444F7E0C777</string>
+				<string>3B9C1F67-0770-4047-9899-3B36F413BB24</string>
 			</dict>
 			<dict>
 				<key>key</key>
 				<string>4</string>
 				<key>uuid</key>
-				<string>5F1FA0FF-4C0B-47C2-B367-5214E74ED517</string>
+				<string>8B9E0C20-9AF1-432F-9215-587BE2EA97F1</string>
 			</dict>
 			<dict>
 				<key>key</key>
 				<string>6</string>
 				<key>uuid</key>
-				<string>ABD1F107-8B2B-4894-93B8-65ADB86C7681</string>
+				<string>212F93E5-4451-4579-9F0A-B01356709022</string>
 			</dict>
 		</array>
 		<key>Diagnostics_Enabled</key>
@@ -157,6 +174,8 @@
 				<string>9DF34615-8E8E-4949-9588-311261F88A9D</string>
 			</dict>
 		</array>
+		<key>Menubar-DetectedColor</key>
+		<string>1.00 1.00 1.00 0.90</string>
 		<key>MenubarGraphOpacity-Dark</key>
 		<real>0.14307087659835815</real>
 		<key>MenubarGraphSize</key>
@@ -179,12 +198,16 @@
 		<true/>
 		<key>Migrated_6.22</key>
 		<true/>
+		<key>Migrated_6.5</key>
+		<true/>
 		<key>Network_AppSort</key>
 		<integer>0</integer>
 		<key>Network_DataFormat</key>
 		<integer>1</integer>
 		<key>Network_DecimalLevel</key>
 		<integer>2</integer>
+		<key>Network_DecimalLevelKB</key>
+		<integer>0</integer>
 		<key>Network_DropdownOrderDisabled</key>
 		<string>buttons</string>
 		<key>Network_GraphCustomColors</key>
@@ -199,15 +222,21 @@
 				<key>key</key>
 				<string>1</string>
 				<key>uuid</key>
-				<string>FD817A49-E913-474D-A49F-BEB92CB7D100</string>
+				<string>02A3F3F2-A6FD-4BFC-A426-BBB070F285ED</string>
 			</dict>
 			<dict>
 				<key>key</key>
 				<string>0</string>
 				<key>uuid</key>
-				<string>48630E63-333B-4780-9C58-E7B99F942FBE</string>
+				<string>6F991A22-90AF-43B0-9147-352E638CFDE8</string>
 			</dict>
 		</array>
+		<key>Network_MenubarUnitLevel</key>
+		<integer>3</integer>
+		<key>Network_ProcessCount</key>
+		<integer>8</integer>
+		<key>Network_ShowBSD</key>
+		<integer>0</integer>
 		<key>Notifications-Items</key>
 		<array>
 			<dict>
@@ -320,9 +349,13 @@
 			<string>1</string>
 			<key>1113</key>
 			<string>1</string>
+			<key>1150</key>
+			<string>1</string>
+			<key>1157</key>
+			<string>1</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>6.40</string>
+	<string>6.51</string>
 </dict>
 </plist>
