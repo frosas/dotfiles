@@ -1,5 +1,8 @@
 # vim: filetype=bash
 
+# TODO Consider using nvm_find_nvmrc (https://stackoverflow.com/questions/23556330/run-nvm-use-automatically-every-time-theres-a-nvmrc-file-on-the-directory)
+# or https://github.com/wbyoung/avn
+
 # From https://github.com/creationix/nvm#automatically-call-nvm-use
 
 find-up () {
