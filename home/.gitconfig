@@ -20,7 +20,6 @@
   b = branch --sort=-committerdate
   bbd = branches-by-date
   bl = ! echo "Deprecated, use \\`g lb\\`"
-  c = clean -df # Cleans untracked (but not ignored) files
   ci = commit -v # Commits showing the changes
   ci-wip-all = ! git a . && git ci -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
   co = checkout
