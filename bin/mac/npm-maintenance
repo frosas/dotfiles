@@ -2,7 +2,7 @@
 
 set -e
 
-source "$(dirname $0)/_util"
+source "$(dirname "$0")/_util"
 
 info "Outdated packages:"
 # This may fail. See https://npm.community/t/npm-outdated-throw-an-error-cannot-read-property-length-of-undefined/5929
