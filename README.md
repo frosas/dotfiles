@@ -103,7 +103,11 @@ Install https://github.com/frosas/chrome-customizations-extension
 - _File_ → _Import Settings…_
 - Select `iStat/iStat Menus Settings.ismp`
 
-## Misc
+## Install SF Mono
+
+https://osxdaily.com/2018/01/07/use-sf-mono-font-mac/
+
+## Other apps
 
 Config the other installed apps as needed (`brew list --cask`)
 
