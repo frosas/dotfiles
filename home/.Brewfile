@@ -76,6 +76,6 @@ cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
 cask "wireshark"
-mas "iMovie", id: 408981434
+cask "zoom"
 mas "NextDNS", id: 1464122853
 mas "Slack", id: 803453959
