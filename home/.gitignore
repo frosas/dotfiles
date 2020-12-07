@@ -6,6 +6,7 @@
 
 # Visual Studio Code
 .vscode
+*.code-search
 
 # Terraform
 .terraform
