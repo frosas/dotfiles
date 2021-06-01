@@ -17,7 +17,7 @@ info "Extraneous installed packages (uninstall them, or update Brewfile):"
 brew bundle cleanup --global
 
 echo
-info "Missing packages (fix with \`brew bundle --global\`):"
+info "Missing packages (fix with \`brew bundle --global -v\`):"
 brew bundle check --global --no-upgrade --verbose || true
 
 echo
