@@ -85,7 +85,13 @@ cask "spotify" if !work_env
 cask "the-unarchiver"
 cask "transmission" if !work_env
 cask "virtualbox" if !work_env
-cask "visual-studio-code"
+if work_env
+  # On my Silicon, the universal version is manually installed as Homebrew runs in x86 mode and the 
+  # cask installs the version for that architecture.
+  # Proper solution would be to have another Homebrew setup for silicon apps but can't bother just for
+  # one app.
+  cask "visual-studio-code"
+end
 cask "vlc" if !work_env
 cask "wireshark"
 cask "zoom" if !work_env
