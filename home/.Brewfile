@@ -41,6 +41,7 @@ brew "trash"
 brew "tree"
 brew "wget"
 brew "yarn"
+brew "youtube-dl"
 
 cask "adoptopenjdk8" if !work_env
 cask "android-file-transfer" if !work_env
