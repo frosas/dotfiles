@@ -33,6 +33,7 @@ brew "pstree"
 brew "pulumi" if !work_env
 brew "rclone" if !work_env
 brew "ripgrep"
+brew "shellcheck"
 brew "sshuttle" if !work_env
 brew "tfenv"
 brew "tmux"
