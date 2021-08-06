@@ -4,5 +4,5 @@ concurrently --kill-on-fail \
   --names "Homebrew,npm,macOS" \
   --prefix-colors "red,green,yellow,blue,magenta,cyan,white" \
   "brew-maintenance" \
-  "npm-maintenance" \
-  "softwareupdate --list"
+  "npm-maintenance" # \
+  # "softwareupdate --list"
