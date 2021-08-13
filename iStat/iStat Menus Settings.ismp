@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<string>1157</string>
+	<string>1176</string>
 	<key>license</key>
 	<dict>
 		<key>email</key>
@@ -19,6 +19,17 @@
 		<string>buttons</string>
 		<key>Battery_MenubarCustomizeStates</key>
 		<integer>0</integer>
+		<key>Battery_MenubarItems</key>
+		<array>
+			<dict>
+				<key>internal</key>
+				<true/>
+				<key>key</key>
+				<string>F5D04411QJDPJYV4W</string>
+				<key>name</key>
+				<string>Internal Battery</string>
+			</dict>
+		</array>
 		<key>Battery_MenubarMode</key>
 		<array>
 			<dict>
@@ -92,27 +103,33 @@
 		<array>
 			<dict>
 				<key>key</key>
+				<string>5</string>
+				<key>uuid</key>
+				<string>10B7D897-FA1F-4336-9F93-06C0F06B4A40</string>
+			</dict>
+			<dict>
+				<key>key</key>
 				<string>1</string>
 				<key>uuid</key>
-				<string>2626ACF4-DCAD-400A-B750-35F2A3270A17</string>
+				<string>155FBB63-DC4D-442D-ACD2-3C544F7F0DB5</string>
 			</dict>
 			<dict>
 				<key>key</key>
 				<string>2</string>
 				<key>uuid</key>
-				<string>3B9C1F67-0770-4047-9899-3B36F413BB24</string>
+				<string>0F0FB74D-839A-4912-BD9A-38E73065922C</string>
 			</dict>
 			<dict>
 				<key>key</key>
 				<string>4</string>
 				<key>uuid</key>
-				<string>8B9E0C20-9AF1-432F-9215-587BE2EA97F1</string>
+				<string>21A04D1D-084E-4A55-A34E-F2560D4CF41A</string>
 			</dict>
 			<dict>
 				<key>key</key>
 				<string>6</string>
 				<key>uuid</key>
-				<string>212F93E5-4451-4579-9F0A-B01356709022</string>
+				<string>1F9DED78-7D44-49CA-B3B8-C32FCE40298B</string>
 			</dict>
 		</array>
 		<key>Diagnostics_Enabled</key>
@@ -137,7 +154,9 @@
 				<key>boot</key>
 				<true/>
 				<key>key</key>
-				<string>853F146D-63CF-3285-851D-B5F98064AD4E</string>
+				<string>82B885A4-3AD0-429B-9AC2-C0CC40AF85AB</string>
+				<key>name</key>
+				<string>Data</string>
 			</dict>
 		</array>
 		<key>Disks_MenubarMode</key>
@@ -156,7 +175,28 @@
 		<key>FanControl_Enabled</key>
 		<false/>
 		<key>FanControl_Sets</key>
-		<array/>
+		<array>
+			<dict>
+				<key>model</key>
+				<string>MacBookAir10,1</string>
+				<key>name</key>
+				<string>Medium</string>
+				<key>speeds</key>
+				<array/>
+				<key>uuid</key>
+				<string>20EC8DBB-80E9-4A3F-B1EF-B780A4016470</string>
+			</dict>
+			<dict>
+				<key>model</key>
+				<string>MacBookAir10,1</string>
+				<key>name</key>
+				<string>High</string>
+				<key>speeds</key>
+				<array/>
+				<key>uuid</key>
+				<string>AD0E6235-5A02-450A-A53A-2BF23A116981</string>
+			</dict>
+		</array>
 		<key>Memory_AppFormat</key>
 		<integer>0</integer>
 		<key>Memory_DisplayFormat</key>
@@ -200,6 +240,10 @@
 		<true/>
 		<key>Migrated_6.5</key>
 		<true/>
+		<key>Migrated_6.52</key>
+		<true/>
+		<key>Migrated_6.60_ARM</key>
+		<true/>
 		<key>Network_AppSort</key>
 		<integer>0</integer>
 		<key>Network_DataFormat</key>
@@ -208,6 +252,10 @@
 		<integer>2</integer>
 		<key>Network_DecimalLevelKB</key>
 		<integer>0</integer>
+		<key>Network_DecimalLevelMB</key>
+		<integer>1</integer>
+		<key>Network_DropdownCombineBandwidth</key>
+		<integer>1</integer>
 		<key>Network_DropdownOrderDisabled</key>
 		<string>buttons</string>
 		<key>Network_GraphCustomColors</key>
@@ -215,6 +263,8 @@
 		<key>Network_GraphMode</key>
 		<integer>1</integer>
 		<key>Network_GraphShowBackground</key>
+		<integer>1</integer>
+		<key>Network_IPV6AddressMode</key>
 		<integer>1</integer>
 		<key>Network_MenubarMode</key>
 		<array>
@@ -303,7 +353,7 @@
 				<key>uuid</key>
 				<string>59620EA8-AA1F-44B1-9678-CAE19FA6ED89</string>
 				<key>value</key>
-				<string>10.00</string>
+				<string>20.00</string>
 			</dict>
 		</array>
 		<key>Sensors-Limits-Updated</key>
@@ -321,7 +371,6 @@
 		</array>
 		<key>StatusItems-Order</key>
 		<array>
-			<integer>5</integer>
 			<integer>8</integer>
 		</array>
 		<key>Theme-SeperateStyles</key>
@@ -353,9 +402,13 @@
 			<string>1</string>
 			<key>1157</key>
 			<string>1</string>
+			<key>1164</key>
+			<string>1</string>
+			<key>1176</key>
+			<string>1</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>6.51</string>
+	<string>6.60</string>
 </dict>
 </plist>
