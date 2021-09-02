@@ -72,7 +72,4 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 source "$SCRIPT_DIR/nvm"
 export PATH="node_modules/.bin:$PATH"
 
-# https://support.apple.com/en-gb/HT208050
-export BASH_SILENCE_DEPRECATION_WARNING=1
-
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
