@@ -6,7 +6,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Ensure we first of all get the exit code of the last command
 PROMPT_COMMAND="LAST_EXIT_CODE=\$?"
 
-source "$SCRIPT_DIR"/arch
 source "$SCRIPT_DIR"/prompt
 
 export EDITOR=vim
@@ -19,6 +18,8 @@ if [ "$(uname)" = Darwin ]; then
   export PATH="$SCRIPT_DIR/../bin/mac:$PATH"
 fi
 
+alias arch-arm="arch -arm64"  
+alias arch-x86="arch -x86_64"  
 alias c="code"
 alias cd="cd -P"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
