@@ -48,6 +48,8 @@ if [ "$(uname)" = Linux ]; then
   alias ls="ls -FAh --color"
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 if [ "$(uname)" = Darwin ]; then 
   # __git_ps1 is defined here
   . "$(brew --prefix)/etc/bash_completion"
@@ -74,3 +76,5 @@ source "$SCRIPT_DIR/nvm"
 export PATH="node_modules/.bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
