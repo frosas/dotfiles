@@ -4,8 +4,8 @@
 [color]
   ui = true
 [core]
-  excludesfile = ~/.gitignore
-  pager = delta --plus-color="#012800" --minus-color="#340001"
+	excludesfile = ~/.gitignore
+  pager = delta
 [github]
   user = frosas
 [push]
@@ -70,3 +70,10 @@
   diffFilter = delta --color-only
 [init]
 	defaultBranch = main
+[merge]
+  conflictstyle = diff3
+[delta]
+  line-numbers = true
+[fetch]
+  # Disabled as reflogs are not kept for deleted references
+	# prune = true
