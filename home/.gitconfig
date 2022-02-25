@@ -15,19 +15,19 @@
 [alias]
   # Also check git-* for other commands
   a = add
-  amend = commit -v --amend # Adds indexed changes to the last commit 
+  amend = ci --amend # Adds indexed changes to the last commit 
   ap = add -p # Adds interactively
   b = branch --sort=-committerdate
   bbd = branches-by-date
   bl = ! echo "Deprecated, use \\`g lb\\`"
   ci = commit -v # Commits showing the changes
-  ci-wip-all = ! git a . && git ci -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
+  ci-wip-all = ci -a -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
   co = checkout
   co-tmp-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-tmp-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
   cp = checkout -p # Checkouts interactively
   d = diff
   db = diff-branch
-  dbf = db \"\" \"\" --name-only # Diff branch files
+  dbf = db '' '' --name-only # Diff branch files
   du = diff-uncommitted
   h = help
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
@@ -39,10 +39,6 @@
   r = rebase
   # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
   s = status --short
-  st = stash push -u # Stashes tracked and untracked (but not ignored) files
-  stl = stash list
-  stp = stash pop
-  sts = stash show -v # Shows changes in a stashed state
   uncommit = reset HEAD^
   untracked-files = ls-files -o --exclude-standard
 
