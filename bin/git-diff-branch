@@ -3,7 +3,7 @@
 # Prints the content changes introduced in $BRANCH relative to the common 
 # ancestor with $REF_BRANCH
 
-REF_BRANCH=${1:-"origin/master"} # TODO How to obtain it automatically?
-BRANCH=${2:-""} # HEAD by default
+BRANCH=${1:-""} # HEAD by default
+REF_BRANCH=${2:-"origin/master"} # TODO How to obtain it automatically?
 
 git diff "$REF_BRANCH"..."$BRANCH" "${@:3}"
