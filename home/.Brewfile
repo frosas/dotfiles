@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 
-machine = "unknown"
+# TODO Read this from a gitignored file
+machine = "personal" # Don't commit this
 
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -43,7 +44,6 @@ brew "wget"
 brew "yarn"
 brew "youtube-dl" if machine == "personal"
 
-cask "adoptopenjdk8" if machine == "personal"
 cask "android-file-transfer" if machine == "personal"
 cask "android-platform-tools" if machine == "personal"
 cask "authy" if machine == "personal"
@@ -51,7 +51,6 @@ cask "docker"
 cask "drawio"
 cask "electrum"
 cask "firefox" if machine != "fil"
-cask "flux"
 cask "font-hack"
 cask "font-inconsolata"
 cask "font-noto-mono"
@@ -77,25 +76,23 @@ cask "microsoft-auto-update" if machine == "fil"
 cask "microsoft-edge" if machine == "fil"
 cask "ngrok" if machine == "personal"
 cask "omnidisksweeper"
-cask "openvisualtraceroute" if machine == "personal"
 cask "popcorn-time" if machine == "personal"
 cask "postman"
 cask "rectangle"
+cask "slack"
 cask "skitch"
 cask "skype" if machine == "personal"
 cask "sourcetree" if machine == "personal"
 cask "spotify" if machine == "personal"
+cask "steam" if machine == "personal"
 cask "the-unarchiver"
 cask "transmission" if machine == "personal"
-cask "virtualbox" if machine == "personal"
 # On my Silicon, the universal version is manually installed as Homebrew runs in x86 mode and the 
 # cask installs the version for that architecture.
 # Proper solution would be to have another Homebrew setup for silicon apps but can't bother just for
 # one app.
 cask "visual-studio-code" if machine != "personal"
-cask "vlc" if machine == "personal"
 cask "wireshark"
 cask "zoom" if machine == "personal"
 
 mas "NextDNS", id: 1464122853 if machine == "personal"
-mas "Slack", id: 803453959 if machine == "personal"
