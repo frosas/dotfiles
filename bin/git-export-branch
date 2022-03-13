@@ -1,0 +1,9 @@
+#!/bin/bash
+
+BRANCH=${1:-"$(git branch --show-current)"}
+REF_BRANCH=${2:-""} # See git diff-branch for default
+REPO="${PWD##*/}"
+FILENAME="$REPO-$BRANCH-patch"
+
+git diff-branch "$BRANCH" "$REF_BRANCH" > "$FILENAME"
+echo "👉 Patch saved to $FILENAME"
