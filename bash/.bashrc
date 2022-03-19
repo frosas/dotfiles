@@ -76,5 +76,3 @@ source "$SCRIPT_DIR/nvm"
 export PATH="node_modules/.bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
-
-export BASH_SILENCE_DEPRECATION_WARNING=1
