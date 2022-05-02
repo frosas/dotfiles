@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for dir in ~/projects/*; do
+  (
+    echo "$dir"
+    cd "$dir" &&
+    npm outdated
+    echo
+  )
+done
