@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+fd -u --prune node_modules -x trash
