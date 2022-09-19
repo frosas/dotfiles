@@ -27,7 +27,8 @@
   cp = checkout -p # Checkouts interactively
   d = diff
   db = diff-branch
-  dbf = db '' '' --name-only # Diff branch files
+  dbf = diff-branch-files
+  diff-branch-files = db '' '' --name-only
   du = diff-uncommitted
   h = help
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
