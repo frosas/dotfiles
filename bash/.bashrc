@@ -64,9 +64,12 @@ PROMPT_COMMAND="$PROMPT_COMMAND; history -a" # Update history file immediately
 
 function h { history | tail -"${1:-20}"; }
 
-# "general-purpose command-line fuzzy finder"
+# General-purpose command-line fuzzy finder
+# Ctrl+T - Select files under the current directory
+# Ctrl+R - Select history command
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=up,3,wrap"
 source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
 # https://www.iterm2.com/documentation-shell-integration.html
