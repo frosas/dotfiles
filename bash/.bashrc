@@ -18,6 +18,7 @@ if [ "$(uname)" = Darwin ]; then
   export PATH="$SCRIPT_DIR/../bin/mac:$PATH"
 fi
 
+alias ..="cd .."
 alias arch-arm="arch -arm64"  
 alias arch-x86="arch -x86_64"  
 alias c="code"
