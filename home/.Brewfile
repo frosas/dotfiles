@@ -4,10 +4,8 @@
 machine = "personal" # Don't commit this
 
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git" if machine == "personal"
 
 brew "awscli"
@@ -42,7 +40,6 @@ brew "trash"
 brew "tree"
 brew "wget"
 brew "yarn"
-brew "youtube-dl" if machine == "personal"
 
 cask "adguard" if machine == "personal"
 cask "android-platform-tools" if machine == "personal"
@@ -97,5 +94,3 @@ cask "vlc" if machine == "personal"
 cask "vpn-by-google-one" if machine == "personal"
 cask "wireshark"
 cask "zoom" if machine == "personal"
-
-mas "NextDNS", id: 1464122853 if machine == "personal"
