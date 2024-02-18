@@ -21,7 +21,8 @@
   bbd = branches-by-date
   bl = ! echo "Deprecated, use \\`g lb\\`"
   ci = commit -v # Commits showing the changes
-  ci-wip-all = ! git a . && git ci -m WIP --no-verify # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
+  ci-wip = ci -m WIP --no-verify
+  ci-wip-all = ! git a . && git ci-wip -a # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
   co = checkout
   co-tmp-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-tmp-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
   cp = checkout -p # Checkouts interactively
