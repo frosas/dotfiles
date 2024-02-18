@@ -19,26 +19,16 @@ if [ "$(uname)" = Darwin ]; then
 fi
 
 alias ..="cd .."
-alias arch-arm="arch -arm64"  
-alias arch-x86="arch -x86_64"  
 alias c="code"
 alias cd="cd -P"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
 alias g="git"
-alias gb="echo Deprecated, use \\\`g branches-by-date\\\`"
-alias gbd="echo Deprecated, use \\\`g bd\\\`"
-alias gbl="echo Deprecated, use \\\`g bl\\\`"
-alias gd="echo Deprecated, use \\\`g du\\\`"
-alias gl="echo Deprecated, use \\\`g l\\\`"
-alias gla="echo Deprecated, use \\\`g la\\\`"
-alias gs="echo Deprecated, use \\\`g s\\\`"
 alias l="ls"
 alias ll="ls -l"
 alias lt="ls -lt"
 alias d="docker"
 alias dc="docker-compose"
 alias t="trash"
-alias tf="terraform"
 
 if [ "$(uname)" = Darwin ]; then 
   alias ls="ls -FAGh"
