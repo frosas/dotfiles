@@ -21,6 +21,7 @@ fi
 alias ..="cd .."
 alias c="code"
 alias cd="cd -P"
+alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
 alias cd-temp="cd \$(mktemp -d /tmp/XXX)"
 alias g="git"
 alias l="ls"
