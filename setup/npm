@@ -2,9 +2,4 @@
 
 set -ex
 
-npm install -g \
-  concurrently \
-  git-open \
-  on-change \
-  typescript \
-  ts-node
+npm install -g git-open
