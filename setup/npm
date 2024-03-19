@@ -2,4 +2,6 @@
 
 set -ex
 
-npm install -g git-open
+npm install -g \
+  concurrently \
+  git-open
