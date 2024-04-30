@@ -5,6 +5,10 @@
 set -e
 
 SOURCE="$1"
+if [ ! -d "$SOURCE" ]; then
+  echo "Source not found: $SOURCE"
+  exit 1
+fi
 
 DESTINATION_ROOT="$HOME/Google Drive/Archived 📦"
 if [ ! -d "$DESTINATION_ROOT" ]; then
