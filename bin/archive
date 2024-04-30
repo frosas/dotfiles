@@ -6,13 +6,13 @@ set -e
 
 SOURCE="$1"
 
-DESTINATION_BASE_PATH="$HOME/Google Drive/Archived"
-if [ ! -d "$DESTINATION_BASE_PATH" ]; then
-  echo "Destination base path unexpectedly not found: $DESTINATION_BASE_PATH"
+DESTINATION_ROOT="$HOME/Google Drive/Archived 📦"
+if [ ! -d "$DESTINATION_ROOT" ]; then
+  echo "Destination root not found: $DESTINATION_ROOT"
   exit 1
 fi
 
-DESTINATION="$DESTINATION_BASE_PATH/$(date +%Y)/$(basename "$SOURCE").zip"
+DESTINATION="$DESTINATION_ROOT/$(date +%Y)/$(basename "$SOURCE").zip"
 
 mkdir -p "$(dirname "$DESTINATION")"
 zip -r "$DESTINATION" "$SOURCE"
