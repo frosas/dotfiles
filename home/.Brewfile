@@ -6,7 +6,6 @@ machine = "personal" # Don't commit this
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git" if machine == "personal"
 
 brew "awscli"
 brew "bash"
