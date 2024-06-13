@@ -5,7 +5,6 @@ machine = "personal" # Don't commit this
 
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
 
 brew "awscli"
 brew "bash"
