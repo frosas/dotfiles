@@ -4,7 +4,6 @@
 machine = "personal" # Don't commit this
 
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 
 brew "awscli"
 brew "bash"
@@ -19,12 +18,13 @@ brew "git"
 brew "git-delta"
 brew "graphviz"
 brew "htop"
+brew "httpie"
 brew "jupyterlab"
-brew "imagemagick"
 brew "jq"
 brew "mas"
 brew "mtr"
 brew "ncdu"
+brew "neovim"
 brew "nmap"
 brew "node"
 brew "nvm"
@@ -46,6 +46,7 @@ cask "adguard" if machine == "personal"
 # cask "android-file-transfer" 
 cask "android-platform-tools" if machine == "personal"
 cask "bitwarden" if machine == "personal"
+cask "chatgpt" if machine == "personal"
 cask "docker" if machine == "personal"
 cask "drawio"
 cask "electrum"
@@ -84,12 +85,13 @@ cask "spotify" if machine == "personal"
 cask "steam" if machine == "personal"
 cask "the-unarchiver"
 cask "transmission" if machine == "personal"
+# TODO Is this still needed?
 # On my Silicon, the universal version is manually installed as Homebrew runs in x86 mode and the 
 # cask installs the version for that architecture.
 # Proper solution would be to have another Homebrew setup for silicon apps but can't bother just for
 # one app.
 cask "visual-studio-code" if machine != "personal"
 cask "vlc" if machine == "personal"
-cask "vpn-by-google-one" if machine == "personal"
+cask "whatsapp" if machine == "personal"
 cask "wireshark"
 cask "zoom" if machine == "personal"
