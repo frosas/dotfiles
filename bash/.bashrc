@@ -30,7 +30,6 @@ alias lt="ls -lt"
 alias d="docker"
 alias dc="docker-compose"
 alias t="trash"
-alias v='nvim'
 
 if [ "$(uname)" = Darwin ]; then 
   alias ls="ls -FAGh"
