@@ -55,3 +55,6 @@ cdnvm() {
 }
 
 alias cd='cdnvm'
+
+# Trigger the version change in case the shell starts in a project with an .nvmrc
+cd .
