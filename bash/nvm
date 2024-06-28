@@ -40,14 +40,18 @@ nvm_use_silent() {
     out=$(nvm use "$@" 2>&1) || echo "$out" >&2
 }
 
-cdnvm() {
-    command cd "$@" || return $?
+nvm_use_relevant_version() {
     if nvmrc_exists; then
        # Not using nvm install as it's slower and normally not required
         nvm_use_silent
     else
         nvm_use_silent system
     fi
+}
+
+cdnvm() {
+    command cd "$@" || return $?
+    nvm_use_relevant_version
 }
 
 alias cd='cdnvm'
