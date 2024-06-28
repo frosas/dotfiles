@@ -10,6 +10,6 @@ source /usr/local/opt/nvm/nvm.sh --no-use
 
 cdnvm() {
     command cd "$@" || return $?
-    nvm install 2>/dev/null || nvm use system
+    nvm install 2>/dev/null || nvm use system --silent
 }
 alias cd='cdnvm'
