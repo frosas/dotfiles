@@ -19,6 +19,7 @@ if [ "$(uname)" = Darwin ]; then
 fi
 
 alias ..="cd .."
+alias -- -="cd -"
 alias c="code"
 alias cd="cd -P"
 alias cd-git-root="cd \$(git rev-parse --show-toplevel)"
