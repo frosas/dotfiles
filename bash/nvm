@@ -49,12 +49,12 @@ nvm_use_relevant_version() {
     fi
 }
 
-cdnvm() {
+cd_nvm() {
     command cd "$@" || return $?
     nvm_use_relevant_version
 }
 
-alias cd='cdnvm'
+alias cd='cd_nvm'
 
 # Trigger the version change in case the shell starts in a project with an .nvmrc
 cd .
