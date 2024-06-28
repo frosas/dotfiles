@@ -42,8 +42,8 @@ nvm_use_silent() {
 
 cdnvm() {
     command cd "$@" || return $?
-    # Not using nvm install as it's slower and normally not required
     if nvmrc_exists; then
+       # Not using nvm install as it's slower and normally not required
         nvm_use_silent
     else
         nvm_use_silent system
