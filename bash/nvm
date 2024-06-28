@@ -29,6 +29,7 @@ source /usr/local/opt/nvm/nvm.sh --no-use
 
 cdnvm() {
     command cd "$@" || return $?
-    nvm install 2>/dev/null || nvm use system --silent
+    # Not using nvm install as it's slower and normally not required
+    nvm use --silent 2>/dev/null || nvm use system --silent
 }
 alias cd='cdnvm'
