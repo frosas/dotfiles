@@ -1,7 +1,26 @@
 # shellcheck shell=bash
 # vim: filetype=bash
 
-# See https://github.com/nvm-sh/nvm
+
+# Solutions considered
+#
+# https://github.com/nvm-sh/nvm (current one)
+# - It automatically switches to the correct version by reading the project .nvmrc on cd
+#   - That's quite slow
+#
+# https://github.com/tj/n
+# - It changes the version globally (ie, can't have multiple shells using different versions at the same time)
+# - It's very slow changing to a different version (because the copying?)
+#
+# https://github.com/asdf-vm/asdf
+# - Similar to nvm (cd wrapper)
+# - I don't need the extra features (support for other language version managers)
+#
+# https://volta.sh/
+# - It's supposed to be faster
+# - Not sure if it has the same issue as n in that it changes the version globally
+# - It doesn't support reading the version from .nvmrc or similar
+
 
 export NVM_DIR=~/.nvm
 source /usr/local/opt/nvm/nvm.sh --no-use
