@@ -37,7 +37,7 @@ nvmrc_exists() {
 
 # A silent `nvm use` unless it fails
 nvm_use_silent() {
-    nvm use --silent "$@" || nvm use "$@"
+    out=$(nvm use "$@" 2>&1) || echo "$out" >&2
 }
 
 cdnvm() {
