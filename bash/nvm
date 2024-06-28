@@ -32,26 +32,26 @@ source /usr/local/opt/nvm/nvm.sh --no-use
 # TODO How to avoid leaking these functions?
 
 nvmrc_exists() {
-    [[ "$(nvm_find_up .nvmrc)" != "" ]]
+	[[ "$(nvm_find_up .nvmrc)" != "" ]]
 }
 
 # A silent `nvm use` unless it fails
 nvm_use_silent() {
-    out=$(nvm use "$@" 2>&1) || echo "$out" >&2
+	out=$(nvm use "$@" 2>&1) || echo "$out" >&2
 }
 
 nvm_use_relevant_version() {
-    if nvmrc_exists; then
-       # Not using nvm install as it's slower and normally not required
-        nvm_use_silent
-    else
-        nvm_use_silent system
-    fi
+	if nvmrc_exists; then
+	   # Not using nvm install as it's slower and normally not required
+		nvm_use_silent
+	else
+		nvm_use_silent system
+	fi
 }
 
 cd_nvm() {
-    command cd "$@" || return $?
-    nvm_use_relevant_version
+	command cd "$@" || return $?
+	nvm_use_relevant_version
 }
 
 alias cd='cd_nvm'
