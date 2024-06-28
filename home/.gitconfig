@@ -36,7 +36,6 @@
   lb = log-branch
   lbs = l --branches # Local branches log
   m = merge
-  p = pull --ff-only # Safe pull (it fails in case of having to create a merge commit)
   r = rebase
   root = rev-parse --show-toplevel # The root dir of the repo
   # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
@@ -75,3 +74,5 @@
 [fetch]
   # Disabled as reflogs are not kept for deleted references
 	# prune = true
+[pull]
+	ff = only
