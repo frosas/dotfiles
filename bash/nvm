@@ -8,7 +8,7 @@
 # - It automatically switches to the correct version by reading the project .nvmrc on cd
 #   - That's quite slow
 # - No support for .node-version (the closest to a standard project pinning file)
-#   - As a workaround, a symlink from .node-version to .nvmrc can be created, or a custom cd wrapper can be implemented
+#   - As a workaround, a symlink from .node-version to .nvmrc can be created, or the cd wrapper can be customized to read .node-version
 #
 # https://github.com/tj/n
 # - It changes the version globally (ie, can't have multiple shells using different versions at the same time)
