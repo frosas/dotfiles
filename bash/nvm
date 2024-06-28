@@ -36,7 +36,11 @@ nvmrc_exists() {
 
 # A silent `nvm use` unless it fails
 nvm_use_silent() {
-	out=$(nvm use "$@" 2>&1) || echo "$out" >&2
+	local output_file
+	output_file=$(mktemp)
+	# Note `nvm use` can't run in a subshell (ie, `$(...)`) because it changes the shell environment
+	nvm use "$@" > "$output_file" 2>&1 || cat "$output_file" >&2
+	rm "$output_file"
 }
 
 nvm_use_relevant_version() {
