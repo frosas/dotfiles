@@ -3,7 +3,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Ensure we first of all get the exit code of the last command
+# Get the exit code of the last command before anything else
 PROMPT_COMMAND="LAST_EXIT_CODE=\$?"
 
 source "$SCRIPT_DIR"/prompt
