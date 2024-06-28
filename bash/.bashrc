@@ -50,10 +50,13 @@ fi
 # From https://gist.github.com/JuggoPop/10706934
 __git_complete g __git_main
 
-HISTSIZE="50000"
-PROMPT_COMMAND="$PROMPT_COMMAND; history -a" # Update history file immediately
-
-function h { history | tail -"${1:-20}"; }
+export HISTFILESIZE=5000
+export HISTSIZE=-1 # Unlimited
+# Those *dups only apply to the immediately previous dups and are basically useful to avoid cluttering
+# the history while retrieving previous commands
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend # Avoid the history file to be overwritten
+PROMPT_COMMAND="$PROMPT_COMMAND; history -a" # Update history file after each command
 
 # General-purpose command-line fuzzy finder
 # Ctrl+T - Select files under the current directory
