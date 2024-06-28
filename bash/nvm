@@ -1,7 +1,6 @@
 # shellcheck shell=bash
 # vim: filetype=bash
 
-
 # Solutions considered
 #
 # https://github.com/nvm-sh/nvm (current one)
