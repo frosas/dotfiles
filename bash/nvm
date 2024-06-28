@@ -1,13 +1,12 @@
 # shellcheck shell=bash
 # vim: filetype=bash
 
-# Based on https://github.com/nvm-sh/nvm#git-install
+# See https://github.com/nvm-sh/nvm
 
 export NVM_DIR=~/.nvm
 source /usr/local/opt/nvm/nvm.sh --no-use
 
-# Automatically call nvm use
-# Inspired in https://github.com/creationix/nvm#automatically-call-nvm-use
+# Automatically switch to the correct Node version when changing directories
 
 cdnvm() {
     command cd "$@" || return $?
