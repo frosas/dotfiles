@@ -1,8 +1,9 @@
 #!/bin/bash
 
-concurrently --kill-on-fail \
+concurrently \
+  --kill-others-on-fail \
+  --prefix-colors auto \
   --names "Homebrew,npm,macOS" \
-  --prefix-colors "red,green,yellow,blue,magenta,cyan,white" \
   "brew-maintenance" \
   "npm-maintenance" \
   "softwareupdate --list"
