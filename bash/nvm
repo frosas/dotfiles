@@ -8,6 +8,7 @@
 #   - That's quite slow
 # - No support for .node-version (the closest to a standard project pinning file)
 #   - As a workaround, a symlink from .node-version to .nvmrc can be created, or the cd wrapper can be customized to read .node-version
+# - Supported by Renovate
 #
 # https://github.com/tj/n
 # - It changes the version globally (ie, can't have multiple shells using different versions at the same time)
@@ -16,12 +17,18 @@
 # https://github.com/asdf-vm/asdf
 # - Similar to nvm (cd wrapper)
 # - I don't need the extra features (support for other language version managers)
+# - It's appartently slow (see https://mise.jdx.dev/dev-tools/comparison-to-asdf.html#performance)
 #
 # https://volta.sh/
 # - It's supposed to be faster
 # - Not sure if it has the same issue as n in that it changes the version globally
 # - It doesn't support reading the version from .nvmrc or similar
-
+#
+# https://mise.jdx.dev/
+# - TODO
+# - Maintained by a single person
+# - Supported by Renovate
+# - Integrated into the shell, but not as a cd wrapper. It has its pros/cons (see https://mise.jdx.dev/dev-tools/shims.html)
 
 export NVM_DIR=~/.nvm
 source /usr/local/opt/nvm/nvm.sh --no-use
