@@ -36,6 +36,7 @@
   lb = log-branch
   lbs = l --branches # Local branches log
   m = merge
+  p = pull
   r = rebase
   root = rev-parse --show-toplevel # The root dir of the repo
   # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
