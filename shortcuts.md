@@ -1,52 +1,52 @@
-# Shortcuts cheatsheet
+# Shortcuts cheat sheet
 
 ## macOS
 
-- `ctrl-cmd-Q` locks the computer
+- `control + command + Q` locks the computer
 
 ### Working with text
 
 Moving around
 
-- `ctrl-B` moves to previous character
-- `ctrl-F` moves to next character
-- `ctrl-alt-B` moves to previous word
-- `ctrl-alt-F` moves to next word
-- `ctrl-A` moves to beginning of line
-- `ctrl-E` moves to end of line
-- `ctrl-N` moves to next line
-- `ctrl-P` moves to previous line
+- `control + B` moves to previous character
+- `control + F` moves to next character
+- `control + option + B` moves to previous word
+- `control + option + F` moves to next word
+- `control + A` moves to beginning of line
+- `control + E` moves to end of line
+- `control + N` moves to next line
+- `control + P` moves to previous line
 
 Deleting
 
-- `ctrl-K` deletes to the end of line
-- `ctrl-U` deletes to the beginning of the line
-- `alt-D` deletes next word
-- `alt-W` deletes previous word
+- `control + K` deletes to the end of line
+- `control + U` deletes to the beginning of the line
+- `option + D` deletes next word
+- `option + W` deletes previous word
 
 See more at https://jblevins.org/log/kbd
 
 ### iTerm
 
-- `alt-B` moves cursor to next word
-- `alt-F` moves cursor to previous word
+- `option + B` moves cursor to next word
+- `option + F` moves cursor to previous word
 
 ### Bash
 
-- `ctrl-R` replaces the command line with the selected command from history
-- `ctrl-T` pastes the selected file path (provided by fzf)
-- `alt-C` changes to the selected sub-directory (provided by fzf)
+- `control + R` replaces the command line with the selected command from history
+- `control + T` pastes the selected file path (provided by fzf)
+- `option + C` changes to the selected sub-directory (provided by fzf)
 
 ### VS Code
 
-- `ctrl--` jumps to previous location (i.e. file, line and column)
-- `shift-ctrl--` jumps to next location
+- `control + -` jumps to previous location (i.e. file, line and column)
+- `shift + control + -` jumps to next location
 
 ### Slack
 
-- `shift-cmd-A` jumps to "All Unreads"
-- `shift-cmd-S` shows "Starred Items"
-- `cmd-.` toggles the right sidebar
-- `cmd-?` shows the available shortcuts
-- In "All Unreads", `r` marks the messages in a channel as read
+- `shift + command + A` jumps to "All Unreads"
+- `shift + command + S` shows "Starred Items"
+- `command + .` toggles the right sidebar
+- `command + ?` shows the available shortcuts
+- In "All Unreads", `R` marks the messages in a channel as read
 - `↑` edits the last written message
