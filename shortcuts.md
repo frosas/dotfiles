@@ -3,8 +3,20 @@
 ## macOS
 
 - `control + command + Q` locks the computer
+- `command + space` opens Raycast
+- `shift + control + P` opens Chrome Personal
 
-### Working with text
+  (via Raycast Script Command, needs to be configured)
+
+- `shift + control + W` opens Chrome Work
+
+  (via Raycast Script Command, needs to be configured)
+
+### Moving windows
+
+TODO See Rectangle settings
+
+### Text input
 
 Moving around
 
