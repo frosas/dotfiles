@@ -26,23 +26,20 @@ Deleting
 
 See more at https://jblevins.org/log/kbd
 
-### iTerm
+### Apps
 
-- `option + B` moves cursor to next word
-- `option + F` moves cursor to previous word
-
-### Bash
+#### Bash
 
 - `control + R` replaces the command line with the selected command from history
 - `control + T` pastes the selected file path (provided by fzf)
 - `option + C` changes to the selected sub-directory (provided by fzf)
 
-### VS Code
+#### iTerm
 
-- `control + -` jumps to previous location (i.e. file, line and column)
-- `shift + control + -` jumps to next location
+- `option + B` moves cursor to next word
+- `option + F` moves cursor to previous word
 
-### Slack
+#### Slack
 
 - `shift + command + A` jumps to "All Unreads"
 - `shift + command + S` shows "Starred Items"
@@ -50,3 +47,8 @@ See more at https://jblevins.org/log/kbd
 - `command + ?` shows the available shortcuts
 - In "All Unreads", `R` marks the messages in a channel as read
 - `↑` edits the last written message
+
+#### VS Code
+
+- `control + -` jumps to previous location (i.e. file, line and column)
+- `shift + control + -` jumps to next location
