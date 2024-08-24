@@ -6,11 +6,11 @@
 - `command + space` opens Raycast
 - `shift + control + P` opens Chrome Personal
 
-  (via Raycast Script Command, needs to be configured)
+  (via [Raycast script](raycast-scripts), needs to be configured)
 
 - `shift + control + W` opens Chrome Work
 
-  (via Raycast Script Command, needs to be configured)
+  (via [Raycast script](raycast-scripts), needs to be configured)
 
 ### Moving windows
 
