@@ -20,7 +20,7 @@
   b = branch --sort=-committerdate --format '%(refname:short) %(color:yellow)%(upstream:strip=-1) %(upstream:track)%(color:reset)'
   bbd = branches-by-date
   ci = commit -v # Commits showing the changes
-  ci-wip = ci -m WIP --no-verify
+  ci-wip = ci -m WIP --no-verify --no-gpg-sign
   ci-wip-all = ! git a . && git ci-wip -a # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
   co = checkout
   co-tmp-branch = ! git co -b "$(git rev-parse --abbrev-ref HEAD)-tmp-$(date "+%s")" # Creates a temporary branch. Useful to work on changes without affecting the current branch.
