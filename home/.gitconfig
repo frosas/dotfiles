@@ -30,7 +30,7 @@
   diff-branch-files = db '' '' --name-only
   du = diff-uncommitted
   h = help
-  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an, %cr) %C(bold blue)%Creset' # Single-line tree-formatted log
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' # Single-line tree-formatted log
   la = l --all # All branches log
   lb = log-branch
   lbs = l --branches # Local branches log
