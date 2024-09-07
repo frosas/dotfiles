@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# From http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
-
-FORMAT="%(refname:short) $(tput setaf 8)%(committerdate:relative) → %(upstream:short) %(upstream:track)$(tput sgr0)"
-git for-each-ref --sort=-committerdate refs/heads --format="$FORMAT"

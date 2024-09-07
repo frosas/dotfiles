@@ -18,7 +18,6 @@
   amend = ci --amend # Adds indexed changes to the last commit 
   ap = add -p # Adds interactively
   b = branch --sort=-committerdate --format '%(refname:short) %(color:yellow)%(upstream:strip=-1) %(upstream:track)%(color:reset)'
-  bbd = branches-by-date
   ci = commit -v # Commits showing the changes
   ci-wip = ci -m WIP --no-verify --no-gpg-sign
   ci-wip-all = ! git a . && git ci-wip -a # Commits all the changes in the working tree. Useful to "stash" in the context of the current branch.
