@@ -101,7 +101,7 @@ Install https://github.com/frosas/chrome-customizations-extension
 ## iStat Menus
 
 - _File_ → _Import Settings…_
-- Select `iStat/iStat Menus Settings.ismp`
+- Select .ismp file backup
 
 ## Install SF Mono
 
