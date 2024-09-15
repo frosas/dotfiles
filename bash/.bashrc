@@ -11,7 +11,6 @@ source "$SCRIPT_DIR"/prompt
 export EDITOR=vim
 export GREP_OPTIONS="--color=auto"
 
-# TODO Why VSCode keeps getting a bigger PATH on every opened terminal?
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$SCRIPT_DIR/../bin:$PATH"
 if [ "$(uname)" = Darwin ]; then 
