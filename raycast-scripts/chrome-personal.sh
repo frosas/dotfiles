@@ -4,4 +4,6 @@
 # @raycast.title Chrome Personal 👕
 # @raycast.mode silent
 
-open -a "Google Chrome" --new --args --profile-directory="Default"
+source ./utils
+
+chrome --profile-directory="Default"

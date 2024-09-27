@@ -4,4 +4,6 @@
 # @raycast.title Chrome Work 💼
 # @raycast.mode silent
 
-open -a "Google Chrome" --new --args --profile-directory="Profile 8"
+source ./utils
+
+chrome --profile-directory="Profile 8"

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mac_app_path() {
+  local app_name=$1
+  osascript -e "POSIX path of (path to application \"$app_name\")"
+}
+
+chrome() {
+  # TODO Is this faster than `open -a "Google Chrome" --new`?
+  # local chrome_path
+  # chrome_path=$(mac_app_path "Google Chrome")
+  # "$chrome_path/Contents/MacOS/Google Chrome" "$@"
+  
+  open -a "Google Chrome" --new --args "$@"
+}
