@@ -3,9 +3,7 @@
 # Prints the commits in $BRANCH relative to $REF_BRANCH
 
 BRANCH=${1:-""} # HEAD by default
-# TODO How to obtain it automatically?
-# TODO Alternatively, use the first found from a list (origin/master, origin/main, origin/next, ...)
-REF_BRANCH=${2:-"origin/master"}
+REF_BRANCH=${2:-$(git-default-repo-branch)}
 
 # TODO Should it be like `git log A...B` instead?
 git l "$REF_BRANCH".."$BRANCH" "${@:3}"
