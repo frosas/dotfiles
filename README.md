@@ -46,12 +46,6 @@ $ chsh -s /bin/bash
 $ vi -o ~/.bashrc home-examples/.bashrc # Update as needed
 ```
 
-## Vim
-
-```bash
-$ setup/vim
-```
-
 ## Homebrew
 
 ```bash

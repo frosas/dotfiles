@@ -1,5 +1,0 @@
-#!/bin/bash
-
-set -xe
-
-vim +BundleInstall +qall # See https://github.com/gmarik/vundle
