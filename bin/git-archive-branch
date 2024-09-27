@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BRANCH=$1
+
+git export-branch "$BRANCH" && git branch-delete "$BRANCH"
