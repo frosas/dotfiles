@@ -1,0 +1,8 @@
+#!/bin/bash
+
+pick-local-git-branch() {
+  # Using "git b" to ensure the sorting I'm used to
+  git b --format='%(refname:short)' | fzf
+}
+
+git switch "$(pick-local-git-branch)"
