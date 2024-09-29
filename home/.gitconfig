@@ -36,10 +36,12 @@
   lbs = l --branches # Local branches log
   m = merge
   p = pull
+  pick-local-branch = ! git b --format='%(refname:short)' | fzf
   r = rebase
   root = rev-parse --show-toplevel # The root dir of the repo
   # remote-branches-by-date = for-each-ref --sort=committerdate refs/remotes --format='%(refname:short) %(committerdate:short) %(authorname)' # Rarely used
   s = status --short
+  si = ! git switch "$(git pick-local-branch)" # Mnemonic: "switch interactive"
   uncommit = reset HEAD^
   untracked-files = ls-files -o --exclude-standard
 
