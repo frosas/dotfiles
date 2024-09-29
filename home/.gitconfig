@@ -4,7 +4,7 @@
 [color]
   ui = true
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
   pager = delta
 [github]
   user = frosas
@@ -44,7 +44,6 @@
   si = ! git switch "$(git pick-local-branch)" # Mnemonic: "switch interactive"
   uncommit = reset HEAD^
   untracked-files = ls-files -o --exclude-standard
-
   # Usage: $ g quick-bisect sh -c '! ag <my-string> -l'
   quick-bisect = ! git bisect start HEAD $(git rev-list --max-parents=0 HEAD) -- && git bisect run
   show-commit-files = "show --name-only --pretty=''"
@@ -54,27 +53,27 @@
   # Create and edit this file to customize the settings for a specific machine
   path = .gitconfig-local
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 [interactive]
   diffFilter = delta --color-only
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [merge]
   conflictstyle = diff3
 [delta]
   line-numbers = true
 [fetch]
   # Disabled as reflogs are not kept for deleted references
-	# prune = true
+  # prune = true
 [pull]
-	ff = only
+  ff = only
