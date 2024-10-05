@@ -12,6 +12,6 @@ merge_tree_exit_code=$?
 if [ $merge_tree_exit_code -ne 0 ]; then
   # Skipping the first line as it contains the new commit hash
   merge_conflicts=$(echo "$merge_tree_output" | tail -n +2)
-  echo "${merge_conflicts}" 
+  echo "$merge_conflicts" 
   exit 1
 fi
