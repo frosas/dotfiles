@@ -3,7 +3,7 @@
 # Prints the commits in $BRANCH relative to $REF_BRANCH
 
 BRANCH=${1:-""} # HEAD by default
-REF_BRANCH=${2:-$(git-default-repo-branch)}
+REF_BRANCH=${2:-$(git-default-branch)}
 
 # TODO Should it be like `git log A...B` instead?
 git l "$REF_BRANCH".."$BRANCH" "${@:3}"

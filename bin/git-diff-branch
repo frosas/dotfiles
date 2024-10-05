@@ -4,6 +4,6 @@
 # ancestor with $REF_BRANCH
 
 BRANCH=${1:-""} # HEAD by default
-REF_BRANCH=${2:-$(git-default-repo-branch)} # TODO How to obtain it automatically?
+REF_BRANCH=${2:-$(git-default-branch)} # TODO How to obtain it automatically?
 
 git diff "$REF_BRANCH"..."$BRANCH" "${@:3}"
