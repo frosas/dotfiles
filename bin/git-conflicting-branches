@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Lists the branches that would conflict if merged into the default branch
+
+for branch in $(git for-each-ref --format='%(refname:short)' refs/heads/); do
+  if ! git branch-conflicts "$branch" >/dev/null; then
+    echo "$branch"
+  fi
+done
