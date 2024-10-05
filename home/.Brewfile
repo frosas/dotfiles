@@ -7,7 +7,7 @@ tap "homebrew/bundle"
 
 brew "awscli"
 brew "bash"
-brew "bash-completion"
+brew "bash-completion@2"
 brew "bat"
 brew "coreutils"
 brew "deno"

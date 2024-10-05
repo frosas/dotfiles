@@ -42,7 +42,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 if [ "$(uname)" = Darwin ]; then 
   # __git_ps1 is defined here
-  . "$(brew --prefix)/etc/bash_completion"
+  . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 fi
 
 # Bash completion for `g` alias
