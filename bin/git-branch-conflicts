@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Shows the files that would conflict if the given branch were merged into the 
+# default branch.
+
+branch="${1:-HEAD}"
+
+merge_output=$(git merge-tree --write-tree --name-only --no-messages "$branch" "$(git default-branch)")
+merge_exit_code=$?
+
+if [ $merge_exit_code -ne 0 ]; then
+  # Print everything but the new commit hash (the first line)
+  echo "${merge_output#*$'\n'}" 
+  exit 1
+fi
