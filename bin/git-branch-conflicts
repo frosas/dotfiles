@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# Shows the files that would conflict if the given branch were merged into the 
-# default branch.
+# Lists the files that would conflict if the given branch were merged into the 
+# reference branch (the default branch by default)
 
 branch="${1:-HEAD}"
+ref_branch="${2:-$(git default-branch)}"
 
-merge_output=$(git merge-tree --write-tree --name-only --no-messages "$branch" "$(git default-branch)")
-merge_exit_code=$?
+merge_tree_output=$(git merge-tree --write-tree --name-only --no-messages "$branch" "$ref_branch" 2>&1)
+merge_tree_exit_code=$?
 
-if [ $merge_exit_code -ne 0 ]; then
-  # Print everything but the new commit hash (the first line)
-  echo "${merge_output#*$'\n'}" 
+if [ $merge_tree_exit_code -ne 0 ]; then
+  # Skipping the first line as it contains the new commit hash
+  merge_conflicts=$(echo "$merge_tree_output" | tail -n +2)
+  echo "${merge_conflicts}" 
   exit 1
 fi
