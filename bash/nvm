@@ -55,7 +55,7 @@ nvm_use_relevant_version() {
 	   # Not using nvm install as it's slower and normally not required
 		nvm_use_silent
 	else
-		nvm_use_silent system
+		nvm_use_silent default
 	fi
 }
 
