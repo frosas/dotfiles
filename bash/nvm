@@ -31,7 +31,7 @@
 # - Integrated into the shell, but not as a cd wrapper. It has its pros/cons (see https://mise.jdx.dev/dev-tools/shims.html)
 
 export NVM_DIR=~/.nvm
-source /usr/local/opt/nvm/nvm.sh --no-use
+source /opt/homebrew/opt/nvm/nvm.sh --no-use
 
 # Automatically switch to the correct Node version when changing directories
 
