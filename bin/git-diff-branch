@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# Prints the content changes introduced in $BRANCH relative to the common 
-# ancestor with $REF_BRANCH
+# Prints the content changes introduced in $branch relative to the common 
+# ancestor with $ref_branch
 
-BRANCH=${1:-""} # HEAD by default
-REF_BRANCH=${2:-$(git-default-branch)} # TODO How to obtain it automatically?
+branch=${1:-"HEAD"}
+ref_branch=${2:-$(git-default-branch)}
 
-git diff "$REF_BRANCH"..."$BRANCH" "${@:3}"
+echo "Comparing $branch with $ref_branch"
+
+git diff "$ref_branch"..."$branch" "${@:3}"
