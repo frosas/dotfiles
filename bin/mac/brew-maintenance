@@ -14,7 +14,7 @@ run_silently_unless_error "brew doctor"
 
 echo
 info "Extraneous installed packages (uninstall them with \`brew bundle cleanup --global --force\`, or update Brewfile):"
-brew bundle cleanup --global
+brew bundle cleanup --global || true
 
 echo
 info "Missing packages (fix with \`brew bundle --global --verbose\`):"
