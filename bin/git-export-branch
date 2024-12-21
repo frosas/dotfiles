@@ -1,9 +1,13 @@
 #!/bin/bash
 
-BRANCH=${1:-"$(git branch --show-current)"}
-REF_BRANCH=${2:-""} # See git diff-branch for default
-REPO="${PWD##*/}"
-FILENAME="$REPO-$BRANCH.patch"
+# Exports the branch changes into a patch file
 
-git diff-branch "$BRANCH" "$REF_BRANCH" > "$FILENAME"
-echo "👉 Patch saved to $FILENAME"
+set -e
+
+branch=${1:-"$(git branch --show-current)"}
+ref_branch=${2:-$(git default-branch)}
+repo=$(basename "$(git root)")
+filename="$repo-$branch.patch"
+
+git diff "$ref_branch"..."$branch" > "$filename"
+echo "👉 Patch saved to $filename"
