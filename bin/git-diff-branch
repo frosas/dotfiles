@@ -3,9 +3,11 @@
 # Prints the content changes introduced in $branch relative to the common 
 # ancestor with $ref_branch
 
-branch=${1:-"HEAD"}
-ref_branch=${2:-$(git-default-branch)}
+set -e
 
-echo "Comparing $branch with $ref_branch"
+branch=${1:-"HEAD"}
+ref_branch=${2:-$(git default-branch)}
+
+echo -e "$(tput setaf 8)Comparing $branch with $ref_branch$(tput sgr0)\n"
 
 git diff "$ref_branch"..."$branch" "${@:3}"

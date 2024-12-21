@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# Prints the commits in $BRANCH relative to $REF_BRANCH
+# Prints the commits in $branch relative to $ref_branch
 
-BRANCH=${1:-""} # HEAD by default
-REF_BRANCH=${2:-$(git-default-branch)}
+branch=${1:-"HEAD"}
+ref_branch=${2:-$(git-default-branch)}
 
-# TODO Should it be like `git log A...B` instead?
-git l "$REF_BRANCH".."$BRANCH" "${@:3}"
+echo -e "$(tput setaf 8)Comparing $branch with $ref_branch$(tput sgr0)\n"
+
+git l "$ref_branch".."$branch" "${@:3}"
