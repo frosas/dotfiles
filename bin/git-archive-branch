@@ -1,5 +1,15 @@
 #!/bin/bash
 
-BRANCH=$1
+# Exports the branch changes into a patch file and deletes the branch
 
-git export-branch "$BRANCH" && git branch-delete "$BRANCH"
+set -e
+
+branch=$1
+
+if [ -z "$branch" ]; then
+  echo "Branch name not provided"
+  exit 1
+fi
+
+git export-branch "$branch"
+git b -D "$branch"
