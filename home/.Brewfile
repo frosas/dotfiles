@@ -3,8 +3,6 @@
 # TODO Read this from a gitignored file
 machine = "personal" # Don't commit this
 
-tap "homebrew/bundle"
-
 brew "awscli"
 brew "bash"
 brew "bash-completion@2"
@@ -31,6 +29,7 @@ brew "neovim"
 brew "nmap"
 brew "node"
 brew "nvm"
+brew "pnpm"
 brew "pstree"
 brew "pulumi" if machine == "personal"
 brew "python"
