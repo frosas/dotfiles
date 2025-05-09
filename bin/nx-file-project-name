@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Returns the NX project name for a given file
+#
+# Usage:
+#   nx-file-project-name <file>
+#
+# Example:
+#   nx test `nx-file-project-name src/app/app.component.ts`
+
+set -e
+
+get_file_project_file() {
+  local file_path="$1"
+  local file_full_path
+  file_full_path="$(realpath "$file_path")"
+  local project_file="$file_full_path/project.json"
+  if [[ -e "$project_file" ]]; then
+    echo "$project_file"
+  else
+    if [[ "$file_full_path" == "/" ]]; then
+      echo "No project found" >&2
+      exit 1
+    fi
+    get_file_project_file "$(dirname "$file_full_path")"
+  fi
+}
+
+file="$1"
+project_file="$(get_file_project_file "$file")"
+jq -r '.name' "$project_file"
