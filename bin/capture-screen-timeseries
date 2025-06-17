@@ -1,0 +1,15 @@
+#!/bin/bash
+
+BASE_DIR="$HOME/Downloads/Screenshots"
+mkdir -p "$BASE_DIR"
+
+while true; do
+  DATE=$(date +"%Y-%m-%d")
+  TIME=$(date +"%H-%M-%S")
+  SCREENSHOT_DIR="$BASE_DIR/$DATE"
+  mkdir -p "$SCREENSHOT_DIR"
+  SCREENSHOT_PATH="$SCREENSHOT_DIR/$TIME.png"
+  screencapture -x "$SCREENSHOT_PATH"
+  echo "Screenshot saved at $SCREENSHOT_PATH"
+  sleep 60 # seconds
+done
