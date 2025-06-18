@@ -1,16 +1,15 @@
 #!/bin/bash
 
 BASE_DIR="$HOME/Downloads/Screenshots"
-mkdir -p "$BASE_DIR"
 
 while true; do
   DATE=$(date +"%Y-%m-%d")
   TIME=$(date +"%H-%M-%S")
   SCREENSHOT_DIR="$BASE_DIR/$DATE"
-  mkdir -p "$SCREENSHOT_DIR"
   DISPLAY_COUNT=$(system_profiler SPDisplaysDataType | grep -c "Resolution:")
   for DISPLAY_INDEX in $(seq 1 "$DISPLAY_COUNT"); do
     SCREENSHOT_PATH="$SCREENSHOT_DIR/${TIME}-${DISPLAY_INDEX}.png"
+    mkdir -p "$(dirname "$SCREENSHOT_PATH")"
     screencapture -x -D "$DISPLAY_INDEX" "$SCREENSHOT_PATH"
     echo "Screenshot saved at $SCREENSHOT_PATH"
   done
