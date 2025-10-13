@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# TODO Archive the path relative to ~/Dropbox
+# Compresses a directory and moves it to where I archive my files
 
 set -e
 
 SOURCE="$1"
-if [ ! -d "$SOURCE" ]; then
+if [ ! -e "$SOURCE" ]; then
   echo "Source not found: $SOURCE"
   exit 1
 fi
@@ -16,9 +16,16 @@ if [ ! -d "$DESTINATION_ROOT" ]; then
   exit 1
 fi
 
-DESTINATION="$DESTINATION_ROOT/$(date +%Y)/$(basename "$SOURCE").zip"
+DESTINATION_DIR="$DESTINATION_ROOT/$(date +%Y)"
+mkdir -p "$DESTINATION_DIR"
 
-mkdir -p "$(dirname "$DESTINATION")"
-zip -r "$DESTINATION" "$SOURCE"
-echo "Archived to $DESTINATION"
+# Use pack to compress and capture the filename
+PACKED_SOURCE=$(pack "$SOURCE")
+ARCHIVED_SOURCE="$DESTINATION_DIR/$PACKED_SOURCE"
+
+# Move the zip file to the destination directory
+mv "$PACKED_SOURCE" "$ARCHIVED_SOURCE"
+
 trash "$SOURCE"
+
+echo "Archived to $ARCHIVED_SOURCE"

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Compresses a directory or file into a zip file in the current directory
+
+set -e
+
+SOURCE="$1"
+if [ ! -e "$SOURCE" ]; then
+  echo "Source not found: $SOURCE"
+  exit 1
+fi
+
+DESTINATION="$(basename "$SOURCE").zip"
+
+zip -r "$DESTINATION" "$SOURCE" >&2
+
+echo "Packed to $DESTINATION" >&2 # Human friendly
+echo "$DESTINATION" # Machine friendly
