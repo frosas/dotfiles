@@ -38,7 +38,8 @@ if [ "$(uname)" = Linux ]; then
   alias ls="ls -FAh --color"
 fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Tweaked to avoid calling ps (see https://github.com/openai/codex/issues/4620#issuecomment-3368040837)
+eval "$(/opt/homebrew/bin/brew shellenv bash)"
 
 if [ "$(uname)" = Darwin ]; then 
   # __git_ps1 is defined here
