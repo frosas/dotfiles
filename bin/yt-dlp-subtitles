@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Download the YouTube video subtitles in original language.
+
+set -euo pipefail
+
+URL="$1"
+
+TEMP_DIR=$(mktemp -d -t yt-dlp-subtitles)
+
+yt-dlp "$URL" \
+  --skip-download \
+  --sub-format srt --write-subs --write-automatic-subs --sub-langs '.*-orig' --sub-format srv1 \
+  -o "$TEMP_DIR/subtitles" \
+  --quiet --no-warnings
+
+SUBTITLES_FILE=$(echo "$TEMP_DIR"/subtitles.*)
+
+cat "$SUBTITLES_FILE" | xmllint --xpath "//text/text()" - | tr '\n' ' '
+
+trash "$TEMP_DIR"
