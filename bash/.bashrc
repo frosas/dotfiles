@@ -73,6 +73,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # Node
 source "$SCRIPT_DIR/nvm"
-export PATH="node_modules/.bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
