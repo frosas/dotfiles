@@ -7,6 +7,8 @@
   excludesfile = ~/.gitignore
   pager = delta
   fsmonitor = true
+  # Speeds up git status. Needs FS support. See https://git-scm.com/docs/git-update-index#_untracked_cache
+  untrackedCache = true
 [github]
   user = frosas
 [push]
