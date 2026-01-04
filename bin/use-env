@@ -1,4 +1,9 @@
 #!/bin/sh
 
+# Usage: use-env <command>
+# Examples:
+#   use-env node ...
+#   use-env bash
+
 # shellcheck disable=SC1091
 (set -a && . .env && "$@")
