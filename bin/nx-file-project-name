@@ -19,7 +19,7 @@ get_file_project_file() {
     echo "$project_file"
   else
     if [[ "$file_full_path" == "/" ]]; then
-      echo "No project found" >&2
+      echo "The file is not part of a project" >&2
       exit 1
     fi
     get_file_project_file "$(dirname "$file_full_path")"
