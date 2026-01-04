@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Usage: nx-projects-with-changed-files [base branch]
+#
+# Example: nx-projects-with-changed-files origin/base-branch
+
+set -e
+
+base_branch=${1:-origin/main}
+
+for file in $(git diff --name-only "$base_branch"..HEAD); do
+  if [[ -e "$file" ]]; then
+    if project_name_or_error=$(nx-file-project-name "$file" 2>&1); then
+      echo "$project_name_or_error"
+    else
+      echo "⚠️  Could not get the project name for $file: $project_name_or_error" >&2
+    fi
+  fi
+done | sort -u
