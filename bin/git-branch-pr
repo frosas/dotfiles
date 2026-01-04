@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Opens the (GitHub) PR associated with the current branch
+
+set -e
+
+gh pr view --web
