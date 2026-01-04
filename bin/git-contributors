@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Shows the contributors for a given file or directory (defaults to current 
+# directory) along with the number of lines they contributed.
+
+# Get the path from command-line argument or use the current directory
+path="${1:-.}"
+
+git ls-files "$path" | while read -r file; do
+  git blame -w --line-porcelain -- "$file" | grep '^author '
+done | sort | uniq -c | sort -nr
