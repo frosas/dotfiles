@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Lists the branches that would conflict if merged into the default branch
+
+# Usage:
+#   git fetch --prune
+#   git all-remote-conflicting-branches
+
+local_branches=$(git for-each-ref --format='%(refname:short)' refs/heads)
+remote_branches=$(git for-each-ref --format='%(refname:short)' refs/remotes)
+
+get_branch_date() {
+  git log -1 --format=%ci "$1"
+}
+
+is_old_branch() {
+  branch_date=$(get_branch_date "$1")
+  one_month_ago=$(date -v -1m +%Y-%m-%d)
+  [ "$branch_date" '<' "$one_month_ago" ]
+}
+
+for local_branch in $local_branches; do
+  if is_old_branch "$local_branch"; then
+    continue
+  fi
+  echo "$(tput setaf 3)$local_branch$(tput sgr0)"
+  for remote_branch in $remote_branches; do
+    if is_old_branch "$remote_branch"; then
+      continue
+    fi
+    default_branch=$(git default-branch)
+    if ! git branch-conflicts "$local_branch" "$default_branch" >/dev/null; then
+      echo "  - $default_branch $(tput setaf 8)(default branch, skipping other branches)$(tput sgr0)"
+      break
+    fi
+    if ! git branch-conflicts "$local_branch" "$remote_branch" >/dev/null; then
+      echo "  - $remote_branch"
+    fi
+  done
+done
