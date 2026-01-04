@@ -6,6 +6,7 @@
 [core]
   excludesfile = ~/.gitignore
   pager = delta
+  fsmonitor = true
 [github]
   user = frosas
 [push]
