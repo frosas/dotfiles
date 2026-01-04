@@ -48,7 +48,9 @@ fi
 
 # Bash completion for `g` alias
 # From https://gist.github.com/JuggoPop/10706934
-__git_complete g __git_main
+if declare -F __git_complete >/dev/null; then
+  __git_complete g __git_main
+fi
 
 export HISTFILESIZE=5000
 export HISTSIZE=-1 # Unlimited
