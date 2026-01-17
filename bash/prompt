@@ -28,8 +28,10 @@ prompt_command () {
     tput bel
   fi
 
-  # GIT_PS1_SHOWDIRTYSTATE=1 # It's just too slow
-  # GIT_PS1_SHOWUNTRACKEDFILES=1 # It's just too slow
+  # shellcheck disable=SC2034
+  GIT_PS1_SHOWDIRTYSTATE=1
+  # shellcheck disable=SC2034
+  GIT_PS1_SHOWUNTRACKEDFILES=1
   # shellcheck disable=SC2034
   GIT_PS1_SHOWSTASHSTATE=1
 
