@@ -1,10 +1,6 @@
 # Mac
 .DS_Store
 
-# Visual Studio Code
-.vscode
-*.code-search
-
 # Terraform
 .terraform
 plan.tfout
