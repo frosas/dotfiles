@@ -6,4 +6,4 @@
 
 source ./utils
 
-chrome --profile-directory="Profile 8"
+chrome --profile-directory="Profile 10"
