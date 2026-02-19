@@ -78,3 +78,6 @@ source "$SCRIPT_DIR/nvm"
 export PATH="./node_modules/.bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+# https://nextjs.org/telemetry
+export NEXT_TELEMETRY_DISABLED=1
