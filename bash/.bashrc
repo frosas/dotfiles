@@ -61,12 +61,14 @@ shopt -s histappend # Avoid the history file to be overwritten
 PROMPT_COMMAND="$PROMPT_COMMAND; history -a" # Update history file after each command
 
 # General-purpose command-line fuzzy finder
-# Ctrl+T - Select files under the current directory
-# Ctrl+R - Select history command
+# - Ctrl+T - Select files under the current directory
+# - Ctrl+R - Select history command
+# - <command> **<Tab> - Select dirs, files, process IDs, ... depending on the 
+#   command. See `complete | grep _fzf`
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=up,3,wrap"
-source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+eval "$(fzf --bash)"
 
 # https://www.iterm2.com/documentation-shell-integration.html
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
