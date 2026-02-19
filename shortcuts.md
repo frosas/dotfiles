@@ -46,7 +46,7 @@ See more at https://jblevins.org/log/kbd
 - `control + T` pastes the selected file path (provided by fzf)
 - `option + C` changes to the selected sub-directory (provided by fzf)
 
-#### iTerm
+#### Terminals (VS Code, Ghostty)
 
 - `option + B` moves cursor to next word
 - `option + F` moves cursor to previous word

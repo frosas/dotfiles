@@ -59,12 +59,6 @@ $ nvm alias default system
 $ setup/npm
 ```
 
-## iTerm2
-
-- Go to _Preferences_ → _General_ → _Preferences_
-  - Enable _Load preferences from a custom folder_ and point to `iterm` directory\_
-  - Enable _Save changes to folder when iTerm2 quits_
-
 ## SSH
 
 ```bash
