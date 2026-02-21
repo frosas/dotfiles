@@ -55,7 +55,7 @@ $ brew bundle --global --verbose
 ## Node.js
 
 ```bash
-$ nvm alias default system
+$ fnm default system
 $ setup/npm
 ```
 

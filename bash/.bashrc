@@ -71,7 +71,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=up,3,wrap"
 eval "$(fzf --bash)"
 
 # Node
-source "$SCRIPT_DIR/nvm"
+eval "$(fnm env --use-on-cd --shell bash --version-file-strategy=recursive)"
 export PATH="./node_modules/.bin:$PATH"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
